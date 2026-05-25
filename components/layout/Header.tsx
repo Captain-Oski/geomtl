@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import GeoMTLLogo from '@/components/ui/GeoMTLLogo';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -49,17 +50,15 @@ export default function Header() {
             {/* Logo */}
             <Link
               href={`/${locale}`}
-              className="flex items-center gap-1 group"
+              className="flex items-center group"
+              aria-label="GeoMTL 2027 — Accueil"
             >
-              <span className="text-2xl font-black text-white tracking-tight group-hover:text-light-gray transition-colors">
-                Geo
-              </span>
-              <span className="text-2xl font-black text-rose-geo tracking-tight">
-                MTL
-              </span>
-              <span className="ml-1 text-sm font-semibold text-mid-gray">
-                2027
-              </span>
+              <GeoMTLLogo
+                variant="color"
+                height={28}
+                showYear={true}
+                className="transition-opacity duration-200 group-hover:opacity-80"
+              />
             </Link>
 
             {/* Desktop Nav */}

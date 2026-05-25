@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { EVENT_CONFIG } from '@/data/config';
+import GeoMTLLogo from '@/components/ui/GeoMTLLogo';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -39,10 +40,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href={`/${locale}`} className="flex items-center gap-1">
-              <span className="text-3xl font-black text-white tracking-tight">Geo</span>
-              <span className="text-3xl font-black text-rose-geo tracking-tight">MTL</span>
-              <span className="ml-1 text-base font-semibold text-mid-gray">2027</span>
+            <Link href={`/${locale}`} aria-label="GeoMTL 2027 — Accueil">
+              <GeoMTLLogo variant="color" height={34} showYear={true} />
             </Link>
             <p className="text-mid-gray leading-relaxed max-w-xs">
               {t('tagline')}
