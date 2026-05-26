@@ -122,7 +122,7 @@ export default async function ConditionsPage({
     },
     {
       id: 'image',
-      title: '6. Droit à l'image',
+      title: "6. Droit à l'image",
       content: (
         <p>
           L&apos;événement fait l&apos;objet de photographies et d&apos;enregistrements vidéo à des fins
