@@ -288,6 +288,13 @@
     "fr": "FR",
     "en": "EN"
   },
+  "cookies": {
+    "ariaLabel": "Cookie consent banner",
+    "message": "This site uses cookies to improve your experience and measure audience, in compliance with Quebec Law 25. You may accept or refuse non-essential cookies.",
+    "privacyLink": "Privacy Policy",
+    "accept": "Accept",
+    "refuse": "Refuse"
+  },
   "404": {
     "title": "Page not found",
     "subtitle": "This coordinate doesn't exist on our map.",

@@ -288,6 +288,13 @@
     "fr": "FR",
     "en": "EN"
   },
+  "cookies": {
+    "ariaLabel": "Bandeau de consentement aux témoins",
+    "message": "Ce site utilise des témoins (cookies) pour améliorer votre expérience et mesurer l'audience, conformément à la Loi 25 du Québec. Vous pouvez accepter ou refuser les témoins non essentiels.",
+    "privacyLink": "Politique de confidentialité",
+    "accept": "Accepter",
+    "refuse": "Refuser"
+  },
   "404": {
     "title": "Page introuvable",
     "subtitle": "Cette coordonnée n'existe pas sur notre carte.",

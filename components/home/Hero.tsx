@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { EVENT_CONFIG } from '@/data/config';
-import IsolineBackground from '@/components/ui/IsolineBackground';
 import GeoMTLLogo from '@/components/ui/GeoMTLLogo';
 
 const containerVariants = {
@@ -37,9 +36,6 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-deep-blue">
-
-      {/* ── Isoline topographic background ────────────────── */}
-      <IsolineBackground variant="hero" />
 
       {/* ── Floating gradient orbs (atmospheric glow) ─────── */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
