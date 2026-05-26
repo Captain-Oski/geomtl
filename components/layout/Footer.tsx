@@ -154,7 +154,7 @@ export default function Footer() {
             <Link href={`/${locale}/confidentialite`} className="hover:text-white transition-colors">
               {t('privacy')}
             </Link>
-            <Link href={`/${locale}/contact`} className="hover:text-white transition-colors">
+            <Link href={`/${locale}/conditions`} className="hover:text-white transition-colors">
               {t('terms')}
             </Link>
             <span>{t('madeIn')} 🏔️</span>
