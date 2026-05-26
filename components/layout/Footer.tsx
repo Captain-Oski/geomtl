@@ -151,7 +151,7 @@ export default function Footer() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-mid-gray">{t('copyright')}</p>
           <div className="flex items-center gap-6 text-sm text-mid-gray">
-            <Link href={`/${locale}/contact`} className="hover:text-white transition-colors">
+            <Link href={`/${locale}/confidentialite`} className="hover:text-white transition-colors">
               {t('privacy')}
             </Link>
             <Link href={`/${locale}/contact`} className="hover:text-white transition-colors">

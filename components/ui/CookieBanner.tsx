@@ -57,7 +57,7 @@ export default function CookieBanner() {
             <p className="flex-1 text-sm text-mid-gray leading-relaxed">
               {t('message')}{' '}
               <Link
-                href={`/${locale}/infos#confidentialite`}
+                href={`/${locale}/confidentialite`}
                 className="text-rose-geo hover:text-rose-geo-light underline underline-offset-2 transition-colors"
               >
                 {t('privacyLink')}
