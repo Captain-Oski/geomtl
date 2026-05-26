@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --deep-blue: #0a1628;
+  --deep-blue-light: #0f2040;
+  --deep-blue-mid: #122035;
+  --rose-geo: #e91e8c;
+  --rose-geo-light: #f050a8;
+  --orange-geo: #ff6b35;
+  --yellow-geo: #ffd60a;
+  --light-gray: #f0f4f8;
+  --mid-gray: #8896a8;
+
+  --font-inter: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--deep-blue);
+  color: var(--light-gray);
+  font-family: var(--font-inter);
+  line-height: 1.6;
+}
+
+/* Topographic pattern background */
+.topo-bg {
+  background-color: var(--deep-blue);
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(233, 30, 140, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(255, 107, 53, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 80%, rgba(10, 65, 120, 0.15) 0%, transparent 60%);
+}
+
+/* Section with subtle isoline accent — place relative on parent, then add isoline child */
+.section-topo {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(10, 22, 40, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-light {
+  background: rgba(15, 32, 64, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--rose-geo) 0%, var(--orange-geo) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-yellow {
+  background: linear-gradient(135deg, var(--yellow-geo) 0%, var(--orange-geo) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient border */
+.gradient-border {
+  position: relative;
+  border-radius: 12px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, rgba(233, 30, 140, 0.4), rgba(255, 107, 53, 0.4));
+  z-index: -1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-blue);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(233, 30, 140, 0.4);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(233, 30, 140, 0.7);
+}
+
+/* Topo contour lines pattern */
+.topo-pattern {
+  background-image:
+    repeating-radial-gradient(
+      ellipse farthest-corner at 40% 30%,
+      transparent,
+      transparent 28px,
+      rgba(233, 30, 140, 0.03) 28px,
+      rgba(233, 30, 140, 0.03) 30px
+    ),
+    repeating-radial-gradient(
+      ellipse farthest-corner at 70% 70%,
+      transparent,
+      transparent 36px,
+      rgba(255, 107, 53, 0.03) 36px,
+      rgba(255, 107, 53, 0.03) 38px
+    );
+}
+
+/* Section spacing */
+.section-spacing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+/* Text selection */
+::selection {
+  background-color: rgba(233, 30, 140, 0.3);
+  color: white;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--rose-geo);
+  outline-offset: 2px;
+}
+
+/* ── Neural cartography animations ──────────────────────────────── */
+@keyframes neuralPulse {
+  0%, 100% { opacity: 0.88; }
+  50%       { opacity: 0.50; }
+}
+@keyframes neuralGlow {
+  0%, 100% { opacity: 0.07; }
+  50%       { opacity: 0.15; }
+}
+@keyframes axonFlow {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -60; }
+}
+
+/* Animated gradient orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb-rose {
+  background: var(--rose-geo);
+}
+
+.orb-orange {
+  background: var(--orange-geo);
+  animation-delay: -3s;
+}
+
+.orb-blue {
+  background: #1a4a8a;
+  animation-delay: -5s;
+}
+
+/* Link styles */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utility for truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Badge styles */
+.badge-rose {
+  background: rgba(233, 30, 140, 0.15);
+  color: #f050a8;
+  border: 1px solid rgba(233, 30, 140, 0.3);
+}
+
+.badge-orange {
+  background: rgba(255, 107, 53, 0.15);
+  color: #ff8c5a;
+  border: 1px solid rgba(255, 107, 53, 0.3);
+}
+
+.badge-yellow {
+  background: rgba(255, 214, 10, 0.15);
+  color: #ffd60a;
+  border: 1px solid rgba(255, 214, 10, 0.3);
+}
+
+.badge-blue {
+  background: rgba(26, 74, 138, 0.3);
+  color: #5b9bd5;
+  border: 1px solid rgba(91, 155, 213, 0.3);
+}
+
+.badge-green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+}
