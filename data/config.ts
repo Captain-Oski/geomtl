@@ -1,9 +1,9 @@
 export const EVENT_CONFIG = {
   name: "GeoMTL 2027",
-  dates: { fr: "14–15 octobre 2027", en: "October 14–15, 2027" },
-  venue: { fr: "Palais des congrès de Montréal", en: "Palais des congrès de Montréal" },
-  city: "Montréal, QC",
-  stats: { participants: 1000, days: 2, speakers: 60, workshops: 20, exhibitors: 50, awards: 5 },
+  dates: { fr: "3–5 octobre 2027", en: "October 3–5, 2027" },
+  venue: { fr: "Centre de congrès de Saint-Hyacinthe", en: "Centre de congrès de Saint-Hyacinthe" },
+  city: "Saint-Hyacinthe, QC",
+  stats: { participants: 350, days: 2, speakers: 60, workshops: 20, exhibitors: 26, awards: 5 },
   tagline: {
     fr: "La géomatique comme système nerveux du territoire.",
     en: "Geomatics as the nervous system of the territory."
@@ -25,8 +25,8 @@ export const EVENT_CONFIG = {
   email: "info@geomtl.ca",
   phone: "+1 (514) 555-0200",
   address: {
-    fr: "1001, place Jean-Paul-Riopelle, Montréal, QC H2Z 1H5",
-    en: "1001 Place Jean-Paul-Riopelle, Montréal, QC H2Z 1H5"
+    fr: "1325, rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4",
+    en: "1325 rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4"
   },
   social: {
     twitter: "https://twitter.com/geomtl",

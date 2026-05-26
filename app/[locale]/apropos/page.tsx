@@ -66,8 +66,8 @@ export default async function AProposPage({
             </p>
             <p className="text-mid-gray leading-relaxed mt-4">
               {locale === 'fr'
-                ? 'En 2027, GeoMTL rassemblera plus de 1 000 personnes au Palais des congrès de Montréal pour deux journées intenses d\'apprentissage, de networking et de découverte. Avec 60+ conférenciers, 20 ateliers pratiques, 50+ exposants et 5 prix, c\'est l\'événement géospatial majeur de l\'année pour le Canada.'
-                : 'In 2027, GeoMTL will bring together more than 1,000 people at the Palais des congrès de Montréal for two intense days of learning, networking and discovery. With 60+ speakers, 20 practical workshops, 50+ exhibitors and 5 awards, it is the major geospatial event of the year for Canada.'}
+                ? 'En 2027, GeoMTL rassemblera 350 professionnels au Centre de congrès de Saint-Hyacinthe pour deux journées intenses d\'apprentissage, de networking et de découverte. Avec 60+ conférenciers, 20 ateliers pratiques, 26 exposants et 5 prix, c\'est l\'événement géospatial majeur de l\'année pour le Canada francophone.'
+                : 'In 2027, GeoMTL will bring together 350 professionals at the Centre de congrès de Saint-Hyacinthe for two intense days of learning, networking and discovery. With 60+ speakers, 20 practical workshops, 26 exhibitors and 5 awards, it is the major geospatial event of the year for French Canada.'}
             </p>
           </div>
           <div>

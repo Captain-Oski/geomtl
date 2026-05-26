@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils';
 export default function ProgrammePage() {
   const t = useTranslations('programme');
   const locale = useLocale();
-  const [activeDay, setActiveDay] = useState<1 | 2>(1);
+  const [activeDay, setActiveDay] = useState<0 | 1 | 2>(0);
   const [activeType, setActiveType] = useState<SessionType | 'all'>('all');
 
   const types: Array<{ value: SessionType | 'all'; labelFr: string; labelEn: string }> = [
@@ -46,21 +46,26 @@ export default function ProgrammePage() {
 
       <Container className="py-12">
         {/* Day tabs */}
-        <div className="flex gap-2 mb-6 p-1 glass rounded-xl w-fit">
-          {([1, 2] as const).map((day) => (
-            <button
-              key={day}
-              onClick={() => setActiveDay(day)}
-              className={cn(
-                'px-6 py-2.5 rounded-lg text-sm font-semibold transition-all',
-                activeDay === day
-                  ? 'bg-gradient-to-r from-rose-geo to-orange-geo text-white shadow-geo'
-                  : 'text-mid-gray hover:text-white'
-              )}
-            >
-              {locale === 'fr' ? `Jour ${day} — ${day === 1 ? '14 oct.' : '15 oct.'}` : `Day ${day} — ${day === 1 ? 'Oct. 14' : 'Oct. 15'}`}
-            </button>
-          ))}
+        <div className="flex flex-wrap gap-2 mb-6 p-1 glass rounded-xl w-fit">
+          {([0, 1, 2] as const).map((day) => {
+            const label = locale === 'fr'
+              ? day === 0 ? 'Soirée — Dim. 3 oct.' : `Jour ${day} — ${day === 1 ? 'Lun. 4 oct.' : 'Mar. 5 oct.'}`
+              : day === 0 ? 'Evening — Sun. Oct. 3' : `Day ${day} — ${day === 1 ? 'Mon. Oct. 4' : 'Tue. Oct. 5'}`;
+            return (
+              <button
+                key={day}
+                onClick={() => setActiveDay(day)}
+                className={cn(
+                  'px-5 py-2.5 rounded-lg text-sm font-semibold transition-all',
+                  activeDay === day
+                    ? 'bg-gradient-to-r from-rose-geo to-orange-geo text-white shadow-geo'
+                    : 'text-mid-gray hover:text-white'
+                )}
+              >
+                {label}
+              </button>
+            );
+          })}
         </div>
 
         {/* Type filters */}
@@ -85,8 +90,8 @@ export default function ProgrammePage() {
         <div>
           <h2 className="text-xl font-bold text-white mb-6">
             {locale === 'fr'
-              ? activeDay === 1 ? 'Mercredi 14 octobre 2027' : 'Jeudi 15 octobre 2027'
-              : activeDay === 1 ? 'Wednesday, October 14, 2027' : 'Thursday, October 15, 2027'
+              ? activeDay === 0 ? 'Dimanche 3 octobre 2027 — Soirée d\'ouverture' : activeDay === 1 ? 'Lundi 4 octobre 2027' : 'Mardi 5 octobre 2027'
+              : activeDay === 0 ? 'Sunday, October 3, 2027 — Opening Evening' : activeDay === 1 ? 'Monday, October 4, 2027' : 'Tuesday, October 5, 2027'
             }
           </h2>
 

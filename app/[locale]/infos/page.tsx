@@ -9,24 +9,24 @@ import { EVENT_CONFIG } from '@/data/config';
 const faqs = {
   fr: [
     {
-      q: 'Comment accéder au Palais des congrès de Montréal?',
-      a: 'Le Palais des congrès est situé au cœur du centre-ville de Montréal, à 2 minutes à pied de la station de métro Place-d\'Armes (ligne Orange). Il est accessible par les stations Bonaventure (ligne Orange/Jaune) et Square-Victoria (ligne Orange).'
+      q: 'Comment accéder au Centre de congrès de Saint-Hyacinthe?',
+      a: 'Le Centre de congrès est situé au 1325, rue Daniel-Johnson Ouest, Saint-Hyacinthe. Accessible par l\'autoroute 20 (sortie Saint-Hyacinthe). Un stationnement extérieur gratuit et un stationnement intérieur gratuit pour les clients de l\'hôtel Sheraton sont disponibles sur place.'
     },
     {
       q: 'Y a-t-il un stationnement sur place?',
-      a: 'Oui, le Palais des congrès dispose d\'un stationnement souterrain accessible directement depuis l\'édifice. Des stationnements extérieurs sont également disponibles à proximité. Nous encourageons l\'utilisation du transport en commun ou du vélo.'
+      a: 'Oui, le stationnement extérieur est gratuit pour tous les participants. Les clients séjournant au Sheraton Saint-Hyacinthe bénéficient également du stationnement intérieur gratuit.'
     },
     {
       q: 'Les repas sont-ils inclus dans le billet?',
-      a: 'Le billet comprend les cafés de bienvenue, les pauses-café des deux journées, ainsi que les dîners du 14 et 15 octobre servis dans la zone d\'exposition. Les cocktails de bienvenue et de clôture sont également inclus.'
+      a: 'Le billet comprend les cafés de bienvenue, les pauses-café des deux journées, ainsi que les dîners du 4 et 5 octobre servis dans la zone d\'exposition. Le cocktail dinatoire du lundi soir est également inclus.'
     },
     {
       q: 'Y a-t-il des accommodations recommandées près du lieu?',
-      a: 'Nous avons négocié des tarifs préférentiels avec plusieurs hôtels à proximité. Consultez la section Hébergement de cette page pour les détails et les codes de réservation.'
+      a: 'Le Sheraton Saint-Hyacinthe est attenant au Centre de congrès — pas besoin de sortir à l\'extérieur. Un bloc de chambres est réservé au tarif de groupe de 219 $/nuit. Réservez au 450-250-5555 ou au 1-833-250-8555 en mentionnant «ACSG GéoMontréal congrès 2027» avant le 2 septembre 2027.'
     },
     {
       q: 'L\'événement est-il accessible aux personnes à mobilité réduite?',
-      a: 'Oui, le Palais des congrès est entièrement accessible. Des ascenseurs, rampes d\'accès et espaces réservés sont disponibles dans toutes les salles. Contactez-nous à l\'avance pour tout besoin spécifique.'
+      a: 'Oui, le Centre de congrès de Saint-Hyacinthe est entièrement accessible. Des ascenseurs, rampes d\'accès et espaces réservés sont disponibles dans toutes les salles. Contactez-nous à l\'avance pour tout besoin spécifique.'
     },
     {
       q: 'Puis-je transférer mon billet à un collègue?',
@@ -43,24 +43,24 @@ const faqs = {
   ],
   en: [
     {
-      q: 'How do I get to the Palais des congrès de Montréal?',
-      a: 'The Palais des congrès is located in the heart of downtown Montreal, a 2-minute walk from Place-d\'Armes metro station (Orange line). It is also accessible from Bonaventure (Orange/Yellow line) and Square-Victoria (Orange line) stations.'
+      q: 'How do I get to the Centre de congrès de Saint-Hyacinthe?',
+      a: 'The convention centre is located at 1325 rue Daniel-Johnson Ouest, Saint-Hyacinthe. Take Highway 20 to the Saint-Hyacinthe exit. Free outdoor parking and free indoor parking for Sheraton hotel guests are available on site.'
     },
     {
       q: 'Is there parking on site?',
-      a: 'Yes, the Palais des congrès has underground parking accessible directly from the building. Outdoor parking is also available nearby. We encourage the use of public transit or cycling.'
+      a: 'Yes, free outdoor parking is available for all attendees. Guests staying at the Sheraton Saint-Hyacinthe also have access to free indoor parking.'
     },
     {
       q: 'Are meals included in the ticket?',
-      a: 'The ticket includes welcome coffees, coffee breaks on both days, and lunches on October 14 and 15 served in the exhibition area. Welcome and closing cocktails are also included.'
+      a: 'The ticket includes welcome coffees, coffee breaks on both days, and lunches on October 4 and 5 served in the exhibition area. The Monday evening cocktail dinner is also included.'
     },
     {
       q: 'Are there recommended accommodations near the venue?',
-      a: 'We have negotiated preferential rates with several nearby hotels. See the Accommodation section of this page for details and booking codes.'
+      a: 'The Sheraton Saint-Hyacinthe is directly connected to the convention centre — no need to go outside. A room block is reserved at the group rate of $219/night. Book at 1-833-250-8555 with the code "ACSG GéoMontréal congrès 2027" before September 2, 2027.'
     },
     {
       q: 'Is the event accessible to people with reduced mobility?',
-      a: 'Yes, the Palais des congrès is fully accessible. Elevators, ramps and reserved spaces are available in all rooms. Contact us in advance for any specific needs.'
+      a: 'Yes, the Centre de congrès de Saint-Hyacinthe is fully accessible. Elevators, ramps and reserved spaces are available in all rooms. Contact us in advance for any specific needs.'
     },
     {
       q: 'Can I transfer my ticket to a colleague?',
@@ -79,14 +79,10 @@ const faqs = {
 
 const hotels = {
   fr: [
-    { name: 'Hôtel W Montréal', stars: 5, distance: '5 min à pied', price: 'à partir de 299 $/nuit', code: 'GEOMTL27' },
-    { name: 'Fairmont Le Reine Elizabeth', stars: 5, distance: '8 min à pied', price: 'à partir de 249 $/nuit', code: 'GEO2027' },
-    { name: 'Hôtel Le Germain Montréal', stars: 4, distance: '10 min à pied', price: 'à partir de 189 $/nuit', code: 'GEOMTL' }
+    { name: 'Sheraton Saint-Hyacinthe', stars: 4, distance: 'Sur place (attenant au Centre de congrès)', price: 'à partir de 219 $/nuit', code: 'ACSG GéoMontréal 2027' }
   ],
   en: [
-    { name: 'W Montréal Hotel', stars: 5, distance: '5 min walk', price: 'from $299/night', code: 'GEOMTL27' },
-    { name: 'Fairmont The Queen Elizabeth', stars: 5, distance: '8 min walk', price: 'from $249/night', code: 'GEO2027' },
-    { name: 'Hôtel Le Germain Montréal', stars: 4, distance: '10 min walk', price: 'from $189/night', code: 'GEOMTL' }
+    { name: 'Sheraton Saint-Hyacinthe', stars: 4, distance: 'On site (connected to the convention centre)', price: 'from $219/night', code: 'ACSG GéoMontréal 2027' }
   ]
 };
 
@@ -118,7 +114,7 @@ export default function InfosPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <div className="glass rounded-2xl p-6">
               <h3 className="text-lg font-bold text-white mb-2">
-                {locale === 'fr' ? 'Palais des congrès de Montréal' : 'Palais des congrès de Montréal'}
+                Centre de congrès de Saint-Hyacinthe
               </h3>
               <p className="text-mid-gray mb-4">{address}</p>
               <div className="w-full h-48 rounded-xl overflow-hidden" style={{
@@ -127,10 +123,10 @@ export default function InfosPage() {
               }}>
                 <div className="w-full h-full flex flex-col items-center justify-center gap-3 text-center">
                   <div className="w-12 h-12 rounded-full bg-rose-geo/20 border border-rose-geo/40 flex items-center justify-center text-2xl">📍</div>
-                  <p className="text-white font-semibold">Palais des congrès</p>
-                  <p className="text-mid-gray text-sm">Montréal, QC</p>
+                  <p className="text-white font-semibold">Centre de congrès de Saint-Hyacinthe</p>
+                  <p className="text-mid-gray text-sm">Saint-Hyacinthe, QC</p>
                   <a
-                    href="https://maps.google.com/?q=Palais+des+congrès+de+Montréal"
+                    href="https://maps.google.com/?q=Centre+de+congrès+de+Saint-Hyacinthe"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs text-rose-geo hover:underline"
@@ -149,7 +145,7 @@ export default function InfosPage() {
                   <span className="text-lg">🗓</span>
                   <div>
                     <p className="text-white font-semibold">{locale === 'fr' ? 'Dates' : 'Dates'}</p>
-                    <p>{locale === 'fr' ? '14 et 15 octobre 2027' : 'October 14 and 15, 2027'}</p>
+                    <p>{locale === 'fr' ? '3–5 octobre 2027' : 'October 3–5, 2027'}</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
@@ -177,32 +173,32 @@ export default function InfosPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
-                icon: '🚇',
-                title: t('metro'),
+                icon: '🚗',
+                title: t('car'),
                 desc: locale === 'fr'
-                  ? 'Station Place-d\'Armes (ligne Orange), 2 min à pied. Stations Bonaventure et Square-Victoria à proximité.'
-                  : 'Place-d\'Armes station (Orange line), 2 min walk. Bonaventure and Square-Victoria stations nearby.'
+                  ? 'Accès par l\'autoroute 20, sortie Saint-Hyacinthe. Stationnement extérieur gratuit sur place. Stationnement intérieur gratuit pour les clients du Sheraton.'
+                  : 'Take Highway 20, Saint-Hyacinthe exit. Free outdoor parking on site. Free indoor parking for Sheraton hotel guests.'
               },
               {
                 icon: '🚌',
                 title: t('bus'),
                 desc: locale === 'fr'
-                  ? 'Nombreuses lignes d\'autobus desservent le centre-ville. Arrêts à moins de 5 minutes à pied.'
-                  : 'Many bus lines serve downtown. Stops within 5 minutes walk.'
+                  ? 'Orléans Express relie Montréal à Saint-Hyacinthe. Des navettes peuvent être organisées depuis la gare d\'autobus. Le réseau STH dessert la ville localement.'
+                  : 'Orléans Express connects Montreal to Saint-Hyacinthe. Shuttles can be arranged from the bus station. The STH network serves the city locally.'
+              },
+              {
+                icon: '🚂',
+                title: locale === 'fr' ? 'Train' : 'Train',
+                desc: locale === 'fr'
+                  ? 'VIA Rail dessert Saint-Hyacinthe depuis Montréal (gare centrale). La gare de Saint-Hyacinthe est à environ 2 km du Centre de congrès.'
+                  : 'VIA Rail serves Saint-Hyacinthe from Montreal (Central Station). Saint-Hyacinthe train station is about 2 km from the convention centre.'
               },
               {
                 icon: '🚲',
                 title: t('bike'),
                 desc: locale === 'fr'
-                  ? 'Stations BIXI à proximité immédiate. Supports à vélo disponibles sur place.'
-                  : 'BIXI stations nearby. Bike racks available on site.'
-              },
-              {
-                icon: '🚗',
-                title: t('car'),
-                desc: locale === 'fr'
-                  ? 'Accès par l\'autoroute Ville-Marie (A-720). Stationnement souterrain sur place (tarif journalier 25 $).'
-                  : 'Access via Ville-Marie Expressway (A-720). Underground parking on site (daily rate $25).'
+                  ? 'Des supports à vélo sont disponibles sur place. Le réseau cyclable de Saint-Hyacinthe permet d\'accéder au Centre de congrès.'
+                  : 'Bike racks are available on site. Saint-Hyacinthe\'s cycling network provides access to the convention centre.'
               }
             ].map(item => (
               <div key={item.title} className="glass rounded-2xl p-5">
@@ -241,8 +237,8 @@ export default function InfosPage() {
           <div className="glass rounded-2xl p-6">
             <p className="text-mid-gray leading-relaxed">
               {locale === 'fr'
-                ? 'Le Palais des congrès de Montréal est entièrement accessible aux personnes à mobilité réduite. Toutes les salles sont équipées d\'ascenseurs, de rampes d\'accès, de places réservées au premier rang et de boucles magnétiques. Des services d\'interprétation en langue des signes québécoise (LSQ) et en American Sign Language (ASL) sont disponibles sur demande pour les keynotes principales. Contactez-nous à accessibilite@geomtl.ca pour tout besoin spécifique.'
-                : 'The Palais des congrès de Montréal is fully accessible to people with reduced mobility. All rooms are equipped with elevators, ramps, reserved seating in the front row and hearing loops. Quebec Sign Language (LSQ) and American Sign Language (ASL) interpretation services are available upon request for main keynotes. Contact us at accessibility@geomtl.ca for any specific needs.'}
+                ? 'Le Centre de congrès de Saint-Hyacinthe est entièrement accessible aux personnes à mobilité réduite. Toutes les salles sont équipées d\'ascenseurs, de rampes d\'accès, de places réservées au premier rang et de boucles magnétiques. Des services d\'interprétation en langue des signes québécoise (LSQ) et en American Sign Language (ASL) sont disponibles sur demande pour les keynotes principales. Contactez-nous à accessibilite@geomtl.ca pour tout besoin spécifique.'
+                : 'The Centre de congrès de Saint-Hyacinthe is fully accessible to people with reduced mobility. All rooms are equipped with elevators, ramps, reserved seating in the front row and hearing loops. Quebec Sign Language (LSQ) and American Sign Language (ASL) interpretation services are available upon request for main keynotes. Contact us at accessibility@geomtl.ca for any specific needs.'}
             </p>
           </div>
         </section>
