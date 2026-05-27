@@ -12,14 +12,15 @@ type NavItem = {
 }
 
 const NAV_ITEMS: NavItem[] = [
-  { href: '/admin', label: 'Tableau de bord', roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/partners', label: 'Partenaires', roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/exhibitors', label: 'Exposants', roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/contacts', label: 'Contacts', roles: ['admin', 'editor'] },
-  { href: '/admin/activations', label: 'Activations', roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/deliverables', label: 'Livrables', roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/contracts', label: 'Contrats', roles: ['admin'] },
-  { href: '/admin/kpis', label: 'KPIs', roles: ['admin', 'viewer'] },
+  { href: '/admin',              label: 'Tableau de bord', roles: ['admin', 'editor', 'viewer'] },
+  { href: '/admin/partners',     label: 'Partenaires',     roles: ['admin', 'editor', 'viewer'] },
+  { href: '/admin/exhibitors',   label: 'Exposants',       roles: ['admin', 'editor', 'viewer'] },
+  { href: '/admin/contacts',     label: 'Contacts',        roles: ['admin', 'editor'] },
+  { href: '/admin/activations',  label: 'Activations',     roles: ['admin', 'editor', 'viewer'] },
+  { href: '/admin/deliverables', label: 'Livrables',       roles: ['admin', 'editor', 'viewer'] },
+  { href: '/admin/contracts',    label: 'Contrats',        roles: ['admin'] },
+  { href: '/admin/kpis',         label: 'KPIs',            roles: ['admin', 'viewer'] },
+  { href: '/admin/users',        label: 'Utilisateurs',    roles: ['admin'] },
 ]
 
 export function AdminLayout({

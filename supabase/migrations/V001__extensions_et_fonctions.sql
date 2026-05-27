@@ -1,8 +1,9 @@
 -- ============================================================
 -- Migration  : V001__extensions_et_fonctions
--- Description: Extensions UUID, fonction helper RLS (get_my_role),
---              fonction générique updated_at pour triggers
--- Dépend de  : (aucune — doit être la première migration)
+-- Description: Extension UUID et fonction générique set_updated_at.
+--              get_my_role() est dans V002 car elle dépend de
+--              la table profiles qui n'existe pas encore ici.
+-- Dépend de  : V000__schema_geomtl2027
 -- Auteur     : GeoMTL
 -- Date       : 2025-05-27
 -- Rollback   : voir section ROLLBACK en bas
@@ -12,20 +13,10 @@
 create extension if not exists "uuid-ossp";
 
 -- ────────────────────────────────────────────────────────────
--- Fonction RLS : retourne le rôle de l'utilisateur connecté
--- Utilisée dans toutes les politiques de sécurité
--- security definer = s'exécute avec les droits du propriétaire
--- ────────────────────────────────────────────────────────────
-create or replace function public.get_my_role()
-returns text as $$
-  select role from public.profiles where id = auth.uid()
-$$ language sql security definer stable;
-
--- ────────────────────────────────────────────────────────────
 -- Fonction trigger générique : met à jour updated_at
--- Réutilisée par tous les triggers des tables métier
+-- Réutilisée par les triggers de toutes les tables métier
 -- ────────────────────────────────────────────────────────────
-create or replace function public.set_updated_at()
+create or replace function geomtl2027.set_updated_at()
 returns trigger as $$
 begin
   new.updated_at = now();
@@ -34,8 +25,7 @@ end;
 $$ language plpgsql;
 
 -- ============================================================
--- ROLLBACK (exécuter manuellement si besoin d'annuler)
+-- ROLLBACK
 -- ============================================================
--- drop function if exists public.get_my_role();
--- drop function if exists public.set_updated_at();
+-- drop function if exists geomtl2027.set_updated_at();
 -- drop extension if exists "uuid-ossp";
