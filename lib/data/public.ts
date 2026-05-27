@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
-import { MOCK_PARTNERS, MOCK_EXHIBITORS, MOCK_ACTIVATIONS } from './mock'
-import type { Partner, Exhibitor, Activation } from '@/lib/supabase/types'
+import { MOCK_PUBLIC_PARTNERS, MOCK_EXHIBITORS, MOCK_ACTIVATIONS } from './mock'
+import type { PublicPartner, Exhibitor, Activation } from '@/lib/supabase/types'
 
 function isSupabaseConfigured() {
   return (
@@ -16,28 +16,24 @@ function getPublicClient() {
   )
 }
 
-export async function getPublicPartners(): Promise<Partner[]> {
+export async function getPublicPartners(): Promise<PublicPartner[]> {
   if (!isSupabaseConfigured()) {
-    return MOCK_PARTNERS.filter(
-      (p) => p.public_visibility && p.status === 'confirmed' && p.logo_validated
-    )
+    return MOCK_PUBLIC_PARTNERS
   }
 
   const supabase = getPublicClient()
+  // Utilise la vue publique si disponible, sinon sélection filtrée
   const { data, error } = await supabase
-    .from('partners')
+    .from('public_partners_view')
     .select('*')
-    .eq('public_visibility', true)
-    .eq('status', 'confirmed')
-    .eq('logo_validated', true)
-    .order('created_at', { ascending: true })
+    .order('display_order', { ascending: true })
 
   if (error) {
     console.error('[getPublicPartners]', error.message)
     return []
   }
 
-  return (data ?? []) as Partner[]
+  return (data ?? []) as PublicPartner[]
 }
 
 export async function getPublicExhibitors(): Promise<Exhibitor[]> {
