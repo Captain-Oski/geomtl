@@ -19,7 +19,6 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/admin/activations',  label: 'Activations',     roles: ['admin', 'editor', 'viewer'] },
   { href: '/admin/deliverables', label: 'Livrables',       roles: ['admin', 'editor', 'viewer'] },
   { href: '/admin/contracts',    label: 'Contrats',        roles: ['admin'] },
-  { href: '/admin/kpis',         label: 'KPIs',            roles: ['admin', 'viewer'] },
   { href: '/admin/users',        label: 'Utilisateurs',    roles: ['admin'] },
 ]
 

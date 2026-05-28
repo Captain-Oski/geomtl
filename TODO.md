@@ -7,9 +7,9 @@ Liste des tâches à compléter avant la mise en ligne. Organisée par priorité
 ## 🔴 Critique — Bloquant pour le lancement
 
 ### Infrastructure Supabase
-- [ ] Créer le projet Supabase (geomtl-2027)
-- [ ] Exécuter les migrations SQL dans l'ordre (`V001` → `V005`) via le SQL Editor
-- [ ] Configurer Google OAuth (Supabase Dashboard → Authentication → Providers)
+- [x] Créer le projet Supabase (geomtl-2027)
+- [x] Exécuter les migrations SQL dans l'ordre (`V001` → `V005`) via le SQL Editor
+- [x] Configurer Auth
 - [ ] Se connecter une première fois et attribuer le rôle admin :
   ```sql
   UPDATE public.profiles SET role = 'admin' WHERE email = 'ton@email.com';

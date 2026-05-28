@@ -12,5 +12,6 @@ export function createAdminClient() {
 
   return createClient(url, key, {
     auth: { autoRefreshToken: false, persistSession: false },
+    db: { schema: 'geomtl2027' },
   })
 }

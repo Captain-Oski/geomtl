@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { Profile, Role } from '@/lib/supabase/types'
-import { updateUserRole, revokeUserAccess, deleteUser } from '@/lib/actions/users'
+import { updateUserRole, revokeUserAccess, deleteUser, inviteUser, createUser } from '@/lib/actions/users'
 
 interface Props {
   profiles: Profile[]
@@ -90,6 +90,139 @@ function ConfirmModal({ title, message, confirmLabel, danger, onConfirm, onCance
           </button>
         </div>
       </div>
+    </div>
+  )
+}
+
+// ─── Composant principal ───────────────────────────────────
+
+// ─── Panneau d'ajout d'utilisateur ────────────────────────
+
+type AddMode = 'create' | 'invite'
+
+function AddUserPanel({ onDone }: { onDone: () => void }) {
+  const [mode,     setMode]     = useState<AddMode>('create')
+  const [email,    setEmail]    = useState('')
+  const [password, setPassword] = useState('')
+  const [role,     setRole]     = useState<Role>('viewer')
+  const [saving,   setSaving]   = useState(false)
+  const [error,    setError]    = useState<string | null>(null)
+  const [success,  setSuccess]  = useState<string | null>(null)
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setSaving(true)
+    setError(null)
+    setSuccess(null)
+
+    const res = mode === 'create'
+      ? await createUser(email, password, role)
+      : await inviteUser(email)
+
+    setSaving(false)
+    if (res.error) { setError(res.error); return }
+
+    setSuccess(
+      mode === 'create'
+        ? `Compte créé pour ${email} avec le rôle « ${role} ».`
+        : `Invitation envoyée à ${email}.`
+    )
+    setEmail('')
+    setPassword('')
+    onDone()
+  }
+
+  return (
+    <div className="bg-white/5 border border-white/10 rounded-xl p-5 mb-6">
+      <h2 className="text-white font-semibold text-sm mb-4">Ajouter un utilisateur</h2>
+
+      {/* Sélecteur de mode */}
+      <div className="flex gap-2 mb-5">
+        {(['create', 'invite'] as AddMode[]).map((m) => (
+          <button
+            key={m}
+            type="button"
+            onClick={() => { setMode(m); setError(null); setSuccess(null) }}
+            className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+              mode === m
+                ? 'bg-blue-600 text-white'
+                : 'bg-white/10 text-gray-400 hover:text-white'
+            }`}
+          >
+            {m === 'create' ? 'Créer avec mot de passe' : 'Inviter par courriel'}
+          </button>
+        ))}
+      </div>
+
+      {success && (
+        <div className="bg-green-900/40 border border-green-700/50 text-green-300 text-sm px-4 py-3 rounded-lg mb-4">
+          {success}
+        </div>
+      )}
+      {error && (
+        <div className="bg-red-900/40 border border-red-700/50 text-red-300 text-sm px-4 py-3 rounded-lg mb-4">
+          {error}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="flex flex-wrap gap-3 items-end">
+        <div className="flex-1 min-w-48">
+          <label className="block text-xs text-gray-400 mb-1">Courriel</label>
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="nouveau@geomtl.com"
+            className="w-full bg-white/10 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+
+        {mode === 'create' && (
+          <>
+            <div className="flex-1 min-w-40">
+              <label className="block text-xs text-gray-400 mb-1">Mot de passe</label>
+              <input
+                type="password"
+                required
+                minLength={8}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="8 caractères min."
+                className="w-full bg-white/10 border border-white/10 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-blue-500"
+              />
+            </div>
+            <div>
+              <label className="block text-xs text-gray-400 mb-1">Rôle initial</label>
+              <select
+                value={role}
+                onChange={(e) => setRole(e.target.value as Role)}
+                className="bg-gray-800 border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500"
+              >
+                <option value="viewer">Lecteur</option>
+                <option value="editor">Éditeur</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+          </>
+        )}
+
+        <button
+          type="submit"
+          disabled={saving}
+          className="bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors whitespace-nowrap"
+        >
+          {saving
+            ? '…'
+            : mode === 'create' ? 'Créer le compte' : 'Envoyer l\'invitation'}
+        </button>
+      </form>
+
+      {mode === 'invite' && (
+        <p className="text-gray-600 text-xs mt-3">
+          Supabase enverra un courriel d&apos;invitation. L&apos;utilisateur devra cliquer le lien pour activer son compte. Vous pourrez lui attribuer un rôle dès son apparition dans la liste.
+        </p>
+      )}
     </div>
   )
 }
@@ -204,6 +337,9 @@ export function AdminUsersPage({ profiles, currentUserId }: Props) {
             {error}
           </div>
         )}
+
+        {/* Ajout d'utilisateur */}
+        <AddUserPanel onDone={() => router.refresh()} />
 
         {/* Légende des rôles */}
         <div className="bg-white/5 border border-white/10 rounded-xl p-4 mb-6">

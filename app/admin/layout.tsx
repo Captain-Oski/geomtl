@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { createAdminClient } from '@/lib/supabase/admin'
 import { AdminLayout } from '@/components/admin/AdminLayout'
 import type { Profile } from '@/lib/supabase/types'
 import '@/styles/globals.css'
@@ -42,11 +43,18 @@ export default async function AdminRootLayout({
     redirect('/login')
   }
 
-  const { data: profile } = await supabase
+  // Utilise le client service role pour bypasser RLS et les problèmes de schéma.
+  // Sécuritaire : server component uniquement, clé jamais exposée au client.
+  const adminClient = createAdminClient()
+  const { data: profile, error: profileError } = await adminClient
     .from('profiles')
     .select('*')
-    .eq('id', user.id)
+    .eq('id', user!.id)
     .single()
+
+  if (profileError) {
+    console.error('[admin/layout] profile fetch error:', profileError.message)
+  }
 
   // Profil sans rôle attribué = non autorisé
   if (!profile || !profile.role) {

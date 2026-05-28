@@ -7,6 +7,74 @@ import type { Role } from '@/lib/supabase/types'
 
 const MOCK_MSG = 'Supabase non configuré — modifications non persistées en mode mock.'
 
+// ─── Inviter un utilisateur par courriel ──────────────────
+// Supabase envoie un email avec un lien magique.
+// L'utilisateur clique le lien → /auth/callback → session créée.
+
+export async function inviteUser(email: string): Promise<{ error?: string }> {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return { error: MOCK_MSG }
+
+  const check = await assertAdmin()
+  if (check.error) return check
+
+  try {
+    const adminClient = createAdminClient()
+    const { error } = await adminClient.auth.admin.inviteUserByEmail(email, {
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000'}/auth/callback`,
+    })
+    if (error) return { error: error.message }
+  } catch {
+    return { error: 'Client admin indisponible — vérifiez SUPABASE_SERVICE_ROLE_KEY.' }
+  }
+
+  revalidatePath('/admin/users')
+  return {}
+}
+
+// ─── Créer un utilisateur avec mot de passe ───────────────
+// Crée le compte directement, sans email d'invitation.
+// Idéal pour onboarder rapidement un membre de l'équipe.
+
+export async function createUser(
+  email: string,
+  password: string,
+  role: Role,
+): Promise<{ error?: string }> {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return { error: MOCK_MSG }
+
+  const check = await assertAdmin()
+  if (check.error) return check
+
+  if (password.length < 8) return { error: 'Le mot de passe doit contenir au moins 8 caractères.' }
+
+  try {
+    const adminClient = createAdminClient()
+
+    // Créer l'utilisateur dans auth.users
+    const { data, error } = await adminClient.auth.admin.createUser({
+      email,
+      password,
+      email_confirm: true, // confirmer immédiatement sans email
+    })
+    if (error) return { error: error.message }
+
+    // Attribuer le rôle dans profiles (le trigger handle_new_user crée le profil,
+    // mais on force le rôle tout de suite via upsert pour ne pas attendre)
+    if (data.user) {
+      const supabase = await createClient()
+      await supabase
+        .from('profiles')
+        .update({ role })
+        .eq('id', data.user.id)
+    }
+  } catch {
+    return { error: 'Client admin indisponible — vérifiez SUPABASE_SERVICE_ROLE_KEY.' }
+  }
+
+  revalidatePath('/admin/users')
+  return {}
+}
+
 // ─── Vérification que l'appelant est admin ─────────────────
 // Chaque action re-vérifie indépendamment — ne pas faire confiance au client.
 
