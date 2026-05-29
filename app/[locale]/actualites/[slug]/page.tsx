@@ -171,7 +171,7 @@ export default function NewsArticlePage({
                 href={`/${locale}/billetterie`}
                 className="block w-full py-2.5 text-center text-sm font-bold text-white rounded-xl bg-gradient-to-r from-rose-geo to-orange-geo hover:opacity-90 transition-all"
               >
-                {locale === 'fr' ? 'Acheter un billet' : 'Buy a ticket'}
+                {locale === 'fr' ? 'Participer' : 'Participate'}
               </Link>
             </div>
           </aside>

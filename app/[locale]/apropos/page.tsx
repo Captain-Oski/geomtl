@@ -34,12 +34,12 @@ export default async function AProposPage({
   ];
 
   const team = [
-    { name: 'Jean-Philippe Beaumont', role: locale === 'fr' ? 'Directeur général' : 'Executive Director', initials: 'JB', color: '#e91e8c' },
-    { name: 'Marie-Claude Villeneuve', role: locale === 'fr' ? 'Directrice partenariats' : 'Partnerships Director', initials: 'MV', color: '#ff6b35' },
-    { name: 'Alexandre Jobin', role: locale === 'fr' ? 'Responsable programmation' : 'Programming Manager', initials: 'AJ', color: '#ffd60a' },
-    { name: 'Camille Dupont', role: locale === 'fr' ? 'Coordinatrice communications' : 'Communications Coordinator', initials: 'CD', color: '#10b981' },
-    { name: 'Mathieu Larivée', role: locale === 'fr' ? 'Rédacteur en chef' : 'Editor-in-Chief', initials: 'ML', color: '#5b9bd5' },
-    { name: 'Gabriel Fortier', role: locale === 'fr' ? 'Chargé de compte exposants' : 'Exhibitors Account Manager', initials: 'GF', color: '#e91e8c' },
+    { name: 'Martin Carpentier',       org: 'Jakarto',        role: locale === 'fr' ? 'Président et coordonnateur'                         : 'President & Coordinator',                         initials: 'MC', color: '#e91e8c' },
+    { name: 'Joanie Desgroseilliers',  org: 'Hydro-Québec',   role: locale === 'fr' ? 'Secrétariat et opérations'                          : 'Secretariat & Operations',                        initials: 'JD', color: '#ff6b35' },
+    { name: 'Adelmo Rodriguez',        org: 'K2 Geospatial',  role: locale === 'fr' ? 'Programmation, conférences, prix et bourses'         : 'Programming, Conferences, Awards & Grants',       initials: 'AR', color: '#ffd60a' },
+    { name: 'Martin Fafard',           org: 'Ville de Mascouche', role: locale === 'fr' ? 'Trésorerie'                                      : 'Treasurer',                                       initials: 'MF', color: '#10b981' },
+    { name: 'Prosper Ravo',            org: 'Stantec',        role: locale === 'fr' ? 'Communications et Web'                               : 'Communications & Web',                            initials: 'PR', color: '#5b9bd5' },
+    { name: 'Clément Glogowski',       org: 'Esri Canada',    role: locale === 'fr' ? 'Partenariats, exposants et expérience participants'  : 'Partnerships, Exhibitors & Attendee Experience',  initials: 'CG', color: '#a78bfa' },
   ];
 
   return (
@@ -138,9 +138,10 @@ export default async function AProposPage({
                 >
                   {member.initials}
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="font-bold text-white text-sm">{member.name}</p>
-                  <p className="text-xs text-mid-gray">{member.role}</p>
+                  <p className="text-xs text-mid-gray leading-snug">{member.role}</p>
+                  <p className="text-xs mt-0.5" style={{ color: member.color + 'cc' }}>{member.org}</p>
                 </div>
               </div>
             ))}

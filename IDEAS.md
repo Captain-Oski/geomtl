@@ -5,37 +5,48 @@ Aucun engagement — sert de backlog d'inspiration.
 
 ---
 
+## 🎨 Hero & Identité visuelle
+
+### Variantes d'animation IsolineRipple
+- Paramétrer l'amplitude et la vitesse selon le scroll (effet parallaxe)
+- Mode « calm » la nuit (amplitude réduite, speed plus lente) via heure locale
+- Variante mobile : moins de lignes, amplitude adaptée à la taille d'écran
+- Couleur de fond dynamique selon la section en vue (deep-blue → section thème)
+
+### Logo animé dans le header
+- Version micro du ripple dans le header au survol du logo
+- Transition douce entre logo statique et animé au chargement de la page
+
+---
+
 ## 📧 Gestion des contrats par courriel
 
-**Idée principale :** Quand un partenaire ou exposant est confirmé et que le dossier est complet, générer automatiquement un contrat PDF pré-rempli et l'envoyer au contact principal pour signature.
+**Idée principale :** Quand un partenaire ou exposant est confirmé, générer automatiquement un contrat PDF pré-rempli et l'envoyer pour signature.
 
 ### Flux complet envisagé
 1. L'admin clique « Envoyer le contrat » dans la fiche partenaire/exposant
-2. Le système vérifie que les champs obligatoires sont remplis (contact email, montant, type de partenariat)
+2. Le système vérifie que les champs obligatoires sont remplis
 3. Un PDF de contrat est généré dynamiquement avec les données du dossier
 4. Le PDF est envoyé par courriel au contact principal (CC à l'admin)
 5. Le contact reçoit un lien pour signer électroniquement
 6. La signature est enregistrée et le statut passe à `signed`
 
 ### Stack technique envisagée
-- **Envoi email :** [Resend](https://resend.com) + React Email (templates HTML)
-- **Génération PDF :** `@react-pdf/renderer` (rendu serveur) ou Puppeteer (screenshot HTML → PDF)
-- **Signature électronique :** Intégration [DocuSign](https://www.docusign.com) ou [HelloSign/Dropbox Sign](https://sign.dropbox.com) — ou solution maison simple avec lien de confirmation unique
-- **Stockage du PDF signé :** Supabase Storage (bucket `contracts`, accès privé)
-
-### Données déjà en place
-Les champs nécessaires sont déjà dans la base (`contract_url`, `invoice_url`, `primary_contact_email`, `payment_status`, etc.). Il manque seulement la logique d'envoi et les templates.
+- **Envoi email :** [Resend](https://resend.com) + React Email
+- **Génération PDF :** `@react-pdf/renderer` ou Puppeteer
+- **Signature électronique :** DocuSign, HelloSign, ou solution maison (voir plus bas)
+- **Stockage :** Supabase Storage bucket `contracts` (accès privé)
 
 ---
 
 ## 🗺️ Carte interactive du salon
 
-**Idée :** Plan visuel et interactif de la salle d'exposition avec les kiosques positionnés. Les visiteurs peuvent voir l'emplacement de chaque exposant avant l'événement.
+**Idée :** Plan visuel et interactif de la salle d'exposition avec les kiosques positionnés.
 
 - Kiosques cliquables → fiche de l'exposant (nom, secteur, description, site web)
 - Filtrable par secteur
 - Mise à jour automatique depuis la base (numéro de kiosque + zone)
-- Technologie : SVG interactif, ou bibliothèque comme [react-map-gl](https://visgl.github.io/react-map-gl/), ou Mapbox
+- Technologie : SVG interactif, ou [react-map-gl](https://visgl.github.io/react-map-gl/), ou Mapbox
 - Plan de salle uploadé comme image de fond, kiosques positionnés par coordonnées X/Y
 
 ---
@@ -45,8 +56,8 @@ Les champs nécessaires sont déjà dans la base (`contract_url`, `invoice_url`,
 **Idée :** Système de rappels automatisés basé sur le champ `follow_up_date`.
 
 - Cron job quotidien (Vercel Cron ou Supabase Edge Function) qui scanne les dossiers avec `follow_up_date = today`
-- Envoie un email de rappel à l'`internal_owner_email` : « Relancer MapGenie Technologies aujourd'hui »
-- Option : envoyer directement l'email de relance au contact partenaire/exposant depuis l'admin
+- Envoie un email de rappel à l'`internal_owner_email`
+- Option : envoyer directement l'email de relance au contact partenaire/exposant
 
 ---
 
@@ -55,20 +66,18 @@ Les champs nécessaires sont déjà dans la base (`contract_url`, `invoice_url`,
 **Idée :** Visualisation des métriques de l'événement en temps réel.
 
 - Graphique d'évolution des confirmations dans le temps
-- Répartition partenaires par type (Platine, Or, Argent...)
+- Répartition partenaires par type (Platine, Or, Argent…)
 - Taux de complétion des dossiers (logos reçus, descriptions, etc.)
 - Revenus confirmés vs projetés
-- Stack : [Recharts](https://recharts.org) ou [Tremor](https://www.tremor.so) (composants graphiques pour admin Next.js)
+- Stack : [Recharts](https://recharts.org) ou [Tremor](https://www.tremor.so)
 
 ---
 
 ## 📤 Export et rapports
 
-**Idée :** Générer des rapports exportables pour le comité et les commanditaires.
-
 - Export CSV / Excel de la liste des partenaires (avec filtres appliqués)
 - Rapport PDF « État des partenariats » pour les réunions de comité
-- Export « Guide de l'exposant » PDF pré-rempli par kiosque (numéro, dates d'installation, règles)
+- Export « Guide de l'exposant » PDF pré-rempli par kiosque
 - Rapport financier : revenus par type de partenariat
 
 ---
@@ -87,7 +96,7 @@ Les champs nécessaires sont déjà dans la base (`contract_url`, `invoice_url`,
 
 ## 📱 Application mobile pour les visiteurs
 
-**Idée :** PWA (Progressive Web App) ou app native légère pour les participants pendant l'événement.
+**Idée :** PWA ou app native légère pour les participants pendant l'événement.
 
 - Programme des conférences avec favoris et rappels
 - Carte du salon interactive
@@ -109,7 +118,7 @@ Les champs nécessaires sont déjà dans la base (`contract_url`, `invoice_url`,
 
 ## ✍️ Signatures électroniques maison (simple)
 
-**Idée :** Pour éviter les coûts de DocuSign, une solution simple :
+**Idée :** Pour éviter les coûts de DocuSign :
 
 - Génération d'un lien unique `geomtl.com/signer/[token]`
 - Le contact arrive sur une page avec le contrat en lecture seule
@@ -126,13 +135,11 @@ Les champs nécessaires sont déjà dans la base (`contract_url`, `invoice_url`,
 - Fiche conférencier (bio FR/EN, photo, titre de la conférence, durée, salle)
 - Statut (invité → confirmé → brief envoyé → ready)
 - Intégration à l'agenda public
-- Email automatique avec les détails logistiques (heure, salle, AV disponible)
+- Email automatique avec les détails logistiques
 
 ---
 
 ## 🎟️ Gestion des inscriptions visiteurs
-
-**Idée :** Système d'inscription en ligne pour les participants.
 
 - Formulaire d'inscription avec type de billet (gratuit, professionnel, étudiant)
 - Génération de badge PDF / QR code par inscription
@@ -143,8 +150,6 @@ Les champs nécessaires sont déjà dans la base (`contract_url`, `invoice_url`,
 
 ## 🌐 Multilingue amélioré
 
-**Idée :** Renforcer le support bilingue FR/EN sur l'ensemble du site.
-
 - Sélecteur de langue persistant (mémorisé dans un cookie)
 - Traductions complètes de toutes les pages publiques
 - URLs localisées (`/fr/partenaires` et `/en/partners`)
@@ -153,8 +158,6 @@ Les champs nécessaires sont déjà dans la base (`contract_url`, `invoice_url`,
 ---
 
 ## 🔔 Notifications en temps réel (admin)
-
-**Idée :** Alertes en temps réel dans l'interface admin.
 
 - « Un nouveau partenaire vient de s'inscrire via le portail »
 - « MapGenie n'a toujours pas envoyé son logo — relance prévue demain »
@@ -168,14 +171,11 @@ Les champs nécessaires sont déjà dans la base (`contract_url`, `invoice_url`,
 **Idée :** Pré-remplir la fiche d'un partenaire/exposant depuis leur page LinkedIn.
 
 - L'admin colle l'URL LinkedIn de l'entreprise
-- L'API LinkedIn (ou scraping autorisé) récupère : logo, description, site web, secteur
-- Gain de temps significatif lors de la création des fiches
+- L'API LinkedIn récupère : logo, description, site web, secteur
 
 ---
 
 ## 📅 Intégration calendrier
-
-**Idée :** Permettre aux partenaires et visiteurs d'ajouter l'événement à leur calendrier.
 
 - Bouton « Ajouter à Google Calendar / Outlook / iCal »
 - Génération d'un fichier `.ics` avec les détails de l'événement

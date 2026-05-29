@@ -54,7 +54,6 @@ export default function Header() {
               aria-label="GeoMTL 2027 — Accueil"
             >
               <GeoMTLLogo
-                variant="color"
                 height={28}
                 showYear={true}
                 className="transition-opacity duration-200 group-hover:opacity-80"
