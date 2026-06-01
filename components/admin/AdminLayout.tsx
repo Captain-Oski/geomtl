@@ -15,6 +15,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/admin',              label: 'Tableau de bord', roles: ['admin', 'editor', 'viewer'] },
   { href: '/admin/partners',     label: 'Partenaires',     roles: ['admin', 'editor', 'viewer'] },
   { href: '/admin/exhibitors',   label: 'Exposants',       roles: ['admin', 'editor', 'viewer'] },
+  { href: '/admin/programme',    label: 'Programmation',   roles: ['admin', 'editor', 'viewer'] },
   { href: '/admin/contacts',     label: 'Contacts',        roles: ['admin', 'editor'] },
   { href: '/admin/activations',  label: 'Activations',     roles: ['admin', 'editor', 'viewer'] },
   { href: '/admin/deliverables', label: 'Livrables',       roles: ['admin', 'editor', 'viewer'] },

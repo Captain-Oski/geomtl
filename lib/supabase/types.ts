@@ -267,6 +267,42 @@ export type Deliverable = {
   created_at: string
 }
 
+// ─── Programme / Sessions ─────────────────────────────────
+
+export type SessionType =
+  | 'keynote'
+  | 'conference'
+  | 'panel'
+  | 'workshop'
+  | 'networking'
+  | 'demo'
+  | 'awards'
+
+export type SessionDay = 'evening' | 'day1' | 'day2'
+
+export type SessionStatus = 'draft' | 'confirmed' | 'cancelled'
+
+export type Session = {
+  id: string
+  title_fr: string
+  title_en: string | null
+  description_fr: string | null
+  description_en: string | null
+  type: SessionType
+  day: SessionDay
+  start_time: string        // HH:MM
+  end_time: string          // HH:MM
+  room: string | null
+  speakers: string | null   // noms séparés par virgule
+  moderator: string | null
+  public_visibility: boolean
+  status: SessionStatus
+  notes: string | null
+  display_order: number
+  created_at: string
+  updated_at: string
+}
+
 // ─── KPI ──────────────────────────────────────────────────
 
 export type KPI = {

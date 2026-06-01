@@ -20,11 +20,11 @@ Liste des tâches à compléter avant la mise en ligne. Organisée par priorité
   - `SUPABASE_SERVICE_ROLE_KEY`
 
 ### Déploiement
-- [ ] Connecter le repo GitHub à Vercel
-- [ ] Configurer `NEXT_PUBLIC_SITE_URL` en production (nécessaire pour les emails d'invitation)
-- [ ] Configurer le domaine personnalisé (ex. `geomtl.com`)
-- [ ] Vérifier que le build passe sans erreur (`npm run build`)
-- [ ] Tester l'auth Google OAuth en production (redirect URI Supabase à jour)
+- [x] Connecter le repo GitHub à Vercel
+- [x] Configurer `NEXT_PUBLIC_SITE_URL` en production (nécessaire pour les emails d'invitation)
+- [x] Configurer le domaine personnalisé (ex. `geomtl.com`)
+- [x] Vérifier que le build passe sans erreur (`npm run build`)
+- [x] Tester l'auth en production (redirect URI Supabase à jour)
 
 ---
 
