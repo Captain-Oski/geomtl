@@ -1,24 +1,24 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
 
 const themes = [
   {
-    icon: '🗂️',
-    titleKey: 'dataTitle' as const,
-    descKey: 'dataDesc' as const,
-    color: '#e91e8c',
-    gradient: 'from-rose-geo/20 to-rose-geo/5'
+    icon: '🤖',
+    titleKey: 'aiTitle' as const,
+    descKey: 'aiDesc' as const,
+    color: '#5b9bd5',
+    gradient: 'from-blue-400/20 to-blue-400/5'
   },
   {
-    icon: '🏙️',
-    titleKey: 'smartCityTitle' as const,
-    descKey: 'smartCityDesc' as const,
-    color: '#ff6b35',
-    gradient: 'from-orange-geo/20 to-orange-geo/5'
+    icon: '🔮',
+    titleKey: 'twinTitle' as const,
+    descKey: 'twinDesc' as const,
+    color: '#e91e8c',
+    gradient: 'from-rose-geo/20 to-rose-geo/5'
   },
   {
     icon: '🌿',
@@ -28,25 +28,11 @@ const themes = [
     gradient: 'from-emerald-500/20 to-emerald-500/5'
   },
   {
-    icon: '🚀',
-    titleKey: 'innovTitle' as const,
-    descKey: 'innovDesc' as const,
+    icon: '🗺️',
+    titleKey: 'aicoTitle' as const,
+    descKey: 'aicoDesc' as const,
     color: '#ffd60a',
     gradient: 'from-yellow-geo/20 to-yellow-geo/5'
-  },
-  {
-    icon: '🤖',
-    titleKey: 'aiTitle' as const,
-    descKey: 'aiDesc' as const,
-    color: '#5b9bd5',
-    gradient: 'from-blue-400/20 to-blue-400/5'
-  },
-  {
-    icon: '🤝',
-    titleKey: 'civicTitle' as const,
-    descKey: 'civicDesc' as const,
-    color: '#e91e8c',
-    gradient: 'from-rose-geo/20 to-rose-geo/5'
   }
 ];
 
@@ -63,7 +49,7 @@ export default function Themes() {
           subtitle={t('themesSubtitle')}
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {themes.map((theme, index) => (
             <motion.div
               key={theme.titleKey}

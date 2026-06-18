@@ -11,7 +11,7 @@ import HomeCTA from './HomeCTA';
 export const metadata: Metadata = {
   title: 'GeoMTL 2027 — La géomatique comme système nerveux du territoire',
   description:
-    'La conférence géospatiale de référence du Québec. 14–15 octobre 2027, Palais des congrès de Montréal. 1000 participants, 60+ conférenciers, 50+ exposants.'
+    'La conférence géospatiale de référence du Québec. 3–5 octobre 2027, Centre de congrès de Saint-Hyacinthe. 350 participants, 60+ conférenciers, 26 exposants.'
 };
 
 export default function HomePage() {

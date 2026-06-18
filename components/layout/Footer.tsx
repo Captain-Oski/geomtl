@@ -41,7 +41,7 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-2 space-y-4">
             <Link href={`/${locale}`} aria-label="GeoMTL 2027 — Accueil">
-              <GeoMTLLogo variant="color" height={34} showYear={true} />
+              <GeoMTLLogo height={34} showYear={true} />
             </Link>
             <p className="text-mid-gray leading-relaxed max-w-xs">
               {t('tagline')}

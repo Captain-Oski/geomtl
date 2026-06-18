@@ -2,7 +2,7 @@ export type SessionType = 'conference' | 'panel' | 'workshop' | 'networking' | '
 
 export interface AgendaItem {
   id: string;
-  day: 1 | 2;
+  day: 0 | 1 | 2; // 0 = soirée mardi 13 oct., 1 = jour 1 merc. 14, 2 = jour 2 jeudi 15
   time: string;
   endTime: string;
   type: SessionType;
@@ -16,7 +16,62 @@ export interface AgendaItem {
 }
 
 export const agendaItems: AgendaItem[] = [
-  // === DAY 1 — 14 octobre ===
+
+  // === SOIRÉE MARDI — 13 octobre ===
+  {
+    id: "e001",
+    day: 0,
+    time: "17:00",
+    endTime: "18:30",
+    type: "networking",
+    title: {
+      fr: "Accueil & cocktail dinatoire d'ouverture",
+      en: "Welcome & Opening Dinner Cocktail"
+    },
+    description: {
+      fr: "Arrivée des participants, enregistrement et premières rencontres autour d'un cocktail dinatoire. L'occasion idéale de renouer avec la communauté géospatiale avant le lancement officiel du congrès.",
+      en: "Participant arrival, registration and first connections over a dinner cocktail. The ideal opportunity to reconnect with the geospatial community before the official congress launch."
+    },
+    room: { fr: "Grand Salon — Niveau 6", en: "Grand Salon — Level 6" },
+    duration: 90
+  },
+  {
+    id: "e002",
+    day: 0,
+    time: "18:30",
+    endTime: "20:00",
+    type: "networking",
+    title: {
+      fr: "GéoSpark — Activité brise-glace",
+      en: "GeoSpark — Icebreaker Activity"
+    },
+    description: {
+      fr: "Une activité conçue pour créer des connexions inattendues. Deux formats au choix selon l'énergie du groupe : (A) Speed-dating géothématique — chaque participant s'inscrit à l'une des 4 thématiques du congrès (IA, Jumeau numérique, Environnement, AICO) et tourne en rotations de 7 minutes pour échanger avec les autres thématiques; (B) Mur collaboratif — atelier géant de post-its numériques (Miro) pour cartographier les défis, attentes et idées de la communauté, clustérisées en direct et réutilisées tout au long du congrès.",
+      en: "An activity designed to spark unexpected connections. Two formats depending on group energy: (A) Geothematic speed-dating — each participant registers for one of the 4 congress themes (AI, Digital Twin, Environment, AICO) and rotates in 7-minute rounds to connect with other themes; (B) Collaborative wall — giant digital post-it workshop (Miro) to map the community's challenges, expectations and ideas, clustered live and reused throughout the congress."
+    },
+    room: { fr: "Grand Salon — Niveau 6", en: "Grand Salon — Level 6" },
+    duration: 90,
+    track: "Brise-glace"
+  },
+  {
+    id: "e003",
+    day: 0,
+    time: "20:00",
+    endTime: "22:00",
+    type: "networking",
+    title: {
+      fr: "Réseautage libre & buffet",
+      en: "Open Networking & Buffet"
+    },
+    description: {
+      fr: "La soirée se poursuit en mode informel. Échanges libres, musique d'ambiance et buffet. Les résultats du brise-glace sont affichés en temps réel — une première carte collective de la communauté GeoMTL 2027.",
+      en: "The evening continues in informal mode. Free conversation, ambient music and buffet. Icebreaker results are displayed in real time — a first collective map of the GeoMTL 2027 community."
+    },
+    room: { fr: "Grand Salon — Niveau 6", en: "Grand Salon — Level 6" },
+    duration: 120
+  },
+
+  // === DAY 1 — 4 octobre ===
   {
     id: "a001",
     day: 1,
@@ -272,7 +327,7 @@ export const agendaItems: AgendaItem[] = [
     duration: 105
   },
 
-  // === DAY 2 — 15 octobre ===
+  // === DAY 2 — 5 octobre ===
   {
     id: "b001",
     day: 2,
@@ -537,7 +592,7 @@ export const agendaItems: AgendaItem[] = [
   }
 ];
 
-export function getAgendaByDay(day: 1 | 2): AgendaItem[] {
+export function getAgendaByDay(day: 0 | 1 | 2): AgendaItem[] {
   return agendaItems.filter(item => item.day === day);
 }
 

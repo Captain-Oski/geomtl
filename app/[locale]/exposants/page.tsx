@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslations, useLocale } from 'next-intl';
+import Image from 'next/image';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
 import Badge from '@/components/ui/Badge';
@@ -85,6 +86,38 @@ export default function ExposantsPage() {
             </button>
           ))}
         </div>
+
+        {/* Plan de la zone exposition */}
+        <motion.div
+          className="glass rounded-2xl overflow-hidden mb-10"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="px-6 pt-6 pb-4 border-b border-white/5 flex items-center justify-between">
+            <div>
+              <p className="text-xs font-semibold text-rose-geo uppercase tracking-widest mb-1">
+                {locale === 'fr' ? 'Plan de la salle' : 'Exhibition Floor Plan'}
+              </p>
+              <h2 className="text-base font-bold text-white">
+                {locale === 'fr' ? 'Zone exposition — GeoMTL 2027' : 'Exhibition Zone — GeoMTL 2027'}
+              </h2>
+            </div>
+            <span className="text-xs text-mid-gray glass px-3 py-1.5 rounded-lg border border-white/10">
+              {locale === 'fr' ? '26 kiosques' : '26 booths'}
+            </span>
+          </div>
+          <div className="relative w-full bg-white/5 p-4">
+            <Image
+              src="/kiosques.webp"
+              alt={locale === 'fr' ? 'Plan des kiosques GeoMTL 2027' : 'GeoMTL 2027 booth floor plan'}
+              width={1540}
+              height={700}
+              className="w-full h-auto rounded-lg"
+              priority
+            />
+          </div>
+        </motion.div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

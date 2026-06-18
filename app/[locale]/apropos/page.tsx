@@ -34,12 +34,12 @@ export default async function AProposPage({
   ];
 
   const team = [
-    { name: 'Jean-Philippe Beaumont', role: locale === 'fr' ? 'Directeur général' : 'Executive Director', initials: 'JB', color: '#e91e8c' },
-    { name: 'Marie-Claude Villeneuve', role: locale === 'fr' ? 'Directrice partenariats' : 'Partnerships Director', initials: 'MV', color: '#ff6b35' },
-    { name: 'Alexandre Jobin', role: locale === 'fr' ? 'Responsable programmation' : 'Programming Manager', initials: 'AJ', color: '#ffd60a' },
-    { name: 'Camille Dupont', role: locale === 'fr' ? 'Coordinatrice communications' : 'Communications Coordinator', initials: 'CD', color: '#10b981' },
-    { name: 'Mathieu Larivée', role: locale === 'fr' ? 'Rédacteur en chef' : 'Editor-in-Chief', initials: 'ML', color: '#5b9bd5' },
-    { name: 'Gabriel Fortier', role: locale === 'fr' ? 'Chargé de compte exposants' : 'Exhibitors Account Manager', initials: 'GF', color: '#e91e8c' },
+    { name: 'Martin Carpentier',       org: 'Jakarto',        role: locale === 'fr' ? 'Président et coordonnateur'                         : 'President & Coordinator',                         initials: 'MC', color: '#e91e8c' },
+    { name: 'Joanie Desgroseilliers',  org: 'Hydro-Québec',   role: locale === 'fr' ? 'Secrétariat et opérations'                          : 'Secretariat & Operations',                        initials: 'JD', color: '#ff6b35' },
+    { name: 'Adelmo Rodriguez',        org: 'K2 Geospatial',  role: locale === 'fr' ? 'Programmation, conférences, prix et bourses'         : 'Programming, Conferences, Awards & Grants',       initials: 'AR', color: '#ffd60a' },
+    { name: 'Martin Fafard',           org: 'Ville de Mascouche', role: locale === 'fr' ? 'Trésorerie'                                      : 'Treasurer',                                       initials: 'MF', color: '#10b981' },
+    { name: 'Prosper Ravo',            org: 'Stantec',        role: locale === 'fr' ? 'Communications et Web'                               : 'Communications & Web',                            initials: 'PR', color: '#5b9bd5' },
+    { name: 'Clément Glogowski',       org: 'Esri Canada',    role: locale === 'fr' ? 'Partenariats, exposants et expérience participants'  : 'Partnerships, Exhibitors & Attendee Experience',  initials: 'CG', color: '#a78bfa' },
   ];
 
   return (
@@ -66,8 +66,8 @@ export default async function AProposPage({
             </p>
             <p className="text-mid-gray leading-relaxed mt-4">
               {locale === 'fr'
-                ? 'En 2027, GeoMTL rassemblera plus de 1 000 personnes au Palais des congrès de Montréal pour deux journées intenses d\'apprentissage, de networking et de découverte. Avec 60+ conférenciers, 20 ateliers pratiques, 50+ exposants et 5 prix, c\'est l\'événement géospatial majeur de l\'année pour le Canada.'
-                : 'In 2027, GeoMTL will bring together more than 1,000 people at the Palais des congrès de Montréal for two intense days of learning, networking and discovery. With 60+ speakers, 20 practical workshops, 50+ exhibitors and 5 awards, it is the major geospatial event of the year for Canada.'}
+                ? 'En 2027, GeoMTL rassemblera 350 professionnels au Centre de congrès de Saint-Hyacinthe pour deux journées intenses d\'apprentissage, de networking et de découverte. Avec 60+ conférenciers, 20 ateliers pratiques, 26 exposants et 5 prix, c\'est l\'événement géospatial majeur de l\'année pour le Canada francophone.'
+                : 'In 2027, GeoMTL will bring together 350 professionals at the Centre de congrès de Saint-Hyacinthe for two intense days of learning, networking and discovery. With 60+ speakers, 20 practical workshops, 26 exhibitors and 5 awards, it is the major geospatial event of the year for French Canada.'}
             </p>
           </div>
           <div>
@@ -138,9 +138,10 @@ export default async function AProposPage({
                 >
                   {member.initials}
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="font-bold text-white text-sm">{member.name}</p>
-                  <p className="text-xs text-mid-gray">{member.role}</p>
+                  <p className="text-xs text-mid-gray leading-snug">{member.role}</p>
+                  <p className="text-xs mt-0.5" style={{ color: member.color + 'cc' }}>{member.org}</p>
                 </div>
               </div>
             ))}

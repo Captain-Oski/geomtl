@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'GeoMTL 2027',
-  description: 'La conférence géospatiale de référence — 14–15 octobre 2027, Montréal'
+  description: 'La conférence géospatiale de référence — 3–5 octobre 2027, Saint-Hyacinthe'
 };
 
 export default function RootLayout({

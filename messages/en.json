@@ -14,15 +14,15 @@
     "about": "About",
     "contact": "Contact",
     "becomePartner": "Become a Partner",
-    "buyTicket": "Buy a Ticket"
+    "buyTicket": "Participate"
   },
   "home": {
     "heroTitle": "GeoMTL",
     "heroYear": "2027",
     "heroTagline": "Geomatics as the nervous system of the territory.",
-    "heroDate": "October 14–15, 2027",
-    "heroVenue": "Palais des congrès de Montréal",
-    "heroCta1": "Buy a Ticket",
+    "heroDate": "October 3–5, 2027",
+    "heroVenue": "Centre de congrès de Saint-Hyacinthe",
+    "heroCta1": "Participate",
     "heroCta2": "Become a Partner",
     "heroScroll": "Scroll",
     "statsTitle": "GeoMTL by the numbers",
@@ -33,7 +33,7 @@
     "statsWorkshops": "workshops",
     "statsAwards": "awards",
     "themesTitle": "Themes",
-    "themesEyebrow": "6 major themes",
+    "themesEyebrow": "4 major themes",
     "themesSubtitle": "Explore the big questions shaping the future of geospatial.",
     "featuredSpeakersTitle": "Featured Speakers",
     "featuredSpeakersEyebrow": "Renowned speakers",
@@ -49,22 +49,18 @@
     "programEyebrow": "Two days of discovery",
     "programCta": "View the full program",
     "ctaTitle": "Ready to experience GeoMTL?",
-    "ctaSubtitle": "Join 1,000 geospatial professionals in Montreal on October 14–15, 2027.",
+    "ctaSubtitle": "Join 350 geospatial professionals in Saint-Hyacinthe from October 3–5, 2027.",
     "ctaButton": "Reserve my spot"
   },
   "themes": {
-    "dataTitle": "Data & Territories",
-    "dataDesc": "Governance, openness and value of geospatial data in the service of the territory.",
-    "smartCityTitle": "Smart Cities",
-    "smartCityDesc": "How geospatial is transforming urban management and citizen services.",
-    "envTitle": "Environment & Climate",
-    "envDesc": "Mapping climate change, monitoring ecosystems and environmental geomatics.",
-    "innovTitle": "Geospatial Innovation",
-    "innovDesc": "New technologies, sensors, drones, LiDAR and emerging platforms.",
-    "aiTitle": "AI & Geospatial",
-    "aiDesc": "Artificial intelligence, machine learning and predictive territorial analysis.",
-    "civicTitle": "Civic Participation",
-    "civicDesc": "Participatory mapping, democratization of tools and community engagement."
+    "aiTitle": "Artificial Intelligence",
+    "aiDesc": "Generative AI, machine learning and predictive analytics applied to geospatial data and territorial decision-making.",
+    "twinTitle": "Digital Twin",
+    "twinDesc": "Dynamic digital replicas of the territory — cities, infrastructure, networks — to simulate, plan and anticipate.",
+    "envTitle": "Environment",
+    "envDesc": "Mapping climate change, monitoring ecosystems, biodiversity and geomatics in service of ecological transition.",
+    "aicoTitle": "AICO",
+    "aicoDesc": "Geospatial governance, public organizations and communities of practice in the era of collective intelligence and open data."
   },
   "why": {
     "networkTitle": "High-level Networking",
@@ -83,9 +79,10 @@
   "programme": {
     "title": "Program",
     "eyebrow": "GeoMTL 2027",
-    "subtitle": "Two days of talks, workshops, panels and networking.",
-    "day1": "Day 1 — October 14",
-    "day2": "Day 2 — October 15",
+    "subtitle": "An opening evening on Sunday, two days of conferences, workshops, panels and networking.",
+    "evening": "Evening — October 3",
+    "day1": "Day 1 — October 4",
+    "day2": "Day 2 — October 5",
     "all": "All",
     "conference": "Conference",
     "panel": "Panel",
@@ -181,7 +178,7 @@
     "bus": "Bus",
     "bike": "Bike",
     "car": "Car",
-    "address": "1001 Place Jean-Paul-Riopelle, Montréal, QC H2Z 1H5"
+    "address": "1325 rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4"
   },
   "tickets": {
     "title": "Tickets",

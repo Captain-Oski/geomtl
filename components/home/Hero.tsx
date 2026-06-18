@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { EVENT_CONFIG } from '@/data/config';
-import GeoMTLLogo from '@/components/ui/GeoMTLLogo';
+import IsolineRipple from '@/components/ui/IsolineRipple';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -35,10 +35,10 @@ export default function Hero() {
     : EVENT_CONFIG.microSlogans.en;
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-deep-blue">
+    <section className="relative min-h-screen flex flex-col items-center justify-center bg-deep-blue">
 
-      {/* ── Floating gradient orbs (atmospheric glow) ─────── */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      {/* ── Floating gradient orbs — overflow-hidden scoped ici ── */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <div
           className="absolute rounded-full"
           style={{
@@ -70,102 +70,108 @@ export default function Hero() {
 
       {/* ── Main content ──────────────────────────────────── */}
       <motion.div
-        className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto pt-28 pb-24"
+        className="relative z-10 w-full text-center pt-28 pb-24"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {/* Date / venue pill */}
-        <motion.div variants={itemVariants} className="mb-8">
+        <motion.div variants={itemVariants} className="px-4 sm:px-6 lg:px-8 mb-8">
           <span className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-rose-geo/30 bg-rose-geo/8 text-rose-geo text-xs sm:text-sm font-semibold tracking-widest uppercase backdrop-blur-sm">
             <span className="w-1.5 h-1.5 rounded-full bg-rose-geo animate-pulse flex-shrink-0" />
             {dates} · {venue}
           </span>
         </motion.div>
 
-        {/* ── Logo hero — the brand mark at display scale ─── */}
-        <motion.div variants={itemVariants} className="mb-6 flex justify-center">
-          <GeoMTLLogo
-            variant="color"
-            height={92}
-            showYear={true}
-            className="w-auto max-w-[min(88vw,700px)]"
+        {/* ── Logo hero full-width — isolignes animées GSAP ─── */}
+        <motion.div variants={itemVariants} className="w-full mb-6">
+          <IsolineRipple
+            className="w-full h-auto"
+            lineCount={22}
+            amplitude={9}
+            speed={1.1}
+            vertPhase={0.42}
+            showLogo={true}
+            bgColor="none"
           />
         </motion.div>
 
-        {/* Tagline */}
-        <motion.p
-          variants={itemVariants}
-          className="text-base sm:text-lg md:text-xl lg:text-2xl text-light-gray/75 max-w-2xl mx-auto leading-relaxed mb-5 font-light tracking-wide"
-        >
-          {tagline}
-        </motion.p>
-
-        {/* Micro-slogans */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col sm:flex-row flex-wrap justify-center gap-x-5 gap-y-1.5 mb-12 text-xs sm:text-sm text-mid-gray"
-        >
-          {microSlogans.map((slogan, i) => (
-            <span key={i} className="flex items-center gap-2">
-              {i > 0 && <span className="hidden sm:inline text-rose-geo/30">·</span>}
-              <span className="italic">{slogan}</span>
-            </span>
-          ))}
-        </motion.div>
-
-        {/* CTAs */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
-        >
-          <Link
-            href={`/${locale}/billetterie`}
-            className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl text-white font-bold text-base lg:text-lg
-                       bg-gradient-to-r from-rose-geo to-orange-geo
-                       hover:from-rose-geo-light hover:to-orange-geo-light
-                       transition-all shadow-geo hover:shadow-geo-lg hover:scale-105 active:scale-100"
+        {/* Contenu centré sous le logo */}
+        <div className="px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+          {/* Tagline */}
+          <motion.p
+            variants={itemVariants}
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-light-gray/75 max-w-2xl mx-auto leading-relaxed mb-5 font-light tracking-wide"
           >
-            {t('heroCta1')}
-            <svg
-              className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            {tagline}
+          </motion.p>
+
+          {/* Micro-slogans */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-x-5 gap-y-1.5 mb-12 text-xs sm:text-sm text-mid-gray"
+          >
+            {microSlogans.map((slogan, i) => (
+              <span key={i} className="flex items-center gap-2">
+                {i > 0 && <span className="hidden sm:inline text-rose-geo/30">·</span>}
+                <span className="italic">{slogan}</span>
+              </span>
+            ))}
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+          >
+            <Link
+              href={`/${locale}/billetterie`}
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-xl text-white font-bold text-base lg:text-lg
+                         bg-gradient-to-r from-rose-geo to-orange-geo
+                         hover:from-rose-geo-light hover:to-orange-geo-light
+                         transition-all shadow-geo hover:shadow-geo-lg hover:scale-105 active:scale-100"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-          <Link
-            href={`/${locale}/devenir-partenaire`}
-            className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl text-white font-semibold text-base lg:text-lg
-                       border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10
-                       transition-all backdrop-blur-sm"
-          >
-            {t('heroCta2')}
-          </Link>
-        </motion.div>
+              {t('heroCta1')}
+              <svg
+                className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </Link>
+            <Link
+              href={`/${locale}/devenir-partenaire`}
+              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl text-white font-semibold text-base lg:text-lg
+                         border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10
+                         transition-all backdrop-blur-sm"
+            >
+              {t('heroCta2')}
+            </Link>
+          </motion.div>
 
-        {/* Key numbers strip */}
-        <motion.div
-          variants={fadeIn}
-          className="pt-8 border-t border-white/8 grid grid-cols-2 sm:grid-cols-4 gap-6"
-        >
-          {[
-            { value: '1 000', label: locale === 'fr' ? 'participants' : 'attendees' },
-            { value: '2',         label: locale === 'fr' ? 'jours' : 'days' },
-            { value: '60+',       label: locale === 'fr' ? 'conférenciers' : 'speakers' },
-            { value: '50+',       label: locale === 'fr' ? 'exposants' : 'exhibitors' },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums">
-                {stat.value}
+          {/* Key numbers strip */}
+          <motion.div
+            variants={fadeIn}
+            className="pt-8 border-t border-white/8 grid grid-cols-2 sm:grid-cols-4 gap-6"
+          >
+            {[
+              { value: '1 000', label: locale === 'fr' ? 'participants' : 'attendees' },
+              { value: '2',         label: locale === 'fr' ? 'jours' : 'days' },
+              { value: '60+',       label: locale === 'fr' ? 'conférenciers' : 'speakers' },
+              { value: '50+',       label: locale === 'fr' ? 'exposants' : 'exhibitors' },
+            ].map((stat) => (
+              <div key={stat.label} className="text-center">
+                <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums">
+                  {stat.value}
+                </div>
+                <div className="text-xs sm:text-sm text-mid-gray mt-1 uppercase tracking-wider">
+                  {stat.label}
+                </div>
               </div>
-              <div className="text-xs sm:text-sm text-mid-gray mt-1 uppercase tracking-wider">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </motion.div>
 
       {/* ── Scroll indicator ──────────────────────────────── */}
