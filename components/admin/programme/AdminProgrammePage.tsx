@@ -164,8 +164,8 @@ function SortableSessionCard({ session }: { session: Session }) {
         transition,
         opacity: isDragging ? 0.3 : 1,
       }}
-      dragHandleListeners={listeners as Record<string, unknown>}
-      dragHandleAttributes={attributes as Record<string, unknown>}
+      dragHandleListeners={listeners as unknown as Record<string, unknown>}
+      dragHandleAttributes={attributes as unknown as Record<string, unknown>}
     />
   )
 }
