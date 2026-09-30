@@ -283,9 +283,7 @@
     "all": "Tout",
     "min": "min",
     "fr": "FR",
-    "en": "EN",
-    "frenchName": "Français",
-    "englishName": "English"
+    "en": "EN"
   },
   "cookies": {
     "ariaLabel": "Bandeau de consentement aux témoins",
