@@ -1,4 +1,4 @@
-export type PartnerLevel = 'presentateur' | 'platine' | 'or' | 'argent' | 'communaute';
+export type PartnerLevel = 'or' | 'argent' | 'bronze' | 'exposant';
 
 export interface Partner {
   id: string;
@@ -161,126 +161,124 @@ export function getPartnersByLevel(level: PartnerLevel): Partner[] {
   return partners.filter(p => p.level === level);
 }
 
-export const PARTNER_LEVELS_ORDER: PartnerLevel[] = ['presentateur', 'platine', 'or', 'argent', 'communaute'];
+export const PARTNER_LEVELS_ORDER: PartnerLevel[] = ['or', 'argent', 'bronze', 'exposant'];
 
 export const partnerLevelBenefits = {
-  presentateur: {
-    fr: {
-      name: "Présentateur",
-      price: "25 000 $",
-      benefits: [
-        "Mention en tête d'affiche sur tous les supports",
-        "Booth premium 6x6m en position stratégique",
-        "30 billets d'entrée inclus",
-        "2 conférences de 30 minutes dans le programme principal",
-        "Branding majeur : bannières, scène, site web, app",
-        "Accès VIP à tous les cocktails et dîners",
-        "Logo en format XXL sur tous les supports",
-        "Rapport d'impact personnalisé post-événement"
-      ]
-    },
-    en: {
-      name: "Presenting",
-      price: "$25,000",
-      benefits: [
-        "Top-billing mention on all materials",
-        "Premium 6x6m booth in strategic position",
-        "30 included tickets",
-        "2 x 30-min talks in the main program",
-        "Major branding: banners, stage, website, app",
-        "VIP access to all cocktails and dinners",
-        "XXL logo on all materials",
-        "Personalized post-event impact report"
-      ]
-    }
-  },
-  platine: {
-    fr: {
-      name: "Platine",
-      price: "12 000 $",
-      benefits: [
-        "Booth 4x4m en zone premium",
-        "15 billets d'entrée inclus",
-        "1 conférence de 20 minutes",
-        "Logo en grand format sur tous les supports",
-        "Accès VIP aux cocktails",
-        "Mention dans l'infolettre (5 000 abonnés)"
-      ]
-    },
-    en: {
-      name: "Platinum",
-      price: "$12,000",
-      benefits: [
-        "4x4m booth in premium zone",
-        "15 included tickets",
-        "1 x 20-min talk",
-        "Large logo on all materials",
-        "VIP cocktail access",
-        "Mention in newsletter (5,000 subscribers)"
-      ]
-    }
-  },
   or: {
     fr: {
       name: "Or",
-      price: "7 000 $",
+      price: "20 000 $",
+      capacity: "1 disponible",
       benefits: [
-        "Booth 3x3m en zone standard",
-        "8 billets d'entrée inclus",
-        "Logo en format standard sur les supports",
-        "Mention sur le site web et l'application"
+        "6 passes d'accès incluses",
+        "2 kiosques d'exposition",
+        "25 minutes de scène principale",
+        "2 accès aux plénières",
+        "Meilleur emplacement",
+        "Priorité au renouvellement",
+        "Visibilité maximale"
       ]
     },
     en: {
       name: "Gold",
-      price: "$7,000",
+      price: "$20,000",
+      capacity: "1 available",
       benefits: [
-        "3x3m booth in standard zone",
-        "8 included tickets",
-        "Standard logo on materials",
-        "Mention on website and app"
+        "6 included passes",
+        "2 exhibition booths",
+        "25 minutes main stage time",
+        "2 plenary access",
+        "Prime location",
+        "Renewal priority",
+        "Maximum visibility"
       ]
     }
   },
   argent: {
     fr: {
       name: "Argent",
-      price: "3 500 $",
+      price: "11 995 $",
+      capacity: "4 disponibles",
       benefits: [
-        "Table de présentation",
-        "4 billets d'entrée inclus",
-        "Logo en petit format sur les supports",
-        "Mention sur le site web"
+        "4 passes d'accès incluses",
+        "1 kiosque d'exposition",
+        "4 x 5 minutes en salles",
+        "Accès à 4 salles partenaires",
+        "1 vitrine d'exposition",
+        "Kiosques centraux",
+        "Accès aux activations partenaires"
       ]
     },
     en: {
       name: "Silver",
-      price: "$3,500",
+      price: "$11,995",
+      capacity: "4 available",
       benefits: [
-        "Presentation table",
-        "4 included tickets",
-        "Small logo on materials",
-        "Mention on website"
+        "4 included passes",
+        "1 exhibition booth",
+        "4 x 5-min sessions",
+        "Access to 4 partner rooms",
+        "1 showcase display",
+        "Central booth location",
+        "Partner activity access"
       ]
     }
   },
-  communaute: {
+  bronze: {
     fr: {
-      name: "Communauté",
-      price: "1 000 $",
+      name: "Bronze",
+      price: "6 995 $",
+      capacity: "4 disponibles",
       benefits: [
-        "2 billets d'entrée inclus",
-        "Logo sur le site web",
-        "Mention dans le programme"
+        "2 passes d'accès incluses",
+        "1 kiosque d'exposition",
+        "Accès aux pauses/lounges",
+        "1 vitrine d'exposition",
+        "Kiosques stratégiques",
+        "Visibilité standard",
+        "Accès au réseautage"
       ]
     },
     en: {
-      name: "Community",
-      price: "$1,000",
+      name: "Bronze",
+      price: "$6,995",
+      capacity: "4 available",
       benefits: [
-        "2 included tickets",
-        "Logo on website",
-        "Mention in program"
+        "2 included passes",
+        "1 exhibition booth",
+        "Lounge access",
+        "1 showcase display",
+        "Strategic booth location",
+        "Standard visibility",
+        "Networking access"
+      ]
+    }
+  },
+  exposant: {
+    fr: {
+      name: "Exposant",
+      price: "3 495 $",
+      capacity: "16 disponibles",
+      benefits: [
+        "2 passes d'accès incluses",
+        "1 kiosque d'exposition",
+        "Vitrine si disponible",
+        "Salon d'exposition",
+        "Accès aux activations",
+        "Visibilité d'exposition"
+      ]
+    },
+    en: {
+      name: "Exhibitor",
+      price: "$3,495",
+      capacity: "16 available",
+      benefits: [
+        "2 included passes",
+        "1 exhibition booth",
+        "Showcase if available",
+        "Exhibition hall access",
+        "Activity access",
+        "Exhibition visibility"
       ]
     }
   }
