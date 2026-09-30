@@ -5,8 +5,8 @@ export const EVENT_CONFIG = {
   city: "Saint-Hyacinthe, QC",
   stats: { participants: 350, days: 2, speakers: 60, workshops: 20, exhibitors: 26, awards: 5 },
   tagline: {
-    fr: "La géomatique comme système nerveux du territoire.",
-    en: "Geomatics as the nervous system of the territory."
+    fr: "Voir, décider, agir.",
+    en: "See, decide, act."
   },
   microSlogans: {
     fr: [

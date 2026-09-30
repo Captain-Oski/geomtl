@@ -41,8 +41,8 @@ export async function generateMetadata({
     },
     description:
       locale === 'fr'
-        ? 'La géomatique comme système nerveux du territoire. 4–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
-        : 'Geomatics as the nervous system of the territory. October 4–5, 2027, Centre de congrès de Saint-Hyacinthe.',
+        ? 'Voir, décider, agir. 4–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
+        : 'See, decide, act. October 4–5, 2027, Centre de congrès de Saint-Hyacinthe.',
     keywords: ['geomatics', 'geospatial', 'GIS', 'conference', 'montreal', 'géomatique', 'SIG'],
     openGraph: {
       title: 'GeoMTL 2027',

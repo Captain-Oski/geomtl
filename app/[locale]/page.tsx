@@ -11,11 +11,15 @@ import HomeCTA from './HomeCTA';
 // Géomatique AGMQ) — FeaturedSpeakers, ProgramPreview et PartnersSection
 // restent hors de la page d'accueil tant que ces sections ne sont pas
 // réactivées avec de vraies données.
-export const metadata: Metadata = {
-  title: 'GeoMTL 2027 — La géomatique comme système nerveux du territoire',
-  description:
-    'La conférence géospatiale de référence du Québec. 4–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  const fr = locale === 'fr';
+  return {
+    title: fr ? 'GeoMTL 2027 — Voir, décider, agir' : 'GeoMTL 2027 — See, decide, act',
+    description: fr
+      ? 'La conférence géospatiale de référence du Québec. 4–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
+      : "Quebec's reference geospatial conference. October 4–5, 2027, Centre de congrès de Saint-Hyacinthe.",
+  };
+}
 
 export default function HomePage() {
   return (
