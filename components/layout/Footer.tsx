@@ -8,11 +8,11 @@ export default function Footer() {
   const tNav = useTranslations('nav');
   const locale = useLocale();
 
+  // Programme, Conférenciers, Ateliers, Exposants et Partenaires restent
+  // masqués de la navigation jusqu'au lancement public (octobre 2026,
+  // RDV Géomatique AGMQ).
   const navLinks = [
     { href: `/${locale}`, label: tNav('home') },
-    { href: `/${locale}/programmation`, label: tNav('programme') },
-    { href: `/${locale}/conferenciers`, label: tNav('speakers') },
-    { href: `/${locale}/ateliers`, label: tNav('workshops') },
     { href: `/${locale}/actualites`, label: tNav('news') },
     { href: `/${locale}/apropos`, label: tNav('about') },
   ];
@@ -20,30 +20,26 @@ export default function Footer() {
   const participateLinks = [
     { href: `/${locale}/billetterie`, label: tNav('tickets') },
     { href: `/${locale}/devenir-partenaire`, label: tNav('becomePartner') },
-    { href: `/${locale}/exposants`, label: tNav('exhibitors') },
-    { href: `/${locale}/prix`, label: tNav('awards') },
-    { href: `/${locale}/galerie`, label: tNav('gallery') },
   ];
 
   const resourceLinks = [
     { href: `/${locale}/infos`, label: tNav('info') },
-    { href: `/${locale}/partenaires`, label: tNav('partners') },
     { href: `/${locale}/contact`, label: tNav('contact') },
   ];
 
   const otherLocale = locale === 'fr' ? 'en' : 'fr';
 
   return (
-    <footer className="bg-deep-blue border-t border-white/5">
+    <footer className="bg-geo-ink border-t border-white/10">
       {/* Main footer */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href={`/${locale}`} aria-label="GeoMTL 2027 — Accueil">
+            <Link href={`/${locale}`} aria-label="GeoMTL 2027 — Accueil" className="text-white inline-flex">
               <GeoMTLLogo height={34} showYear={true} />
             </Link>
-            <p className="text-mid-gray leading-relaxed max-w-xs">
+            <p className="text-geo-cream leading-relaxed max-w-xs">
               {t('tagline')}
             </p>
             <div className="flex gap-4 pt-2">
@@ -71,7 +67,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="p-2 rounded-lg border border-white/10 text-mid-gray hover:text-white hover:border-white/20 transition-colors"
+                  className="p-2 rounded-lg border border-white/15 text-geo-cream hover:text-white hover:border-white/30 transition-colors"
                 >
                   {social.icon}
                 </a>
@@ -89,7 +85,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-mid-gray hover:text-white text-sm transition-colors"
+                    className="text-geo-cream hover:text-white text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -108,7 +104,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-mid-gray hover:text-white text-sm transition-colors"
+                    className="text-geo-cream hover:text-white text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -122,11 +118,11 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
               {t('contact')}
             </h4>
-            <ul className="space-y-2 text-sm text-mid-gray">
+            <ul className="space-y-2 text-sm text-geo-ink-soft">
               <li>
                 <a
                   href={`mailto:${EVENT_CONFIG.email}`}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-geo-ink transition-colors"
                 >
                   {EVENT_CONFIG.email}
                 </a>
@@ -136,9 +132,9 @@ export default function Footer() {
               <li className="pt-4">
                 <Link
                   href={`/${otherLocale}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold border border-white/10 rounded-lg hover:border-white/20 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold border border-white/15 rounded-lg hover:border-white/30 hover:text-white text-geo-cream transition-colors"
                 >
-                  {otherLocale === 'fr' ? '🇫🇷 Version française' : '🇬🇧 English version'}
+                  {otherLocale === 'fr' ? '🇫🇷 FR' : '🇺🇸 EN'}
                 </Link>
               </li>
             </ul>
@@ -147,10 +143,10 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/5">
+      <div className="border-t border-white/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-mid-gray">{t('copyright')}</p>
-          <div className="flex items-center gap-6 text-sm text-mid-gray">
+          <p className="text-sm text-geo-cream">{t('copyright')}</p>
+          <div className="flex items-center gap-6 text-sm text-geo-cream">
             <Link href={`/${locale}/confidentialite`} className="hover:text-white transition-colors">
               {t('privacy')}
             </Link>
