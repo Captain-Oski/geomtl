@@ -118,11 +118,11 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
               {t('contact')}
             </h4>
-            <ul className="space-y-2 text-sm text-geo-ink-soft">
+            <ul className="space-y-2 text-sm text-white">
               <li>
                 <a
                   href={`mailto:${EVENT_CONFIG.email}`}
-                  className="hover:text-geo-ink transition-colors"
+                  className="hover:text-geo-cream transition-colors"
                 >
                   {EVENT_CONFIG.email}
                 </a>
