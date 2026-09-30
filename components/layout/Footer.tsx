@@ -30,7 +30,7 @@ export default function Footer() {
   const otherLocale = locale === 'fr' ? 'en' : 'fr';
 
   return (
-    <footer className="bg-geo-ink border-t border-white/10">
+    <footer className="bg-geo-ink border-t border-geo-ink-soft">
       {/* Main footer */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
@@ -67,7 +67,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="p-2 rounded-lg border border-white/15 text-geo-cream hover:text-white hover:border-white/30 transition-colors"
+                  className="p-2 rounded-lg border border-geo-cream text-geo-cream hover:text-white hover:border-white transition-colors"
                 >
                   {social.icon}
                 </a>
@@ -132,7 +132,7 @@ export default function Footer() {
               <li className="pt-4">
                 <Link
                   href={`/${otherLocale}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold border border-white/15 rounded-lg hover:border-white/30 hover:text-white text-geo-cream transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold border border-geo-cream rounded-lg hover:border-geo-cream text-geo-cream transition-colors"
                 >
                   {otherLocale === 'fr' ? '🇫🇷 FR' : '🇺🇸 EN'}
                 </Link>
@@ -143,7 +143,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10">
+      <div className="border-t border-geo-ink-soft">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-geo-cream">{t('copyright')}</p>
           <div className="flex items-center gap-6 text-sm text-geo-cream">
