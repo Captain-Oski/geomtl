@@ -134,7 +134,7 @@ export default function Footer() {
                   href={`/${otherLocale}`}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold border border-geo-cream rounded-lg hover:border-geo-cream text-geo-cream transition-colors"
                 >
-                  {otherLocale === 'fr' ? '🇫🇷 FR' : '🇺🇸 EN'}
+                  {otherLocale === 'fr' ? '🇫🇷 FR Français' : '🇺🇸 EN English'}
                 </Link>
               </li>
             </ul>

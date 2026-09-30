@@ -85,7 +85,7 @@ export default function Header() {
                 href={localizedPath}
                 className="hidden sm:flex items-center gap-1 px-3 py-1.5 text-xs font-semibold tracking-wider text-geo-ink-soft hover:text-geo-ink border border-geo-ink/15 hover:border-geo-ink/30 rounded-lg transition-colors"
               >
-                <span>{otherLocale.toUpperCase()}</span>
+                <span>{otherLocale === 'fr' ? '🇫🇷 FR Français' : '🇺🇸 EN English'}</span>
               </Link>
 
               {/* CTA */}

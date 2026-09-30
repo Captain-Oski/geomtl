@@ -283,7 +283,9 @@
     "all": "All",
     "min": "min",
     "fr": "FR",
-    "en": "EN"
+    "en": "EN",
+    "frenchName": "Français",
+    "englishName": "English"
   },
   "cookies": {
     "ariaLabel": "Cookie consent banner",
