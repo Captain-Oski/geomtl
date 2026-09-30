@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { COULEURS_CHARTE, couleurGlobe, couleurPoint, hexRgb, toHex, type CouleursGlobe, type RGB } from '@/lib/globe-couleurs';
 
 // Globe animé du hero. Fonctionnement, réglages et régénération des données :
 // voir docs/globe-anime.md.
@@ -9,7 +10,6 @@ type Stop = [number, string, number];
 type Touch = [number, number, number, string, number];
 type Point = [number, number, number, number, number];
 type Vec3 = [number, number, number];
-type RGB = [number, number, number];
 
 interface GlobeData {
   width: number;
@@ -20,7 +20,7 @@ interface GlobeData {
   trame: { pas: number; decalage: [number, number]; points: Point[] };
 }
 
-type IdeaKey = 'rotation' | 'pulsations' | 'reseau' | 'couleurs';
+export type IdeaKey = 'rotation' | 'pulsations' | 'reseau' | 'couleurs';
 interface Idea {
   turnS: number;
   patchGain: number;
@@ -36,13 +36,27 @@ interface Satellite { a0: number; rho: number; r: number; w: number }
 interface Drop { ux: number; uy: number; from: number; to: number; age: number; life: number; glyph: string; flip: number; size: number; alpha: number }
 
 // ── Réglages ─────────────────────────────────────────────────────
-const VITESSE_TERRE = 2.5;       // multiplicateur de rotation de la Terre (« rapide »)
-const VITESSE_SATELLITES = 0.5;  // multiplicateur des orbites (« lente »)
+export type IdeeGlobe = 'enchainement' | IdeaKey;
+export interface ReglagesGlobe {
+  idee: IdeeGlobe;              // 'enchainement' fait défiler les quatre idées
+  vitesseTerre: number;         // multiplicateur de rotation de la Terre
+  vitesseSatellites: number;    // multiplicateur des orbites
+  couleurs: CouleursGlobe;      // valeurs copiées depuis le panneau « Couleurs » de /demo
+  pause: boolean;
+  forcerAnimation: boolean;     // anime même si le système demande de réduire les animations
+}
+// Réglages du hero de l'accueil.
+export const REGLAGES_GLOBE: ReglagesGlobe = {
+  idee: 'enchainement',
+  vitesseTerre: 2.5,        // « rapide »
+  vitesseSatellites: 0.5,   // « lente »
+  couleurs: COULEURS_CHARTE,
+  pause: false,
+  forcerAnimation: false,
+};
 const DUREE_IDEE_S = 10;         // durée de chaque idée dans l'enchaînement
-// Valeurs copiées depuis le panneau « Couleurs » de la page de démonstration.
-const COULEURS = { pointsTeinte: 85, pointsLuminosite: 0, globeTeinte: 0, globeSaturation: 100 };
 
-const ORDER: IdeaKey[] = ['rotation', 'pulsations', 'reseau', 'couleurs'];
+export const IDEES: IdeaKey[] = ['rotation', 'pulsations', 'reseau', 'couleurs'];
 const IDEAS: Record<IdeaKey, Idea> = {
   rotation:   { turnS: 110, patchGain: 1,   colorDots: false, rings: false, network: false, hot: { max: 3, rMin: 4,   rMax: 9,   dMin: 4.5, dMax: 7.5, gap: [1.2, 3.7] } },
   pulsations: { turnS: 140, patchGain: 1,   colorDots: false, rings: true,  network: false, hot: { max: 2, rMin: 2.5, rMax: 4,   dMin: 5.5, dMax: 7.5, gap: [1.0, 2.5] } },
@@ -68,10 +82,6 @@ const WARM: [string, string][] = [['#F0304A', '#FF8A3D'], ['#FF4F9A', '#FFA14A']
 const PATCH_COLORS = ['#20FEFD', '#01CDA5', '#1BC868', '#D0DC00'];
 const DOT_TONES = ['#6A8C3A', '#00836A', '#0E6F80', '#4F7A1E'];
 
-const hexRgb = (hex: string): RGB => {
-  const n = parseInt(hex.slice(1), 16);
-  return [n >> 16, (n >> 8) & 255, n & 255];
-};
 const rgba = (hex: string, a: number) => {
   const [r, g, b] = hexRgb(hex);
   return `rgba(${r},${g},${b},${a})`;
@@ -95,31 +105,29 @@ function viewBasis(lon: number) {
   };
 }
 
-function hexToHsl(hex: string): [number, number, number] {
-  const [r, g, b] = hexRgb(hex).map((v) => v / 255);
-  const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, d = mx - mn;
-  let h = 0, s = 0;
-  if (d) {
-    s = d / (1 - Math.abs(2 * l - 1));
-    h = mx === r ? ((g - b) / d) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
-    h *= 60;
-    if (h < 0) h += 360;
-  }
-  return [h, s, l];
-}
-function hslToRgb(h: number, s: number, l: number): RGB {
-  const c = (1 - Math.abs(2 * l - 1)) * s, x = c * (1 - Math.abs(((h / 60) % 2) - 1)), m = l - c / 2;
-  const [r, g, b] = h < 60 ? [c, x, 0] : h < 120 ? [x, c, 0] : h < 180 ? [0, c, x] : h < 240 ? [0, x, c] : h < 300 ? [x, 0, c] : [c, 0, x];
-  return [Math.round((r + m) * 255), Math.round((g + m) * 255), Math.round((b + m) * 255)];
-}
-const toHex = (rgb: RGB) => '#' + rgb.map((v) => Math.max(0, Math.min(255, v)).toString(16).padStart(2, '0')).join('').toUpperCase();
-
 // Globe en trame qui tourne comme la Terre, en quatre idées enchaînées :
 // rotation avec événements, pulsations, système nerveux (arcs entre événements)
 // et couleurs vivantes. Satellites en orbite et fine pluie de 0 et 1 en continu.
 // Cadré comme `object-fit: cover; object-position: right top`.
-export default function GlobeTrame({ className }: { className?: string }) {
+interface GlobeTrameProps {
+  className?: string;
+  reglages?: Partial<ReglagesGlobe>;
+  onIdee?: (idee: IdeaKey) => void;   // appelé à chaque changement d'idée
+}
+
+export default function GlobeTrame({ className, reglages, onIdee }: GlobeTrameProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const reglagesRef = useRef<ReglagesGlobe>(REGLAGES_GLOBE);
+  const onIdeeRef = useRef(onIdee);
+  const apiRef = useRef<{ rafraichir: () => void } | null>(null);
+  const courants: ReglagesGlobe = { ...REGLAGES_GLOBE, ...reglages, couleurs: { ...REGLAGES_GLOBE.couleurs, ...reglages?.couleurs } };
+
+  // Les réglages sont lus à chaque image : les changer ne relance pas l'animation.
+  useEffect(() => {
+    reglagesRef.current = courants;
+    onIdeeRef.current = onIdee;
+    apiRef.current?.rafraichir();
+  });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -147,20 +155,23 @@ export default function GlobeTrame({ className }: { className?: string }) {
     let recent: Hotspot[] = [];
     let nextSpawn = 1.5;
 
-    // Couleurs (points et globe diffus), calculées une fois au chargement
+    const R = () => reglagesRef.current;
+    const motionAllowed = () => !reduceMotion || R().forcerAnimation;
+
+    // Couleurs (points et globe diffus), recalculées quand les réglages changent
     let DOT: RGB = [106, 140, 58], DOT_HEX = '#6A8C3A', TONES: RGB[] = DOT_TONES.map(hexRgb);
+    let couleursCle = '';
     const gcache = new Map<string, string>();
     const globeColor = (hex: string) => {
       let v = gcache.get(hex);
       if (!v) {
-        const [h, s, l] = hexToHsl(hex);
-        v = toHex(hslToRgb((h + COULEURS.globeTeinte + 720) % 360, clamp01((s * COULEURS.globeSaturation) / 100), l));
+        v = couleurGlobe(hex, R().couleurs.globeTeinte, R().couleurs.globeSaturation);
         gcache.set(hex, v);
       }
       return v;
     };
 
-    let idea: Idea = IDEAS.rotation, phaseIdx = -1;
+    let idea: Idea = IDEAS.rotation, ideaKey: IdeaKey | '' = '', mode: IdeeGlobe | '' = '', cycleT0 = 0;
     let colorW = 0, patchGain = 1, omega = TAU / IDEAS.rotation.turnS;
     let lon = LON_START, t = 0, satT = 0;
     let dpr = 1, scale = 1, offX = 0;
@@ -211,6 +222,19 @@ export default function GlobeTrame({ className }: { className?: string }) {
       halo.height = still.height = Math.max(1, Math.round(canvas.height / 4));
       scale = Math.max(w / data.width, h / data.height);
       offX = w - data.width * scale;
+      drawStill();
+    };
+
+    const appliquerCouleurs = () => {
+      if (!data) return;
+      const c = R().couleurs;
+      const cle = [c.pointsTeinte, c.pointsLuminosite, c.globeTeinte, c.globeSaturation].join(',');
+      if (cle === couleursCle) return;
+      couleursCle = cle;
+      gcache.clear();
+      DOT = couleurPoint(data.colors.trame, c);
+      DOT_HEX = toHex(DOT);
+      TONES = DOT_TONES.map((hex) => couleurPoint(hex, c));
       drawStill();
     };
 
@@ -266,8 +290,9 @@ export default function GlobeTrame({ className }: { className?: string }) {
 
     const draw = (dt: number) => {
       if (!data) return;
+      appliquerCouleurs();
       const w = canvas.clientWidth, h = canvas.clientHeight;
-      const intro = reduceMotion ? 1 : smoothstep(0, INTRO_S, t);
+      const intro = motionAllowed() ? smoothstep(0, INTRO_S, t) : 1;
       const { e, n, f } = viewBasis(lon);
 
       // ── Fond : partie fixe + taches peintes collées à la sphère
@@ -312,7 +337,7 @@ export default function GlobeTrame({ className }: { className?: string }) {
       ctx.globalAlpha = 1;
 
       // ── Événements : apparition, maintien, extinction
-      if (!reduceMotion) {
+      if (motionAllowed()) {
         hots = hots.filter((hsp) => t - hsp.start <= hsp.dur);
         for (const hsp of hots) {
           const age = t - hsp.start;
@@ -433,21 +458,29 @@ export default function GlobeTrame({ className }: { className?: string }) {
 
     const loop = (now: number) => {
       raf = requestAnimationFrame(loop);
+      const rg = R();
+      if (rg.pause) { lastNow = now; return; }
       const dt = lastNow ? Math.min(0.1, (now - lastNow) / 1000) : 0;
       lastNow = now;
       t += dt;
-      satT += dt * VITESSE_SATELLITES;
-      const idx = Math.floor(t / DUREE_IDEE_S) % ORDER.length;
-      if (idx !== phaseIdx) {
-        phaseIdx = idx;
-        idea = IDEAS[ORDER[idx]];
+      satT += dt * rg.vitesseSatellites;
+      if (rg.idee !== mode) {
+        mode = rg.idee;
+        if (mode === 'enchainement') cycleT0 = t;
+        else { hots = []; links = []; recent = []; }
+      }
+      const key: IdeaKey = rg.idee === 'enchainement' ? IDEES[Math.floor((t - cycleT0) / DUREE_IDEE_S) % IDEES.length] : rg.idee;
+      if (key !== ideaKey) {
+        ideaKey = key;
+        idea = IDEAS[key];
         nextSpawn = Math.min(nextSpawn, t + 0.4);
+        onIdeeRef.current?.(key);
       }
       // Transitions douces entre les idées
       colorW = ease(colorW, idea.colorDots ? 1 : 0, dt, 0.8);
       patchGain = ease(patchGain, idea.patchGain, dt, 0.8);
       omega = ease(omega, TAU / idea.turnS, dt, 0.8);
-      lon -= omega * VITESSE_TERRE * dt;
+      lon -= omega * rg.vitesseTerre * dt;
       pending += dt;
       if (now - lastDraw < FRAME_MS) return;
       lastDraw = now;
@@ -455,7 +488,7 @@ export default function GlobeTrame({ className }: { className?: string }) {
       pending = 0;
     };
     const play = () => {
-      if (running || reduceMotion || !data || !visible) return;
+      if (running || !motionAllowed() || !data || !visible) return;
       running = true;
       lastNow = 0;
       raf = requestAnimationFrame(loop);
@@ -465,9 +498,22 @@ export default function GlobeTrame({ className }: { className?: string }) {
       cancelAnimationFrame(raf);
     };
     const showStill = () => {
+      const fixe = R().idee === 'enchainement' ? IDEAS.rotation : IDEAS[R().idee as IdeaKey];
+      idea = fixe;
+      colorW = fixe.colorDots ? 1 : 0;
+      patchGain = fixe.patchGain;
       t = STILL_T;
-      lon = LON_START - (TAU / IDEAS.rotation.turnS) * VITESSE_TERRE * STILL_T;
+      lon = LON_START - (TAU / fixe.turnS) * R().vitesseTerre * STILL_T;
       draw(0);
+    };
+    // Appelé quand les réglages changent : relance, fige ou redessine selon le cas.
+    apiRef.current = {
+      rafraichir: () => {
+        if (!data) return;
+        if (!motionAllowed()) { pause(); showStill(); return; }
+        if (!running) play();
+        else if (R().pause) draw(0);
+      },
     };
 
     const loadDensity = async () => {
@@ -495,16 +541,6 @@ export default function GlobeTrame({ className }: { className?: string }) {
         MH = dens.h;
         cx = d.degrade.cx;
         cy = d.degrade.cy;
-
-        // Couleur des points : teinte et luminosité réglées, saturation de l'olive de la charte
-        const oliveHsl = hexToHsl(d.colors.trame);
-        const dotColor = (hex: string): RGB => {
-          const [h, s, l] = hexToHsl(hex);
-          return hslToRgb((h + COULEURS.pointsTeinte - oliveHsl[0] + 720) % 360, s, clamp01(l + COULEURS.pointsLuminosite / 100));
-        };
-        DOT = dotColor(d.colors.trame);
-        DOT_HEX = toHex(DOT);
-        TONES = DOT_TONES.map(dotColor);
 
         // Cellules de la trame du visuel (45°, même pas, même décalage) sur le disque du globe
         const p = d.trame.pas, [ox, oy] = d.trame.decalage, k45 = Math.SQRT1_2, s2 = p * Math.SQRT2;
@@ -566,14 +602,15 @@ export default function GlobeTrame({ className }: { className?: string }) {
         }
 
         resize();
-        if (reduceMotion) showStill();
-        else play();
+        appliquerCouleurs();
+        if (motionAllowed()) play();
+        else showStill();
       })
       .catch(() => {});
 
     const ro = new ResizeObserver(() => {
       resize();
-      if (reduceMotion) showStill();
+      if (!motionAllowed()) showStill();
     });
     ro.observe(canvas);
     const io = new IntersectionObserver(([entry]) => {
@@ -585,6 +622,7 @@ export default function GlobeTrame({ className }: { className?: string }) {
 
     return () => {
       cancelled = true;
+      apiRef.current = null;
       pause();
       ro.disconnect();
       io.disconnect();

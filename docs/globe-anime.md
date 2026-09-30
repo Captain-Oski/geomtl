@@ -2,7 +2,7 @@
 
 Le hero de la page d'accueil affiche le globe en trame de points de l'identité 2027 (Studio Le Séisme), animé en direct dans un `<canvas>`. La Terre tourne, les couleurs peintes du fond tournent avec elle, et quatre idées d'animation s'enchaînent en boucle.
 
-Une page de démonstration permet de comparer les versions et de régler les couleurs avant de les reporter dans le code : [Globe en rotation](https://claude.ai/artifact/LV1YsMRfExRhRkXgkR4LPS). Elle est privée ; la partager depuis son menu Partager.
+Pour jouer avec l'animation sur le site lui-même, ouvrir **`/demo`** (`/fr/demo` ou `/en/demo`). Voir [Page de démonstration](#page-de-démonstration-demo).
 
 ## Ce que l'on voit
 
@@ -37,6 +37,8 @@ Une page de démonstration permet de comparer les versions et de régler les cou
 |---------|------|
 | `components/home/GlobeTrame.tsx` | Moteur de l'animation (canvas) et réglages. |
 | `components/home/Hero.tsx` | Place le globe dans le hero. Sur mobile, le globe commence sous la date et le slogan. |
+| `lib/globe-couleurs.ts` | Calcul des couleurs réglables (points et globe diffus), partagé par le moteur et `/demo`. |
+| `app/[locale]/demo/page.tsx`, `components/demo/GlobeDemo.tsx` | Page de démonstration avec panneau de réglages. |
 | `public/images/brand/globe-trame.json` | Visuel vectorisé : dégradé, touches peintes, trame de 5 489 points. Chargé au démarrage. |
 | `public/images/brand/terre-densite.png` | Carte des continents, 720 x 360, équirectangulaire. Chargée au démarrage. |
 | `public/images/brand/globe-trame.svg` | Le même visuel en SVG, pour Figma ou Illustrator (calques `#fond`, `#globe`, `#halo-peinture`, `#trame`). Non utilisé par le site. |
@@ -84,28 +86,44 @@ On a d'abord essayé d'accrocher les points à la sphère. Comme on ne voit que 
 
 ## Réglages
 
-Les réglages courants sont en tête de `components/home/GlobeTrame.tsx` :
+Les réglages du hero de l'accueil sont dans `REGLAGES_GLOBE`, en tête de `components/home/GlobeTrame.tsx` :
 
-| Constante | Valeur | Effet |
-|-----------|--------|-------|
-| `VITESSE_TERRE` | `2.5` | Multiplicateur de rotation de la Terre (« rapide »). `1` = un tour en 90 à 140 s selon l'idée. |
-| `VITESSE_SATELLITES` | `0.5` | Multiplicateur des orbites (« lente »). |
-| `DUREE_IDEE_S` | `10` | Durée de chaque idée dans l'enchaînement, en secondes. |
-| `COULEURS` | `{ pointsTeinte: 85, pointsLuminosite: 0, globeTeinte: 0, globeSaturation: 100 }` | Couleurs des points et du globe diffus. Les valeurs ci-contre sont celles de la charte. |
-| `IDEAS` | voir le fichier | Réglages de chaque idée : vitesse, nombre, taille et durée des événements, intensité des taches. |
+| Champ | Valeur | Effet |
+|-------|--------|-------|
+| `idee` | `'enchainement'` | `'enchainement'` fait défiler les quatre idées ; `'rotation'`, `'pulsations'`, `'reseau'` ou `'couleurs'` en fixe une seule. |
+| `vitesseTerre` | `2.5` | Multiplicateur de rotation de la Terre (« rapide »). `1` = un tour en 90 à 140 s selon l'idée. |
+| `vitesseSatellites` | `0.5` | Multiplicateur des orbites (« lente »). |
+| `couleurs` | `COULEURS_CHARTE` | Couleurs des points et du globe diffus (`lib/globe-couleurs.ts`). |
+| `pause` | `false` | Fige l'animation. |
+| `forcerAnimation` | `false` | Anime même si le système demande de réduire les animations (utilisé par `/demo`). |
 
-Réglages plus fins, dans le même fichier : `VIEW_LAT` (inclinaison de la vue), `LON_START` (longitude de départ), `R_DOT` (taille maximale des points), `WARM` (palette des événements), `PATCH_COLORS` et `DOT_TONES`.
+Le composant accepte aussi une prop `reglages` (réglages partiels, lus à chaque image sans relancer l'animation) et une prop `onIdee` (appelée à chaque changement d'idée).
 
-### Changer les couleurs
+Réglages plus fins, dans le même fichier : `DUREE_IDEE_S` (durée de chaque idée, 10 s), `IDEAS` (vitesse, nombre, taille et durée des événements, intensité des taches, pour chaque idée), `VIEW_LAT` (inclinaison de la vue), `LON_START` (longitude de départ), `R_DOT` (taille maximale des points), `WARM` (palette des événements), `PATCH_COLORS` et `DOT_TONES`.
 
-1. Sur la page de démonstration, choisir les couleurs dans le panneau « Couleurs » (préréglages ou curseurs), puis cliquer sur « Copier les valeurs ».
-2. Reporter les valeurs dans `COULEURS`. Par exemple, « Points #34717E (teinte 190°, luminosité -4) · Globe : teinte +140°, saturation 90 % » devient :
+### Changer les couleurs de l'accueil
+
+1. Sur `/demo`, choisir les couleurs dans le panneau (préréglages ou curseurs), puis cliquer sur « Copier les valeurs ».
+2. Reporter les valeurs dans `REGLAGES_GLOBE.couleurs`. Par exemple, « Points #34717E (teinte 190°, luminosité -4) · Globe : teinte +140°, saturation 90 % » devient :
 
 ```ts
-const COULEURS = { pointsTeinte: 190, pointsLuminosite: -4, globeTeinte: 140, globeSaturation: 90 };
+couleurs: { pointsTeinte: 190, pointsLuminosite: -4, globeTeinte: 140, globeSaturation: 90 },
 ```
 
 La teinte des points remplace celle de l'olive en gardant sa saturation. La teinte du globe décale tout le dégradé et les taches peintes. Les événements gardent leur palette chaude.
+
+## Page de démonstration `/demo`
+
+`/fr/demo` (ou `/en/demo`, `/demo` redirige vers `/fr/demo`) affiche le vrai hero du site avec un panneau de réglages flottant et repliable (en bas de l'écran sur mobile) :
+
+- idée : enchaînement ou une des quatre idées ;
+- vitesse de la Terre et vitesse des satellites (lente, normale, rapide) ;
+- fond crème ou encre, texte du hero affiché ou masqué, pause ;
+- couleur des points et du globe diffus : préréglages et curseurs, valeurs à copier, retour à la charte.
+
+Les couleurs choisies sont mémorisées dans le navigateur du visiteur. Rien n'est enregistré sur le serveur : la démo ne modifie jamais l'accueil. Si le système demande de réduire les animations, un bouton permet de lancer l'animation quand même.
+
+La page n'est liée nulle part et porte `noindex` : elle n'apparaît pas dans les moteurs de recherche, mais reste accessible à quiconque connaît l'adresse. Son interface est en français, y compris sur `/en/demo`.
 
 ## Régénérer les données
 
@@ -152,5 +170,5 @@ Source : Natural Earth 1:50m, domaine public, via le paquet `world-atlas`. Le sc
 ## Limites connues
 
 - Le halo vectorisé est un peu plus régulier que l'aérographe d'origine, par exemple sur la gauche de la bande cyan.
-- Le panneau de couleurs n'existe que sur la page de démonstration. Sur le site, les couleurs passent par la constante `COULEURS`.
+- Les réglages faits sur `/demo` ne s'appliquent pas à l'accueil : il faut les reporter dans `REGLAGES_GLOBE`.
 - Les continents sont ceux de la vraie Terre, pas les formes du visuel d'origine. L'image fixe `globe-trame.jpg` garde les formes du studio.

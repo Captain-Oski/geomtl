@@ -389,3 +389,36 @@ a {
   color: #fff;
   box-shadow: none;
 }
+
+/* Curseurs de la page /demo : piste colorée passée en variable --track */
+.globe-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  margin: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(20, 20, 18, 0.15);
+  background: var(--track, var(--geo-cream-dark));
+  cursor: pointer;
+}
+.globe-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--geo-cream);
+  border: 2px solid var(--geo-ink);
+  box-shadow: 0 1px 3px rgba(20, 20, 18, 0.3);
+}
+.globe-range::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--geo-cream);
+  border: 2px solid var(--geo-ink);
+}
+.globe-range:focus-visible {
+  outline: 2px solid var(--geo-teal-dark);
+  outline-offset: 3px;
+}
