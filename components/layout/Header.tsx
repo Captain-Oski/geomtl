@@ -21,12 +21,12 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Programme, Conférenciers, Ateliers, Exposants et Partenaires restent
+  // masqués de la navigation jusqu'au lancement public (octobre 2026,
+  // RDV Géomatique AGMQ) — les pages existent toujours en coulisse
+  // (état "Bientôt disponible") mais ne sont pas mises en avant.
   const navLinks = [
-    { href: `/${locale}/programmation`, label: t('programme') },
-    { href: `/${locale}/conferenciers`, label: t('speakers') },
-    { href: `/${locale}/ateliers`, label: t('workshops') },
-    { href: `/${locale}/exposants`, label: t('exhibitors') },
-    { href: `/${locale}/partenaires`, label: t('partners') },
+    { href: `/${locale}/devenir-partenaire`, label: t('becomePartner') },
     { href: `/${locale}/infos`, label: t('info') },
     { href: `/${locale}/actualites`, label: t('news') },
     { href: `/${locale}/apropos`, label: t('about') },
@@ -41,7 +41,7 @@ export default function Header() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           scrolled
-            ? 'bg-deep-blue/90 backdrop-blur-md border-b border-white/5 shadow-card'
+            ? 'bg-geo-cream/90 backdrop-blur-md border-b border-geo-ink/8 shadow-card-2027'
             : 'bg-transparent'
         )}
       >
@@ -50,13 +50,13 @@ export default function Header() {
             {/* Logo */}
             <Link
               href={`/${locale}`}
-              className="flex items-center group"
+              className="flex items-center group text-geo-ink"
               aria-label="GeoMTL 2027 — Accueil"
             >
               <GeoMTLLogo
                 height={28}
                 showYear={true}
-                className="transition-opacity duration-200 group-hover:opacity-80"
+                className="transition-opacity duration-200 group-hover:opacity-70"
               />
             </Link>
 
@@ -69,8 +69,8 @@ export default function Header() {
                   className={cn(
                     'px-3 py-2 text-sm font-medium rounded-lg transition-colors',
                     pathname === link.href
-                      ? 'text-rose-geo bg-rose-geo/10'
-                      : 'text-mid-gray hover:text-white hover:bg-white/5'
+                      ? 'text-geo-teal-dark bg-geo-teal/10'
+                      : 'text-geo-ink-soft hover:text-geo-ink hover:bg-geo-ink/5'
                   )}
                 >
                   {link.label}
@@ -83,7 +83,7 @@ export default function Header() {
               {/* Language switcher */}
               <Link
                 href={localizedPath}
-                className="hidden sm:flex items-center gap-1 px-3 py-1.5 text-xs font-semibold tracking-wider text-mid-gray hover:text-white border border-white/10 hover:border-white/20 rounded-lg transition-colors"
+                className="hidden sm:flex items-center gap-1 px-3 py-1.5 text-xs font-semibold tracking-wider text-geo-ink-soft hover:text-geo-ink border border-geo-ink/15 hover:border-geo-ink/30 rounded-lg transition-colors"
               >
                 <span>{otherLocale.toUpperCase()}</span>
               </Link>
@@ -91,7 +91,7 @@ export default function Header() {
               {/* CTA */}
               <Link
                 href={`/${locale}/billetterie`}
-                className="hidden sm:flex items-center px-4 py-2 text-sm font-semibold text-white rounded-lg bg-gradient-to-r from-rose-geo to-orange-geo hover:from-rose-geo-light hover:to-orange-geo-light transition-all shadow-geo hover:shadow-geo-lg"
+                className="hidden sm:flex items-center px-4 py-2 text-sm font-semibold text-geo-ink rounded-lg bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
               >
                 {t('buyTicket')}
               </Link>
@@ -99,24 +99,24 @@ export default function Header() {
               {/* Mobile hamburger */}
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-white/5 transition-colors"
+                className="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-geo-ink/5 transition-colors"
                 aria-label="Menu"
               >
                 <span
                   className={cn(
-                    'block w-6 h-0.5 bg-white transition-transform duration-200',
+                    'block w-6 h-0.5 bg-geo-ink transition-transform duration-200',
                     mobileOpen && 'rotate-45 translate-y-2'
                   )}
                 />
                 <span
                   className={cn(
-                    'block w-6 h-0.5 bg-white transition-opacity duration-200',
+                    'block w-6 h-0.5 bg-geo-ink transition-opacity duration-200',
                     mobileOpen && 'opacity-0'
                   )}
                 />
                 <span
                   className={cn(
-                    'block w-6 h-0.5 bg-white transition-transform duration-200',
+                    'block w-6 h-0.5 bg-geo-ink transition-transform duration-200',
                     mobileOpen && '-rotate-45 -translate-y-2'
                   )}
                 />
@@ -134,7 +134,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-deep-blue/95 backdrop-blur-xl border-b border-white/5 lg:hidden"
+            className="fixed top-16 left-0 right-0 z-40 bg-geo-cream/95 backdrop-blur-xl border-b border-geo-ink/8 lg:hidden"
           >
             <div className="px-4 py-6 space-y-1">
               {navLinks.map((link) => (
@@ -145,25 +145,25 @@ export default function Header() {
                   className={cn(
                     'block px-4 py-3 text-base font-medium rounded-lg transition-colors',
                     pathname === link.href
-                      ? 'text-rose-geo bg-rose-geo/10'
-                      : 'text-mid-gray hover:text-white hover:bg-white/5'
+                      ? 'text-geo-teal-dark bg-geo-teal/10'
+                      : 'text-geo-ink-soft hover:text-geo-ink hover:bg-geo-ink/5'
                   )}
                 >
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-white/5 flex flex-col gap-3">
+              <div className="pt-4 border-t border-geo-ink/8 flex flex-col gap-3">
                 <Link
                   href={localizedPath}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm font-semibold text-mid-gray hover:text-white"
+                  className="block px-4 py-3 text-sm font-semibold text-geo-ink-soft hover:text-geo-ink"
                 >
                   {otherLocale === 'fr' ? 'Version française' : 'English version'}
                 </Link>
                 <Link
                   href={`/${locale}/billetterie`}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-center text-sm font-semibold text-white rounded-lg bg-gradient-to-r from-rose-geo to-orange-geo"
+                  className="block px-4 py-3 text-center text-sm font-semibold text-geo-ink rounded-lg bg-gradient-geo-2027"
                 >
                   {t('buyTicket')}
                 </Link>
