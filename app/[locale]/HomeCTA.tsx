@@ -1,57 +1,56 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
+import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 
 export default function HomeCTA() {
   const t = useTranslations('home');
   const locale = useLocale();
 
   return (
-    <section className="py-24 bg-deep-blue-mid relative overflow-hidden">
-      {/* Background */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse at center, rgba(233, 30, 140, 0.08) 0%, rgba(255, 107, 53, 0.04) 50%, transparent 80%)'
-        }}
+    <section className="relative overflow-hidden py-20 sm:py-28">
+      {/* Visuel de la charte : dégradé cyan → citron en trame de points */}
+      <Image
+        src="/images/brand/degrade-trame.jpg"
+        alt=""
+        fill
+        sizes="100vw"
+        className="object-cover pointer-events-none select-none"
       />
-      {/* Top border gradient */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-rose-geo/40 to-transparent" />
 
-      <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
+      <div className="relative z-10 px-4 max-w-3xl mx-auto">
         <motion.div
+          className="rounded-2xl bg-white/55 backdrop-blur-md border border-white/60 px-6 py-10 sm:px-12 sm:py-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-sm font-semibold tracking-[0.2em] uppercase gradient-text mb-4">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-geo-ink mb-3">
             GeoMTL 2027
           </p>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-geo-ink font-display mb-4 leading-tight text-balance">
             {t('ctaTitle')}
           </h2>
-          <p className="text-lg text-mid-gray mb-8 leading-relaxed">
+          <p className="text-base sm:text-lg text-geo-ink mb-8 leading-relaxed">
             {t('ctaSubtitle')}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Link
               href={`/${locale}/billetterie`}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-lg text-white bg-gradient-to-r from-rose-geo to-orange-geo hover:from-rose-geo-light hover:to-orange-geo-light transition-all shadow-geo hover:shadow-geo-lg hover:scale-105 active:scale-100"
+              className="group inline-flex items-center gap-2 rounded-lg bg-geo-ink px-6 py-3 font-semibold text-white hover:bg-geo-ink/85 transition-colors"
             >
               {t('ctaButton')}
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+              <ArrowRight size={18} weight="light" className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
             <Link
               href={`/${locale}/devenir-partenaire`}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-lg text-white border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all"
+              className="inline-flex items-center rounded-lg bg-geo-ink px-6 py-3 font-semibold text-white hover:bg-geo-ink/85 transition-colors"
             >
-              {locale === 'fr' ? 'Devenir partenaire' : 'Become a partner'}
+              {t('heroCta2')}
             </Link>
           </div>
         </motion.div>

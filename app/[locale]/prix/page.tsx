@@ -20,8 +20,8 @@ export default async function PrixPage({
   const t = await getTranslations({ locale, namespace: 'awards' });
 
   return (
-    <div className="min-h-screen bg-deep-blue pt-20">
-      <div className="bg-deep-blue-mid border-b border-white/5 py-16">
+    <div className="min-h-screen bg-geo-cream pt-20">
+      <div className="page-header-2027 py-16 sm:py-20">
         <Container>
           <SectionTitle
             eyebrow={t('eyebrow')}
@@ -31,7 +31,7 @@ export default async function PrixPage({
           <div className="text-center">
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-rose-geo to-orange-geo hover:opacity-90 transition-all shadow-geo"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-geo-ink bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
             >
               {t('nominate')} →
             </Link>
@@ -40,7 +40,7 @@ export default async function PrixPage({
       </div>
 
       <Container className="py-12">
-        <h2 className="text-2xl font-bold text-white mb-8">
+        <h2 className="text-2xl font-bold text-geo-ink mb-8">
           {t('categories')}
         </h2>
 
@@ -53,21 +53,21 @@ export default async function PrixPage({
             return (
               <div
                 key={award.id}
-                className="glass rounded-2xl p-6"
+                className="glass-2027 rounded-2xl p-6"
                 style={{ borderLeft: `3px solid ${award.color}60` }}
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="text-3xl">{award.icon}</span>
-                  <h3 className="text-lg font-bold text-white">{title}</h3>
+                  <award.icon size={30} weight="light" className="text-geo-ink flex-shrink-0" aria-hidden="true" />
+                  <h3 className="text-lg font-bold text-geo-ink">{title}</h3>
                 </div>
-                <p className="text-sm text-mid-gray leading-relaxed mb-4">{description}</p>
+                <p className="text-sm text-geo-ink-soft leading-relaxed mb-4">{description}</p>
 
                 <div className="space-y-1.5">
                   <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: award.color }}>
                     {locale === 'fr' ? 'Critères' : 'Criteria'}
                   </p>
                   {criteria.map((criterion, i) => (
-                    <div key={i} className="flex items-start gap-2 text-xs text-mid-gray">
+                    <div key={i} className="flex items-start gap-2 text-xs text-geo-ink-soft">
                       <span style={{ color: award.color }} className="mt-0.5">·</span>
                       {criterion}
                     </div>
@@ -79,13 +79,13 @@ export default async function PrixPage({
         </div>
 
         {/* Past winners placeholder */}
-        <div className="glass rounded-2xl p-8 text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">{t('pastWinners')}</h2>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 text-mid-gray text-sm">
-            <span className="w-2 h-2 rounded-full bg-orange-geo animate-pulse" />
+        <div className="glass-2027 rounded-2xl p-8 text-center">
+          <h2 className="text-2xl font-bold text-geo-ink mb-4">{t('pastWinners')}</h2>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-geo-ink/10 text-geo-ink-soft text-sm">
+            <span className="w-2 h-2 rounded-full bg-geo-lime-dark animate-pulse" />
             {locale === 'fr' ? 'Lauréats 2026 à venir' : t('comingSoon')}
           </div>
-          <p className="text-mid-gray text-sm mt-4 max-w-lg mx-auto">
+          <p className="text-geo-ink-soft text-sm mt-4 max-w-lg mx-auto">
             {locale === 'fr'
               ? 'Les lauréats des Prix GeoMTL 2026 seront annoncés prochainement. Restez à l\'écoute!'
               : 'GeoMTL 2026 Award winners will be announced soon. Stay tuned!'}
@@ -93,18 +93,18 @@ export default async function PrixPage({
         </div>
 
         {/* Nomination CTA */}
-        <div className="mt-10 glass rounded-2xl p-8 text-center">
-          <h3 className="text-xl font-bold text-white mb-3">
+        <div className="mt-10 glass-2027 rounded-2xl p-8 text-center">
+          <h3 className="text-xl font-bold text-geo-ink mb-3">
             {locale === 'fr' ? 'Vous connaissez un projet exceptionnel?' : 'Know an exceptional project?'}
           </h3>
-          <p className="text-mid-gray mb-6 max-w-xl mx-auto">
+          <p className="text-geo-ink-soft mb-6 max-w-xl mx-auto">
             {locale === 'fr'
               ? 'Les candidatures sont ouvertes jusqu\'au 1er août 2027. Soumettez une nomination pour honorer l\'excellence dans votre domaine.'
               : 'Nominations are open until August 1, 2027. Submit a nomination to honor excellence in your field.'}
           </p>
           <Link
             href={`/${locale}/contact`}
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-rose-geo to-orange-geo hover:opacity-90 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-geo-ink bg-gradient-geo-2027 hover:opacity-90 transition-all"
           >
             {t('nominate')}
           </Link>

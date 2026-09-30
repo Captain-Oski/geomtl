@@ -19,7 +19,7 @@ export default function ProgramPreview() {
   ].slice(0, 6);
 
   return (
-    <section className="section-spacing bg-deep-blue">
+    <section className="section-spacing bg-geo-cream">
       <Container>
         <SectionTitle
           eyebrow={t('programEyebrow')}
@@ -30,7 +30,7 @@ export default function ProgramPreview() {
           {previewItems.map((item, index) => (
             <motion.div
               key={item.id}
-              className="glass rounded-xl p-4 flex items-center gap-4 group hover:bg-white/5 transition-colors"
+              className="glass-2027 rounded-xl p-4 flex items-center gap-4 group hover:bg-geo-ink/5 transition-colors"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -38,10 +38,10 @@ export default function ProgramPreview() {
             >
               {/* Day + Time */}
               <div className="text-right flex-shrink-0 w-24">
-                <p className="text-xs text-mid-gray">
+                <p className="text-xs text-geo-ink-soft">
                   {locale === 'fr' ? `Jour ${item.day}` : `Day ${item.day}`}
                 </p>
-                <p className="text-sm font-mono text-light-gray/80">{item.time}</p>
+                <p className="text-sm font-mono text-geo-ink/80">{item.time}</p>
               </div>
 
               {/* Divider */}
@@ -49,10 +49,10 @@ export default function ProgramPreview() {
                 className="w-0.5 h-10 flex-shrink-0 rounded-full"
                 style={{
                   background: item.type === 'keynote'
-                    ? 'linear-gradient(to bottom, #e91e8c, #ff6b35)'
+                    ? 'linear-gradient(to bottom, #01CDA5, #D0DC00)'
                     : item.type === 'conference'
-                    ? 'linear-gradient(to bottom, #5b9bd5, #3b7abf)'
-                    : 'rgba(255,255,255,0.15)'
+                    ? 'linear-gradient(to bottom, #20FEFD, #01CDA5)'
+                    : 'rgba(20,20,18,0.15)'
                 }}
               />
 
@@ -61,19 +61,19 @@ export default function ProgramPreview() {
                 <div className="flex items-center gap-2 mb-1">
                   <SessionTypeBadge type={item.type} locale={locale} />
                   {item.speakerNames && item.speakerNames.length > 0 && (
-                    <span className="text-xs text-mid-gray truncate">
+                    <span className="text-xs text-geo-ink-soft truncate">
                       {item.speakerNames.join(', ')}
                     </span>
                   )}
                 </div>
-                <p className="text-sm font-semibold text-white line-clamp-1">
+                <p className="text-sm font-semibold text-geo-ink line-clamp-1">
                   {locale === 'fr' ? item.title.fr : item.title.en}
                 </p>
               </div>
 
               {/* Room */}
               {item.room && (
-                <div className="hidden sm:block text-xs text-mid-gray flex-shrink-0">
+                <div className="hidden sm:block text-xs text-geo-ink-soft flex-shrink-0">
                   {locale === 'fr' ? item.room.fr : item.room.en}
                 </div>
               )}
@@ -84,7 +84,7 @@ export default function ProgramPreview() {
         <div className="text-center">
           <Link
             href={`/${locale}/programmation`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-rose-geo font-semibold border border-rose-geo/30 hover:bg-rose-geo/10 hover:border-rose-geo/60 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-geo-teal-dark font-semibold border border-geo-teal-dark/30 hover:bg-geo-teal/10 hover:border-geo-teal-dark/60 transition-all"
           >
             {t('programCta')}
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

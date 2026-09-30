@@ -2,6 +2,10 @@ import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { EVENT_CONFIG } from '@/data/config';
 import GeoMTLLogo from '@/components/ui/GeoMTLLogo';
+import { XLogo } from '@phosphor-icons/react/dist/ssr/XLogo';
+import { LinkedinLogo } from '@phosphor-icons/react/dist/ssr/LinkedinLogo';
+import { InstagramLogo } from '@phosphor-icons/react/dist/ssr/InstagramLogo';
+import { Mountains } from '@phosphor-icons/react/dist/ssr/Mountains';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -45,24 +49,9 @@ export default function Footer() {
             <div className="flex gap-4 pt-2">
               {/* Social icons */}
               {[
-                { label: 'Twitter / X', href: EVENT_CONFIG.social.twitter, icon: (
-                  <svg className="w-4 h-4" stroke="currentColor" fill="none" viewBox="0 0 24 24" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 21h18M3 18h18V6c0-1.657-1.343-3-3-3H6c-1.657 0-3 1.343-3 3v12m0 0h18M3 18V6m18 12V6M9 3v3m6-3v3"/>
-                  </svg>
-                )},
-                { label: 'LinkedIn', href: EVENT_CONFIG.social.linkedin, icon: (
-                  <svg className="w-4 h-4" stroke="currentColor" fill="none" viewBox="0 0 24 24" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-                    <circle cx="4" cy="4" r="2" stroke="currentColor" strokeWidth="1.5"/>
-                  </svg>
-                )},
-                { label: 'Instagram', href: EVENT_CONFIG.social.instagram, icon: (
-                  <svg className="w-4 h-4" stroke="currentColor" fill="none" viewBox="0 0 24 24" strokeWidth="1.5">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <circle cx="12" cy="12" r="4"/>
-                    <circle cx="17.5" cy="6.5" r="1"/>
-                  </svg>
-                )},
+                { label: 'X', href: EVENT_CONFIG.social.twitter, Icon: XLogo },
+                { label: 'LinkedIn', href: EVENT_CONFIG.social.linkedin, Icon: LinkedinLogo },
+                { label: 'Instagram', href: EVENT_CONFIG.social.instagram, Icon: InstagramLogo },
               ].map((social) => (
                 <a
                   key={social.label}
@@ -72,7 +61,7 @@ export default function Footer() {
                   aria-label={social.label}
                   className="p-2 rounded-lg border border-geo-cream text-geo-cream hover:text-white hover:border-white transition-colors"
                 >
-                  {social.icon}
+                  <social.Icon size={18} weight="light" aria-hidden="true" />
                 </a>
               ))}
             </div>
@@ -156,7 +145,7 @@ export default function Footer() {
             <Link href={`/${locale}/conditions`} className="hover:text-white transition-colors">
               {t('terms')}
             </Link>
-            <span>{t('madeIn')} 🏔️</span>
+            <span className="inline-flex items-center gap-1.5">{t('madeIn')} <Mountains size={16} weight="light" aria-hidden="true" /></span>
           </div>
         </div>
       </div>

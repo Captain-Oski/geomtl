@@ -22,7 +22,7 @@ export default function Badge({
     yellow: 'badge-yellow',
     blue: 'badge-blue',
     green: 'badge-green',
-    gray: 'bg-white/5 text-mid-gray border border-white/10'
+    gray: 'bg-geo-ink/5 text-geo-ink-soft border border-geo-ink/10'
   };
 
   const sizeStyles: Record<BadgeSize, string> = {
@@ -83,11 +83,10 @@ export function LevelBadge({ level, locale }: { level: string; locale: string })
 
 export function PartnerLevelBadge({ level, locale }: { level: string; locale: string }) {
   const labels: Record<string, { fr: string; en: string; variant: BadgeVariant }> = {
-    presentateur: { fr: 'Présentateur', en: 'Presenting', variant: 'rose' },
-    platine: { fr: 'Platine', en: 'Platinum', variant: 'yellow' },
-    or: { fr: 'Or', en: 'Gold', variant: 'orange' },
+    or: { fr: 'Or', en: 'Gold', variant: 'yellow' },
     argent: { fr: 'Argent', en: 'Silver', variant: 'blue' },
-    communaute: { fr: 'Communauté', en: 'Community', variant: 'green' }
+    bronze: { fr: 'Bronze', en: 'Bronze', variant: 'orange' },
+    exposant: { fr: 'Exposant', en: 'Exhibitor', variant: 'gray' }
   };
 
   const config = labels[level] || { fr: level, en: level, variant: 'gray' as BadgeVariant };

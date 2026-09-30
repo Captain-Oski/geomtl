@@ -33,8 +33,8 @@ export default function ActualitesPage() {
   );
 
   return (
-    <div className="min-h-screen bg-deep-blue pt-20">
-      <div className="bg-deep-blue-mid border-b border-white/5 py-16">
+    <div className="min-h-screen bg-geo-cream pt-20">
+      <div className="page-header-2027 py-16 sm:py-20">
         <Container>
           <SectionTitle
             eyebrow={t('eyebrow')}
@@ -56,8 +56,8 @@ export default function ActualitesPage() {
                 className={cn(
                   'px-4 py-2 rounded-xl text-sm font-semibold transition-all',
                   activeCategory === cat
-                    ? 'bg-rose-geo/20 text-rose-geo border border-rose-geo/40'
-                    : 'glass text-mid-gray hover:text-white border border-white/10'
+                    ? 'bg-geo-teal/15 text-geo-teal-dark border border-geo-teal-dark/40'
+                    : 'glass-2027 text-geo-ink-soft hover:text-geo-ink border border-geo-ink/10'
                 )}
               >
                 {t(labelKey)}
@@ -76,7 +76,7 @@ export default function ActualitesPage() {
             return (
               <motion.article
                 key={article.id}
-                className="glass rounded-2xl overflow-hidden card-hover"
+                className="glass-2027 rounded-2xl overflow-hidden card-hover"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.06 }}
@@ -92,7 +92,7 @@ export default function ActualitesPage() {
                 </div>
 
                 <div className="p-5">
-                  <div className="flex items-center gap-3 text-xs text-mid-gray mb-3">
+                  <div className="flex items-center gap-3 text-xs text-geo-ink-soft mb-3">
                     <span>{formatDate(article.date, locale)}</span>
                     <span>·</span>
                     <span>{article.readTime} min</span>
@@ -100,16 +100,16 @@ export default function ActualitesPage() {
                     <span>{article.author.name}</span>
                   </div>
 
-                  <h2 className="text-base font-bold text-white mb-2 leading-snug line-clamp-2">
+                  <h2 className="text-base font-bold text-geo-ink mb-2 leading-snug line-clamp-2">
                     {title}
                   </h2>
-                  <p className="text-sm text-mid-gray leading-relaxed line-clamp-3 mb-4">
+                  <p className="text-sm text-geo-ink-soft leading-relaxed line-clamp-3 mb-4">
                     {excerpt}
                   </p>
 
                   <Link
                     href={`/${locale}/actualites/${article.slug}`}
-                    className="inline-flex items-center gap-1.5 text-rose-geo text-sm font-semibold hover:gap-3 transition-all"
+                    className="inline-flex items-center gap-1.5 text-geo-teal-dark text-sm font-semibold hover:gap-3 transition-all"
                   >
                     {t('readMore')}
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

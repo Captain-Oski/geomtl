@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
 import type { Metadata } from 'next';
+import { Check } from '@phosphor-icons/react/dist/ssr/Check';
 
 export const metadata: Metadata = { title: 'Billetterie' };
 
@@ -23,7 +24,7 @@ export default async function BilletteriePage({
       name: t('earlyBird'),
       price: t('earlyBirdPrice'),
       deadline: locale === 'fr' ? 'Jusqu\'au 30 juin 2027' : 'Until June 30, 2027',
-      color: '#10b981',
+      color: '#01CDA5',
       badge: null,
       features: locale === 'fr' ? [
         'Accès aux 2 jours de conférence',
@@ -48,7 +49,7 @@ export default async function BilletteriePage({
       name: t('standard'),
       price: t('standardPrice'),
       deadline: locale === 'fr' ? 'Tarif standard' : 'Standard rate',
-      color: '#e91e8c',
+      color: '#D0DC00',
       badge: t('popular'),
       features: locale === 'fr' ? [
         'Accès aux 2 jours de conférence',
@@ -75,7 +76,7 @@ export default async function BilletteriePage({
       name: t('group'),
       price: t('groupPrice'),
       deadline: locale === 'fr' ? 'Pour 5 personnes et plus' : 'For 5 people and more',
-      color: '#ff6b35',
+      color: '#1BC868',
       badge: null,
       features: locale === 'fr' ? [
         'Tous les avantages du billet standard',
@@ -96,8 +97,8 @@ export default async function BilletteriePage({
   ];
 
   return (
-    <div className="min-h-screen bg-deep-blue pt-20">
-      <div className="bg-deep-blue-mid border-b border-white/5 py-16">
+    <div className="min-h-screen bg-geo-cream pt-20">
+      <div className="page-header-2027 py-16 sm:py-20">
         <Container>
           <SectionTitle
             eyebrow={t('eyebrow')}
@@ -112,12 +113,12 @@ export default async function BilletteriePage({
           {ticketTypes.map(ticket => (
             <div
               key={ticket.id}
-              className="glass rounded-2xl p-6 relative flex flex-col"
+              className="glass-2027 rounded-2xl p-6 relative flex flex-col"
               style={{ borderTop: `2px solid ${ticket.color}60` }}
             >
               {ticket.badge && (
                 <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-white"
+                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-geo-ink"
                   style={{ background: ticket.color }}
                 >
                   {ticket.badge}
@@ -125,27 +126,26 @@ export default async function BilletteriePage({
               )}
 
               <div className="mb-4">
-                <h3 className="text-lg font-bold text-white mb-1">{ticket.name}</h3>
-                <p className="text-xs text-mid-gray">{ticket.deadline}</p>
+                <h3 className="text-lg font-bold text-geo-ink mb-1">{ticket.name}</h3>
+                <p className="text-xs text-geo-ink-soft">{ticket.deadline}</p>
               </div>
 
               <div className="mb-6">
-                <span className="text-4xl font-black text-white">{ticket.price}</span>
-                <p className="text-xs text-mid-gray mt-1">{t('taxNote')}</p>
+                <span className="text-4xl font-black text-geo-ink">{ticket.price}</span>
+                <p className="text-xs text-geo-ink-soft mt-1">{t('taxNote')}</p>
               </div>
 
               <ul className="space-y-2 flex-1 mb-6">
                 {ticket.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-mid-gray">
-                    <span style={{ color: ticket.color }} className="mt-0.5 flex-shrink-0">✓</span>
+                  <li key={i} className="flex items-start gap-2 text-sm text-geo-ink-soft">
+                    <Check size={14} weight="light" className="mt-1 flex-shrink-0 text-geo-ink" aria-hidden="true" />
                     {feature}
                   </li>
                 ))}
               </ul>
 
               <button
-                className="w-full py-3 rounded-xl font-bold text-white transition-all"
-                style={{ background: `linear-gradient(135deg, ${ticket.color}, ${ticket.color}cc)` }}
+                className="w-full py-3 rounded-xl font-bold text-white bg-geo-ink hover:bg-geo-ink/85 transition-colors"
               >
                 {t('buyNow')}
               </button>
@@ -154,21 +154,21 @@ export default async function BilletteriePage({
         </div>
 
         {/* Tax note */}
-        <p className="text-center text-xs text-mid-gray mb-8">* {t('taxNote')}</p>
+        <p className="text-center text-xs text-geo-ink-soft mb-8">* {t('taxNote')}</p>
 
         {/* Student/nonprofit note */}
-        <div className="glass rounded-2xl p-6 text-center max-w-2xl mx-auto">
-          <h3 className="text-lg font-bold text-white mb-3">
+        <div className="glass-2027 rounded-2xl p-6 text-center max-w-2xl mx-auto">
+          <h3 className="text-lg font-bold text-geo-ink mb-3">
             {locale === 'fr' ? 'Tarifs étudiants et organismes sans but lucratif' : 'Student and Non-profit Rates'}
           </h3>
-          <p className="text-mid-gray text-sm mb-4">
+          <p className="text-geo-ink-soft text-sm mb-4">
             {locale === 'fr'
               ? 'Des tarifs préférentiels sont disponibles pour les étudiants (195 $) et les OSBL (295 $). Contactez-nous pour obtenir un code de réduction.'
               : 'Preferential rates are available for students ($195) and non-profits ($295). Contact us to get a discount code.'}
           </p>
           <a
             href={`mailto:info@geomtl.ca`}
-            className="inline-flex items-center gap-2 text-rose-geo hover:underline text-sm font-semibold"
+            className="inline-flex items-center gap-2 text-geo-teal-dark hover:underline text-sm font-semibold"
           >
             info@geomtl.ca
           </a>

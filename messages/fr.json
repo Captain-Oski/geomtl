@@ -79,8 +79,7 @@
   "programme": {
     "title": "Programme",
     "eyebrow": "GeoMTL 2027",
-    "subtitle": "Une soirée d'ouverture dimanche, deux jours de conférences, ateliers, panels et réseautage.",
-    "evening": "Soirée — 3 octobre",
+    "subtitle": "Deux jours de conférences, ateliers, panels et réseautage.",
     "day1": "Jour 1 — 4 octobre",
     "day2": "Jour 2 — 5 octobre",
     "all": "Tout",
@@ -125,11 +124,10 @@
     "subtitle": "Des organisations leaders qui croient en la puissance du géospatial.",
     "becomePartner": "Devenir partenaire",
     "levels": {
-      "presentateur": "Présentateur",
-      "platine": "Platine",
       "or": "Or",
       "argent": "Argent",
-      "communaute": "Communauté"
+      "bronze": "Bronze",
+      "exposant": "Exposant"
     }
   },
   "becomePartner": {

@@ -25,9 +25,9 @@ export default function Card({
   return (
     <div
       className={cn(
-        'glass rounded-xl relative overflow-hidden',
+        'glass-2027 rounded-xl relative overflow-hidden',
         hover && 'card-hover cursor-pointer',
-        gradient && 'gradient-border',
+        gradient && 'gradient-border-2027',
         paddingStyles[padding],
         className
       )}
@@ -37,7 +37,7 @@ export default function Card({
         <div
           className="absolute inset-0 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300"
           style={{
-            background: 'linear-gradient(135deg, rgba(233, 30, 140, 0.05) 0%, rgba(255, 107, 53, 0.05) 100%)'
+            background: 'linear-gradient(135deg, rgba(1, 205, 165, 0.08) 0%, rgba(208, 220, 0, 0.08) 100%)'
           }}
         />
       )}

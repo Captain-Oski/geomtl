@@ -1,70 +1,31 @@
 'use client';
 
-import { useTranslations, useLocale } from 'next-intl';
-import StatBlock from '@/components/ui/StatBlock';
+import { useTranslations } from 'next-intl';
 import Container from '@/components/ui/Container';
 import { EVENT_CONFIG } from '@/data/config';
 
 export default function Stats() {
   const t = useTranslations('home');
-  const locale = useLocale();
 
+  // Conférenciers et exposants ne sont pas encore annoncés publiquement
+  // (lancement octobre 2026, RDV Géomatique AGMQ) : seuls ces chiffres sont affichés.
   const stats = [
-    {
-      value: EVENT_CONFIG.stats.participants,
-      suffix: '+',
-      label: t('statsParticipants'),
-      accentColor: 'rose'
-    },
-    {
-      value: EVENT_CONFIG.stats.days,
-      label: t('statsDays'),
-      accentColor: 'orange'
-    },
-    {
-      value: EVENT_CONFIG.stats.speakers,
-      suffix: '+',
-      label: t('statsSpeakers'),
-      accentColor: 'yellow'
-    },
-    {
-      value: EVENT_CONFIG.stats.exhibitors,
-      suffix: '+',
-      label: t('statsExhibitors'),
-      accentColor: 'rose'
-    },
+    { value: `${EVENT_CONFIG.stats.participants}+`, label: t('statsParticipants') },
+    { value: String(EVENT_CONFIG.stats.days), label: t('statsDays') },
   ];
 
   return (
-    <section className="py-20 bg-deep-blue-mid relative overflow-hidden">
-      {/* Background accent */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse at center, rgba(233, 30, 140, 0.05) 0%, transparent 70%)'
-        }}
-      />
-
+    <section className="py-16 lg:py-20 bg-geo-cream-dark">
       <Container>
-        <div className="text-center mb-12">
-          <p className="text-sm font-semibold tracking-[0.2em] uppercase gradient-text mb-3">
-            GeoMTL 2027
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white">{t('statsTitle')}</h2>
+        <div className="text-center mb-10">
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-geo-ink-soft mb-2">GeoMTL 2027</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-geo-ink font-display">{t('statsTitle')}</h2>
         </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
           {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="glass rounded-2xl p-6 text-center gradient-border relative"
-            >
-              <StatBlock
-                value={stat.value}
-                suffix={stat.suffix}
-                label={stat.label}
-                accentColor={stat.accentColor}
-              />
+            <div key={stat.label} className="rounded-xl bg-gradient-geo-2027 px-6 py-8 text-center">
+              <div className="text-4xl sm:text-5xl font-bold text-geo-ink font-display tabular-nums">{stat.value}</div>
+              <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-geo-ink">{stat.label}</div>
             </div>
           ))}
         </div>

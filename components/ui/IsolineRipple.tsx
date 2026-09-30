@@ -115,37 +115,25 @@ export default function IsolineRipple({
       <defs>
         {/* Gradient isolignes — crème → violet, pleine hauteur SVG */}
         <linearGradient id={gradId} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2={H}>
-          <stop offset="0%"    stopColor="#fcde9c"/>
-          <stop offset="16.6%" stopColor="#faa476"/>
-          <stop offset="33.3%" stopColor="#f0746e"/>
-          <stop offset="50%"   stopColor="#e34f6f"/>
-          <stop offset="66.6%" stopColor="#dc3977"/>
-          <stop offset="83.3%" stopColor="#b9257a"/>
-          <stop offset="100%"  stopColor="#7c1d6f"/>
+          <stop offset="0%"   stopColor="#01CDA5"/>
+          <stop offset="50%"  stopColor="#1BC868"/>
+          <stop offset="100%" stopColor="#D0DC00"/>
         </linearGradient>
 
         {/* Gradient lettres — espace local lettre y=0..83.1, identique à solarGrad dans GeoMTLLogo */}
         <linearGradient id={gradLetId} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="83.1"
           gradientTransform={`translate(${logoX.toFixed(1)},${logoY.toFixed(1)}) scale(${logoScale})`}>
-          <stop offset="0%"    stopColor="#fcde9c"/>
-          <stop offset="16.6%" stopColor="#faa476"/>
-          <stop offset="33.3%" stopColor="#f0746e"/>
-          <stop offset="50%"   stopColor="#e34f6f"/>
-          <stop offset="66.6%" stopColor="#dc3977"/>
-          <stop offset="83.3%" stopColor="#b9257a"/>
-          <stop offset="100%"  stopColor="#7c1d6f"/>
+          <stop offset="0%"   stopColor="#01CDA5"/>
+          <stop offset="50%"  stopColor="#1BC868"/>
+          <stop offset="100%" stopColor="#D0DC00"/>
         </linearGradient>
 
         {/* Gradient 2027 — identique à solarGradSup de GeoMtl2027_v3_creme-violet.svg */}
         <linearGradient id={gradYrId} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="25.4"
           gradientTransform={`translate(${logoX.toFixed(1)},${logoY.toFixed(1)}) scale(${logoScale})`}>
-          <stop offset="0%"    stopColor="#fcde9c"/>
-          <stop offset="16.6%" stopColor="#faa476"/>
-          <stop offset="33.3%" stopColor="#f0746e"/>
-          <stop offset="50%"   stopColor="#e34f6f"/>
-          <stop offset="66.6%" stopColor="#dc3977"/>
-          <stop offset="83.3%" stopColor="#b9257a"/>
-          <stop offset="100%"  stopColor="#7c1d6f"/>
+          <stop offset="0%"   stopColor="#01CDA5"/>
+          <stop offset="50%"  stopColor="#1BC868"/>
+          <stop offset="100%" stopColor="#D0DC00"/>
         </linearGradient>
 
         {/* Clip : masque les isolignes derrière le logo */}

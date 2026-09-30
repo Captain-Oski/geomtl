@@ -24,26 +24,9 @@ export default function GeoMTLLogo({
       aria-label="GeoMTL 2027"
       role="img"
     >
-      <defs>
-        <linearGradient id="solarGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="83.1">
-          <stop offset="0%"    stopColor="#fcde9c"/>
-          <stop offset="16.6%" stopColor="#faa476"/>
-          <stop offset="33.3%" stopColor="#f0746e"/>
-          <stop offset="50%"   stopColor="#e34f6f"/>
-          <stop offset="66.6%" stopColor="#dc3977"/>
-          <stop offset="83.3%" stopColor="#b9257a"/>
-          <stop offset="100%"  stopColor="#7c1d6f"/>
-        </linearGradient>
-        <linearGradient id="solarGradSup" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="25.4">
-          <stop offset="0%"    stopColor="#fcde9c"/>
-          <stop offset="16.6%" stopColor="#faa476"/>
-          <stop offset="33.3%" stopColor="#f0746e"/>
-          <stop offset="50%"   stopColor="#e34f6f"/>
-          <stop offset="66.6%" stopColor="#dc3977"/>
-          <stop offset="83.3%" stopColor="#b9257a"/>
-          <stop offset="100%"  stopColor="#7c1d6f"/>
-        </linearGradient>
-      </defs>
+      {/* Identité 2027 : wordmark en encre pleine (currentColor), le
+          dégradé turquoise → citron vert vit uniquement dans la tache
+          graphique (halftone-blob-2027), pas dans les lettres. */}
 
       {/* ── Isolignes topographiques ── */}
       {/* <g fill="none" stroke="url(#solarGrad)" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.40">
@@ -70,7 +53,7 @@ export default function GeoMTLLogo({
       </g> */}
 
       {/* ── Lettres GÉOMTL ── */}
-      <g fill="url(#solarGrad)" fillRule="nonzero">
+      <g fill="currentColor" fillRule="nonzero">
         {/* G */}
         <path d="M28.2,54.8h18v17.5c-1.8,0.9-3.8,1.5-5.8,1.8c-2.2,0.4-4.5,0.5-6.8,0.5c-3.6,0-7-0.6-10-1.9c-3-1.3-5.6-3.1-7.8-5.3c-2.1-2.2-3.9-4.9-5.1-8c-1.2-3.1-1.9-6.5-1.9-10.2c0-3.7,0.6-7.1,1.8-10.2c1.2-3.1,3-5.8,5.1-8.1c2.2-2.3,4.8-4.1,7.8-5.3c3-1.3,6.3-1.9,9.8-1.9c3.4,0,6.6,0.4,9.4,1.2c2.8,0.8,5.3,2.1,7.4,3.8l0.2,0.2h0.6v-9.2c-2.5-1.5-5.3-2.7-8.3-3.3c-3.2-0.7-6.3-1.1-9.4-1.1c-4.8,0-9.3,0.9-13.3,2.6C16,19.6,12.5,22,9.5,25c-3,3-5.3,6.6-7,10.7C0.8,39.8,0,44.3,0,49.2c0,4.9,0.8,9.5,2.5,13.6c1.7,4.1,4,7.7,7,10.7c3,3,6.5,5.4,10.6,7.1c4.1,1.7,8.6,2.6,13.4,2.6c4.1,0,8.1-0.6,11.7-1.7c3.7-1.1,6.7-2.6,9.2-4.4l0.3-0.2V46.4H28.2V54.8z"/>
         {/* É accent */}
@@ -89,7 +72,7 @@ export default function GeoMTLLogo({
 
       {/* ── 2027 ── */}
       {showYear && (
-        <g fill="url(#solarGradSup)" fillRule="nonzero">
+        <g fill="currentColor" fillRule="nonzero" opacity="0.55">
           <path d="M349.3,21.2v4.2h-16.1V22l8.6-9.7c1.2-1.3,2.4-2.7,2.4-4.5c0-2.3-1.7-3.6-4.4-3.6c-2.6,0-4.9,1.5-6,2.9h-0.4V2.5c1.1-1.1,3.7-2.5,7.1-2.5c4.8,0,8.5,2.9,8.5,7.2c0,3.3-1.9,5.5-3.5,7.4l-2.7,3.1c-1.5,1.7-2.4,2.5-3.3,3.5H349.3z"/>
           <path d="M352.2,12.9c0-7.3,3.9-12.9,9.7-12.9c5.9,0,9.7,5.6,9.7,12.9c0,7.6-3.3,13-9.7,13S352.2,20.6,352.2,12.9z M357.1,12.9c0,4.4,1.4,8.7,4.9,8.7c3.7,0,4.9-4.3,4.9-8.7c0-4.8-1.6-8.6-4.9-8.6C358.8,4.3,357.1,8.2,357.1,12.9z"/>
           <path d="M390.7,21.2v4.2h-16.1V22l8.6-9.7c1.2-1.3,2.4-2.7,2.4-4.5c0-2.3-1.7-3.6-4.4-3.6c-2.6,0-4.9,1.5-6,2.9h-0.4V2.5c1.1-1.1,3.7-2.5,7.1-2.5c4.8,0,8.5,2.9,8.5,7.2c0,3.3-1.9,5.5-3.5,7.4l-2.7,3.1c-1.5,1.7-2.4,2.5-3.3,3.5H390.7z"/>

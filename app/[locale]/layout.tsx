@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Space_Grotesk } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { setRequestLocale } from 'next-intl/server';
@@ -12,6 +12,16 @@ import '@/styles/globals.css';
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap'
+});
+
+// Approximation libre du wordmark "GÉOMTL" (Studio Le Séisme n'a fourni
+// que des exports PDF, pas les fichiers de police) : un grotesque
+// géométrique gras, proche en esprit. À remplacer si le studio livre
+// la police exacte.
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-display',
   display: 'swap'
 });
 
@@ -31,15 +41,15 @@ export async function generateMetadata({
     },
     description:
       locale === 'fr'
-        ? 'La géomatique comme système nerveux du territoire. 3–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
-        : 'Geomatics as the nervous system of the territory. October 3–5, 2027, Centre de congrès de Saint-Hyacinthe.',
+        ? 'La géomatique comme système nerveux du territoire. 4–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
+        : 'Geomatics as the nervous system of the territory. October 4–5, 2027, Centre de congrès de Saint-Hyacinthe.',
     keywords: ['geomatics', 'geospatial', 'GIS', 'conference', 'montreal', 'géomatique', 'SIG'],
     openGraph: {
       title: 'GeoMTL 2027',
       description:
         locale === 'fr'
-          ? 'La conférence géospatiale de référence — Saint-Hyacinthe, 3–5 octobre 2027'
-          : 'The reference geospatial conference — Saint-Hyacinthe, October 3–5, 2027',
+          ? 'La conférence géospatiale de référence — Saint-Hyacinthe, 4–5 octobre 2027'
+          : 'The reference geospatial conference — Saint-Hyacinthe, October 4–5, 2027',
       siteName: 'GeoMTL 2027',
       locale: locale === 'fr' ? 'fr_CA' : 'en_CA',
       type: 'website'
@@ -63,8 +73,8 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={inter.variable}>
-      <body className="bg-deep-blue text-light-gray antialiased">
+    <html lang={locale} className={`${inter.variable} ${spaceGrotesk.variable}`}>
+      <body className="bg-geo-cream text-geo-ink antialiased">
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main>{children}</main>

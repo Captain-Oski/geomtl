@@ -41,32 +41,32 @@ export default function SectionTitle({
       transition={{ duration: 0.5 }}
     >
       {eyebrow && (
-        <span className="text-sm font-semibold tracking-[0.2em] uppercase gradient-text">
+        <span className="text-sm font-semibold tracking-[0.2em] uppercase gradient-text-2027">
           {eyebrow}
         </span>
       )}
       <h2
         className={cn(
-          'text-3xl sm:text-4xl md:text-5xl font-bold leading-tight',
-          dark ? 'text-white' : 'text-deep-blue'
+          'text-3xl sm:text-4xl md:text-5xl font-bold leading-tight font-display',
+          dark ? 'text-geo-ink' : 'text-geo-ink'
         )}
       >
         {title}
         {titleAccent && (
           <>
             {' '}
-            <span className="gradient-text">{titleAccent}</span>
+            <span className="gradient-text-2027">{titleAccent}</span>
           </>
         )}
       </h2>
       {align === 'center' && (
-        <div className="w-16 h-1 bg-gradient-to-r from-rose-geo to-orange-geo rounded-full mt-1" />
+        <div className="w-16 h-1 bg-gradient-geo-2027 rounded-full mt-1" />
       )}
       {subtitle && (
         <p
           className={cn(
             'text-lg max-w-2xl leading-relaxed',
-            dark ? 'text-mid-gray' : 'text-deep-blue/70'
+            dark ? 'text-geo-ink-soft' : 'text-geo-ink/70'
           )}
         >
           {subtitle}

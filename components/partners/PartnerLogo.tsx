@@ -19,9 +19,9 @@ export default function PartnerLogo({ partner, locale, size = 'md' }: PartnerLog
   const styles = sizeStyles[size];
 
   return (
-    <div className={`glass rounded-xl flex items-center ${styles.container}`}>
+    <div className={`glass-2027 rounded-xl flex items-center ${styles.container}`}>
       <div
-        className={`${styles.logo} rounded-xl flex items-center justify-center font-black text-white flex-shrink-0`}
+        className={`${styles.logo} rounded-xl flex items-center justify-center font-black text-geo-ink flex-shrink-0`}
         style={{
           background: `${partner.logoColor}20`,
           border: `1px solid ${partner.logoColor}40`
@@ -30,8 +30,8 @@ export default function PartnerLogo({ partner, locale, size = 'md' }: PartnerLog
         {partner.name.slice(0, 2).toUpperCase()}
       </div>
       <div className="min-w-0">
-        <p className={`font-bold text-white ${styles.name} truncate`}>{partner.name}</p>
-        <p className={`text-mid-gray ${styles.sector} truncate`}>{sector}</p>
+        <p className={`font-bold text-geo-ink ${styles.name} truncate`}>{partner.name}</p>
+        <p className={`text-geo-ink-soft ${styles.sector} truncate`}>{sector}</p>
         <div className="mt-1">
           <PartnerLevelBadge level={partner.level} locale={locale} />
         </div>

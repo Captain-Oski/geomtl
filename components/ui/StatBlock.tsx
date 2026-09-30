@@ -56,9 +56,9 @@ export default function StatBlock({
   }, [value, hasAnimated]);
 
   const accentColors: Record<string, string> = {
-    rose: 'from-rose-geo to-orange-geo',
-    orange: 'from-orange-geo to-yellow-geo',
-    yellow: 'from-yellow-geo to-orange-geo',
+    rose: 'from-geo-teal to-geo-lime',
+    orange: 'from-geo-lime-dark to-geo-lime',
+    yellow: 'from-geo-teal-dark to-geo-teal',
     blue: 'from-blue-400 to-blue-600'
   };
 
@@ -79,7 +79,7 @@ export default function StatBlock({
       >
         {prefix}{displayValue.toLocaleString('fr-CA')}{suffix}
       </span>
-      <span className="mt-2 text-mid-gray text-base font-medium uppercase tracking-wider">
+      <span className="mt-2 text-geo-ink-soft text-base font-medium uppercase tracking-wider">
         {label}
       </span>
     </motion.div>

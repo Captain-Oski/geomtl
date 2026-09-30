@@ -82,7 +82,7 @@ export default async function ConditionsPage({
             lors de l&apos;achat. En vous inscrivant, vous certifiez que les informations fournies
             sont exactes et complètes.
           </p>
-          <ul className="list-disc list-inside space-y-1 text-mid-gray">
+          <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
             <li>Les billets sont nominatifs et non transférables sauf autorisation expresse.</li>
             <li>
               La politique d&apos;annulation sera détaillée lors de l&apos;ouverture de la billetterie.
@@ -108,7 +108,7 @@ export default async function ConditionsPage({
             les autres participant(e)s, conférencier(ère)s, exposants et organisateurs.
           </p>
           <p>Sont strictement interdits :</p>
-          <ul className="list-disc list-inside space-y-1 text-mid-gray">
+          <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
             <li>Toute forme de harcèlement, discrimination ou intimidation</li>
             <li>Les comportements offensants ou perturbateurs</li>
             <li>La photographie ou l&apos;enregistrement sans consentement</li>
@@ -129,7 +129,7 @@ export default async function ConditionsPage({
           de communication et d&apos;archives. En participant à GeoMTL 2027, vous acceptez que votre
           image puisse être captée et utilisée dans ce cadre. Si vous souhaitez exercer votre
           droit d&apos;opposition, contactez-nous avant l&apos;événement à{' '}
-          <a href={`mailto:${EMAIL}`} className="text-rose-geo hover:underline">{EMAIL}</a>.
+          <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.
         </p>
       ),
     },
@@ -169,7 +169,7 @@ export default async function ConditionsPage({
           GeoMTL se réserve le droit de modifier ces conditions à tout moment. Les modifications
           entrent en vigueur dès leur publication sur ce site. Nous vous encourageons à consulter
           cette page régulièrement. Pour toute question :{' '}
-          <a href={`mailto:${EMAIL}`} className="text-rose-geo hover:underline">{EMAIL}</a>.
+          <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.
         </p>
       ),
     },
@@ -233,7 +233,7 @@ export default async function ConditionsPage({
             the time of purchase. By registering, you certify that the information provided
             is accurate and complete.
           </p>
-          <ul className="list-disc list-inside space-y-1 text-mid-gray">
+          <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
             <li>Tickets are non-transferable unless expressly authorized.</li>
             <li>
               The cancellation policy will be detailed when ticketing opens. Generally: full
@@ -259,7 +259,7 @@ export default async function ConditionsPage({
             fellow attendees, speakers, exhibitors and organizers.
           </p>
           <p>Strictly prohibited:</p>
-          <ul className="list-disc list-inside space-y-1 text-mid-gray">
+          <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
             <li>Any form of harassment, discrimination or intimidation</li>
             <li>Offensive or disruptive behaviour</li>
             <li>Photography or recording without consent</li>
@@ -279,7 +279,7 @@ export default async function ConditionsPage({
           The event is photographed and video-recorded for communications and archival purposes.
           By attending GeoMTL 2027, you agree that your image may be captured and used for
           these purposes. To exercise your right of objection, contact us before the event at{' '}
-          <a href={`mailto:${EMAIL}`} className="text-rose-geo hover:underline">{EMAIL}</a>.
+          <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.
         </p>
       ),
     },
@@ -318,24 +318,24 @@ export default async function ConditionsPage({
           GeoMTL reserves the right to modify these terms at any time. Changes take effect
           upon publication on this site. We encourage you to check this page regularly.
           For any questions:{' '}
-          <a href={`mailto:${EMAIL}`} className="text-rose-geo hover:underline">{EMAIL}</a>.
+          <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.
         </p>
       ),
     },
   ];
 
   return (
-    <div className="min-h-screen bg-deep-blue pt-20">
+    <div className="min-h-screen bg-geo-cream pt-20">
       {/* Header */}
-      <div className="bg-deep-blue-mid border-b border-white/5 py-16">
+      <div className="page-header-2027 py-16 sm:py-20">
         <Container>
-          <p className="text-xs font-semibold tracking-widest uppercase text-rose-geo mb-3">
+          <p className="text-xs font-semibold tracking-widest uppercase text-geo-teal-dark mb-3">
             {fr ? 'Documents légaux' : 'Legal Documents'}
           </p>
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-3">
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-geo-ink mb-3">
             {fr ? "Conditions d'utilisation" : 'Terms of Use'}
           </h1>
-          <p className="text-mid-gray text-sm">
+          <p className="text-geo-ink-soft text-sm">
             {fr ? `Dernière mise à jour : ${UPDATED}` : `Last updated: ${UPDATED_EN}`}
           </p>
         </Container>
@@ -344,8 +344,8 @@ export default async function ConditionsPage({
       <Container className="py-12">
         <div className="max-w-3xl mx-auto">
           {/* Table of contents */}
-          <nav className="glass rounded-2xl p-5 mb-10">
-            <p className="text-xs font-semibold tracking-wider uppercase text-mid-gray mb-3">
+          <nav className="glass-2027 rounded-2xl p-5 mb-10">
+            <p className="text-xs font-semibold tracking-wider uppercase text-geo-ink-soft mb-3">
               {fr ? 'Sommaire' : 'Contents'}
             </p>
             <ol className="space-y-1">
@@ -353,7 +353,7 @@ export default async function ConditionsPage({
                 <li key={s.id}>
                   <a
                     href={`#${s.id}`}
-                    className="text-sm text-mid-gray hover:text-rose-geo transition-colors"
+                    className="text-sm text-geo-ink-soft hover:text-geo-teal-dark transition-colors"
                   >
                     {s.title}
                   </a>
@@ -366,8 +366,8 @@ export default async function ConditionsPage({
           <div className="space-y-10">
             {sections.map((s) => (
               <section key={s.id} id={s.id} className="scroll-mt-24">
-                <h2 className="text-lg font-bold text-white mb-3">{s.title}</h2>
-                <div className="text-mid-gray leading-relaxed text-sm">{s.content}</div>
+                <h2 className="text-lg font-bold text-geo-ink mb-3">{s.title}</h2>
+                <div className="text-geo-ink-soft leading-relaxed text-sm">{s.content}</div>
               </section>
             ))}
           </div>

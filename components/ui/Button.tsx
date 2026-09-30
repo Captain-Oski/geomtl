@@ -35,26 +35,26 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles = cn(
-      'inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-geo',
+      'inline-flex items-center justify-center gap-2 font-semibold rounded-lg transition-all duration-200 cursor-pointer select-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-geo-teal-dark',
       fullWidth && 'w-full',
       disabled && 'opacity-50 cursor-not-allowed pointer-events-none'
     );
 
     const variantStyles: Record<ButtonVariant, string> = {
       primary: cn(
-        'bg-gradient-to-r from-rose-geo to-orange-geo text-white',
-        'hover:from-rose-geo-light hover:to-orange-geo-light',
-        'shadow-geo hover:shadow-geo-lg',
+        'bg-gradient-geo-2027 text-geo-ink',
+        'hover:opacity-90',
+        'shadow-geo-2027 hover:shadow-geo-2027-lg',
         'active:scale-[0.98]'
       ),
       secondary: cn(
-        'bg-transparent border border-rose-geo/40 text-rose-geo',
-        'hover:bg-rose-geo/10 hover:border-rose-geo',
+        'bg-transparent border border-geo-teal-dark/40 text-geo-teal-dark',
+        'hover:bg-geo-teal/10 hover:border-geo-teal-dark',
         'active:scale-[0.98]'
       ),
       ghost: cn(
-        'bg-transparent text-light-gray/80',
-        'hover:bg-white/5 hover:text-white',
+        'bg-transparent text-geo-ink-soft',
+        'hover:bg-geo-ink/5 hover:text-geo-ink',
         'active:scale-[0.98]'
       )
     };

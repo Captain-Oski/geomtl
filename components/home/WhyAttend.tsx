@@ -4,43 +4,49 @@ import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
+import { Handshake } from '@phosphor-icons/react/dist/ssr/Handshake';
+import { GraduationCap } from '@phosphor-icons/react/dist/ssr/GraduationCap';
+import { Lightbulb } from '@phosphor-icons/react/dist/ssr/Lightbulb';
+import { Wrench } from '@phosphor-icons/react/dist/ssr/Wrench';
+import { Trophy } from '@phosphor-icons/react/dist/ssr/Trophy';
+import { MapTrifold } from '@phosphor-icons/react/dist/ssr/MapTrifold';
 
 const reasons = [
   {
-    icon: '🎯',
+    Icon: Handshake,
     titleKey: 'networkTitle' as const,
     descKey: 'networkDesc' as const,
-    color: '#e91e8c'
+    color: '#20FEFD'
   },
   {
-    icon: '🎓',
+    Icon: GraduationCap,
     titleKey: 'expertiseTitle' as const,
     descKey: 'expertiseDesc' as const,
-    color: '#ff6b35'
+    color: '#01CDA5'
   },
   {
-    icon: '💡',
+    Icon: Lightbulb,
     titleKey: 'innovTitle' as const,
     descKey: 'innovDesc' as const,
-    color: '#ffd60a'
+    color: '#1BC868'
   },
   {
-    icon: '🛠️',
+    Icon: Wrench,
     titleKey: 'workshopTitle' as const,
     descKey: 'workshopDesc' as const,
-    color: '#10b981'
+    color: '#D0DC00'
   },
   {
-    icon: '🏆',
+    Icon: Trophy,
     titleKey: 'awardTitle' as const,
     descKey: 'awardDesc' as const,
-    color: '#e91e8c'
+    color: '#01CDA5'
   },
   {
-    icon: '🗺️',
+    Icon: MapTrifold,
     titleKey: 'mtlTitle' as const,
     descKey: 'mtlDesc' as const,
-    color: '#ff6b35'
+    color: '#1BC868'
   }
 ];
 
@@ -49,7 +55,7 @@ export default function WhyAttend() {
   const tWhy = useTranslations('why');
 
   return (
-    <section className="section-spacing bg-deep-blue">
+    <section className="section-spacing bg-geo-cream">
       <Container>
         <SectionTitle
           eyebrow={t('whyEyebrow')}
@@ -61,22 +67,19 @@ export default function WhyAttend() {
           {reasons.map((reason, index) => (
             <motion.div
               key={reason.titleKey}
-              className="glass rounded-2xl p-6 group hover:scale-[1.02] transition-transform duration-200"
+              className="glass-2027 rounded-2xl p-6 group hover:scale-[1.02] transition-transform duration-200"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08, duration: 0.5 }}
             >
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl mb-4"
-                style={{ background: `${reason.color}15`, border: `1px solid ${reason.color}30` }}
-              >
-                {reason.icon}
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-geo-cream border border-geo-ink/10 text-geo-ink">
+                <reason.Icon size={26} weight="light" aria-hidden="true" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">
+              <h3 className="text-lg font-bold text-geo-ink mb-2">
                 {tWhy(reason.titleKey)}
               </h3>
-              <p className="text-sm text-mid-gray leading-relaxed">
+              <p className="text-sm text-geo-ink-soft leading-relaxed">
                 {tWhy(reason.descKey)}
               </p>
               <div

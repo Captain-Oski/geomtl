@@ -4,35 +4,39 @@ import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
+import { Brain } from '@phosphor-icons/react/dist/ssr/Brain';
+import { Cube } from '@phosphor-icons/react/dist/ssr/Cube';
+import { Leaf } from '@phosphor-icons/react/dist/ssr/Leaf';
+import { UsersThree } from '@phosphor-icons/react/dist/ssr/UsersThree';
 
 const themes = [
   {
-    icon: '🤖',
+    Icon: Brain,
     titleKey: 'aiTitle' as const,
     descKey: 'aiDesc' as const,
-    color: '#5b9bd5',
-    gradient: 'from-blue-400/20 to-blue-400/5'
+    color: '#20FEFD',
+    gradient: 'from-geo-cyan/20 to-geo-cyan/5'
   },
   {
-    icon: '🔮',
+    Icon: Cube,
     titleKey: 'twinTitle' as const,
     descKey: 'twinDesc' as const,
-    color: '#e91e8c',
-    gradient: 'from-rose-geo/20 to-rose-geo/5'
+    color: '#01CDA5',
+    gradient: 'from-geo-teal/20 to-geo-teal/5'
   },
   {
-    icon: '🌿',
+    Icon: Leaf,
     titleKey: 'envTitle' as const,
     descKey: 'envDesc' as const,
-    color: '#10b981',
-    gradient: 'from-emerald-500/20 to-emerald-500/5'
+    color: '#1BC868',
+    gradient: 'from-geo-green/20 to-geo-green/5'
   },
   {
-    icon: '🗺️',
+    Icon: UsersThree,
     titleKey: 'aicoTitle' as const,
     descKey: 'aicoDesc' as const,
-    color: '#ffd60a',
-    gradient: 'from-yellow-geo/20 to-yellow-geo/5'
+    color: '#D0DC00',
+    gradient: 'from-geo-lime/20 to-geo-lime/5'
   }
 ];
 
@@ -41,7 +45,7 @@ export default function Themes() {
   const tThemes = useTranslations('themes');
 
   return (
-    <section className="section-spacing bg-deep-blue relative overflow-hidden topo-pattern">
+    <section className="section-spacing bg-geo-cream relative overflow-hidden topo-pattern">
       <Container>
         <SectionTitle
           eyebrow={t('themesEyebrow')}
@@ -53,24 +57,21 @@ export default function Themes() {
           {themes.map((theme, index) => (
             <motion.div
               key={theme.titleKey}
-              className={`glass rounded-2xl p-6 cursor-default bg-gradient-to-br ${theme.gradient} hover:scale-[1.02] transition-transform duration-200`}
+              className={`glass-2027 rounded-2xl p-6 cursor-default bg-gradient-to-br ${theme.gradient} hover:scale-[1.02] transition-transform duration-200`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08, duration: 0.5 }}
             >
               <div className="flex items-start gap-4">
-                <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl flex-shrink-0"
-                  style={{ background: `${theme.color}20`, border: `1px solid ${theme.color}40` }}
-                >
-                  {theme.icon}
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-geo-cream border border-geo-ink/10 text-geo-ink">
+                  <theme.Icon size={26} weight="light" aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-1">
+                  <h3 className="text-lg font-bold text-geo-ink mb-1">
                     {tThemes(theme.titleKey)}
                   </h3>
-                  <p className="text-sm text-mid-gray leading-relaxed">
+                  <p className="text-sm text-geo-ink-soft leading-relaxed">
                     {tThemes(theme.descKey)}
                   </p>
                 </div>

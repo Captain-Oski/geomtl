@@ -31,7 +31,6 @@ import { SessionStatusBadge, SessionTypeBadge } from './SessionStatusBadge'
 // ─── Constantes ───────────────────────────────────────────
 
 const DAYS: { id: SessionDay; label: string }[] = [
-  { id: 'evening', label: 'Soirée — 3 oct.' },
   { id: 'day1',    label: 'Jour 1 — 4 oct.' },
   { id: 'day2',    label: 'Jour 2 — 5 oct.' },
 ]
@@ -279,7 +278,7 @@ export function AdminProgrammePage({ sessions: initialSessions }: { sessions: Se
   const grouped = useMemo(() => {
     const map: Record<SessionDay, Session[]> = { evening: [], day1: [], day2: [] }
     filtered.slice().sort((a, b) => a.start_time.localeCompare(b.start_time))
-      .forEach((s) => map[s.day].push(s))
+      .forEach((s) => map[s.day === 'evening' ? 'day1' : s.day].push(s))
     return map
   }, [filtered])
 

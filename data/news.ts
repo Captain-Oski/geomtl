@@ -22,12 +22,12 @@ export const newsArticles: NewsArticle[] = [
       en: "GeoMTL 2027: Registration is open!"
     },
     excerpt: {
-      fr: "C'est officiel : GeoMTL 2027 ouvre ses portes du 3 au 5 octobre au Centre de congrès de Saint-Hyacinthe. Billets en vente dès maintenant avec tarif anticipé jusqu'au 30 juin.",
-      en: "It's official: GeoMTL 2027 opens its doors October 3–5 at the Centre de congrès de Saint-Hyacinthe. Tickets on sale now with early bird pricing until June 30."
+      fr: "C'est officiel : GeoMTL 2027 ouvre ses portes les 4 et 5 octobre au Centre de congrès de Saint-Hyacinthe. Billets en vente dès maintenant avec tarif anticipé jusqu'au 30 juin.",
+      en: "It's official: GeoMTL 2027 opens its doors October 4–5 at the Centre de congrès de Saint-Hyacinthe. Tickets on sale now with early bird pricing until June 30."
     },
     content: {
-      fr: "Après deux années de préparation intense, nous sommes ravis d'annoncer l'ouverture des inscriptions pour GeoMTL 2027. Cette quatrième édition de la conférence géospatiale de référence du Québec se tiendra du 3 au 5 octobre 2027 au Centre de congrès de Saint-Hyacinthe.\n\nGeoMTL 2027 rassemblera 350 professionnels, chercheurs, décideurs et passionnés du géospatial dans un événement unique mêlant conférences de haut niveau, ateliers pratiques, exposition et réseautage.\n\nCette année, nous avons voulu pousser encore plus loin notre ambition en proposant un programme qui reflète la diversité et la richesse du secteur géospatial : des données ouvertes aux jumeaux numériques, de l'intelligence artificielle à la participation citoyenne, en passant par l'environnement et les savoirs autochtones.\n\nLes billets à tarif anticipé (395 $ + taxes) sont disponibles jusqu'au 30 juin 2027. Après cette date, le tarif standard s'appliquera (495 $ + taxes). Des tarifs de groupe sont également disponibles pour les organisations souhaitant inscrire 5 participants ou plus.\n\nNe manquez pas cette opportunité de faire partie de la plus grande rassemblement géospatial du Québec. Inscrivez-vous dès maintenant sur notre billetterie en ligne.",
-      en: "After two years of intense preparation, we are thrilled to announce the opening of registration for GeoMTL 2027. This fourth edition of Quebec's reference geospatial conference will take place October 3–5, 2027 at the Centre de congrès de Saint-Hyacinthe.\n\nGeoMTL 2027 will bring together 350 professionals, researchers, decision-makers and geospatial enthusiasts in a unique event combining high-level talks, hands-on workshops, an exhibition and networking.\n\nThis year, we pushed our ambitions even further by offering a program that reflects the diversity and richness of the geospatial sector: from open data to digital twins, from artificial intelligence to civic participation, through environment and Indigenous knowledge.\n\nEarly bird tickets ($395 + taxes) are available until June 30, 2027. After this date, the standard rate applies ($495 + taxes). Group rates are also available for organizations wishing to register 5 or more participants.\n\nDon't miss this opportunity to be part of Quebec's largest geospatial gathering. Register now on our online ticketing platform."
+      fr: "Après deux années de préparation intense, nous sommes ravis d'annoncer l'ouverture des inscriptions pour GeoMTL 2027. Cette quatrième édition de la conférence géospatiale de référence du Québec se tiendra les 4 et 5 octobre 2027 au Centre de congrès de Saint-Hyacinthe.\n\nGeoMTL 2027 rassemblera 350 professionnels, chercheurs, décideurs et passionnés du géospatial dans un événement unique mêlant conférences de haut niveau, ateliers pratiques, exposition et réseautage.\n\nCette année, nous avons voulu pousser encore plus loin notre ambition en proposant un programme qui reflète la diversité et la richesse du secteur géospatial : des données ouvertes aux jumeaux numériques, de l'intelligence artificielle à la participation citoyenne, en passant par l'environnement et les savoirs autochtones.\n\nLes billets à tarif anticipé (395 $ + taxes) sont disponibles jusqu'au 30 juin 2027. Après cette date, le tarif standard s'appliquera (495 $ + taxes). Des tarifs de groupe sont également disponibles pour les organisations souhaitant inscrire 5 participants ou plus.\n\nNe manquez pas cette opportunité de faire partie de la plus grande rassemblement géospatial du Québec. Inscrivez-vous dès maintenant sur notre billetterie en ligne.",
+      en: "After two years of intense preparation, we are thrilled to announce the opening of registration for GeoMTL 2027. This fourth edition of Quebec's reference geospatial conference will take place October 4–5, 2027 at the Centre de congrès de Saint-Hyacinthe.\n\nGeoMTL 2027 will bring together 350 professionals, researchers, decision-makers and geospatial enthusiasts in a unique event combining high-level talks, hands-on workshops, an exhibition and networking.\n\nThis year, we pushed our ambitions even further by offering a program that reflects the diversity and richness of the geospatial sector: from open data to digital twins, from artificial intelligence to civic participation, through environment and Indigenous knowledge.\n\nEarly bird tickets ($395 + taxes) are available until June 30, 2027. After this date, the standard rate applies ($495 + taxes). Group rates are also available for organizations wishing to register 5 or more participants.\n\nDon't miss this opportunity to be part of Quebec's largest geospatial gathering. Register now on our online ticketing platform."
     },
     date: "2027-03-15",
     category: "event",
@@ -36,61 +36,9 @@ export const newsArticles: NewsArticle[] = [
       role: { fr: "Organisation", en: "Organization" }
     },
     image: null,
-    imageColor: "#e91e8c",
+    imageColor: "#01CDA5",
     readTime: 3,
     featured: true
-  },
-  {
-    id: "n002",
-    slug: "conferenciers-vedettes-2027",
-    title: {
-      fr: "Découvrez nos conférenciers vedettes pour 2027",
-      en: "Discover our featured speakers for 2027"
-    },
-    excerpt: {
-      fr: "Sophie Tremblay, Amina Diallo, Marc Beauchamp et David Chen rejoignent la liste des conférenciers vedettes de GeoMTL 2027. Un plateau d'exception pour une édition record.",
-      en: "Sophie Tremblay, Amina Diallo, Marc Beauchamp and David Chen join the lineup of featured speakers at GeoMTL 2027. An exceptional lineup for a record edition."
-    },
-    content: {
-      fr: "Nous sommes fiers de vous présenter les quatre conférenciers vedettes qui ouvriront et ponctueront GeoMTL 2027. Chacun représente une facette différente du géospatial d'aujourd'hui et de demain.\n\nSophie Tremblay, directrice des données géospatiales de la Ville de Montréal, donnera la keynote d'ouverture sur l'infrastructure de données géospatiales comme bien commun numérique. Son expérience de terrain dans la métropole québécoise apportera une perspective unique sur les défis et réussites de l'open data urbain.\n\nAmina Diallo, fondatrice de GéoSud Analytics et lauréate du Prix Innovation 2025, présentera une keynote passionnante sur l'IA géospatiale et ses implications éthiques pour les communautés du monde entier. Son parcours entre Montréal, l'Afrique de l'Ouest et l'Amérique latine lui confère une vision globale rarement vue dans nos conférences.\n\nMarc Beauchamp, chef scientifique au MELCCFP, abordera les enjeux de surveillance environnementale par satellite dans le contexte de la crise climatique. Ses travaux sur la forêt boréale québécoise sont d'une pertinence cruciale pour notre compréhension collective du territoire.\n\nEnfin, David Chen de Esri Canada présentera l'évolution des plateformes SIG vers des architectures cloud-native, avec des exemples concrets de déploiements à l'échelle nationale.\n\nLe programme complet sera dévoilé le 1er juin 2027. D'ici là, nous continuerons à annoncer les conférenciers qui enrichiront ces deux journées exceptionnelles.",
-      en: "We are proud to present the four featured speakers who will open and punctuate GeoMTL 2027. Each represents a different facet of geospatial today and tomorrow.\n\nSophie Tremblay, Director of Geospatial Data at the City of Montreal, will give the opening keynote on geospatial data infrastructure as a digital common. Her hands-on experience in Quebec's metropolis will provide a unique perspective on the challenges and successes of urban open data.\n\nAmina Diallo, founder of GéoSud Analytics and 2025 Innovation Award winner, will present a captivating keynote on geospatial AI and its ethical implications for communities around the world. Her journey between Montreal, West Africa and Latin America gives her a global vision rarely seen at our conferences.\n\nMarc Beauchamp, Chief Scientist at MELCCFP, will address environmental monitoring by satellite in the context of the climate crisis. His work on Quebec's boreal forest is crucially relevant to our collective understanding of the territory.\n\nFinally, David Chen from Esri Canada will present the evolution of GIS platforms toward cloud-native architectures, with concrete examples of national-scale deployments.\n\nThe full program will be unveiled on June 1, 2027. Until then, we will continue announcing speakers who will enrich these two exceptional days."
-    },
-    date: "2027-04-08",
-    category: "speakers",
-    author: {
-      name: "Équipe programmation GeoMTL",
-      role: { fr: "Programmation", en: "Programming" }
-    },
-    image: null,
-    imageColor: "#ff6b35",
-    readTime: 4,
-    featured: true
-  },
-  {
-    id: "n003",
-    slug: "partenariat-ressources-naturelles-canada",
-    title: {
-      fr: "Ressources naturelles Canada s'engage comme partenaire présentateur",
-      en: "Natural Resources Canada commits as presenting partner"
-    },
-    excerpt: {
-      fr: "Ressources naturelles Canada confirme son engagement à titre de partenaire présentateur de GeoMTL 2027, soulignant l'importance stratégique de la conférence pour l'écosystème géospatial national.",
-      en: "Natural Resources Canada confirms its commitment as presenting partner of GeoMTL 2027, underlining the strategic importance of the conference for the national geospatial ecosystem."
-    },
-    content: {
-      fr: "Ressources naturelles Canada (RNCan) rejoint GeoMTL 2027 à titre de partenaire présentateur, réaffirmant son soutien au développement de la communauté géospatiale canadienne.\n\nCe partenariat stratégique permettra à RNCan de présenter ses initiatives en matière d'infrastructure de données géospatiales, d'imagerie satellitaire RADARSAT et de cadre géospatial national à plus de 1 000 professionnels rassemblés à Montréal.\n\n'RNCan est fière de soutenir GeoMTL 2027,' a déclaré Sarah MacKenzie, directrice nationale des données spatiales. 'Cet événement représente une occasion unique de rassembler la communauté géospatiale canadienne et de discuter collectivement des défis et des opportunités qui nous attendent.'\n\nDans le cadre de ce partenariat, Sarah MacKenzie donnera le discours d'ouverture officiel de GeoMTL 2027 et participera au panel sur l'avenir des infrastructures de données géospatiales au Canada.\n\nRNCan aura également un espace de présentation majeur dans la zone d'exposition, où les visiteurs pourront découvrir les outils et ressources disponibles sur le portail géospatial du gouvernement du Canada.\n\nNous remercions chaleureusement Ressources naturelles Canada pour cet engagement exemplaire envers le développement du géospatial canadien.",
-      en: "Natural Resources Canada (NRCan) joins GeoMTL 2027 as a presenting partner, reaffirming its support for the development of the Canadian geospatial community.\n\nThis strategic partnership will allow NRCan to present its initiatives in geospatial data infrastructure, RADARSAT satellite imagery and the national geospatial framework to over 1,000 professionals gathered in Montreal.\n\n'NRCan is proud to support GeoMTL 2027,' said Sarah MacKenzie, National Director of Spatial Data. 'This event represents a unique opportunity to bring together the Canadian geospatial community and collectively discuss the challenges and opportunities ahead.'\n\nAs part of this partnership, Sarah MacKenzie will give the official opening address at GeoMTL 2027 and participate in the panel on the future of geospatial data infrastructure in Canada.\n\nNRCan will also have a major presentation space in the exhibition zone, where visitors will be able to discover the tools and resources available on the Government of Canada's geospatial portal.\n\nWe warmly thank Natural Resources Canada for this exemplary commitment to the development of Canadian geospatial."
-    },
-    date: "2027-04-22",
-    category: "sponsors",
-    author: {
-      name: "Équipe partenariats GeoMTL",
-      role: { fr: "Partenariats", en: "Partnerships" }
-    },
-    image: null,
-    imageColor: "#ffd60a",
-    readTime: 3,
-    featured: false
   },
   {
     id: "n004",
@@ -114,7 +62,7 @@ export const newsArticles: NewsArticle[] = [
       role: { fr: "Rédacteur en chef", en: "Editor-in-Chief" }
     },
     image: null,
-    imageColor: "#e91e8c",
+    imageColor: "#01CDA5",
     readTime: 6,
     featured: true
   },
@@ -140,7 +88,7 @@ export const newsArticles: NewsArticle[] = [
       role: { fr: "Organisation", en: "Organization" }
     },
     image: null,
-    imageColor: "#ff6b35",
+    imageColor: "#1BC868",
     readTime: 4,
     featured: false
   },
@@ -152,12 +100,12 @@ export const newsArticles: NewsArticle[] = [
       en: "Geospatial and Reconciliation: A Collective Responsibility"
     },
     excerpt: {
-      fr: "Comment la communauté géospatiale peut-elle contribuer activement aux processus de réconciliation avec les peuples autochtones? Une réflexion en amont du panel GeoMTL 2027.",
-      en: "How can the geospatial community actively contribute to reconciliation processes with Indigenous peoples? A reflection ahead of the GeoMTL 2027 panel."
+      fr: "Comment la communauté géospatiale peut-elle contribuer activement aux processus de réconciliation avec les peuples autochtones?",
+      en: "How can the geospatial community actively contribute to reconciliation processes with Indigenous peoples?"
     },
     content: {
-      fr: "La réconciliation avec les peuples autochtones n'est pas seulement une question politique : c'est une responsabilité qui interpelle directement notre communauté géospatiale. Les données géospatiales, les cartes et les systèmes d'information géographique ont joué un rôle historique dans la colonisation des territoires autochtones. Il est temps de retourner ces outils vers la justice.\n\nGeoMTL 2027 accueille pour la première fois une conférence entièrement dédiée aux relations entre le géospatial et les droits autochtones, présentée par Robert Cloutier du Gouvernement de la Nation crie.\n\nLe travail de Robert et de son équipe est exemplaire : co-développer des outils géospatiaux adaptés culturellement, qui permettent aux Premières Nations de documenter leurs territoires ancestraux selon leurs propres termes, d'appuyer leurs revendications territoriales avec des données robustes et de transmettre leurs savoirs géographiques traditionnels aux jeunes générations.\n\nMais la réconciliation géospatiale va au-delà des projets individuels. Elle implique de repenser la gouvernance des données géospatiales sur les territoires autochtones, le droit à la souveraineté des données pour les Premières Nations, Métis et Inuits, et la formation d'une nouvelle génération de professionnels géospatiaux autochtones.\n\nGeoMTL s'engage dans cette direction : à partir de 2027, nous réserverons des bourses de participation pour les étudiants autochtones en géomatique et nous inclurons systématiquement des perspectives autochtones dans notre programmation.",
-      en: "Reconciliation with Indigenous peoples is not just a political question: it is a responsibility that directly challenges our geospatial community. Geospatial data, maps and geographic information systems have historically played a role in the colonization of Indigenous territories. It is time to turn these tools toward justice.\n\nGeoMTL 2027 hosts for the first time a talk entirely dedicated to the relationship between geospatial and Indigenous rights, presented by Robert Cloutier from the Cree Nation Government.\n\nRobert and his team's work is exemplary: co-developing culturally adapted geospatial tools that allow First Nations to document their ancestral territories on their own terms, support their territorial claims with robust data and transmit their traditional geographic knowledge to younger generations.\n\nBut geospatial reconciliation goes beyond individual projects. It involves rethinking the governance of geospatial data on Indigenous territories, the right to data sovereignty for First Nations, Métis and Inuit, and training a new generation of Indigenous geospatial professionals.\n\nGeoMTL is committed to this direction: starting in 2027, we will reserve participation scholarships for Indigenous students in geomatics and systematically include Indigenous perspectives in our programming."
+      fr: "La réconciliation avec les peuples autochtones n'est pas seulement une question politique : c'est une responsabilité qui interpelle directement notre communauté géospatiale. Les données géospatiales, les cartes et les systèmes d'information géographique ont joué un rôle historique dans la colonisation des territoires autochtones. Il est temps de retourner ces outils vers la justice.\n\nCela implique de repenser la gouvernance des données géospatiales sur les territoires autochtones, le droit à la souveraineté des données pour les Premières Nations, Métis et Inuits, et la formation d'une nouvelle génération de professionnels géospatiaux autochtones.\n\nGeoMTL s'engage dans cette direction : à partir de 2027, nous réserverons des bourses de participation pour les étudiants autochtones en géomatique et nous inclurons systématiquement des perspectives autochtones dans notre programmation.",
+      en: "Reconciliation with Indigenous peoples is not just a political question: it is a responsibility that directly challenges our geospatial community. Geospatial data, maps and geographic information systems have historically played a role in the colonization of Indigenous territories. It is time to turn these tools toward justice.\n\nThis involves rethinking the governance of geospatial data on Indigenous territories, the right to data sovereignty for First Nations, Métis and Inuit, and training a new generation of Indigenous geospatial professionals.\n\nGeoMTL is committed to this direction: starting in 2027, we will reserve participation scholarships for Indigenous students in geomatics and systematically include Indigenous perspectives in our programming."
     },
     date: "2027-06-01",
     category: "community",
@@ -166,7 +114,7 @@ export const newsArticles: NewsArticle[] = [
       role: { fr: "Professeure, UQAM", en: "Professor, UQAM" }
     },
     image: null,
-    imageColor: "#ffd60a",
+    imageColor: "#D0DC00",
     readTime: 5,
     featured: false
   }

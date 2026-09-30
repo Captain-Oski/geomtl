@@ -41,24 +41,24 @@ export default function CookieBanner() {
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-5"
         >
-          <div className="mx-auto max-w-5xl glass rounded-2xl border border-white/10 shadow-card px-5 py-4 sm:px-6 sm:py-5 flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="mx-auto max-w-5xl glass-2027 rounded-2xl border border-geo-ink/10 shadow-card-2027 px-5 py-4 sm:px-6 sm:py-5 flex flex-col sm:flex-row sm:items-center gap-4">
             {/* Icon */}
-            <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-rose-geo/15 border border-rose-geo/25 flex items-center justify-center">
+            <div className="flex-shrink-0 w-9 h-9 rounded-xl bg-geo-teal/15 border border-geo-teal-dark/25 flex items-center justify-center">
               <svg viewBox="0 0 20 20" fill="none" className="w-4 h-4" aria-hidden="true">
-                <circle cx="10" cy="10" r="8" stroke="#e91e8c" strokeWidth="1.5" />
-                <circle cx="7"  cy="8"  r="1.2" fill="#e91e8c" />
-                <circle cx="13" cy="7"  r="0.9" fill="#e91e8c" />
-                <circle cx="12" cy="13" r="1.1" fill="#e91e8c" />
-                <circle cx="7"  cy="13" r="0.8" fill="#e91e8c" />
+                <circle cx="10" cy="10" r="8" stroke="#00A383" strokeWidth="1.5" />
+                <circle cx="7"  cy="8"  r="1.2" fill="#00A383" />
+                <circle cx="13" cy="7"  r="0.9" fill="#00A383" />
+                <circle cx="12" cy="13" r="1.1" fill="#00A383" />
+                <circle cx="7"  cy="13" r="0.8" fill="#00A383" />
               </svg>
             </div>
 
             {/* Text */}
-            <p className="flex-1 text-sm text-mid-gray leading-relaxed">
+            <p className="flex-1 text-sm text-geo-ink-soft leading-relaxed">
               {t('message')}{' '}
               <Link
                 href={`/${locale}/confidentialite`}
-                className="text-rose-geo hover:text-rose-geo-light underline underline-offset-2 transition-colors"
+                className="text-geo-teal-dark hover:text-geo-teal underline underline-offset-2 transition-colors"
               >
                 {t('privacyLink')}
               </Link>
@@ -69,13 +69,13 @@ export default function CookieBanner() {
             <div className="flex items-center gap-2 flex-shrink-0">
               <button
                 onClick={() => handleChoice('refused')}
-                className="px-4 py-2 text-sm font-medium text-mid-gray hover:text-white border border-white/10 hover:border-white/20 rounded-lg transition-colors"
+                className="px-4 py-2 text-sm font-medium text-geo-ink-soft hover:text-geo-ink border border-geo-ink/10 hover:border-geo-ink/20 rounded-lg transition-colors"
               >
                 {t('refuse')}
               </button>
               <button
                 onClick={() => handleChoice('accepted')}
-                className="px-4 py-2 text-sm font-semibold text-white rounded-lg bg-gradient-to-r from-rose-geo to-orange-geo hover:from-rose-geo-light hover:to-orange-geo-light transition-all shadow-geo"
+                className="px-4 py-2 text-sm font-semibold text-geo-ink rounded-lg bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
               >
                 {t('accept')}
               </button>

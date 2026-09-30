@@ -1,10 +1,17 @@
+import type { Icon } from '@phosphor-icons/react';
+import { Lightbulb } from '@phosphor-icons/react/dist/ssr/Lightbulb';
+import { Handshake } from '@phosphor-icons/react/dist/ssr/Handshake';
+import { Star } from '@phosphor-icons/react/dist/ssr/Star';
+import { Database } from '@phosphor-icons/react/dist/ssr/Database';
+import { Megaphone } from '@phosphor-icons/react/dist/ssr/Megaphone';
+
 export interface Award {
   id: string;
   slug: string;
   title: { fr: string; en: string };
   description: { fr: string; en: string };
   criteria: { fr: string[]; en: string[] };
-  icon: string;
+  icon: Icon;
   color: string;
 }
 
@@ -34,8 +41,8 @@ export const awards: Award[] = [
         "Reproducibility or scalability of the solution"
       ]
     },
-    icon: "💡",
-    color: "#ffd60a"
+    icon: Lightbulb,
+    color: "#A9B300"
   },
   {
     id: "aw002",
@@ -62,8 +69,8 @@ export const awards: Award[] = [
         "Sustainability and longevity of the initiative"
       ]
     },
-    icon: "🤝",
-    color: "#e91e8c"
+    icon: Handshake,
+    color: "#00A383"
   },
   {
     id: "aw003",
@@ -90,8 +97,8 @@ export const awards: Award[] = [
         "Candidate under 35 years of age"
       ]
     },
-    icon: "🌟",
-    color: "#ff6b35"
+    icon: Star,
+    color: "#6A8C3A"
   },
   {
     id: "aw004",
@@ -118,8 +125,8 @@ export const awards: Award[] = [
         "Impact demonstrated through data reuse"
       ]
     },
-    icon: "📂",
-    color: "#ffd60a"
+    icon: Database,
+    color: "#A9B300"
   },
   {
     id: "aw005",
@@ -146,8 +153,8 @@ export const awards: Award[] = [
         "Inspiration for new generations"
       ]
     },
-    icon: "🗺️",
-    color: "#e91e8c"
+    icon: Megaphone,
+    color: "#00A383"
   }
 ];
 

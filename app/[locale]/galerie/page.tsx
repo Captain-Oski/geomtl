@@ -1,5 +1,8 @@
 'use client';
 
+import { Camera } from '@phosphor-icons/react/dist/ssr/Camera';
+import { MagnifyingGlassPlus } from '@phosphor-icons/react/dist/ssr/MagnifyingGlassPlus';
+import { DownloadSimple } from '@phosphor-icons/react/dist/ssr/DownloadSimple';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslations, useLocale } from 'next-intl';
@@ -13,12 +16,12 @@ const galleryImages = Array.from({ length: 24 }, (_, i) => {
   const categories: GalleryCategory[] = ['keynotes', 'workshops', 'networking', 'exposition', 'awards'];
   const category = categories[i % categories.length];
   const colors = [
-    ['#e91e8c', '#ff6b35'],
-    ['#ff6b35', '#ffd60a'],
-    ['#0a1628', '#1a4a8a'],
-    ['#ffd60a', '#ff6b35'],
-    ['#1a4a8a', '#e91e8c'],
-    ['#e91e8c', '#9333ea'],
+    ['#20FEFD', '#01CDA5'],
+    ['#01CDA5', '#1BC868'],
+    ['#1BC868', '#D0DC00'],
+    ['#D0DC00', '#6A8C3A'],
+    ['#20FEFD', '#1BC868'],
+    ['#6A8C3A', '#01CDA5'],
   ];
   const colorPair = colors[i % colors.length];
 
@@ -51,8 +54,8 @@ export default function GaleriePage() {
   const categories: GalleryCategory[] = ['all', 'keynotes', 'workshops', 'networking', 'exposition', 'awards'];
 
   return (
-    <div className="min-h-screen bg-deep-blue pt-20">
-      <div className="bg-deep-blue-mid border-b border-white/5 py-16">
+    <div className="min-h-screen bg-geo-cream pt-20">
+      <div className="page-header-2027 py-16 sm:py-20">
         <Container>
           <SectionTitle
             eyebrow={t('eyebrow')}
@@ -72,8 +75,8 @@ export default function GaleriePage() {
               className={cn(
                 'px-4 py-2 rounded-xl text-sm font-semibold transition-all',
                 activeCategory === cat
-                  ? 'bg-rose-geo/20 text-rose-geo border border-rose-geo/40'
-                  : 'glass text-mid-gray hover:text-white border border-white/10'
+                  ? 'bg-geo-teal/15 text-geo-teal-dark border border-geo-teal-dark/40'
+                  : 'glass-2027 text-geo-ink-soft hover:text-geo-ink border border-geo-ink/10'
               )}
             >
               {locale === 'fr' ? categoryLabels[cat].fr : categoryLabels[cat].en}
@@ -82,9 +85,9 @@ export default function GaleriePage() {
         </div>
 
         {/* Photo note */}
-        <div className="glass rounded-xl p-4 mb-8 flex items-center gap-3">
-          <span className="text-2xl">📸</span>
-          <p className="text-sm text-mid-gray">
+        <div className="glass-2027 rounded-xl p-4 mb-8 flex items-center gap-3">
+          <Camera size={24} weight="light" className="text-geo-ink flex-shrink-0" aria-hidden="true" />
+          <p className="text-sm text-geo-ink-soft">
             {locale === 'fr'
               ? 'Photos de l\'édition GeoMTL 2026. Les photos de 2027 seront disponibles après l\'événement. Crédit : Marie-Claude Beaumont, photographe officielle GeoMTL.'
               : 'Photos from the GeoMTL 2026 edition. 2027 photos will be available after the event. Credit: Marie-Claude Beaumont, official GeoMTL photographer.'}
@@ -108,11 +111,11 @@ export default function GaleriePage() {
                 style={{ background: img.gradient, minHeight: '160px' }}
               >
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-deep-blue/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                  <span className="text-white text-2xl">🔍</span>
+                <div className="absolute inset-0 bg-geo-ink/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                  <MagnifyingGlassPlus size={28} weight="light" className="text-white" aria-hidden="true" />
                 </div>
                 {/* Category badge */}
-                <span className="relative z-10 text-xs px-2 py-0.5 rounded-full glass border border-white/20 text-white/70">
+                <span className="relative z-10 text-xs px-2 py-0.5 rounded-full glass-2027 border border-white/20 text-white/70">
                   {locale === 'fr' ? categoryLabels[img.category].fr : categoryLabels[img.category].en}
                 </span>
               </div>
@@ -121,17 +124,17 @@ export default function GaleriePage() {
         </div>
 
         {/* CTA for official photos */}
-        <div className="mt-12 glass rounded-2xl p-8 text-center">
-          <h3 className="text-xl font-bold text-white mb-3">
+        <div className="mt-12 glass-2027 rounded-2xl p-8 text-center">
+          <h3 className="text-xl font-bold text-geo-ink mb-3">
             {locale === 'fr' ? 'Télécharger les photos officielles' : 'Download Official Photos'}
           </h3>
-          <p className="text-mid-gray text-sm mb-6">
+          <p className="text-geo-ink-soft text-sm mb-6">
             {locale === 'fr'
               ? 'Toutes les photos GeoMTL 2026 sont disponibles en haute résolution pour les médias et participants. Usage libre sous licence CC BY 4.0.'
               : 'All GeoMTL 2026 photos are available in high resolution for media and attendees. Free use under CC BY 4.0 license.'}
           </p>
-          <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white bg-gradient-to-r from-rose-geo to-orange-geo hover:opacity-90 transition-all">
-            📥 {locale === 'fr' ? 'Télécharger (ZIP)' : 'Download (ZIP)'}
+          <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-geo-ink bg-gradient-geo-2027 hover:opacity-90 transition-all">
+            <DownloadSimple size={20} weight="light" aria-hidden="true" />{locale === 'fr' ? 'Télécharger (ZIP)' : 'Download (ZIP)'}
           </button>
         </div>
       </Container>

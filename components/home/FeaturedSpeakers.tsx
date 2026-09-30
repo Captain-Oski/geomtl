@@ -14,7 +14,7 @@ export default function FeaturedSpeakers() {
   const featured = getFeaturedSpeakers();
 
   return (
-    <section className="section-spacing bg-deep-blue-mid">
+    <section className="section-spacing bg-geo-cream-dark">
       <Container>
         <SectionTitle
           eyebrow={t('featuredSpeakersEyebrow')}
@@ -33,23 +33,23 @@ export default function FeaturedSpeakers() {
             >
               <Link
                 href={`/${locale}/conferenciers/${speaker.slug}`}
-                className="block glass rounded-2xl p-6 card-hover group"
+                className="block glass-2027 rounded-2xl p-6 card-hover group"
               >
                 {/* Photo placeholder */}
                 <div className="flex flex-col items-center text-center">
                   <div
-                    className="w-20 h-20 rounded-2xl flex items-center justify-center text-2xl font-black text-white mb-4 transition-transform duration-200 group-hover:scale-105"
+                    className="w-20 h-20 rounded-2xl flex items-center justify-center text-2xl font-black text-geo-ink mb-4 transition-transform duration-200 group-hover:scale-105"
                     style={{ background: `linear-gradient(135deg, ${speaker.color}40, ${speaker.color}80)`, border: `2px solid ${speaker.color}40` }}
                   >
                     {speaker.initials}
                   </div>
-                  <h3 className="font-bold text-white text-base group-hover:text-rose-geo transition-colors">
+                  <h3 className="font-bold text-geo-ink text-base group-hover:text-geo-teal-dark transition-colors">
                     {speaker.name}
                   </h3>
-                  <p className="text-sm text-mid-gray mt-1 line-clamp-2">
+                  <p className="text-sm text-geo-ink-soft mt-1 line-clamp-2">
                     {locale === 'fr' ? speaker.title.fr : speaker.title.en}
                   </p>
-                  <p className="text-xs text-rose-geo/80 mt-1 font-medium">
+                  <p className="text-xs text-geo-teal-dark/80 mt-1 font-medium">
                     {speaker.organization}
                   </p>
                 </div>
@@ -70,7 +70,7 @@ export default function FeaturedSpeakers() {
         <div className="text-center">
           <Link
             href={`/${locale}/conferenciers`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-rose-geo font-semibold border border-rose-geo/30 hover:bg-rose-geo/10 hover:border-rose-geo/60 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-geo-teal-dark font-semibold border border-geo-teal-dark/30 hover:bg-geo-teal/10 hover:border-geo-teal-dark/60 transition-all"
           >
             {t('featuredSpeakersCta')}
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

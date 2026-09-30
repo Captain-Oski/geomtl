@@ -19,7 +19,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "A01",
     website: "https://www.esri.ca",
-    logoColor: "#e91e8c"
+    logoColor: "#01CDA5"
   },
   {
     id: "e002",
@@ -31,7 +31,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "A02",
     website: "https://www.trimble.com",
-    logoColor: "#ff6b35"
+    logoColor: "#1BC868"
   },
   {
     id: "e003",
@@ -43,7 +43,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "A03",
     website: "https://www.bentley.com",
-    logoColor: "#ffd60a"
+    logoColor: "#D0DC00"
   },
   {
     id: "e004",
@@ -55,7 +55,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "B01",
     website: "https://leica-geosystems.com",
-    logoColor: "#e91e8c"
+    logoColor: "#01CDA5"
   },
   {
     id: "e005",
@@ -67,7 +67,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "B02",
     website: "https://dronesboreal.ca",
-    logoColor: "#ff6b35"
+    logoColor: "#1BC868"
   },
   {
     id: "e006",
@@ -79,7 +79,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "B03",
     website: "https://terrametrique.ca",
-    logoColor: "#ffd60a"
+    logoColor: "#D0DC00"
   },
   {
     id: "e007",
@@ -91,7 +91,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "C01",
     website: "https://www.maxar.com",
-    logoColor: "#e91e8c"
+    logoColor: "#01CDA5"
   },
   {
     id: "e008",
@@ -103,7 +103,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "C02",
     website: "https://www.planet.com",
-    logoColor: "#ff6b35"
+    logoColor: "#1BC868"
   },
   {
     id: "e009",
@@ -115,7 +115,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "C03",
     website: "https://geosud.ca",
-    logoColor: "#ffd60a"
+    logoColor: "#D0DC00"
   },
   {
     id: "e010",
@@ -127,7 +127,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "D01",
     website: "https://www.hexagon.com",
-    logoColor: "#e91e8c"
+    logoColor: "#01CDA5"
   },
   {
     id: "e011",
@@ -139,7 +139,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "D02",
     website: "https://www.mapbox.com",
-    logoColor: "#ff6b35"
+    logoColor: "#1BC868"
   },
   {
     id: "e012",
@@ -151,7 +151,7 @@ export const exhibitors: Exhibitor[] = [
     },
     booth: "D03",
     website: "https://www.fugro.com",
-    logoColor: "#ffd60a"
+    logoColor: "#D0DC00"
   }
 ];
 

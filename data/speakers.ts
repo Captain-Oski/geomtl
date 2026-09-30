@@ -36,7 +36,7 @@ export const speakers: Speaker[] = [
     day: 1,
     image: null,
     initials: "ST",
-    color: "#e91e8c"
+    color: "#01CDA5"
   },
   {
     id: "s002",
@@ -59,7 +59,7 @@ export const speakers: Speaker[] = [
     day: 1,
     image: null,
     initials: "MB",
-    color: "#ff6b35"
+    color: "#1BC868"
   },
   {
     id: "s003",
@@ -82,7 +82,7 @@ export const speakers: Speaker[] = [
     day: 2,
     image: null,
     initials: "AD",
-    color: "#ffd60a"
+    color: "#D0DC00"
   },
   {
     id: "s004",
@@ -105,7 +105,7 @@ export const speakers: Speaker[] = [
     day: 1,
     image: null,
     initials: "DC",
-    color: "#e91e8c"
+    color: "#01CDA5"
   },
   {
     id: "s005",
@@ -128,7 +128,7 @@ export const speakers: Speaker[] = [
     day: 2,
     image: null,
     initials: "IR",
-    color: "#ff6b35"
+    color: "#1BC868"
   },
   {
     id: "s006",
@@ -151,7 +151,7 @@ export const speakers: Speaker[] = [
     day: 1,
     image: null,
     initials: "JL",
-    color: "#ffd60a"
+    color: "#D0DC00"
   },
   {
     id: "s007",
@@ -174,7 +174,7 @@ export const speakers: Speaker[] = [
     day: 2,
     image: null,
     initials: "MF",
-    color: "#e91e8c"
+    color: "#01CDA5"
   },
   {
     id: "s008",
@@ -197,7 +197,7 @@ export const speakers: Speaker[] = [
     day: 1,
     image: null,
     initials: "TN",
-    color: "#ff6b35"
+    color: "#1BC868"
   },
   {
     id: "s009",
@@ -220,7 +220,7 @@ export const speakers: Speaker[] = [
     day: 1,
     image: null,
     initials: "CB",
-    color: "#ffd60a"
+    color: "#D0DC00"
   },
   {
     id: "s010",
@@ -243,7 +243,7 @@ export const speakers: Speaker[] = [
     day: 2,
     image: null,
     initials: "AP",
-    color: "#e91e8c"
+    color: "#01CDA5"
   },
   {
     id: "s011",
@@ -266,7 +266,7 @@ export const speakers: Speaker[] = [
     day: 2,
     image: null,
     initials: "NK",
-    color: "#ff6b35"
+    color: "#1BC868"
   },
   {
     id: "s012",
@@ -289,7 +289,7 @@ export const speakers: Speaker[] = [
     day: 1,
     image: null,
     initials: "PO",
-    color: "#ffd60a"
+    color: "#D0DC00"
   },
   {
     id: "s013",
@@ -312,7 +312,7 @@ export const speakers: Speaker[] = [
     day: 1,
     image: null,
     initials: "SM",
-    color: "#e91e8c"
+    color: "#01CDA5"
   },
   {
     id: "s014",
@@ -335,7 +335,7 @@ export const speakers: Speaker[] = [
     day: 2,
     image: null,
     initials: "FG",
-    color: "#ff6b35"
+    color: "#1BC868"
   },
   {
     id: "s015",
@@ -358,7 +358,7 @@ export const speakers: Speaker[] = [
     day: 2,
     image: null,
     initials: "YB",
-    color: "#ffd60a"
+    color: "#D0DC00"
   },
   {
     id: "s016",
@@ -381,7 +381,7 @@ export const speakers: Speaker[] = [
     day: 2,
     image: null,
     initials: "RC",
-    color: "#e91e8c"
+    color: "#01CDA5"
   },
   {
     id: "s017",
@@ -404,7 +404,7 @@ export const speakers: Speaker[] = [
     day: 1,
     image: null,
     initials: "EP",
-    color: "#ff6b35"
+    color: "#1BC868"
   },
   {
     id: "s018",
@@ -427,7 +427,7 @@ export const speakers: Speaker[] = [
     day: 1,
     image: null,
     initials: "AM",
-    color: "#ffd60a"
+    color: "#D0DC00"
   },
   {
     id: "s019",
@@ -450,7 +450,7 @@ export const speakers: Speaker[] = [
     day: 2,
     image: null,
     initials: "LZ",
-    color: "#e91e8c"
+    color: "#01CDA5"
   },
   {
     id: "s020",
@@ -473,7 +473,7 @@ export const speakers: Speaker[] = [
     day: 2,
     image: null,
     initials: "HD",
-    color: "#ff6b35"
+    color: "#1BC868"
   }
 ];
 

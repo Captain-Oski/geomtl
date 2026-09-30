@@ -14,6 +14,22 @@
   --mid-gray: #8896a8;
 
   --font-inter: 'Inter', system-ui, sans-serif;
+
+  /* ── Identité 2027 (Studio Le Séisme) — site public ──────────────
+     Relevées dans les visuels du globe en trame de points. */
+  --geo-cream: #F4F3ED;
+  --geo-cream-dark: #E8E6DD;
+  --geo-ink: #141412;
+  --geo-ink-soft: #4A4944;
+  --geo-cyan: #20FEFD;
+  --geo-teal: #01CDA5;
+  --geo-teal-dark: #00A383;
+  --geo-green: #1BC868;
+  --geo-lime: #D0DC00;
+  --geo-lime-dark: #A9B300;
+  --geo-olive: #6A8C3A;
+
+  --font-display: 'Space Grotesk', var(--font-inter);
 }
 
 * {
@@ -101,16 +117,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--deep-blue);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(233, 30, 140, 0.4);
+  background: rgba(128, 128, 120, 0.45);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(233, 30, 140, 0.7);
+  background: rgba(128, 128, 120, 0.7);
 }
 
 /* Topo contour lines pattern */
@@ -147,13 +163,13 @@ body {
 
 /* Text selection */
 ::selection {
-  background-color: rgba(233, 30, 140, 0.3);
-  color: white;
+  background-color: rgba(1, 205, 165, 0.35);
+  color: var(--geo-ink);
 }
 
 /* Focus styles */
 :focus-visible {
-  outline: 2px solid var(--rose-geo);
+  outline: 2px solid var(--geo-teal-dark);
   outline-offset: 2px;
 }
 
@@ -225,33 +241,151 @@ a {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Badge styles */
+/* Badge styles — harmonisés à la palette 2027 (turquoise / lime / encre) */
 .badge-rose {
-  background: rgba(233, 30, 140, 0.15);
-  color: #f050a8;
-  border: 1px solid rgba(233, 30, 140, 0.3);
+  background: rgba(1, 205, 165, 0.14);
+  color: var(--geo-teal-dark);
+  border: 1px solid rgba(0, 163, 131, 0.35);
 }
 
 .badge-orange {
-  background: rgba(255, 107, 53, 0.15);
-  color: #ff8c5a;
-  border: 1px solid rgba(255, 107, 53, 0.3);
+  background: rgba(169, 179, 0, 0.16);
+  color: var(--geo-lime-dark);
+  border: 1px solid rgba(169, 179, 0, 0.35);
 }
 
 .badge-yellow {
-  background: rgba(255, 214, 10, 0.15);
-  color: #ffd60a;
-  border: 1px solid rgba(255, 214, 10, 0.3);
+  background: rgba(208, 220, 0, 0.20);
+  color: #7c8f16;
+  border: 1px solid rgba(208, 220, 0, 0.4);
 }
 
 .badge-blue {
-  background: rgba(26, 74, 138, 0.3);
-  color: #5b9bd5;
-  border: 1px solid rgba(91, 155, 213, 0.3);
+  background: rgba(20, 20, 18, 0.06);
+  color: var(--geo-ink-soft);
+  border: 1px solid rgba(20, 20, 18, 0.15);
 }
 
 .badge-green {
-  background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
-  border: 1px solid rgba(52, 211, 153, 0.3);
+  background: rgba(0, 163, 131, 0.14);
+  color: var(--geo-teal-dark);
+  border: 1px solid rgba(0, 163, 131, 0.3);
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   Identité 2027 (Studio Le Séisme) — site public
+   Suffixe "-2027" pour cohabiter avec l'ancienne palette (encore
+   utilisée par /admin) sans rien casser.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Dégradé signature turquoise → citron vert, sur le texte */
+.gradient-text-2027 {
+  background: linear-gradient(135deg, var(--geo-teal) 0%, var(--geo-lime) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Tache dégradée + trame demi-teinte (halftone) — le motif graphique
+   signature de la marque 2027. Purement en CSS : pas d'image à charger. */
+.halftone-blob-2027 {
+  position: relative;
+  background:
+    radial-gradient(circle at 30% 20%, var(--geo-teal) 0%, transparent 55%),
+    radial-gradient(circle at 70% 75%, var(--geo-lime) 0%, transparent 60%),
+    linear-gradient(135deg, var(--geo-teal) 0%, #1BC868 55%, var(--geo-lime) 100%);
+  border-radius: 50%;
+  filter: blur(0.5px);
+}
+
+.halftone-blob-2027::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: radial-gradient(rgba(20, 20, 18, 0.35) 1px, transparent 1.4px);
+  background-size: 7px 7px;
+  mix-blend-mode: multiply;
+  opacity: 0.35;
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 100%);
+  mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 100%);
+}
+
+/* Verre dépoli clair, pour cartes sur fond crème */
+.glass-2027 {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(20, 20, 18, 0.08);
+}
+
+.glass-light-2027 {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(20, 20, 18, 0.06);
+}
+
+/* Orbes flottants, recolorés et adoucis pour fond clair */
+.orb-teal-2027 {
+  background: var(--geo-teal);
+}
+
+.orb-lime-2027 {
+  background: var(--geo-lime);
+  animation-delay: -3s;
+}
+
+/* Badges recolorés */
+.badge-teal-2027 {
+  background: rgba(1, 205, 165, 0.12);
+  color: var(--geo-teal-dark);
+  border: 1px solid rgba(1, 205, 165, 0.3);
+}
+
+.badge-lime-2027 {
+  background: rgba(208, 220, 0, 0.18);
+  color: var(--geo-lime-dark);
+  border: 1px solid rgba(208, 220, 0, 0.35);
+}
+
+/* Bordure dégradée, variante 2027 */
+.gradient-border-2027::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, rgba(1, 205, 165, 0.4), rgba(208, 220, 0, 0.4));
+  z-index: -1;
+}
+
+/* Fond crème + trame topo très subtile (ligne d'ancrage, pas de néon) */
+.topo-bg-2027 {
+  background-color: var(--geo-cream);
+  background-image:
+    radial-gradient(ellipse at 15% 10%, rgba(1, 205, 165, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 15%, rgba(208, 220, 0, 0.10) 0%, transparent 55%);
+}
+
+/* En-tête des pages intérieures : dégradé cyan → citron en trame de points,
+   comme la page Ateliers du Figma. Les accents dégradés du titre et les
+   boutons dégradés disparaîtraient sur ce fond : on les repasse en encre. */
+.page-header-2027 {
+  background: var(--geo-teal) url('/images/brand/degrade-trame.webp') center 40% / cover no-repeat;
+}
+
+.page-header-2027 .gradient-text-2027 {
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  color: var(--geo-ink);
+}
+
+.page-header-2027 .text-geo-ink-soft {
+  color: var(--geo-ink);
+}
+
+.page-header-2027 .bg-gradient-geo-2027 {
+  background: var(--geo-ink);
+  color: #fff;
+  box-shadow: none;
 }

@@ -15,7 +15,6 @@ const TYPES: { value: SessionType; label: string }[] = [
 ]
 
 const DAYS: { value: SessionDay; label: string }[] = [
-  { value: 'evening', label: 'Soirée — 3 octobre' },
   { value: 'day1',    label: 'Jour 1 — 4 octobre' },
   { value: 'day2',    label: 'Jour 2 — 5 octobre' },
 ]
