@@ -17,8 +17,11 @@ interface GlobeData {
 
 const DATA_URL = '/images/brand/globe-trame.json';
 const TAU = Math.PI * 2;
-const REVEAL = 2.2;
-const DOT_GROW = 0.6;
+const REVEAL = 2.2;      // durée de la vague d'apparition, du centre au bord
+const DOT_GROW = 0.6;    // durée de croissance d'un point
+const VANISH_AT = 8.0;   // début de la vague d'effacement dans le cycle
+const CYCLE = 11.2;      // durée d'une boucle complète
+const STILL_T = 5.0;     // instant affiché quand les animations sont réduites
 const FRAME_MS = 1000 / 30;
 
 const rgba = (hex: string, a: number) => {
@@ -26,10 +29,11 @@ const rgba = (hex: string, a: number) => {
   return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`;
 };
 const easeOut = (x: number) => 1 - Math.pow(1 - x, 3);
+const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
 
-// Globe en trame animé : apparition depuis le centre, puis ondulation de la
-// trame et halo peint qui respire, en boucle. Cadré comme
-// `object-fit: cover; object-position: right top`.
+// Globe en trame animé, en boucle : les points apparaissent depuis le centre,
+// ondulent, puis s'effacent en vague avant de réapparaître ; le halo peint
+// respire en continu. Cadré comme `object-fit: cover; object-position: right top`.
 export default function GlobeTrame({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -116,11 +120,14 @@ export default function GlobeTrame({ className }: { className?: string }) {
       ctx.fillStyle = colors.trame;
       ctx.beginPath();
       const pts = trame.points;
+      const local = t % CYCLE;
       for (let k = 0; k < pts.length; k++) {
         const [x, y, pr] = pts[k];
         if (x < x0 || x > x1 || y > y1) continue;
         const d = (dist[k] - dMin) / (dMax - dMin);
-        const appear = easeOut(Math.min(1, Math.max(0, (t - 0.3 - d * REVEAL) / DOT_GROW)));
+        const grow = easeOut(clamp01((local - 0.3 - d * REVEAL) / DOT_GROW));
+        const vanish = easeOut(clamp01((local - VANISH_AT - d * REVEAL) / DOT_GROW));
+        const appear = grow * (1 - vanish);
         if (appear <= 0) continue;
         const rr = pr * appear * (1 + 0.12 * Math.sin(t * 1.4 - dist[k] * 0.006));
         ctx.moveTo(x + rr, y);
@@ -161,14 +168,14 @@ export default function GlobeTrame({ className }: { className?: string }) {
         phase = d.halo_peinture.touches.map((_, k) => [((k * 0.618034) % 1) * TAU, ((k * 0.381966 + 0.5) % 1) * TAU]);
         resize();
         start = performance.now();
-        if (reduceMotion) draw(60);
+        if (reduceMotion) draw(STILL_T);
         else play();
       })
       .catch(() => {});
 
     const ro = new ResizeObserver(() => {
       resize();
-      if (reduceMotion) draw(60);
+      if (reduceMotion) draw(STILL_T);
     });
     ro.observe(canvas);
 
@@ -190,10 +197,12 @@ export default function GlobeTrame({ className }: { className?: string }) {
   return (
     <>
       <canvas ref={canvasRef} className={className} aria-hidden="true" />
-      <noscript>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/brand/globe-trame.jpg" alt="" className={`${className ?? ''} object-cover object-right-top`} />
-      </noscript>
+      {/* Écrit en HTML brut : un <img> React ici serait préchargé même avec JavaScript actif. */}
+      <noscript
+        dangerouslySetInnerHTML={{
+          __html: `<img src="/images/brand/globe-trame.jpg" alt="" class="${className ?? ''} object-cover object-right-top" />`,
+        }}
+      />
     </>
   );
 }
