@@ -74,7 +74,7 @@ Le composant React `GeoMTLLogo` dessine le mot-symbole GÉOMTL dans la couleur d
 ## Documentation
 
 - [Globe animé du hero](docs/globe-anime.md) : fonctionnement, réglages, régénération des données
-- [Identité visuelle 2027 dans le code](docs/identite-visuelle-2027.md) : couleurs, icônes, visuels
+- [Identité visuelle 2027 dans le code](docs/identite-visuelle-2027.md) : couleurs, mode sombre, icônes, visuels
 
 ---
 

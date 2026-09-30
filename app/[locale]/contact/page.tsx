@@ -149,7 +149,7 @@ export default function ContactPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl font-bold text-geo-ink bg-gradient-geo-2027 hover:opacity-90 transition-all"
+                  className="w-full py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all"
                 >
                   {t('sendButton')}
                 </button>

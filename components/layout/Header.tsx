@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import GeoMTLLogo from '@/components/ui/GeoMTLLogo';
+import ThemeToggle from '@/components/layout/ThemeToggle';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -41,7 +42,7 @@ export default function Header() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
           scrolled
-            ? 'bg-geo-cream/90 backdrop-blur-md border-b border-geo-ink/8 shadow-card-2027'
+            ? 'bg-geo-cream/90 backdrop-blur-md border-b border-geo-ink/10 shadow-card-2027'
             : 'bg-transparent'
         )}
       >
@@ -80,6 +81,8 @@ export default function Header() {
 
             {/* Right side */}
             <div className="flex items-center gap-3">
+              <ThemeToggle />
+
               {/* Language switcher */}
               <Link
                 href={localizedPath}
@@ -91,7 +94,7 @@ export default function Header() {
               {/* CTA */}
               <Link
                 href={`/${locale}/billetterie`}
-                className="hidden sm:flex items-center px-4 py-2 text-sm font-semibold text-geo-ink rounded-lg bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
+                className="hidden sm:flex items-center px-4 py-2 text-sm font-semibold text-geo-noir rounded-lg bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
               >
                 {t('buyTicket')}
               </Link>
@@ -134,7 +137,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-geo-cream/95 backdrop-blur-xl border-b border-geo-ink/8 lg:hidden"
+            className="fixed top-16 left-0 right-0 z-40 bg-geo-cream/95 backdrop-blur-xl border-b border-geo-ink/10 lg:hidden"
           >
             <div className="px-4 py-6 space-y-1">
               {navLinks.map((link) => (
@@ -152,7 +155,7 @@ export default function Header() {
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-geo-ink/8 flex flex-col gap-3">
+              <div className="pt-4 border-t border-geo-ink/10 flex flex-col gap-3">
                 <Link
                   href={localizedPath}
                   onClick={() => setMobileOpen(false)}
@@ -163,7 +166,7 @@ export default function Header() {
                 <Link
                   href={`/${locale}/billetterie`}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-center text-sm font-semibold text-geo-ink rounded-lg bg-gradient-geo-2027"
+                  className="block px-4 py-3 text-center text-sm font-semibold text-geo-noir rounded-lg bg-gradient-geo-2027"
                 >
                   {t('buyTicket')}
                 </Link>

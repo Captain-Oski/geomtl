@@ -23,7 +23,7 @@ export default function HomeCTA() {
 
       <div className="relative z-10 px-4 max-w-3xl mx-auto">
         <motion.div
-          className="rounded-2xl bg-white/55 backdrop-blur-md border border-white/60 px-6 py-10 sm:px-12 sm:py-12 text-center"
+          className="rounded-2xl bg-white/55 dark:bg-geo-cream/75 backdrop-blur-md border border-white/60 dark:border-geo-ink/10 px-6 py-10 sm:px-12 sm:py-12 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -41,14 +41,14 @@ export default function HomeCTA() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Link
               href={`/${locale}/billetterie`}
-              className="group inline-flex items-center gap-2 rounded-lg bg-geo-ink px-6 py-3 font-semibold text-white hover:bg-geo-ink/85 transition-colors"
+              className="group inline-flex items-center gap-2 rounded-lg bg-geo-ink px-6 py-3 font-semibold text-geo-cream hover:bg-geo-ink/85 transition-colors"
             >
               {t('ctaButton')}
               <ArrowRight size={18} weight="light" className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
             <Link
               href={`/${locale}/devenir-partenaire`}
-              className="inline-flex items-center rounded-lg bg-geo-ink px-6 py-3 font-semibold text-white hover:bg-geo-ink/85 transition-colors"
+              className="inline-flex items-center rounded-lg bg-geo-ink px-6 py-3 font-semibold text-geo-cream hover:bg-geo-ink/85 transition-colors"
             >
               {t('heroCta2')}
             </Link>

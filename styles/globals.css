@@ -15,21 +15,54 @@
 
   --font-inter: 'Inter', system-ui, sans-serif;
 
-  /* ── Identité 2027 (Studio Le Séisme) — site public ──────────────
-     Relevées dans les visuels du globe en trame de points. */
-  --geo-cream: #F4F3ED;
-  --geo-cream-dark: #E8E6DD;
-  --geo-ink: #141412;
-  --geo-ink-soft: #4A4944;
-  --geo-cyan: #20FEFD;
-  --geo-teal: #01CDA5;
-  --geo-teal-dark: #00A383;
-  --geo-green: #1BC868;
-  --geo-lime: #D0DC00;
-  --geo-lime-dark: #A9B300;
-  --geo-olive: #6A8C3A;
-
   --font-display: 'Space Grotesk', var(--font-inter);
+}
+
+/* ── Identité 2027 (Studio Le Séisme) — site public ────────────────
+   Relevées dans les visuels du globe en trame de points. Canaux RGB
+   séparés pour que Tailwind puisse y ajouter une opacité (bg-geo-ink/85) ;
+   les classes geo-* de tailwind.config.ts lisent ces variables. */
+:root {
+  color-scheme: light;
+  --rgb-geo-cream: 244 243 237;     /* #F4F3ED */
+  --rgb-geo-cream-dark: 232 230 221; /* #E8E6DD */
+  --rgb-geo-ink: 20 20 18;          /* #141412 */
+  --rgb-geo-ink-soft: 74 73 68;     /* #4A4944 */
+  --rgb-geo-cyan: 32 254 253;       /* #20FEFD */
+  --rgb-geo-teal: 1 205 165;        /* #01CDA5 */
+  --rgb-geo-teal-dark: 0 163 131;   /* #00A383 */
+  --rgb-geo-green: 27 200 104;      /* #1BC868 */
+  --rgb-geo-lime: 208 220 0;        /* #D0DC00 */
+  --rgb-geo-lime-dark: 169 179 0;   /* #A9B300 */
+  --rgb-geo-olive: 106 140 58;      /* #6A8C3A */
+}
+
+/* Mode sombre (bouton du Header, classe .dark posée sur <html>) : le fond
+   passe à l'encre, le texte à la crème, et les variantes "-dark" (pensées
+   pour contraster sur fond clair) reprennent la teinte vive. */
+.dark {
+  color-scheme: dark;
+  --rgb-geo-cream: 20 20 18;        /* #141412 */
+  --rgb-geo-cream-dark: 30 30 27;   /* #1E1E1B */
+  --rgb-geo-ink: 244 243 237;       /* #F4F3ED */
+  --rgb-geo-ink-soft: 181 179 170;  /* #B5B3AA */
+  --rgb-geo-teal-dark: 1 205 165;   /* #01CDA5 */
+  --rgb-geo-lime-dark: 208 220 0;   /* #D0DC00 */
+}
+
+/* Mêmes couleurs sous forme directe, pour le CSS écrit à la main */
+:root {
+  --geo-cream: rgb(var(--rgb-geo-cream));
+  --geo-cream-dark: rgb(var(--rgb-geo-cream-dark));
+  --geo-ink: rgb(var(--rgb-geo-ink));
+  --geo-ink-soft: rgb(var(--rgb-geo-ink-soft));
+  --geo-cyan: rgb(var(--rgb-geo-cyan));
+  --geo-teal: rgb(var(--rgb-geo-teal));
+  --geo-teal-dark: rgb(var(--rgb-geo-teal-dark));
+  --geo-green: rgb(var(--rgb-geo-green));
+  --geo-lime: rgb(var(--rgb-geo-lime));
+  --geo-lime-dark: rgb(var(--rgb-geo-lime-dark));
+  --geo-olive: rgb(var(--rgb-geo-olive));
 }
 
 * {
@@ -163,7 +196,7 @@ body {
 
 /* Text selection */
 ::selection {
-  background-color: rgba(1, 205, 165, 0.35);
+  background-color: rgb(var(--rgb-geo-teal) / 0.35);
   color: var(--geo-ink);
 }
 
@@ -256,14 +289,14 @@ a {
 
 .badge-yellow {
   background: rgba(208, 220, 0, 0.20);
-  color: #7c8f16;
+  color: var(--geo-lime-dark);
   border: 1px solid rgba(208, 220, 0, 0.4);
 }
 
 .badge-blue {
-  background: rgba(20, 20, 18, 0.06);
+  background: rgb(var(--rgb-geo-ink) / 0.06);
   color: var(--geo-ink-soft);
-  border: 1px solid rgba(20, 20, 18, 0.15);
+  border: 1px solid rgb(var(--rgb-geo-ink) / 0.15);
 }
 
 .badge-green {
@@ -303,7 +336,7 @@ a {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background-image: radial-gradient(rgba(20, 20, 18, 0.35) 1px, transparent 1.4px);
+  background-image: radial-gradient(rgba(20, 20, 18, 0.35) 1px, transparent 1.4px); /* toujours noir : trame sur le dégradé */
   background-size: 7px 7px;
   mix-blend-mode: multiply;
   opacity: 0.35;
@@ -311,19 +344,31 @@ a {
   mask-image: radial-gradient(circle at 50% 50%, black 60%, transparent 100%);
 }
 
-/* Verre dépoli clair, pour cartes sur fond crème */
+/* Verre dépoli clair, pour cartes sur fond crème. En mode sombre, verre
+   fumé : à peine plus clair que le fond encre, mais assez opaque pour
+   rester lisible par-dessus le globe (bandeau des témoins sur mobile). */
 .glass-2027 {
   background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(20, 20, 18, 0.08);
+  border: 1px solid rgb(var(--rgb-geo-ink) / 0.08);
 }
 
 .glass-light-2027 {
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(20, 20, 18, 0.06);
+  border: 1px solid rgb(var(--rgb-geo-ink) / 0.06);
+}
+
+.dark .glass-2027 {
+  background: rgba(34, 34, 31, 0.78);
+  border-color: rgba(244, 243, 237, 0.1);
+}
+
+.dark .glass-light-2027 {
+  background: rgba(34, 34, 31, 0.6);
+  border-color: rgba(244, 243, 237, 0.08);
 }
 
 /* Orbes flottants, recolorés et adoucis pour fond clair */
@@ -374,20 +419,29 @@ a {
   background: var(--geo-teal) url('/images/brand/degrade-trame.webp') center 40% / cover no-repeat;
 }
 
-.page-header-2027 .gradient-text-2027 {
+:root:not(.dark) .page-header-2027 .gradient-text-2027 {
   background: none;
   -webkit-text-fill-color: currentColor;
   color: var(--geo-ink);
 }
 
-.page-header-2027 .text-geo-ink-soft {
+:root:not(.dark) .page-header-2027 .text-geo-ink-soft {
   color: var(--geo-ink);
 }
 
-.page-header-2027 .bg-gradient-geo-2027 {
+:root:not(.dark) .page-header-2027 .bg-gradient-geo-2027 {
   background: var(--geo-ink);
-  color: #fff;
+  color: var(--geo-cream);
   box-shadow: none;
+}
+
+/* Mode sombre : le même dégradé, éteint sous un voile d'encre qui se fond
+   dans le fond de page ; titres et boutons gardent leurs couleurs vives. */
+.dark .page-header-2027 {
+  background-color: var(--geo-cream);
+  background-image:
+    linear-gradient(to bottom, rgba(20, 20, 18, 0.7) 0%, rgba(20, 20, 18, 0.82) 70%, rgb(20, 20, 18) 100%),
+    url('/images/brand/degrade-trame.webp');
 }
 
 /* Curseurs de la page /demo : piste colorée passée en variable --track */
@@ -398,7 +452,7 @@ a {
   height: 10px;
   margin: 0;
   border-radius: 999px;
-  border: 1px solid rgba(20, 20, 18, 0.15);
+  border: 1px solid rgb(var(--rgb-geo-ink) / 0.15);
   background: var(--track, var(--geo-cream-dark));
   cursor: pointer;
 }

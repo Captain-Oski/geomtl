@@ -145,7 +145,7 @@ export default async function BilletteriePage({
               </ul>
 
               <button
-                className="w-full py-3 rounded-xl font-bold text-white bg-geo-ink hover:bg-geo-ink/85 transition-colors"
+                className="w-full py-3 rounded-xl font-bold text-geo-cream bg-geo-ink hover:bg-geo-ink/85 transition-colors"
               >
                 {t('buyNow')}
               </button>

@@ -24,8 +24,8 @@ export default function Stats() {
         <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">
           {stats.map((stat) => (
             <div key={stat.label} className="rounded-xl bg-gradient-geo-2027 px-6 py-8 text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-geo-ink font-display tabular-nums">{stat.value}</div>
-              <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-geo-ink">{stat.label}</div>
+              <div className="text-4xl sm:text-5xl font-bold text-geo-noir font-display tabular-nums">{stat.value}</div>
+              <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-geo-noir">{stat.label}</div>
             </div>
           ))}
         </div>

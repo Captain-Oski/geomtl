@@ -18,24 +18,21 @@ interface HeroProps {
   // Options utilisées par la page /demo ; l'accueil n'en passe aucune.
   reglages?: Partial<ReglagesGlobe>;
   onIdee?: (idee: IdeaKey) => void;
-  fond?: 'creme' | 'encre';
   masquerTexte?: boolean;
 }
 
-export default function Hero({ reglages, onIdee, fond = 'creme', masquerTexte = false }: HeroProps) {
+// Fond et texte suivent le thème (clair / sombre) via les couleurs geo-*.
+export default function Hero({ reglages, onIdee, masquerTexte = false }: HeroProps) {
   const t = useTranslations('home');
   const locale = useLocale();
   const tagline = locale === 'fr' ? EVENT_CONFIG.tagline.fr : EVENT_CONFIG.tagline.en;
   const dates = locale === 'fr' ? EVENT_CONFIG.dates.fr : EVENT_CONFIG.dates.en;
   const venue = locale === 'fr' ? EVENT_CONFIG.venue.fr : EVENT_CONFIG.venue.en;
-  const encre = fond === 'encre';
-  const button = cn(
-    'inline-flex items-center rounded-lg px-6 py-3 text-sm sm:text-base font-semibold transition-colors',
-    encre ? 'bg-geo-cream text-geo-ink hover:bg-geo-cream/85' : 'bg-geo-ink text-white hover:bg-geo-ink/85'
-  );
+  const button =
+    'inline-flex items-center rounded-lg px-6 py-3 text-sm sm:text-base font-semibold transition-colors bg-geo-ink text-geo-cream hover:bg-geo-ink/85';
 
   return (
-    <section className={cn('relative overflow-hidden transition-colors duration-500', encre ? 'bg-geo-ink' : 'bg-geo-cream')}>
+    <section className="relative overflow-hidden bg-geo-cream">
       {/* Visuel de la charte : globe en trame de points (Studio Le Séisme), animé */}
       <GlobeTrame
         reglages={reglages}
@@ -53,7 +50,7 @@ export default function Hero({ reglages, onIdee, fond = 'creme', masquerTexte = 
         transition={{ staggerChildren: 0.15 }}
       >
         <motion.div variants={itemVariants} className="flex items-start justify-between gap-6">
-          <div className={cn('flex flex-col md:flex-row gap-3 md:gap-16 font-semibold text-base sm:text-lg leading-snug', encre ? 'text-geo-cream' : 'text-geo-ink')}>
+          <div className="flex flex-col md:flex-row gap-3 md:gap-16 font-semibold text-base sm:text-lg leading-snug text-geo-ink">
             <p>
               {dates}
               <br />
@@ -61,7 +58,7 @@ export default function Hero({ reglages, onIdee, fond = 'creme', masquerTexte = 
             </p>
             <p className="max-w-xs">{tagline}</p>
           </div>
-          <span className={cn('flex-shrink-0 rounded-md px-3 py-1 font-display text-xl sm:text-2xl lg:text-3xl font-bold', encre ? 'bg-geo-cream text-geo-ink' : 'bg-geo-ink text-geo-cream')}>
+          <span className="flex-shrink-0 rounded-md px-3 py-1 font-display text-xl sm:text-2xl lg:text-3xl font-bold bg-geo-ink text-geo-cream">
             2027
           </span>
         </motion.div>
@@ -69,7 +66,7 @@ export default function Hero({ reglages, onIdee, fond = 'creme', masquerTexte = 
         <div className="mt-auto pt-16">
           <h1 className="sr-only">GeoMTL 2027</h1>
           <motion.div variants={itemVariants}>
-            <GeoMTLLogo showYear={false} className={cn('w-full h-auto', encre ? 'text-geo-cream' : 'text-geo-ink')} />
+            <GeoMTLLogo showYear={false} className="w-full h-auto text-geo-ink" />
           </motion.div>
 
           <motion.div

@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CookieBanner from '@/components/ui/CookieBanner';
+import { SCRIPT_THEME } from '@/lib/theme-script';
 import '@/styles/globals.css';
 
 const inter = Inter({
@@ -73,7 +74,12 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    // suppressHydrationWarning : SCRIPT_THEME peut ajouter la classe .dark
+    // à <html> avant que React ne prenne la main.
+    <html lang={locale} className={`${inter.variable} ${spaceGrotesk.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: SCRIPT_THEME }} />
+      </head>
       <body className="bg-geo-cream text-geo-ink antialiased">
         <NextIntlClientProvider messages={messages}>
           <Header />

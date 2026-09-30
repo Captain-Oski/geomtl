@@ -91,7 +91,7 @@ export default function PartnersSection() {
         <div className="text-center">
           <Link
             href={`/${locale}/devenir-partenaire`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-geo-ink bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
           >
             {t('partnersCta')}
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -33,7 +33,7 @@ export default function DevenirPartenairePage() {
             subtitle={t('subtitle')}
           />
           <div className="text-center mt-4">
-            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-geo-ink bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027">
+            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027">
               <FileText size={20} weight="light" aria-hidden="true" />
               {t('downloadProspectus')}
             </button>
@@ -53,13 +53,14 @@ export default function DevenirPartenairePage() {
               ? partnerLevelBenefits[level].fr
               : partnerLevelBenefits[level].en;
 
-            const colors = {
-              or: '#A9B300',
-              argent: '#00A383',
-              bronze: '#6A8C3A',
-              exposant: '#4A4944'
+            // Variables de la charte (et non des hex) pour suivre le thème
+            const canaux = {
+              or: '--rgb-geo-lime-dark',
+              argent: '--rgb-geo-teal-dark',
+              bronze: '--rgb-geo-olive',
+              exposant: '--rgb-geo-ink-soft'
             };
-            const color = colors[level];
+            const color = `rgb(var(${canaux[level]}))`;
 
             return (
               <motion.div
@@ -68,7 +69,7 @@ export default function DevenirPartenairePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.07 }}
-                style={{ borderTop: `2px solid ${color}60` }}
+                style={{ borderTop: `2px solid rgb(var(${canaux[level]}) / 0.38)` }}
               >
                 <div
                   className="text-xs font-bold uppercase tracking-wider mb-1"
@@ -151,7 +152,7 @@ export default function DevenirPartenairePage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-xl font-bold text-geo-ink bg-gradient-geo-2027 hover:opacity-90 transition-all"
+                  className="w-full py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all"
                 >
                   {t('sendButton')}
                 </button>

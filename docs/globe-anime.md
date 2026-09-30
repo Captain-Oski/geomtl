@@ -118,10 +118,10 @@ La teinte des points remplace celle de l'olive en gardant sa saturation. La tein
 
 - idée : enchaînement ou une des quatre idées ;
 - vitesse de la Terre et vitesse des satellites (lente, normale, rapide) ;
-- fond crème ou encre, texte du hero affiché ou masqué, pause ;
+- fond crème ou encre (c'est le thème clair ou sombre du site, le même que le bouton du Header), texte du hero affiché ou masqué, pause ;
 - couleur des points et du globe diffus : préréglages et curseurs, valeurs à copier, retour à la charte.
 
-Les couleurs choisies sont mémorisées dans le navigateur du visiteur. Rien n'est enregistré sur le serveur : la démo ne modifie jamais l'accueil. Si le système demande de réduire les animations, un bouton permet de lancer l'animation quand même.
+Les couleurs choisies sont mémorisées dans le navigateur du visiteur. Rien n'est enregistré sur le serveur : les couleurs de la démo ne modifient jamais l'accueil. Le fond, lui, est le thème du site : le choisir ici le change aussi sur les autres pages, pour ce visiteur seulement. Si le système demande de réduire les animations, un bouton permet de lancer l'animation quand même.
 
 La page n'est liée nulle part et porte `noindex` : elle n'apparaît pas dans les moteurs de recherche, mais reste accessible à quiconque connaît l'adresse. Son interface est en français, y compris sur `/en/demo`.
 

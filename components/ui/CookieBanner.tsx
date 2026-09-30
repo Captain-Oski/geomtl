@@ -75,7 +75,7 @@ export default function CookieBanner() {
               </button>
               <button
                 onClick={() => handleChoice('accepted')}
-                className="px-4 py-2 text-sm font-semibold text-geo-ink rounded-lg bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
+                className="px-4 py-2 text-sm font-semibold text-geo-noir rounded-lg bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
               >
                 {t('accept')}
               </button>

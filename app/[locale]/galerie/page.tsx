@@ -133,7 +133,7 @@ export default function GaleriePage() {
               ? 'Toutes les photos GeoMTL 2026 sont disponibles en haute résolution pour les médias et participants. Usage libre sous licence CC BY 4.0.'
               : 'All GeoMTL 2026 photos are available in high resolution for media and attendees. Free use under CC BY 4.0 license.'}
           </p>
-          <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-geo-ink bg-gradient-geo-2027 hover:opacity-90 transition-all">
+          <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all">
             <DownloadSimple size={20} weight="light" aria-hidden="true" />{locale === 'fr' ? 'Télécharger (ZIP)' : 'Download (ZIP)'}
           </button>
         </div>

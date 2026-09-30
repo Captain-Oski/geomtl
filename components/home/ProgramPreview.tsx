@@ -52,7 +52,7 @@ export default function ProgramPreview() {
                     ? 'linear-gradient(to bottom, #01CDA5, #D0DC00)'
                     : item.type === 'conference'
                     ? 'linear-gradient(to bottom, #20FEFD, #01CDA5)'
-                    : 'rgba(20,20,18,0.15)'
+                    : 'rgb(var(--rgb-geo-ink) / 0.15)'
                 }}
               />
 

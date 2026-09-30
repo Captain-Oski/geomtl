@@ -42,7 +42,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles: Record<ButtonVariant, string> = {
       primary: cn(
-        'bg-gradient-geo-2027 text-geo-ink',
+        'bg-gradient-geo-2027 text-geo-noir',
         'hover:opacity-90',
         'shadow-geo-2027 hover:shadow-geo-2027-lg',
         'active:scale-[0.98]'

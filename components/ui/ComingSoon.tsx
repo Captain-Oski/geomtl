@@ -44,7 +44,7 @@ export default function ComingSoon({ locale, eyebrow, title, message }: ComingSo
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href={`/${locale}/billetterie`}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-geo-ink bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
             >
               {locale === 'fr' ? 'Réserver ma place' : 'Reserve my spot'}
             </Link>

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import Hero from '@/components/home/Hero';
 import { IDEES, REGLAGES_GLOBE, type IdeaKey, type IdeeGlobe } from '@/components/home/GlobeTrame';
 import { COULEURS_CHARTE, OLIVE, couleurGlobe, couleurPoint, hexToHsl, hslToRgb, toHex, type CouleursGlobe } from '@/lib/globe-couleurs';
+import { changerTheme, useTheme, type Theme } from '@/lib/theme';
 import { cn } from '@/lib/utils';
 
 const NOMS: Record<IdeaKey, string> = {
@@ -50,7 +51,7 @@ function Choix<T extends string | number>({ label, options, valeur, onChange }: 
             onClick={() => onChange(o.v)}
             className={cn(
               'rounded-md border px-2.5 py-1.5 text-xs font-medium transition-colors',
-              o.v === valeur ? 'border-geo-ink bg-geo-ink text-geo-cream' : 'border-geo-ink/15 bg-white/60 text-geo-ink hover:border-geo-ink/40'
+              o.v === valeur ? 'border-geo-ink bg-geo-ink text-geo-cream' : 'border-geo-ink/15 bg-white/60 dark:bg-geo-ink/5 text-geo-ink hover:border-geo-ink/40'
             )}
           >
             {o.nom}
@@ -97,7 +98,8 @@ export default function GlobeDemo() {
   const [vitesseSatellites, setVitesseSatellites] = useState(REGLAGES_GLOBE.vitesseSatellites);
   const [couleurs, setCouleurs] = useState<CouleursGlobe>(COULEURS_CHARTE);
   const [pause, setPause] = useState(false);
-  const [fond, setFond] = useState<'creme' | 'encre'>('creme');
+  // Le fond est le thème du site : le choisir ici vaut aussi pour les autres pages.
+  const theme = useTheme();
   const [masquerTexte, setMasquerTexte] = useState(false);
   const [ouvert, setOuvert] = useState(true);
   const [reduit, setReduit] = useState(false);
@@ -150,7 +152,7 @@ export default function GlobeDemo() {
 
   return (
     <>
-      <Hero reglages={reglages} onIdee={setIdeeCourante} fond={fond} masquerTexte={masquerTexte} />
+      <Hero reglages={reglages} onIdee={setIdeeCourante} masquerTexte={masquerTexte} />
 
       <aside
         aria-label="Réglages du globe"
@@ -191,7 +193,7 @@ export default function GlobeDemo() {
           <Choix<number> label="Vitesse de la Terre" valeur={vitesseTerre} onChange={setVitesseTerre} options={[{ v: 0.5, nom: 'Lente' }, { v: 1, nom: 'Normale' }, { v: 2.5, nom: 'Rapide' }]} />
           <Choix<number> label="Vitesse des satellites" valeur={vitesseSatellites} onChange={setVitesseSatellites} options={[{ v: 0.5, nom: 'Lente' }, { v: 1, nom: 'Normale' }, { v: 2, nom: 'Rapide' }]} />
           <div className="grid grid-cols-2 gap-4">
-            <Choix<'creme' | 'encre'> label="Fond" valeur={fond} onChange={setFond} options={[{ v: 'creme', nom: 'Crème' }, { v: 'encre', nom: 'Encre' }]} />
+            <Choix<Theme> label="Fond" valeur={theme} onChange={changerTheme} options={[{ v: 'clair', nom: 'Crème' }, { v: 'sombre', nom: 'Encre' }]} />
             <Choix<string> label="Texte du hero" valeur={masquerTexte ? 'non' : 'oui'} onChange={(v) => setMasquerTexte(v === 'non')} options={[{ v: 'oui', nom: 'Affiché' }, { v: 'non', nom: 'Masqué' }]} />
           </div>
           <button
@@ -212,7 +214,7 @@ export default function GlobeDemo() {
                 const actif = p.teinte === couleurs.pointsTeinte && p.lum === couleurs.pointsLuminosite;
                 return (
                   <button key={p.nom} type="button" aria-pressed={actif} onClick={() => changerCouleurs({ pointsTeinte: p.teinte, pointsLuminosite: p.lum })}
-                    className={cn('inline-flex items-center gap-1.5 rounded-full border py-1 pl-1 pr-2.5 text-xs', actif ? 'border-geo-ink ring-1 ring-geo-ink' : 'border-geo-ink/15 bg-white/60')}>
+                    className={cn('inline-flex items-center gap-1.5 rounded-full border py-1 pl-1 pr-2.5 text-xs', actif ? 'border-geo-ink ring-1 ring-geo-ink' : 'border-geo-ink/15 bg-white/60 dark:bg-geo-ink/5')}>
                     <span className="h-4 w-4 rounded-full border border-geo-ink/15" style={{ background: toHex(hslToRgb(p.teinte, OLIVE_S, Math.min(1, Math.max(0, OLIVE_L + p.lum / 100)))) }} />
                     {p.nom}
                   </button>
@@ -236,7 +238,7 @@ export default function GlobeDemo() {
                 const actif = p.teinte === couleurs.globeTeinte && p.sat === couleurs.globeSaturation;
                 return (
                   <button key={p.nom} type="button" aria-pressed={actif} onClick={() => changerCouleurs({ globeTeinte: p.teinte, globeSaturation: p.sat })}
-                    className={cn('inline-flex items-center gap-1.5 rounded-full border py-1 pl-1 pr-2.5 text-xs', actif ? 'border-geo-ink ring-1 ring-geo-ink' : 'border-geo-ink/15 bg-white/60')}>
+                    className={cn('inline-flex items-center gap-1.5 rounded-full border py-1 pl-1 pr-2.5 text-xs', actif ? 'border-geo-ink ring-1 ring-geo-ink' : 'border-geo-ink/15 bg-white/60 dark:bg-geo-ink/5')}>
                     <span className="h-4 w-4 rounded-full border border-geo-ink/15" style={{ background: `linear-gradient(90deg, ${TEINTES_GLOBE.map((c) => couleurGlobe(c, p.teinte, p.sat)).join(', ')})` }} />
                     {p.nom}
                   </button>

@@ -1,6 +1,11 @@
 import type { Config } from 'tailwindcss';
 
+// Couleur de la charte lue dans une variable CSS, opacité Tailwind comprise
+// (bg-geo-ink/85, border-geo-ink/10…).
+const token = (nom: string) => `rgb(var(--rgb-geo-${nom}) / <alpha-value>)`;
+
 const config: Config = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -28,17 +33,24 @@ const config: Config = {
         // ── Nouvelle identité 2027 (Studio Le Séisme) — site public ──
         // Relevées dans les visuels du globe en trame de points ; les
         // variantes "-dark" sont dérivées (même teinte, plus foncée).
-        'geo-cream': '#F4F3ED',
-        'geo-cream-dark': '#E8E6DD',
-        'geo-ink': '#141412',
-        'geo-ink-soft': '#4A4944',
-        'geo-cyan': '#20FEFD',
-        'geo-teal': '#01CDA5',
-        'geo-teal-dark': '#00A383',
-        'geo-green': '#1BC868',
-        'geo-lime': '#D0DC00',
-        'geo-lime-dark': '#A9B300',
-        'geo-olive': '#6A8C3A',
+        // Les valeurs vivent dans styles/globals.css (variables --rgb-geo-*)
+        // pour que le mode sombre (.dark sur <html>) puisse les inverser :
+        // la crème devient le fond encre, l'encre devient le texte crème.
+        'geo-cream': token('cream'),
+        'geo-cream-dark': token('cream-dark'),
+        'geo-ink': token('ink'),
+        'geo-ink-soft': token('ink-soft'),
+        'geo-cyan': token('cyan'),
+        'geo-teal': token('teal'),
+        'geo-teal-dark': token('teal-dark'),
+        'geo-green': token('green'),
+        'geo-lime': token('lime'),
+        'geo-lime-dark': token('lime-dark'),
+        'geo-olive': token('olive'),
+        // Fixes quel que soit le thème : texte posé sur le dégradé
+        // signature (toujours clair) et pied de page (toujours noir).
+        'geo-noir': '#141412',
+        'geo-papier': '#F4F3ED',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],

@@ -63,9 +63,9 @@ export default function NewsArticlePage({
     <div className="min-h-screen bg-geo-cream pt-20">
       {/* Hero banner */}
       <div
-        className="border-b border-geo-ink/8 py-16"
+        className="border-b border-geo-ink/10 py-16"
         style={{
-          background: `linear-gradient(135deg, ${article.imageColor}15 0%, #F4F3ED 60%)`
+          background: `linear-gradient(135deg, ${article.imageColor}15 0%, var(--geo-cream) 60%)`
         }}
       >
         <Container size="md">
@@ -169,7 +169,7 @@ export default function NewsArticlePage({
               </p>
               <Link
                 href={`/${locale}/billetterie`}
-                className="block w-full py-2.5 text-center text-sm font-bold text-geo-ink rounded-xl bg-gradient-geo-2027 hover:opacity-90 transition-all"
+                className="block w-full py-2.5 text-center text-sm font-bold text-geo-noir rounded-xl bg-gradient-geo-2027 hover:opacity-90 transition-all"
               >
                 {locale === 'fr' ? 'Participer' : 'Participate'}
               </Link>

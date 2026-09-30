@@ -14,7 +14,10 @@
     "about": "About",
     "contact": "Contact",
     "becomePartner": "Become a Partner",
-    "buyTicket": "Participate"
+    "buyTicket": "Participate",
+    "darkMode": "Dark mode",
+    "toDarkMode": "Switch to dark mode",
+    "toLightMode": "Switch to light mode"
   },
   "home": {
     "heroTitle": "GeoMTL",

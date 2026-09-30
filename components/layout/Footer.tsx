@@ -34,7 +34,8 @@ export default function Footer() {
   const otherLocale = locale === 'fr' ? 'en' : 'fr';
 
   return (
-    <footer className="bg-geo-ink border-t border-geo-ink-soft">
+    // Toujours noir, quel que soit le thème : couleurs fixes geo-noir / geo-papier.
+    <footer className="bg-geo-noir border-t border-geo-papier/15">
       {/* Main footer */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
@@ -43,7 +44,7 @@ export default function Footer() {
             <Link href={`/${locale}`} aria-label="GeoMTL 2027 — Accueil" className="text-white inline-flex">
               <GeoMTLLogo height={34} showYear={true} />
             </Link>
-            <p className="text-geo-cream leading-relaxed max-w-xs">
+            <p className="text-geo-papier leading-relaxed max-w-xs">
               {t('tagline')}
             </p>
             <div className="flex gap-4 pt-2">
@@ -59,7 +60,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="p-2 rounded-lg border border-geo-cream text-geo-cream hover:text-white hover:border-white transition-colors"
+                  className="p-2 rounded-lg border border-geo-papier text-geo-papier hover:text-white hover:border-white transition-colors"
                 >
                   <social.Icon size={18} weight="light" aria-hidden="true" />
                 </a>
@@ -77,7 +78,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-geo-cream hover:text-white text-sm transition-colors"
+                    className="text-geo-papier hover:text-white text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -96,7 +97,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-geo-cream hover:text-white text-sm transition-colors"
+                    className="text-geo-papier hover:text-white text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -114,7 +115,7 @@ export default function Footer() {
               <li>
                 <a
                   href={`mailto:${EVENT_CONFIG.email}`}
-                  className="hover:text-geo-cream transition-colors"
+                  className="hover:text-geo-papier transition-colors"
                 >
                   {EVENT_CONFIG.email}
                 </a>
@@ -124,7 +125,7 @@ export default function Footer() {
               <li className="pt-4">
                 <Link
                   href={`/${otherLocale}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold border border-geo-cream rounded-lg hover:border-geo-cream text-geo-cream transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold border border-geo-papier rounded-lg hover:border-geo-papier text-geo-papier transition-colors"
                 >
                   {otherLocale.toUpperCase()}
                 </Link>
@@ -135,10 +136,10 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-geo-ink-soft">
+      <div className="border-t border-geo-papier/15">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-geo-cream">{t('copyright')}</p>
-          <div className="flex items-center gap-6 text-sm text-geo-cream">
+          <p className="text-sm text-geo-papier">{t('copyright')}</p>
+          <div className="flex items-center gap-6 text-sm text-geo-papier">
             <Link href={`/${locale}/confidentialite`} className="hover:text-white transition-colors">
               {t('privacy')}
             </Link>

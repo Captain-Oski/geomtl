@@ -31,7 +31,7 @@ export default async function PrixPage({
           <div className="text-center">
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-geo-ink bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
+              className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
             >
               {t('nominate')} →
             </Link>
@@ -104,7 +104,7 @@ export default async function PrixPage({
           </p>
           <Link
             href={`/${locale}/contact`}
-            className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-geo-ink bg-gradient-geo-2027 hover:opacity-90 transition-all"
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all"
           >
             {t('nominate')}
           </Link>
