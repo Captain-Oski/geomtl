@@ -10,3 +10,8 @@ npm-debug.log*
 .vercel
 *.tsbuildinfo
 next-env.d.ts
+
+# Scripts du globe : fichiers intermédiaires et image source du studio (non versionnée)
+scripts/globe/.travail/
+scripts/globe/source/
+__pycache__/

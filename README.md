@@ -4,7 +4,7 @@ Site web officiel de la conférence GeoMTL 2027 — le rendez-vous de la communa
 
 ![alt text](images/readme.png)
 
-**3–5 octobre 2027 · Centre de congrès de Saint-Hyacinthe**
+**4–5 octobre 2027 · Centre de congrès de Saint-Hyacinthe**
 
 ---
 
@@ -12,8 +12,9 @@ Site web officiel de la conférence GeoMTL 2027 — le rendez-vous de la communa
 
 - **Framework** : Next.js 14 (App Router, Server Components)
 - **Langage** : TypeScript
-- **Style** : Tailwind CSS (thème personnalisé deep-blue / rose-geo / orange-geo)
-- **Animations** : Framer Motion (entrées) + GSAP (isolignes 60fps)
+- **Style** : Tailwind CSS, identité visuelle 2027 (crème, encre, dégradé cyan → citron) ; l'admin garde l'ancienne palette
+- **Icônes** : Phosphor Icons, graisse Light
+- **Animations** : Framer Motion (entrées) + globe animé en canvas dans le hero
 - **i18n** : next-intl (FR / EN)
 - **Base de données** : Supabase (PostgreSQL + Auth + Storage)
 - **Déploiement** : Vercel
@@ -48,12 +49,15 @@ app/
   [locale]/           Pages publiques FR/EN (Next.js i18n routing)
   admin/              Interface de gestion (protégée, rôle admin/editor)
 components/
-  home/               Sections de la page d'accueil (Hero, Partners, etc.)
+  home/               Sections de la page d'accueil (Hero, GlobeTrame, WhyAttend, …)
   layout/             Header, Footer, Navigation
-  ui/                 Composants réutilisables (GeoMTLLogo, IsolineRipple, …)
+  ui/                 Composants réutilisables (GeoMTLLogo, SectionTitle, …)
 data/                 Données mock et configuration de l'événement
 lib/                  Utilitaires, client Supabase, actions serveur
 messages/             Traductions FR/EN (next-intl)
+public/images/brand/  Visuels de l'identité 2027 et données du globe animé
+scripts/globe/        Scripts de régénération des données du globe
+docs/                 Documentation
 logo/                 Fichiers SVG du logo GeoMTL 2027
 ```
 
@@ -63,7 +67,14 @@ logo/                 Fichiers SVG du logo GeoMTL 2027
 
 Le logo officiel est `logo/GeoMtl2027_v3_creme-violet.svg` — dégradé crème→violet en 7 paliers.
 
-Le composant React `GeoMTLLogo` (header/footer) et le composant animé `IsolineRipple` (hero) utilisent tous deux les couleurs de ce SVG.
+Le composant React `GeoMTLLogo` dessine le mot-symbole GÉOMTL dans la couleur du texte (encre sur le site). Le hero l'affiche en grand par-dessus le globe animé.
+
+---
+
+## Documentation
+
+- [Globe animé du hero](docs/globe-anime.md) : fonctionnement, réglages, régénération des données
+- [Identité visuelle 2027 dans le code](docs/identite-visuelle-2027.md) : couleurs, icônes, visuels
 
 ---
 
@@ -82,5 +93,5 @@ UPDATE public.profiles SET role = 'admin' WHERE email = 'ton@email.com';
 
 ## Migrations SQL
 
-Les migrations sont dans `supabase/migrations/` et numérotées `V001` → `V005`.  
+Les migrations sont dans `supabase/migrations/` et numérotées `V000` → `V006`.  
 Exécuter dans l'ordre via le SQL Editor de Supabase.
