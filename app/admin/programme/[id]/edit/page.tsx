@@ -4,7 +4,7 @@ import { SessionForm } from '@/components/admin/programme/SessionForm'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Modifier session — Admin GeoMTL',
+  title: 'Modifier session — Admin GÉOMTL',
 }
 
 export default async function EditSessionPage({

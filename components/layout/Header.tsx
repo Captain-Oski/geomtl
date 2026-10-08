@@ -52,7 +52,7 @@ export default function Header() {
             <Link
               href={`/${locale}`}
               className="flex items-center group text-geo-ink"
-              aria-label="GeoMTL 2027 — Accueil"
+              aria-label="GÉOMTL 2027 — Accueil"
             >
               <GeoMTLLogo
                 height={28}

@@ -64,8 +64,8 @@ export const agendaItems: AgendaItem[] = [
       en: "Open Networking & Buffet"
     },
     description: {
-      fr: "La soirée se poursuit en mode informel. Échanges libres, musique d'ambiance et buffet. Les résultats du brise-glace sont affichés en temps réel — une première carte collective de la communauté GeoMTL 2027.",
-      en: "The evening continues in informal mode. Free conversation, ambient music and buffet. Icebreaker results are displayed in real time — a first collective map of the GeoMTL 2027 community."
+      fr: "La soirée se poursuit en mode informel. Échanges libres, musique d'ambiance et buffet. Les résultats du brise-glace sont affichés en temps réel — une première carte collective de la communauté GÉOMTL 2027.",
+      en: "The evening continues in informal mode. Free conversation, ambient music and buffet. Icebreaker results are displayed in real time — a first collective map of the GÉOMTL 2027 community."
     },
     room: { fr: "Grand Salon — Niveau 6", en: "Grand Salon — Level 6" },
     duration: 120
@@ -100,8 +100,8 @@ export const agendaItems: AgendaItem[] = [
       en: "Opening Keynote: Geospatial at the Heart of 21st Century Decision-Making"
     },
     description: {
-      fr: "Discours inaugural par les organisateurs et les partenaires présentateurs. Bienvenue à GeoMTL 2027.",
-      en: "Opening address by organizers and presenting partners. Welcome to GeoMTL 2027."
+      fr: "Discours inaugural par les organisateurs et les partenaires présentateurs. Bienvenue à GÉOMTL 2027.",
+      en: "Opening address by organizers and presenting partners. Welcome to GÉOMTL 2027."
     },
     speakerIds: ["s013"],
     speakerNames: ["Sarah MacKenzie"],
@@ -546,12 +546,12 @@ export const agendaItems: AgendaItem[] = [
     endTime: "17:00",
     type: "awards",
     title: {
-      fr: "Cérémonie des Prix GeoMTL 2027",
-      en: "GeoMTL 2027 Awards Ceremony"
+      fr: "Cérémonie des Prix GÉOMTL 2027",
+      en: "GÉOMTL 2027 Awards Ceremony"
     },
     description: {
-      fr: "Remise des cinq prix GeoMTL récompensant l'excellence, l'innovation et l'impact social dans le domaine géospatial.",
-      en: "Presentation of the five GeoMTL awards recognizing excellence, innovation and social impact in the geospatial field."
+      fr: "Remise des cinq prix GÉOMTL récompensant l'excellence, l'innovation et l'impact social dans le domaine géospatial.",
+      en: "Presentation of the five GÉOMTL awards recognizing excellence, innovation and social impact in the geospatial field."
     },
     room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
     duration: 60
@@ -563,12 +563,12 @@ export const agendaItems: AgendaItem[] = [
     endTime: "17:30",
     type: "keynote",
     title: {
-      fr: "Clôture : GeoMTL 2028 — Premières annonces",
-      en: "Closing: GeoMTL 2028 — First Announcements"
+      fr: "Clôture : GÉOMTL 2028 — Premières annonces",
+      en: "Closing: GÉOMTL 2028 — First Announcements"
     },
     description: {
-      fr: "Discours de clôture et premières annonces pour GeoMTL 2028. Merci à tous les participants, conférenciers, partenaires et exposants.",
-      en: "Closing remarks and first announcements for GeoMTL 2028. Thank you to all participants, speakers, partners and exhibitors."
+      fr: "Discours de clôture et premières annonces pour GÉOMTL 2028. Merci à tous les participants, conférenciers, partenaires et exposants.",
+      en: "Closing remarks and first announcements for GÉOMTL 2028. Thank you to all participants, speakers, partners and exhibitors."
     },
     room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
     duration: 30
@@ -580,8 +580,8 @@ export const agendaItems: AgendaItem[] = [
     endTime: "20:00",
     type: "networking",
     title: {
-      fr: "Cocktail de clôture — Soirée GeoMTL",
-      en: "Closing Cocktail — GeoMTL Evening"
+      fr: "Cocktail de clôture — Soirée GÉOMTL",
+      en: "Closing Cocktail — GÉOMTL Evening"
     },
     description: {
       fr: "Soirée de clôture festive avec musique live, nourriture gastronomique et remises des prix de réseautage.",

@@ -2,7 +2,7 @@ import { getExhibitors } from '@/lib/data/exhibitors'
 import { AdminExhibitorsPage } from '@/components/admin/exhibitors/AdminExhibitorsPage'
 
 export const metadata = {
-  title: 'Exposants — Admin GeoMTL',
+  title: 'Exposants — Admin GÉOMTL',
 }
 
 export default async function ExhibitorsPage() {

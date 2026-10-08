@@ -20,15 +20,15 @@
     "toLightMode": "Passer en mode clair"
   },
   "home": {
-    "heroTitle": "GeoMTL",
+    "heroTitle": "GÉOMTL",
     "heroYear": "2027",
     "heroTagline": "Voir, décider, agir.",
-    "heroDate": "4–5 octobre 2027",
+    "heroDate": "3–5 octobre 2027",
     "heroVenue": "Centre de congrès de Saint-Hyacinthe",
     "heroCta1": "Participer",
     "heroCta2": "Devenir partenaire",
     "heroScroll": "Défiler",
-    "statsTitle": "GeoMTL en chiffres",
+    "statsTitle": "GÉOMTL en chiffres",
     "statsParticipants": "participants",
     "statsDays": "jours",
     "statsSpeakers": "conférenciers",
@@ -43,16 +43,16 @@
     "featuredSpeakersSubtitle": "Des experts, des innovateurs et des visionnaires du monde géospatial.",
     "featuredSpeakersCta": "Voir tous les conférenciers",
     "whyTitle": "Pourquoi participer?",
-    "whyEyebrow": "Rejoindre GeoMTL 2027",
+    "whyEyebrow": "Rejoindre GÉOMTL 2027",
     "whySubtitle": "Un événement unique qui rassemble la communauté géospatiale canadienne et internationale.",
     "partnersTitle": "Nos partenaires",
-    "partnersEyebrow": "Ils soutiennent GeoMTL",
+    "partnersEyebrow": "Ils soutiennent GÉOMTL",
     "partnersCta": "Devenir partenaire",
     "programTitle": "Aperçu du programme",
-    "programEyebrow": "Deux jours de découvertes",
+    "programEyebrow": "Trois jours de découvertes",
     "programCta": "Voir le programme complet",
-    "ctaTitle": "Prêt à vivre l'expérience GeoMTL?",
-    "ctaSubtitle": "Rejoignez 350 professionnels du géospatial à Saint-Hyacinthe du 4 au 5 octobre 2027.",
+    "ctaTitle": "Prêt à vivre l'expérience GÉOMTL?",
+    "ctaSubtitle": "Rejoignez plus de 400 professionnels du géospatial à Saint-Hyacinthe du 3 au 5 octobre 2027.",
     "ctaButton": "Réserver ma place"
   },
   "themes": {
@@ -81,8 +81,8 @@
   },
   "programme": {
     "title": "Programme",
-    "eyebrow": "GeoMTL 2027",
-    "subtitle": "Deux jours de conférences, ateliers, panels et réseautage.",
+    "eyebrow": "GÉOMTL 2027",
+    "subtitle": "Trois jours de conférences, ateliers, panels et réseautage.",
     "day1": "Jour 1 — 4 octobre",
     "day2": "Jour 2 — 5 octobre",
     "all": "Tout",
@@ -99,7 +99,7 @@
   },
   "speakers": {
     "title": "Conférenciers",
-    "eyebrow": "GeoMTL 2027",
+    "eyebrow": "GÉOMTL 2027",
     "subtitle": "60+ experts, innovateurs et visionnaires du monde géospatial.",
     "searchPlaceholder": "Rechercher un conférencier...",
     "filterAll": "Tous",
@@ -123,7 +123,7 @@
   },
   "partners": {
     "title": "Partenaires",
-    "eyebrow": "Ils soutiennent GeoMTL",
+    "eyebrow": "Ils soutiennent GÉOMTL",
     "subtitle": "Des organisations leaders qui croient en la puissance du géospatial.",
     "becomePartner": "Devenir partenaire",
     "levels": {
@@ -135,7 +135,7 @@
   },
   "becomePartner": {
     "title": "Devenir partenaire",
-    "eyebrow": "Partenariat GeoMTL 2027",
+    "eyebrow": "Partenariat GÉOMTL 2027",
     "subtitle": "Positionnez votre organisation au cœur de la communauté géospatiale canadienne.",
     "downloadProspectus": "Télécharger le prospectus",
     "contactTitle": "Nous contacter",
@@ -158,7 +158,7 @@
     "allSectors": "Tous les secteurs"
   },
   "awards": {
-    "title": "Prix GeoMTL",
+    "title": "Prix GÉOMTL",
     "eyebrow": "Reconnaissance de l'excellence",
     "subtitle": "Cinq prix qui honorent les personnes et projets qui font avancer la géomatique.",
     "nominate": "Soumettre une candidature",
@@ -168,7 +168,7 @@
   },
   "info": {
     "title": "Infos pratiques",
-    "eyebrow": "GeoMTL 2027",
+    "eyebrow": "GÉOMTL 2027",
     "subtitle": "Tout ce qu'il faut savoir pour préparer votre venue à Montréal.",
     "venueTitle": "Lieu",
     "transportTitle": "Transport",
@@ -183,7 +183,7 @@
   },
   "tickets": {
     "title": "Billetterie",
-    "eyebrow": "GeoMTL 2027",
+    "eyebrow": "GÉOMTL 2027",
     "subtitle": "Choisissez la formule qui vous convient.",
     "earlyBird": "Accès anticipé",
     "standard": "Standard",
@@ -198,7 +198,7 @@
   },
   "gallery": {
     "title": "Galerie",
-    "eyebrow": "GeoMTL 2026",
+    "eyebrow": "GÉOMTL 2026",
     "subtitle": "Revivez les moments forts de l'édition précédente.",
     "all": "Toutes",
     "keynotes": "Keynotes",
@@ -209,7 +209,7 @@
   },
   "news": {
     "title": "Actualités",
-    "eyebrow": "Nouvelles GeoMTL",
+    "eyebrow": "Nouvelles GÉOMTL",
     "subtitle": "Les dernières nouvelles du géospatial et de l'événement.",
     "readMore": "Lire la suite",
     "backToNews": "Retour aux actualités",
@@ -225,9 +225,9 @@
     }
   },
   "about": {
-    "title": "À propos de GeoMTL",
+    "title": "À propos de GÉOMTL",
     "eyebrow": "Notre mission",
-    "subtitle": "GeoMTL est la conférence de référence pour la communauté géospatiale francophone.",
+    "subtitle": "GÉOMTL est la conférence de référence pour la communauté géospatiale francophone.",
     "missionTitle": "Notre mission",
     "visionTitle": "Notre vision",
     "historyTitle": "Notre histoire",
@@ -256,7 +256,7 @@
     "participate": "Participer",
     "resources": "Ressources",
     "contact": "Contact",
-    "copyright": "© 2027 GeoMTL. Tous droits réservés.",
+    "copyright": "© 2027 GÉOMTL. Tous droits réservés.",
     "privacy": "Politique de confidentialité",
     "terms": "Conditions d'utilisation",
     "social": "Réseaux sociaux",

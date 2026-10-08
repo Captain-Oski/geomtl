@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { PartnerForm } from '@/components/admin/partners/PartnerForm'
 
 export const metadata = {
-  title: 'Nouveau partenaire — Admin GeoMTL',
+  title: 'Nouveau partenaire — Admin GÉOMTL',
 }
 
 export default function NewPartnerPage() {
@@ -16,7 +16,7 @@ export default function NewPartnerPage() {
         <span className="text-white text-sm font-medium">Nouveau partenaire</span>
       </div>
       <h1 className="text-2xl font-bold text-white mb-1">Nouveau partenaire</h1>
-      <p className="text-gray-500 text-sm mb-8">GeoMTL 2027</p>
+      <p className="text-gray-500 text-sm mb-8">GÉOMTL 2027</p>
       <PartnerForm />
     </div>
   )

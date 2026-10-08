@@ -5,7 +5,7 @@ import { ExhibitorForm } from '@/components/admin/exhibitors/ExhibitorForm'
 import { ExhibitorStatusBadge } from '@/components/admin/exhibitors/ExhibitorStatusBadge'
 
 export const metadata = {
-  title: 'Modifier un exposant — Admin GeoMTL',
+  title: 'Modifier un exposant — Admin GÉOMTL',
 }
 
 export default async function EditExhibitorPage({
@@ -29,7 +29,7 @@ export default async function EditExhibitorPage({
       <div className="flex flex-wrap items-start gap-3 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-white">{exhibitor.company_name}</h1>
-          <p className="text-gray-500 text-sm mt-0.5">GeoMTL {exhibitor.year}</p>
+          <p className="text-gray-500 text-sm mt-0.5">GÉOMTL {exhibitor.year}</p>
         </div>
         <div className="flex gap-2 mt-1">
           <ExhibitorStatusBadge status={exhibitor.status} />

@@ -52,7 +52,7 @@ const faqs = {
     },
     {
       q: 'Comment soumettre une proposition de conférence?',
-      a: 'L\'appel à propositions pour GeoMTL 2027 est ouvert jusqu\'au 15 mars 2027. Consultez la page Programmation pour les détails et le formulaire de soumission.'
+      a: 'L\'appel à propositions pour GÉOMTL 2027 est ouvert jusqu\'au 15 mars 2027. Consultez la page Programmation pour les détails et le formulaire de soumission.'
     }
   ],
   en: [
@@ -86,7 +86,7 @@ const faqs = {
     },
     {
       q: 'How do I submit a conference proposal?',
-      a: 'The call for proposals for GeoMTL 2027 is open until March 15, 2027. See the Programming page for details and the submission form.'
+      a: 'The call for proposals for GÉOMTL 2027 is open until March 15, 2027. See the Programming page for details and the submission form.'
     }
   ]
 };

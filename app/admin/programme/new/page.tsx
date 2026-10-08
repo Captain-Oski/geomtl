@@ -2,7 +2,7 @@ import { SessionForm } from '@/components/admin/programme/SessionForm'
 import Link from 'next/link'
 
 export const metadata = {
-  title: 'Nouvelle session — Admin GeoMTL',
+  title: 'Nouvelle session — Admin GÉOMTL',
 }
 
 export default function NewSessionPage() {

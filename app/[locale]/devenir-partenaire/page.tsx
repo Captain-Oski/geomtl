@@ -98,8 +98,8 @@ export default function DevenirPartenairePage() {
             <h2 className="text-2xl font-bold text-geo-ink mb-4">{t('contactTitle')}</h2>
             <p className="text-geo-ink-soft mb-8">
               {locale === 'fr'
-                ? 'Vous souhaitez rejoindre GeoMTL 2027 comme partenaire? Contactez notre équipe partenariats.'
-                : 'Want to join GeoMTL 2027 as a partner? Contact our partnerships team.'}
+                ? 'Vous souhaitez rejoindre GÉOMTL 2027 comme partenaire? Contactez notre équipe partenariats.'
+                : 'Want to join GÉOMTL 2027 as a partner? Contact our partnerships team.'}
             </p>
 
             {sent ? (

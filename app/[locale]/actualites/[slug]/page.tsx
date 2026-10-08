@@ -160,12 +160,12 @@ export default function NewsArticlePage({
 
             <div className="glass-2027 rounded-2xl p-5">
               <h3 className="text-sm font-bold text-geo-ink uppercase tracking-wider mb-4">
-                GeoMTL 2027
+                GÉOMTL 2027
               </h3>
               <p className="text-xs text-geo-ink-soft mb-4">
                 {locale === 'fr'
-                  ? '4–5 octobre 2027 · Centre de congrès de Saint-Hyacinthe'
-                  : 'October 4–5, 2027 · Centre de congrès de Saint-Hyacinthe'}
+                  ? '3–5 octobre 2027 · Centre de congrès de Saint-Hyacinthe'
+                  : 'October 3–5, 2027 · Centre de congrès de Saint-Hyacinthe'}
               </p>
               <Link
                 href={`/${locale}/billetterie`}

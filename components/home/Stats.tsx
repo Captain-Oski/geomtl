@@ -18,7 +18,7 @@ export default function Stats() {
     <section className="py-16 lg:py-20 bg-geo-cream-dark">
       <Container>
         <div className="text-center mb-10">
-          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-geo-ink-soft mb-2">GeoMTL 2027</p>
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-geo-ink-soft mb-2">GÉOMTL 2027</p>
           <h2 className="text-2xl sm:text-3xl font-bold text-geo-ink font-display">{t('statsTitle')}</h2>
         </div>
         <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto">

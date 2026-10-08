@@ -30,7 +30,7 @@ export default function HomeCTA() {
           transition={{ duration: 0.6 }}
         >
           <p className="text-xs font-semibold tracking-[0.2em] uppercase text-geo-ink mb-3">
-            GeoMTL 2027
+            GÉOMTL 2027
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold text-geo-ink font-display mb-4 leading-tight text-balance">
             {t('ctaTitle')}

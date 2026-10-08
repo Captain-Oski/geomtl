@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { ExhibitorForm } from '@/components/admin/exhibitors/ExhibitorForm'
 
 export const metadata = {
-  title: 'Nouvel exposant — Admin GeoMTL',
+  title: 'Nouvel exposant — Admin GÉOMTL',
 }
 
 export default function NewExhibitorPage() {
@@ -16,7 +16,7 @@ export default function NewExhibitorPage() {
         <span className="text-white text-sm font-medium">Nouvel exposant</span>
       </div>
       <h1 className="text-2xl font-bold text-white mb-1">Nouvel exposant</h1>
-      <p className="text-gray-500 text-sm mb-8">GeoMTL 2027</p>
+      <p className="text-gray-500 text-sm mb-8">GÉOMTL 2027</p>
       <ExhibitorForm />
     </div>
   )

@@ -32,7 +32,7 @@ export const MOCK_ADMIN_EXHIBITORS: Exhibitor[] = [
     contract_url: null,
     invoice_url: null,
     payment_status: 'paid',
-    internal_notes: 'Exposant depuis GeoMTL 2025. Très professionnel.',
+    internal_notes: 'Exposant depuis GÉOMTL 2025. Très professionnel.',
     booth_number: 'A-01',
     booth_size: 'double',
     booth_zone: 'Zone A – Entrée principale',

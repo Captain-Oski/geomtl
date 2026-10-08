@@ -5,7 +5,7 @@ import SectionTitle from '@/components/ui/SectionTitle';
 import { awards } from '@/data/awards';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = { title: 'Prix GeoMTL' };
+export const metadata: Metadata = { title: 'Prix GÉOMTL' };
 
 export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
@@ -87,8 +87,8 @@ export default async function PrixPage({
           </div>
           <p className="text-geo-ink-soft text-sm mt-4 max-w-lg mx-auto">
             {locale === 'fr'
-              ? 'Les lauréats des Prix GeoMTL 2026 seront annoncés prochainement. Restez à l\'écoute!'
-              : 'GeoMTL 2026 Award winners will be announced soon. Stay tuned!'}
+              ? 'Les lauréats des Prix GÉOMTL 2026 seront annoncés prochainement. Restez à l\'écoute!'
+              : 'GÉOMTL 2026 Award winners will be announced soon. Stay tuned!'}
           </p>
         </div>
 

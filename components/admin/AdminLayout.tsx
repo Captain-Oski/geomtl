@@ -40,7 +40,7 @@ export function AdminLayout({
       <aside className="w-56 shrink-0 bg-gray-900 border-r border-gray-800 flex flex-col">
         <div className="px-5 py-4 border-b border-gray-800">
           <Link href="/admin" className="flex items-center gap-2">
-            <span className="text-rose-500 font-bold text-lg tracking-tight">GeoMTL</span>
+            <span className="text-rose-500 font-bold text-lg tracking-tight">GÉOMTL</span>
             <span className="text-gray-600 text-xs font-medium uppercase tracking-wider">Admin</span>
           </Link>
         </div>

@@ -56,7 +56,7 @@ function LoginForm() {
     <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8">
       <h1 className="text-white font-semibold text-xl mb-1">Connexion</h1>
       <p className="text-gray-400 text-sm mb-6">
-        Accès réservé à l&apos;équipe GeoMTL.
+        Accès réservé à l&apos;équipe GÉOMTL.
       </p>
 
       <Suspense fallback={null}>
@@ -119,7 +119,7 @@ function LoginForm() {
       )}
 
       <p className="text-gray-600 text-xs text-center mt-6">
-        Accès non autorisé ? Contactez l&apos;administrateur GeoMTL.
+        Accès non autorisé ? Contactez l&apos;administrateur GÉOMTL.
       </p>
     </div>
   )
@@ -130,8 +130,8 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <span className="text-rose-500 font-bold text-3xl tracking-tight">GeoMTL</span>
-          <p className="text-gray-500 mt-2 text-sm">Administration — GeoMTL 2027</p>
+          <span className="text-rose-500 font-bold text-3xl tracking-tight">GÉOMTL</span>
+          <p className="text-gray-500 mt-2 text-sm">Administration — GÉOMTL 2027</p>
         </div>
         <LoginForm />
       </div>

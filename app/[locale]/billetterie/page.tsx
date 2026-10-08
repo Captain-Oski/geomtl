@@ -32,7 +32,7 @@ export default async function BilletteriePage({
         'Pauses-café et déjeuners inclus',
         'Cocktail de bienvenue',
         'Cocktail de clôture',
-        'Accès à l\'app GeoMTL 2027',
+        'Accès à l\'app GÉOMTL 2027',
         'Accès aux rediffusions post-événement'
       ] : [
         'Access to 2 days of conference',
@@ -40,7 +40,7 @@ export default async function BilletteriePage({
         'Coffee breaks and lunches included',
         'Welcome cocktail',
         'Closing cocktail',
-        'Access to GeoMTL 2027 app',
+        'Access to GÉOMTL 2027 app',
         'Access to post-event replays'
       ]
     },
@@ -57,7 +57,7 @@ export default async function BilletteriePage({
         'Pauses-café et déjeuners inclus',
         'Cocktail de bienvenue',
         'Cocktail de clôture',
-        'Accès à l\'app GeoMTL 2027',
+        'Accès à l\'app GÉOMTL 2027',
         'Accès aux rediffusions post-événement',
         'Certificat de participation'
       ] : [
@@ -66,7 +66,7 @@ export default async function BilletteriePage({
         'Coffee breaks and lunches included',
         'Welcome cocktail',
         'Closing cocktail',
-        'Access to GeoMTL 2027 app',
+        'Access to GÉOMTL 2027 app',
         'Access to post-event replays',
         'Certificate of participation'
       ]

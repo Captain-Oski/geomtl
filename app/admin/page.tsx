@@ -85,7 +85,7 @@ export default async function AdminDashboardPage() {
     <div className="p-8 space-y-10">
       <div>
         <h1 className="text-2xl font-bold text-white mb-1">Tableau de bord</h1>
-        <p className="text-gray-500 text-sm">GeoMTL 2027 — Panneau d&apos;administration</p>
+        <p className="text-gray-500 text-sm">GÉOMTL 2027 — Panneau d&apos;administration</p>
       </div>
 
       {/* ── Partenaires ── */}

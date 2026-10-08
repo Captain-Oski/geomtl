@@ -33,14 +33,14 @@ export default async function AProposPage({
     { Icon: Handshake, title: 'Collaboration', desc: 'Le géospatial se construit à la croisée des secteurs. Nous facilitons les échanges entre le public, le privé, l\'académique et la société civile.' },
     { Icon: Lightbulb, title: 'Innovation', desc: 'Nous embrassons les nouvelles technologies tout en ancrant l\'innovation dans les besoins réels du territoire et des communautés.' },
     { Icon: Leaf, title: 'Responsabilité', desc: 'Le géospatial est un outil puissant. Nous nous engageons à l\'utiliser de manière éthique, inclusive et durable.' },
-    { Icon: Translate, title: 'Bilinguisme', desc: 'GeoMTL se tient à Montréal, ville bilingue. Tous nos contenus sont disponibles en français et en anglais.' },
+    { Icon: Translate, title: 'Bilinguisme', desc: 'GÉOMTL se tient à Montréal, ville bilingue. Tous nos contenus sont disponibles en français et en anglais.' },
     { Icon: Mountains, title: 'Territoire', desc: 'Nous reconnaissons que Montréal est situé sur les terres non cédées des Kanien\'kehá:ka. Le territoire est notre raison d\'être.' },
   ] : [
     { Icon: GlobeHemisphereWest, title: 'Openness', desc: 'We believe geospatial data should be accessible to all, regardless of their level of expertise or means.' },
     { Icon: Handshake, title: 'Collaboration', desc: 'Geospatial is built at the crossroads of sectors. We facilitate exchanges between public, private, academic and civil society.' },
     { Icon: Lightbulb, title: 'Innovation', desc: 'We embrace new technologies while anchoring innovation in the real needs of the territory and communities.' },
     { Icon: Leaf, title: 'Responsibility', desc: 'Geospatial is a powerful tool. We are committed to using it ethically, inclusively and sustainably.' },
-    { Icon: Translate, title: 'Bilingualism', desc: 'GeoMTL is held in Montreal, a bilingual city. All our content is available in French and English.' },
+    { Icon: Translate, title: 'Bilingualism', desc: 'GÉOMTL is held in Montreal, a bilingual city. All our content is available in French and English.' },
     { Icon: Mountains, title: 'Territory', desc: 'We acknowledge that Montreal is located on the unceded lands of the Kanien\'kehá:ka. Territory is our raison d\'être.' },
   ];
 
@@ -72,13 +72,13 @@ export default async function AProposPage({
             <h2 className="text-2xl font-bold text-geo-ink mb-4 flex items-center gap-2"><Target size={26} weight="light" aria-hidden="true" />{t('missionTitle')}</h2>
             <p className="text-geo-ink-soft leading-relaxed">
               {locale === 'fr'
-                ? 'GeoMTL est la conférence de référence pour la communauté géospatiale du Québec et du Canada francophone. Notre mission est de rassembler chaque année les professionnels, chercheurs, décideurs et passionnés du géospatial pour partager des connaissances, créer des connexions et faire avancer le secteur.'
-                : 'GeoMTL is the reference conference for the geospatial community in Quebec and French Canada. Our mission is to bring together geospatial professionals, researchers, decision-makers and enthusiasts every year to share knowledge, create connections and advance the sector.'}
+                ? 'GÉOMTL est la conférence de référence pour la communauté géospatiale du Québec et du Canada francophone. Notre mission est de rassembler chaque année les professionnels, chercheurs, décideurs et passionnés du géospatial pour partager des connaissances, créer des connexions et faire avancer le secteur.'
+                : 'GÉOMTL is the reference conference for the geospatial community in Quebec and French Canada. Our mission is to bring together geospatial professionals, researchers, decision-makers and enthusiasts every year to share knowledge, create connections and advance the sector.'}
             </p>
             <p className="text-geo-ink-soft leading-relaxed mt-4">
               {locale === 'fr'
-                ? 'En 2027, GeoMTL rassemblera 350 professionnels au Centre de congrès de Saint-Hyacinthe pour deux journées intenses d\'apprentissage, de networking et de découverte. C\'est l\'événement géospatial majeur de l\'année pour le Canada francophone.'
-                : 'In 2027, GeoMTL will bring together 350 professionals at the Centre de congrès de Saint-Hyacinthe for two intense days of learning, networking and discovery. It is the major geospatial event of the year for French Canada.'}
+                ? 'En 2027, GÉOMTL rassemblera plus de 400 professionnels au Centre de congrès de Saint-Hyacinthe pour trois journées intenses d\'apprentissage, de networking et de découverte. C\'est l\'événement géospatial majeur de l\'année pour le Canada francophone.'
+                : 'In 2027, GÉOMTL will bring together more than 400 professionals at the Centre de congrès de Saint-Hyacinthe for three intense days of learning, networking and discovery. It is the major geospatial event of the year for French Canada.'}
             </p>
           </div>
           <div>
@@ -90,8 +90,8 @@ export default async function AProposPage({
             </p>
             <p className="text-geo-ink-soft leading-relaxed mt-4">
               {locale === 'fr'
-                ? 'GeoMTL aspire à être le lieu où cette vision prend forme, où les idées deviennent des projets et où les projets deviennent des politiques et des pratiques.'
-                : 'GeoMTL aspires to be the place where this vision takes shape, where ideas become projects and where projects become policies and practices.'}
+                ? 'GÉOMTL aspire à être le lieu où cette vision prend forme, où les idées deviennent des projets et où les projets deviennent des politiques et des pratiques.'
+                : 'GÉOMTL aspires to be the place where this vision takes shape, where ideas become projects and where projects become policies and practices.'}
             </p>
           </div>
         </section>
@@ -104,10 +104,10 @@ export default async function AProposPage({
             <div className="absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-geo-teal-dark/60 via-geo-lime-dark/40 to-transparent" />
             <div className="space-y-6 pl-12">
               {[
-                { year: '2024', fr: 'Première édition de GeoMTL — 300 participants, 20 conférenciers, Montréal', en: 'First GeoMTL edition — 300 attendees, 20 speakers, Montreal' },
-                { year: '2025', fr: 'GeoMTL devient conférence bilingue — 500 participants, 35 conférenciers', en: 'GeoMTL becomes bilingual conference — 500 attendees, 35 speakers' },
-                { year: '2026', fr: 'Expansion majeure — 750 participants, 50 conférenciers, 30 exposants, création des Prix GeoMTL', en: 'Major expansion — 750 attendees, 50 speakers, 30 exhibitors, GeoMTL Awards created' },
-                { year: '2027', fr: 'GeoMTL 2027 — Objectif 1 000 participants, 60+ conférenciers, 50+ exposants', en: 'GeoMTL 2027 — Target: 1,000 attendees, 60+ speakers, 50+ exhibitors' },
+                { year: '2024', fr: 'Première édition de GÉOMTL — 300 participants, 20 conférenciers, Montréal', en: 'First GÉOMTL edition — 300 attendees, 20 speakers, Montreal' },
+                { year: '2025', fr: 'GÉOMTL devient conférence bilingue — 500 participants, 35 conférenciers', en: 'GÉOMTL becomes bilingual conference — 500 attendees, 35 speakers' },
+                { year: '2026', fr: 'Expansion majeure — 750 participants, 50 conférenciers, 30 exposants, création des Prix GÉOMTL', en: 'Major expansion — 750 attendees, 50 speakers, 30 exhibitors, GÉOMTL Awards created' },
+                { year: '2027', fr: 'GÉOMTL 2027 — Objectif 1 000 participants, 60+ conférenciers, 50+ exposants', en: 'GÉOMTL 2027 — Target: 1,000 attendees, 60+ speakers, 50+ exhibitors' },
               ].map(event => (
                 <div key={event.year} className="relative">
                   <div className="absolute -left-12 top-1.5 w-5 h-5 rounded-full bg-geo-teal/25 border-2 border-geo-teal-dark flex items-center justify-center">

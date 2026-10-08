@@ -65,7 +65,7 @@ export default function NotFound() {
 
             {/* Logo */}
             <div style={{ marginTop: '3rem', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.25rem' }}>
-              <span style={{ fontSize: '1.25rem', fontWeight: 900, color: 'white' }}>Geo</span>
+              <span style={{ fontSize: '1.25rem', fontWeight: 900, color: 'white' }}>GÉO</span>
               <span style={{ fontSize: '1.25rem', fontWeight: 900, color: '#e91e8c' }}>MTL</span>
               <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#8896a8', marginLeft: '0.25rem' }}>2027</span>
             </div>

@@ -4,7 +4,7 @@ import { getProfiles, MOCK_PROFILES } from '@/lib/data/users'
 import { AdminUsersPage } from '@/components/admin/users/AdminUsersPage'
 
 export const metadata = {
-  title: 'Utilisateurs — Admin GeoMTL',
+  title: 'Utilisateurs — Admin GÉOMTL',
 }
 
 export default async function UsersPage() {

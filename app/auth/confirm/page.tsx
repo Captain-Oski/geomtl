@@ -104,7 +104,7 @@ export default function AuthConfirmPage() {
       <Layout>
         <h1 className="text-white font-semibold text-xl mb-1">Nouveau mot de passe</h1>
         <p className="text-gray-400 text-sm mb-6">
-          Choisissez un nouveau mot de passe pour votre compte GeoMTL.
+          Choisissez un nouveau mot de passe pour votre compte GÉOMTL.
         </p>
 
         {success ? (
@@ -176,8 +176,8 @@ function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <span className="text-rose-500 font-bold text-3xl tracking-tight">GeoMTL</span>
-          <p className="text-gray-500 mt-2 text-sm">Administration — GeoMTL 2027</p>
+          <span className="text-rose-500 font-bold text-3xl tracking-tight">GÉOMTL</span>
+          <p className="text-gray-500 mt-2 text-sm">Administration — GÉOMTL 2027</p>
         </div>
         <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8">
           {children}

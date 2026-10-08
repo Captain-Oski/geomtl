@@ -64,7 +64,7 @@ export default function Hero({ reglages, onIdee, masquerTexte = false }: HeroPro
         </motion.div>
 
         <div className="mt-auto pt-16">
-          <h1 className="sr-only">GeoMTL 2027</h1>
+          <h1 className="sr-only">GÉOMTL 2027</h1>
           <motion.div variants={itemVariants}>
             <GeoMTLLogo showYear={false} className="w-full h-auto text-geo-ink" />
           </motion.div>

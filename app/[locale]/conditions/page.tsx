@@ -29,7 +29,7 @@ export default async function ConditionsPage({
       content: (
         <p>
           En accédant au site <strong>geomtl.ca</strong> ou en vous inscrivant à l&apos;événement
-          GeoMTL 2027, vous acceptez les présentes conditions d&apos;utilisation dans leur intégralité.
+          GÉOMTL 2027, vous acceptez les présentes conditions d&apos;utilisation dans leur intégralité.
           Si vous n&apos;acceptez pas ces conditions, veuillez ne pas utiliser ce site.
         </p>
       ),
@@ -40,7 +40,7 @@ export default async function ConditionsPage({
       content: (
         <div className="space-y-2">
           <p>
-            GeoMTL s&apos;efforce d&apos;assurer la disponibilité du site en tout temps, mais ne peut
+            GÉOMTL s&apos;efforce d&apos;assurer la disponibilité du site en tout temps, mais ne peut
             garantir un accès ininterrompu. Nous nous réservons le droit de suspendre, modifier
             ou interrompre le site à tout moment, sans préavis.
           </p>
@@ -58,7 +58,7 @@ export default async function ConditionsPage({
         <div className="space-y-2">
           <p>
             L&apos;ensemble du contenu de ce site — textes, images, logos, graphiques, vidéos,
-            présentation et architecture — est la propriété exclusive de GeoMTL ou de ses
+            présentation et architecture — est la propriété exclusive de GÉOMTL ou de ses
             partenaires et est protégé par les lois canadiennes et québécoises sur le droit d&apos;auteur.
           </p>
           <p>
@@ -78,7 +78,7 @@ export default async function ConditionsPage({
       content: (
         <div className="space-y-2">
           <p>
-            L&apos;inscription à GeoMTL 2027 est soumise aux conditions spécifiques communiquées
+            L&apos;inscription à GÉOMTL 2027 est soumise aux conditions spécifiques communiquées
             lors de l&apos;achat. En vous inscrivant, vous certifiez que les informations fournies
             sont exactes et complètes.
           </p>
@@ -89,7 +89,7 @@ export default async function ConditionsPage({
               En règle générale : remboursement intégral si annulation 30 jours avant l&apos;événement,
               remboursement de 50 % entre 15 et 29 jours, aucun remboursement dans les 14 jours.
             </li>
-            <li>GeoMTL se réserve le droit de modifier le programme sans remboursement automatique.</li>
+            <li>GÉOMTL se réserve le droit de modifier le programme sans remboursement automatique.</li>
             <li>
               En cas d&apos;annulation de l&apos;événement pour cause de force majeure, un avoir ou
               remboursement partiel sera proposé.
@@ -104,7 +104,7 @@ export default async function ConditionsPage({
       content: (
         <div className="space-y-2">
           <p>
-            GeoMTL est un espace inclusif et professionnel. Tout participant s&apos;engage à respecter
+            GÉOMTL est un espace inclusif et professionnel. Tout participant s&apos;engage à respecter
             les autres participant(e)s, conférencier(ère)s, exposants et organisateurs.
           </p>
           <p>Sont strictement interdits :</p>
@@ -112,7 +112,7 @@ export default async function ConditionsPage({
             <li>Toute forme de harcèlement, discrimination ou intimidation</li>
             <li>Les comportements offensants ou perturbateurs</li>
             <li>La photographie ou l&apos;enregistrement sans consentement</li>
-            <li>L&apos;utilisation non autorisée du nom ou des visuels de GeoMTL</li>
+            <li>L&apos;utilisation non autorisée du nom ou des visuels de GÉOMTL</li>
           </ul>
           <p>
             Tout manquement à ce code peut entraîner l&apos;exclusion de l&apos;événement sans remboursement.
@@ -126,7 +126,7 @@ export default async function ConditionsPage({
       content: (
         <p>
           L&apos;événement fait l&apos;objet de photographies et d&apos;enregistrements vidéo à des fins
-          de communication et d&apos;archives. En participant à GeoMTL 2027, vous acceptez que votre
+          de communication et d&apos;archives. En participant à GÉOMTL 2027, vous acceptez que votre
           image puisse être captée et utilisée dans ce cadre. Si vous souhaitez exercer votre
           droit d&apos;opposition, contactez-nous avant l&apos;événement à{' '}
           <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.
@@ -139,12 +139,12 @@ export default async function ConditionsPage({
       content: (
         <div className="space-y-2">
           <p>
-            GeoMTL ne saurait être tenu responsable des dommages directs ou indirects résultant
+            GÉOMTL ne saurait être tenu responsable des dommages directs ou indirects résultant
             de l&apos;utilisation de ce site, d&apos;une interruption de service, d&apos;une erreur
             dans le contenu ou de la perte de données.
           </p>
           <p>
-            Les liens vers des sites tiers sont fournis à titre informatif. GeoMTL n&apos;est pas
+            Les liens vers des sites tiers sont fournis à titre informatif. GÉOMTL n&apos;est pas
             responsable du contenu de ces sites externes.
           </p>
         </div>
@@ -166,7 +166,7 @@ export default async function ConditionsPage({
       title: '9. Modifications',
       content: (
         <p>
-          GeoMTL se réserve le droit de modifier ces conditions à tout moment. Les modifications
+          GÉOMTL se réserve le droit de modifier ces conditions à tout moment. Les modifications
           entrent en vigueur dès leur publication sur ce site. Nous vous encourageons à consulter
           cette page régulièrement. Pour toute question :{' '}
           <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.
@@ -179,7 +179,7 @@ export default async function ConditionsPage({
       title: '1. Acceptance of Terms',
       content: (
         <p>
-          By accessing <strong>geomtl.ca</strong> or registering for the GeoMTL 2027 event,
+          By accessing <strong>geomtl.ca</strong> or registering for the GÉOMTL 2027 event,
           you agree to these terms of use in their entirety. If you do not accept these terms,
           please do not use this site.
         </p>
@@ -191,7 +191,7 @@ export default async function ConditionsPage({
       content: (
         <div className="space-y-2">
           <p>
-            GeoMTL endeavours to keep the site available at all times but cannot guarantee
+            GÉOMTL endeavours to keep the site available at all times but cannot guarantee
             uninterrupted access. We reserve the right to suspend, modify or discontinue the
             site at any time without notice.
           </p>
@@ -209,7 +209,7 @@ export default async function ConditionsPage({
         <div className="space-y-2">
           <p>
             All content on this site — text, images, logos, graphics, videos, layout and
-            architecture — is the exclusive property of GeoMTL or its partners and is protected
+            architecture — is the exclusive property of GÉOMTL or its partners and is protected
             by Canadian and Quebec copyright laws.
           </p>
           <p>
@@ -229,7 +229,7 @@ export default async function ConditionsPage({
       content: (
         <div className="space-y-2">
           <p>
-            Registration for GeoMTL 2027 is subject to specific conditions communicated at
+            Registration for GÉOMTL 2027 is subject to specific conditions communicated at
             the time of purchase. By registering, you certify that the information provided
             is accurate and complete.
           </p>
@@ -240,7 +240,7 @@ export default async function ConditionsPage({
               refund if cancelled 30 days before the event, 50% refund between 15–29 days,
               no refund within 14 days.
             </li>
-            <li>GeoMTL reserves the right to modify the program without automatic refund.</li>
+            <li>GÉOMTL reserves the right to modify the program without automatic refund.</li>
             <li>
               In the event of cancellation due to force majeure, a credit or partial refund
               will be offered.
@@ -255,7 +255,7 @@ export default async function ConditionsPage({
       content: (
         <div className="space-y-2">
           <p>
-            GeoMTL is an inclusive and professional space. All participants agree to respect
+            GÉOMTL is an inclusive and professional space. All participants agree to respect
             fellow attendees, speakers, exhibitors and organizers.
           </p>
           <p>Strictly prohibited:</p>
@@ -263,7 +263,7 @@ export default async function ConditionsPage({
             <li>Any form of harassment, discrimination or intimidation</li>
             <li>Offensive or disruptive behaviour</li>
             <li>Photography or recording without consent</li>
-            <li>Unauthorized use of the GeoMTL name or visuals</li>
+            <li>Unauthorized use of the GÉOMTL name or visuals</li>
           </ul>
           <p>
             Violation of this code may result in removal from the event without refund.
@@ -277,7 +277,7 @@ export default async function ConditionsPage({
       content: (
         <p>
           The event is photographed and video-recorded for communications and archival purposes.
-          By attending GeoMTL 2027, you agree that your image may be captured and used for
+          By attending GÉOMTL 2027, you agree that your image may be captured and used for
           these purposes. To exercise your right of objection, contact us before the event at{' '}
           <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.
         </p>
@@ -289,11 +289,11 @@ export default async function ConditionsPage({
       content: (
         <div className="space-y-2">
           <p>
-            GeoMTL shall not be liable for any direct or indirect damages resulting from use
+            GÉOMTL shall not be liable for any direct or indirect damages resulting from use
             of this site, service interruptions, content errors or data loss.
           </p>
           <p>
-            Links to third-party sites are provided for informational purposes only. GeoMTL
+            Links to third-party sites are provided for informational purposes only. GÉOMTL
             is not responsible for the content of those external sites.
           </p>
         </div>
@@ -315,7 +315,7 @@ export default async function ConditionsPage({
       title: '9. Changes',
       content: (
         <p>
-          GeoMTL reserves the right to modify these terms at any time. Changes take effect
+          GÉOMTL reserves the right to modify these terms at any time. Changes take effect
           upon publication on this site. We encourage you to check this page regularly.
           For any questions:{' '}
           <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.

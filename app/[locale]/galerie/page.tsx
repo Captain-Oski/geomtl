@@ -89,8 +89,8 @@ export default function GaleriePage() {
           <Camera size={24} weight="light" className="text-geo-ink flex-shrink-0" aria-hidden="true" />
           <p className="text-sm text-geo-ink-soft">
             {locale === 'fr'
-              ? 'Photos de l\'édition GeoMTL 2026. Les photos de 2027 seront disponibles après l\'événement. Crédit : Marie-Claude Beaumont, photographe officielle GeoMTL.'
-              : 'Photos from the GeoMTL 2026 edition. 2027 photos will be available after the event. Credit: Marie-Claude Beaumont, official GeoMTL photographer.'}
+              ? 'Photos de l\'édition GÉOMTL 2026. Les photos de 2027 seront disponibles après l\'événement. Crédit : Marie-Claude Beaumont, photographe officielle GÉOMTL.'
+              : 'Photos from the GÉOMTL 2026 edition. 2027 photos will be available after the event. Credit: Marie-Claude Beaumont, official GÉOMTL photographer.'}
           </p>
         </div>
 
@@ -130,8 +130,8 @@ export default function GaleriePage() {
           </h3>
           <p className="text-geo-ink-soft text-sm mb-6">
             {locale === 'fr'
-              ? 'Toutes les photos GeoMTL 2026 sont disponibles en haute résolution pour les médias et participants. Usage libre sous licence CC BY 4.0.'
-              : 'All GeoMTL 2026 photos are available in high resolution for media and attendees. Free use under CC BY 4.0 license.'}
+              ? 'Toutes les photos GÉOMTL 2026 sont disponibles en haute résolution pour les médias et participants. Usage libre sous licence CC BY 4.0.'
+              : 'All GÉOMTL 2026 photos are available in high resolution for media and attendees. Free use under CC BY 4.0 license.'}
           </p>
           <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all">
             <DownloadSimple size={20} weight="light" aria-hidden="true" />{locale === 'fr' ? 'Télécharger (ZIP)' : 'Download (ZIP)'}

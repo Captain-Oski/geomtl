@@ -2,7 +2,7 @@ import { getSessions } from '@/lib/data/programme'
 import { AdminProgrammePage } from '@/components/admin/programme/AdminProgrammePage'
 
 export const metadata = {
-  title: 'Programmation — Admin GeoMTL',
+  title: 'Programmation — Admin GÉOMTL',
 }
 
 export default async function ProgrammePage() {

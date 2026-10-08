@@ -306,7 +306,7 @@ export function AdminUsersPage({ profiles, currentUserId }: Props) {
         <div className="mb-8">
           <h1 className="text-2xl font-bold text-white">Utilisateurs</h1>
           <p className="text-gray-500 text-sm mt-0.5">
-            Gestion des accès à l'administration GeoMTL 2027
+            Gestion des accès à l'administration GÉOMTL 2027
           </p>
         </div>
 

@@ -37,21 +37,21 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   return {
     title: {
-      default: 'GeoMTL 2027',
-      template: '%s | GeoMTL 2027'
+      default: 'GÉOMTL 2027',
+      template: '%s | GÉOMTL 2027'
     },
     description:
       locale === 'fr'
-        ? 'Voir, décider, agir. 4–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
-        : 'See, decide, act. October 4–5, 2027, Centre de congrès de Saint-Hyacinthe.',
+        ? 'Voir, décider, agir. 3–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
+        : 'See, decide, act. October 3–5, 2027, Centre de congrès de Saint-Hyacinthe.',
     keywords: ['geomatics', 'geospatial', 'GIS', 'conference', 'montreal', 'géomatique', 'SIG'],
     openGraph: {
-      title: 'GeoMTL 2027',
+      title: 'GÉOMTL 2027',
       description:
         locale === 'fr'
-          ? 'La conférence géospatiale de référence — Saint-Hyacinthe, 4–5 octobre 2027'
-          : 'The reference geospatial conference — Saint-Hyacinthe, October 4–5, 2027',
-      siteName: 'GeoMTL 2027',
+          ? 'La conférence géospatiale de référence — Saint-Hyacinthe, 3–5 octobre 2027'
+          : 'The reference geospatial conference — Saint-Hyacinthe, October 3–5, 2027',
+      siteName: 'GÉOMTL 2027',
       locale: locale === 'fr' ? 'fr_CA' : 'en_CA',
       type: 'website'
     }

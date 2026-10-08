@@ -28,7 +28,7 @@ export default async function ConfidentialitePage({
       title: '1. Responsable du traitement',
       content: (
         <p>
-          GeoMTL (ci-après «&nbsp;nous&nbsp;») est responsable de la protection des renseignements
+          GÉOMTL (ci-après «&nbsp;nous&nbsp;») est responsable de la protection des renseignements
           personnels collectés via le site <strong>geomtl.ca</strong>. Pour toute question,
           écrivez à <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.
         </p>
@@ -143,7 +143,7 @@ export default async function ConfidentialitePage({
       title: '8. Contact — Responsable de la protection des renseignements personnels',
       content: (
         <div className="glass-2027 rounded-xl p-5 space-y-1 text-sm">
-          <p className="text-geo-ink font-semibold">GeoMTL 2027</p>
+          <p className="text-geo-ink font-semibold">GÉOMTL 2027</p>
           <p>1001, place Jean-Paul-Riopelle, Montréal (Québec) H2Z 1H5</p>
           <p>
             <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>
@@ -157,7 +157,7 @@ export default async function ConfidentialitePage({
       title: '1. Data Controller',
       content: (
         <p>
-          GeoMTL ("we") is responsible for the protection of personal information collected
+          GÉOMTL ("we") is responsible for the protection of personal information collected
           through the website <strong>geomtl.ca</strong>. For any question, write to{' '}
           <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.
         </p>
@@ -270,7 +270,7 @@ export default async function ConfidentialitePage({
       title: '8. Contact — Privacy Officer',
       content: (
         <div className="glass-2027 rounded-xl p-5 space-y-1 text-sm">
-          <p className="text-geo-ink font-semibold">GeoMTL 2027</p>
+          <p className="text-geo-ink font-semibold">GÉOMTL 2027</p>
           <p>1001 Place Jean-Paul-Riopelle, Montréal, QC H2Z 1H5</p>
           <p>
             <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>

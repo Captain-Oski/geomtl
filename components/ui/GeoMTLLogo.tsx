@@ -21,7 +21,7 @@ export default function GeoMTLLogo({
       width={width}
       height={height}
       className={cn('flex-shrink-0', className)}
-      aria-label="GeoMTL 2027"
+      aria-label="GÉOMTL 2027"
       role="img"
     >
       {/* Identité 2027 : wordmark en encre pleine (currentColor), le

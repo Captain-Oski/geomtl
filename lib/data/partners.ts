@@ -273,7 +273,7 @@ export const MOCK_ADMIN_PARTNERS: Partner[] = [
     contract_url: null,
     invoice_url: null,
     payment_status: 'unpaid',
-    internal_notes: 'Prospect identifié lors de GeoMTL 2025.',
+    internal_notes: 'Prospect identifié lors de GÉOMTL 2025.',
     promo_code: null,
     booth_number: null,
     booth_status: 'not_required',

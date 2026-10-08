@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 
 export const metadata = {
-  title: 'Connexion — GeoMTL 2027',
+  title: 'Connexion — GÉOMTL 2027',
   robots: 'noindex, nofollow',
 }
 

@@ -2,7 +2,7 @@ import { getPartners } from '@/lib/data/partners'
 import { AdminPartnersPage } from '@/components/admin/partners/AdminPartnersPage'
 
 export const metadata = {
-  title: 'Partenaires — Admin GeoMTL',
+  title: 'Partenaires — Admin GÉOMTL',
 }
 
 export default async function PartnersPage() {

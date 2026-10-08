@@ -106,8 +106,8 @@ export const MOCK_SESSIONS: Session[] = [
   },
   {
     id: 's6',
-    title_fr: 'Remise des Prix GeoMTL 2027',
-    title_en: 'GeoMTL 2027 Awards Ceremony',
+    title_fr: 'Remise des Prix GÉOMTL 2027',
+    title_en: 'GÉOMTL 2027 Awards Ceremony',
     description_fr: 'Reconnaissance des projets et personnes qui font avancer la géomatique.',
     description_en: 'Recognizing projects and people advancing geomatics.',
     type: 'awards',

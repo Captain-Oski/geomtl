@@ -5,7 +5,7 @@ import { PartnerForm } from '@/components/admin/partners/PartnerForm'
 import { PartnerTypeBadge, PartnerStatusBadge } from '@/components/admin/partners/PartnerStatusBadge'
 
 export const metadata = {
-  title: 'Modifier un partenaire — Admin GeoMTL',
+  title: 'Modifier un partenaire — Admin GÉOMTL',
 }
 
 export default async function EditPartnerPage({
@@ -29,7 +29,7 @@ export default async function EditPartnerPage({
       <div className="flex flex-wrap items-start gap-3 mb-8">
         <div>
           <h1 className="text-2xl font-bold text-white">{partner.company_name}</h1>
-          <p className="text-gray-500 text-sm mt-0.5">GeoMTL {partner.year}</p>
+          <p className="text-gray-500 text-sm mt-0.5">GÉOMTL {partner.year}</p>
         </div>
         <div className="flex gap-2 mt-1">
           <PartnerTypeBadge type={partner.partner_type} />

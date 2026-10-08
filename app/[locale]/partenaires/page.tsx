@@ -28,8 +28,8 @@ export default async function PartenairesPage({
       title={t('title')}
       message={
         locale === 'fr'
-          ? 'Nos partenaires seront dévoilés prochainement. Restez à l\'affût — l\'annonce officielle est prévue en octobre 2026, au RDV Géomatique AGMQ. Vous représentez une organisation intéressée à s\'associer à GeoMTL 2027?'
-          : 'Our partners will be unveiled soon. Stay tuned — the official announcement is planned for October 2026, at the RDV Géomatique AGMQ. Represent an organization interested in partnering with GeoMTL 2027?'
+          ? 'Nos partenaires seront dévoilés prochainement. Restez à l\'affût — l\'annonce officielle est prévue en octobre 2026, au RDV Géomatique AGMQ. Vous représentez une organisation intéressée à s\'associer à GÉOMTL 2027?'
+          : 'Our partners will be unveiled soon. Stay tuned — the official announcement is planned for October 2026, at the RDV Géomatique AGMQ. Represent an organization interested in partnering with GÉOMTL 2027?'
       }
     />
   );

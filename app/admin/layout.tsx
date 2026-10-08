@@ -6,14 +6,14 @@ import type { Profile } from '@/lib/supabase/types'
 import '@/styles/globals.css'
 
 export const metadata = {
-  title: 'Admin — GeoMTL 2027',
+  title: 'Admin — GÉOMTL 2027',
   robots: 'noindex, nofollow',
 }
 
 const MOCK_PROFILE: Profile = {
   id: 'mock-id',
   email: 'admin@geomtl.com',
-  full_name: 'Admin GeoMTL',
+  full_name: 'Admin GÉOMTL',
   role: 'admin',
   created_at: new Date().toISOString(),
 }
