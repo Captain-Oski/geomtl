@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import createIntlMiddleware from 'next-intl/middleware'
 import { createServerClient } from '@supabase/ssr'
+import { COOKIE_COMITE, accesComiteValide, siteEnConstruction } from '@/lib/acces-comite'
 
 const intlMiddleware = createIntlMiddleware({
   locales: ['fr', 'en'],
@@ -49,9 +50,24 @@ export async function middleware(request: NextRequest) {
     return response
   }
 
-  // Page login et callback OAuth : pas de middleware i18n
-  if (pathname === '/login' || pathname.startsWith('/auth/')) {
+  // Page login, callback OAuth et page de construction : pas de middleware i18n
+  if (pathname === '/login' || pathname.startsWith('/auth/') || pathname === '/construction') {
     return NextResponse.next()
+  }
+
+  // Site en construction : le public voit /construction, le comité (cookie) voit le site
+  if (siteEnConstruction()) {
+    const comite = await accesComiteValide(request.cookies.get(COOKIE_COMITE)?.value)
+    let response: NextResponse
+    if (comite) {
+      response = intlMiddleware(request)
+    } else {
+      const url = request.nextUrl.clone()
+      url.pathname = '/construction'
+      response = NextResponse.rewrite(url)
+    }
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow')
+    return response
   }
 
   // Toutes les autres routes : middleware i18n next-intl
