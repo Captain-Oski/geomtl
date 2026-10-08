@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
@@ -13,6 +14,8 @@ import { Binoculars } from '@phosphor-icons/react/dist/ssr/Binoculars';
 import { BookOpen } from '@phosphor-icons/react/dist/ssr/BookOpen';
 import { Diamond } from '@phosphor-icons/react/dist/ssr/Diamond';
 import { UsersThree } from '@phosphor-icons/react/dist/ssr/UsersThree';
+import { Trophy } from '@phosphor-icons/react/dist/ssr/Trophy';
+import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 
 export const metadata: Metadata = { title: 'À propos' };
 
@@ -77,8 +80,8 @@ export default async function AProposPage({
             </p>
             <p className="text-geo-ink-soft leading-relaxed mt-4">
               {locale === 'fr'
-                ? 'En 2027, GÉOMTL rassemblera plus de 400 professionnels au Centre de congrès de Saint-Hyacinthe pour trois journées intenses d\'apprentissage, de networking et de découverte. C\'est l\'événement géospatial majeur de l\'année pour le Canada francophone.'
-                : 'In 2027, GÉOMTL will bring together more than 400 professionals at the Centre de congrès de Saint-Hyacinthe for three intense days of learning, networking and discovery. It is the major geospatial event of the year for French Canada.'}
+                ? 'En 2027, GÉOMTL rassemblera plus de 400 professionnels au Centre de congrès de Saint-Hyacinthe pour deux journées intenses d\'apprentissage, de networking et de découverte. C\'est l\'événement géospatial majeur de l\'année pour le Canada francophone.'
+                : 'In 2027, GÉOMTL will bring together more than 400 professionals at the Centre de congrès de Saint-Hyacinthe for two intense days of learning, networking and discovery. It is the major geospatial event of the year for French Canada.'}
             </p>
           </div>
           <div>
@@ -96,6 +99,27 @@ export default async function AProposPage({
           </div>
         </section>
 
+        <section className="glass-2027 rounded-2xl p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center gap-6">
+          <div className="flex-1">
+            <h2 className="text-2xl font-bold text-geo-ink mb-3 flex items-center gap-2">
+              <Trophy size={26} weight="light" aria-hidden="true" />
+              {locale === 'fr' ? 'Le prix GAÏA' : 'The GAÏA Prize'}
+            </h2>
+            <p className="text-geo-ink-soft leading-relaxed">
+              {locale === 'fr'
+                ? 'Reconnaître l\'excellence fait partie de notre mission. GÉOMTL accueille la remise du prix GAÏA, décerné depuis 1993 par les sections Montréal et Champlain de l\'Association canadienne des sciences géomatiques (ACSG) pour souligner un apport remarquable à la géomatique au Québec.'
+                : 'Recognizing excellence is part of our mission. GÉOMTL hosts the presentation of the GAÏA Prize, awarded since 1993 by the Montréal and Champlain sections of the ACSG (Canadian Institute of Geomatics) to honour a remarkable contribution to geomatics in Quebec.'}
+            </p>
+          </div>
+          <Link
+            href={`/${locale}/prix`}
+            className="group inline-flex flex-shrink-0 items-center justify-center gap-2 self-start lg:self-center rounded-xl bg-geo-ink px-6 py-3 font-semibold text-geo-cream hover:bg-geo-ink/85 transition-colors"
+          >
+            {locale === 'fr' ? 'Découvrir le prix et ses lauréats' : 'Discover the prize and its laureates'}
+            <ArrowRight size={18} weight="light" className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+          </Link>
+        </section>
+
         {/* History */}
         <section>
           <h2 className="text-2xl font-bold text-geo-ink mb-6 flex items-center gap-2"><BookOpen size={26} weight="light" aria-hidden="true" />{t('historyTitle')}</h2>
@@ -106,8 +130,8 @@ export default async function AProposPage({
               {[
                 { year: '2024', fr: 'Première édition de GÉOMTL — 300 participants, 20 conférenciers, Montréal', en: 'First GÉOMTL edition — 300 attendees, 20 speakers, Montreal' },
                 { year: '2025', fr: 'GÉOMTL devient conférence bilingue — 500 participants, 35 conférenciers', en: 'GÉOMTL becomes bilingual conference — 500 attendees, 35 speakers' },
-                { year: '2026', fr: 'Expansion majeure — 750 participants, 50 conférenciers, 30 exposants, création des Prix GÉOMTL', en: 'Major expansion — 750 attendees, 50 speakers, 30 exhibitors, GÉOMTL Awards created' },
-                { year: '2027', fr: 'GÉOMTL 2027 — Objectif 1 000 participants, 60+ conférenciers, 50+ exposants', en: 'GÉOMTL 2027 — Target: 1,000 attendees, 60+ speakers, 50+ exhibitors' },
+                { year: '2026', fr: 'Expansion majeure — 750 participants, 50 conférenciers, 30 exposants', en: 'Major expansion — 750 attendees, 50 speakers, 30 exhibitors' },
+                { year: '2027', fr: 'GÉOMTL 2027 — Objectif : plus de 400 participants, 60+ conférenciers, 50+ exposants', en: 'GÉOMTL 2027 — Target: more than 400 attendees, 60+ speakers, 50+ exhibitors' },
               ].map(event => (
                 <div key={event.year} className="relative">
                   <div className="absolute -left-12 top-1.5 w-5 h-5 rounded-full bg-geo-teal/25 border-2 border-geo-teal-dark flex items-center justify-center">

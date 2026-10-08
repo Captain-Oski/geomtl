@@ -18,6 +18,7 @@ export default function Footer() {
   const navLinks = [
     { href: `/${locale}`, label: tNav('home') },
     { href: `/${locale}/actualites`, label: tNav('news') },
+    { href: `/${locale}/prix`, label: tNav('awards') },
     { href: `/${locale}/apropos`, label: tNav('about') },
   ];
 

@@ -36,7 +36,7 @@ const faqs = {
     },
     {
       q: 'Y a-t-il des accommodations recommandées près du lieu?',
-      a: 'Le Sheraton Saint-Hyacinthe est attenant au Centre de congrès — pas besoin de sortir à l\'extérieur. Un bloc de chambres est réservé au tarif de groupe de 219 $/nuit. Réservez au 450-250-5555 ou au 1-833-250-8555 en mentionnant «ACSG GéoMontréal congrès 2027» avant le 2 septembre 2027.'
+      a: 'Le Sheraton Saint-Hyacinthe est attenant au Centre de congrès — pas besoin de sortir à l\'extérieur. Un bloc de chambres est réservé au tarif de groupe de 219 $/nuit. Réservez au 450-250-5555 ou au 1-833-250-8555 en mentionnant « GEOMTL2027 » avant le 2 septembre 2027.'
     },
     {
       q: 'L\'événement est-il accessible aux personnes à mobilité réduite?',
@@ -48,7 +48,7 @@ const faqs = {
     },
     {
       q: 'La conférence est-elle diffusée en ligne?',
-      a: 'Certaines keynotes seront diffusées en direct et disponibles en rediffusion après l\'événement. Une formule hybride payante sera proposée pour les personnes ne pouvant pas se déplacer.'
+      a: 'Certaines keynotes seront diffusées en direct. Aucune rediffusion ne sera offerte après l\'événement. Une formule hybride payante sera proposée pour les personnes ne pouvant pas se déplacer.'
     },
     {
       q: 'Comment soumettre une proposition de conférence?',
@@ -70,7 +70,7 @@ const faqs = {
     },
     {
       q: 'Are there recommended accommodations near the venue?',
-      a: 'The Sheraton Saint-Hyacinthe is directly connected to the convention centre — no need to go outside. A room block is reserved at the group rate of $219/night. Book at 1-833-250-8555 with the code "ACSG GéoMontréal congrès 2027" before September 2, 2027.'
+      a: 'The Sheraton Saint-Hyacinthe is directly connected to the convention centre — no need to go outside. A room block is reserved at the group rate of $219/night. Book at 1-833-250-8555 with the code "GEOMTL2027" before September 2, 2027.'
     },
     {
       q: 'Is the event accessible to people with reduced mobility?',
@@ -82,7 +82,7 @@ const faqs = {
     },
     {
       q: 'Will the conference be streamed online?',
-      a: 'Some keynotes will be live-streamed and available for replay after the event. A paid hybrid format will be offered for those unable to attend in person.'
+      a: 'Some keynotes will be live-streamed. No replays will be available after the event. A paid hybrid format will be offered for those unable to attend in person.'
     },
     {
       q: 'How do I submit a conference proposal?',
@@ -93,10 +93,10 @@ const faqs = {
 
 const hotels = {
   fr: [
-    { name: 'Sheraton Saint-Hyacinthe', stars: 4, distance: 'Sur place (attenant au Centre de congrès)', price: 'à partir de 219 $/nuit', code: 'ACSG GéoMontréal 2027' }
+    { name: 'Sheraton Saint-Hyacinthe', stars: 4, distance: 'Sur place (attenant au Centre de congrès)', price: 'à partir de 219 $/nuit', code: 'GEOMTL2027' }
   ],
   en: [
-    { name: 'Sheraton Saint-Hyacinthe', stars: 4, distance: 'On site (connected to the convention centre)', price: 'from $219/night', code: 'ACSG GéoMontréal 2027' }
+    { name: 'Sheraton Saint-Hyacinthe', stars: 4, distance: 'On site (connected to the convention centre)', price: 'from $219/night', code: 'GEOMTL2027' }
   ]
 };
 
@@ -166,7 +166,7 @@ export default function InfosPage() {
                   <Clock size={20} weight="light" className="text-geo-ink mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <p className="text-geo-ink font-semibold">{locale === 'fr' ? 'Horaires' : 'Hours'}</p>
-                    <p>{locale === 'fr' ? 'Jour 1 : 8h00–19h00 · Jour 2 : 8h30–20h00' : 'Day 1: 8:00am–7:00pm · Day 2: 8:30am–8:00pm'}</p>
+                    <p>{locale === 'fr' ? 'Jour 1 : 8h00–19h00 · Jour 2 : 8h30–17h00' : 'Day 1: 8:00am–7:00pm · Day 2: 8:30am–5:00pm'}</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">

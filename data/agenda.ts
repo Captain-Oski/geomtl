@@ -546,12 +546,12 @@ export const agendaItems: AgendaItem[] = [
     endTime: "17:00",
     type: "awards",
     title: {
-      fr: "Cérémonie des Prix GÉOMTL 2027",
-      en: "GÉOMTL 2027 Awards Ceremony"
+      fr: "Remise du prix GAÏA 2027",
+      en: "2027 GAÏA Prize Presentation"
     },
     description: {
-      fr: "Remise des cinq prix GÉOMTL récompensant l'excellence, l'innovation et l'impact social dans le domaine géospatial.",
-      en: "Presentation of the five GÉOMTL awards recognizing excellence, innovation and social impact in the geospatial field."
+      fr: "Remise du prix GAÏA, décerné par les sections Montréal et Champlain de l'ACSG pour reconnaître un apport remarquable à la géomatique au Québec.",
+      en: "Presentation of the GAÏA Prize, awarded by the Montréal and Champlain sections of the ACSG to recognize a remarkable contribution to geomatics in Quebec."
     },
     room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
     duration: 60
@@ -572,23 +572,6 @@ export const agendaItems: AgendaItem[] = [
     },
     room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
     duration: 30
-  },
-  {
-    id: "b015",
-    day: 2,
-    time: "17:30",
-    endTime: "20:00",
-    type: "networking",
-    title: {
-      fr: "Cocktail de clôture — Soirée GÉOMTL",
-      en: "Closing Cocktail — GÉOMTL Evening"
-    },
-    description: {
-      fr: "Soirée de clôture festive avec musique live, nourriture gastronomique et remises des prix de réseautage.",
-      en: "Festive closing evening with live music, gourmet food and networking awards."
-    },
-    room: { fr: "Grand Salon — Niveau 6", en: "Grand Salon — Level 6" },
-    duration: 150
   }
 ];
 

@@ -14,10 +14,10 @@ import HomeCTA from './HomeCTA';
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const fr = locale === 'fr';
   return {
-    title: fr ? 'GÉOMTL 2027 — Voir, décider, agir' : 'GÉOMTL 2027 — See, decide, act',
+    title: fr ? 'GÉOMTL 2027 — Comprendre le territoire, façonner l\'avenir' : 'GÉOMTL 2027 — Understanding the territory, shaping the future',
     description: fr
-      ? 'La conférence géospatiale de référence du Québec. 3–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
-      : "Quebec's reference geospatial conference. October 3–5, 2027, Centre de congrès de Saint-Hyacinthe.",
+      ? 'La conférence géospatiale de référence du Québec. 4–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
+      : "Quebec's reference geospatial conference. October 4–5, 2027, Centre de congrès de Saint-Hyacinthe.",
   };
 }
 

@@ -3,6 +3,7 @@ import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
 import type { Metadata } from 'next';
 import { Check } from '@phosphor-icons/react/dist/ssr/Check';
+import { EVENT_CONFIG } from '@/data/config';
 
 export const metadata: Metadata = { title: 'Billetterie' };
 
@@ -18,80 +19,52 @@ export default async function BilletteriePage({
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'tickets' });
 
-  const ticketTypes = [
+  const fr = locale === 'fr';
+  const prix = (montant: number) => (fr ? `${montant} $` : `$${montant}`);
+  const periodeAnticipe = fr ? 'Jusqu\'au 30 juin 2027' : 'Until June 30, 2027';
+  const periodeStandard = fr ? 'À partir du 1er juillet 2027' : 'From July 1, 2027';
+
+  const passes = [
     {
-      id: 'early',
-      name: t('earlyBird'),
-      price: t('earlyBirdPrice'),
-      deadline: locale === 'fr' ? 'Jusqu\'au 30 juin 2027' : 'Until June 30, 2027',
-      color: '#01CDA5',
-      badge: null,
-      features: locale === 'fr' ? [
-        'Accès aux 2 jours de conférence',
-        'Accès à toutes les sessions',
-        'Pauses-café et déjeuners inclus',
-        'Cocktail de bienvenue',
-        'Cocktail de clôture',
+      id: 'jour',
+      nom: fr ? 'Passe 1 jour' : 'One-day pass',
+      detail: fr ? 'Le 4 ou le 5 octobre 2027, au choix' : 'October 4 or 5, 2027, your choice',
+      anticipe: 220,
+      standard: 250,
+      avantages: fr ? [
+        'Accès à 1 jour de conférence',
+        'Accès à toutes les sessions de la journée',
+        'Pause-café et déjeuner de la journée',
         'Accès à l\'app GÉOMTL 2027',
-        'Accès aux rediffusions post-événement'
+        'Certificat de participation'
       ] : [
-        'Access to 2 days of conference',
-        'Access to all sessions',
-        'Coffee breaks and lunches included',
-        'Welcome cocktail',
-        'Closing cocktail',
+        'Access to 1 day of conference',
+        'Access to all sessions that day',
+        'Coffee break and lunch that day',
         'Access to GÉOMTL 2027 app',
-        'Access to post-event replays'
+        'Certificate of participation'
       ]
     },
     {
-      id: 'standard',
-      name: t('standard'),
-      price: t('standardPrice'),
-      deadline: locale === 'fr' ? 'Tarif standard' : 'Standard rate',
-      color: '#D0DC00',
-      badge: t('popular'),
-      features: locale === 'fr' ? [
+      id: 'complete',
+      nom: fr ? 'Passe complète' : 'Full pass',
+      detail: fr ? EVENT_CONFIG.dates.fr : EVENT_CONFIG.dates.en,
+      anticipe: 425,
+      standard: 495,
+      avantages: fr ? [
         'Accès aux 2 jours de conférence',
         'Accès à toutes les sessions',
         'Pauses-café et déjeuners inclus',
         'Cocktail de bienvenue',
-        'Cocktail de clôture',
         'Accès à l\'app GÉOMTL 2027',
-        'Accès aux rediffusions post-événement',
         'Certificat de participation'
       ] : [
         'Access to 2 days of conference',
         'Access to all sessions',
         'Coffee breaks and lunches included',
         'Welcome cocktail',
-        'Closing cocktail',
         'Access to GÉOMTL 2027 app',
-        'Access to post-event replays',
         'Certificate of participation'
-      ]
-    },
-    {
-      id: 'group',
-      name: t('group'),
-      price: t('groupPrice'),
-      deadline: locale === 'fr' ? 'Pour 5 personnes et plus' : 'For 5 people and more',
-      color: '#1BC868',
-      badge: null,
-      features: locale === 'fr' ? [
-        'Tous les avantages du billet standard',
-        'Tarif dégressif dès 5 inscriptions',
-        'Facturation unique pour l\'organisation',
-        'Gestionnaire de compte dédié',
-        'Table ronde exclusive (10+ participants)',
-        'Visibilité logo dans l\'application'
-      ] : [
-        'All standard ticket benefits',
-        'Discounted rate from 5 registrations',
-        'Single billing for the organization',
-        'Dedicated account manager',
-        'Exclusive round table (10+ participants)',
-        'Logo visibility in the app'
       ]
     }
   ];
@@ -109,37 +82,34 @@ export default async function BilletteriePage({
       </div>
 
       <Container className="py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          {ticketTypes.map(ticket => (
-            <div
-              key={ticket.id}
-              className="glass-2027 rounded-2xl p-6 relative flex flex-col"
-              style={{ borderTop: `2px solid ${ticket.color}60` }}
-            >
-              {ticket.badge && (
-                <div
-                  className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold text-geo-ink"
-                  style={{ background: ticket.color }}
-                >
-                  {ticket.badge}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {passes.map((passe) => (
+            <div key={passe.id} className="glass-2027 rounded-2xl p-6 sm:p-8 flex flex-col border-t-2 border-geo-teal-dark/40">
+              <h3 className="text-xl font-bold text-geo-ink">{passe.nom}</h3>
+              <p className="text-sm text-geo-ink-soft mt-1">{passe.detail}</p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                <div className="relative rounded-xl border-2 border-geo-teal-dark bg-geo-teal/10 p-5">
+                  <span className="absolute -top-3 left-5 rounded-full bg-gradient-geo-2027 px-3 py-1 text-xs font-bold text-geo-noir whitespace-nowrap">
+                    {fr ? 'Économisez' : 'Save'} {prix(passe.standard - passe.anticipe)}
+                  </span>
+                  <p className="text-sm font-bold text-geo-ink">{t('earlyBird')}</p>
+                  <p className="text-xs text-geo-ink-soft">{periodeAnticipe}</p>
+                  <p className="mt-3 text-4xl font-black text-geo-ink">{prix(passe.anticipe)}</p>
                 </div>
-              )}
-
-              <div className="mb-4">
-                <h3 className="text-lg font-bold text-geo-ink mb-1">{ticket.name}</h3>
-                <p className="text-xs text-geo-ink-soft">{ticket.deadline}</p>
+                <div className="rounded-xl border border-geo-ink/15 p-5">
+                  <p className="text-sm font-semibold text-geo-ink-soft">{t('standard')}</p>
+                  <p className="text-xs text-geo-ink-soft">{periodeStandard}</p>
+                  <p className="mt-3 text-3xl font-bold text-geo-ink-soft">{prix(passe.standard)}</p>
+                </div>
               </div>
 
-              <div className="mb-6">
-                <span className="text-4xl font-black text-geo-ink">{ticket.price}</span>
-                <p className="text-xs text-geo-ink-soft mt-1">{t('taxNote')}</p>
-              </div>
-
-              <ul className="space-y-2 flex-1 mb-6">
-                {ticket.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-geo-ink-soft">
+              <p className="text-xs font-semibold uppercase tracking-wider text-geo-ink-soft mt-8 mb-3">{t('includes')}</p>
+              <ul className="space-y-2 mb-8 flex-1">
+                {passe.avantages.map((avantage) => (
+                  <li key={avantage} className="flex items-start gap-2 text-sm text-geo-ink-soft">
                     <Check size={14} weight="light" className="mt-1 flex-shrink-0 text-geo-ink" aria-hidden="true" />
-                    {feature}
+                    {avantage}
                   </li>
                 ))}
               </ul>
@@ -152,9 +122,7 @@ export default async function BilletteriePage({
             </div>
           ))}
         </div>
-
-        {/* Tax note */}
-        <p className="text-center text-xs text-geo-ink-soft mb-8">* {t('taxNote')}</p>
+        <p className="text-center text-xs text-geo-ink-soft mt-4 mb-10">{t('taxNote')}</p>
 
         {/* Student/nonprofit note */}
         <div className="glass-2027 rounded-2xl p-6 text-center max-w-2xl mx-auto">

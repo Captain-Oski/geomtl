@@ -6,7 +6,7 @@
     "workshops": "Workshops",
     "partners": "Partners",
     "exhibitors": "Exhibitors",
-    "awards": "Awards",
+    "awards": "GAÏA Prize",
     "info": "Practical Info",
     "tickets": "Tickets",
     "gallery": "Gallery",
@@ -22,8 +22,8 @@
   "home": {
     "heroTitle": "GÉOMTL",
     "heroYear": "2027",
-    "heroTagline": "See, decide, act.",
-    "heroDate": "October 3–5, 2027",
+    "heroTagline": "Understanding the territory, shaping the future.",
+    "heroDate": "October 4–5, 2027",
     "heroVenue": "Centre de congrès de Saint-Hyacinthe",
     "heroCta1": "Participate",
     "heroCta2": "Become a Partner",
@@ -44,15 +44,15 @@
     "featuredSpeakersCta": "View all speakers",
     "whyTitle": "Why attend?",
     "whyEyebrow": "Join GÉOMTL 2027",
-    "whySubtitle": "A unique event bringing together the Canadian and international geospatial community.",
+    "whySubtitle": "A unique event bringing together the Quebec, national and international geospatial community.",
     "partnersTitle": "Our Partners",
     "partnersEyebrow": "They support GÉOMTL",
     "partnersCta": "Become a Partner",
     "programTitle": "Program Preview",
-    "programEyebrow": "Three days of discovery",
+    "programEyebrow": "Two days of discovery",
     "programCta": "View the full program",
     "ctaTitle": "Ready to experience GÉOMTL?",
-    "ctaSubtitle": "Join more than 400 geospatial professionals in Saint-Hyacinthe from October 3–5, 2027.",
+    "ctaSubtitle": "Join more than 400 geospatial professionals in Saint-Hyacinthe on October 4–5, 2027.",
     "ctaButton": "Reserve my spot"
   },
   "themes": {
@@ -67,22 +67,23 @@
   },
   "why": {
     "networkTitle": "High-level Networking",
-    "networkDesc": "Meet 1,000 professionals, researchers and decision-makers in the geospatial sector.",
+    "networkDesc": "Meet more than 400 professionals, researchers and decision-makers in the geospatial sector.",
     "expertiseTitle": "Cutting-edge Expertise",
     "expertiseDesc": "Speakers from the public, private and academic sectors.",
     "innovTitle": "Discover Innovation",
-    "innovDesc": "The latest geospatial solutions and technologies, presented on the exhibition floor.",
-    "workshopTitle": "Hands-on Training",
-    "workshopDesc": "Technical workshops to develop your skills.",
+    "innovDesc": "Artificial intelligence, digital twins, environment: the trends transforming geospatial.",
+    "vitrineTitle": "Technology Showcase",
+    "vitrineDesc": "The latest geospatial solutions presented by exhibitors, with live demonstrations on site.",
     "awardTitle": "Recognize Excellence",
-    "awardDesc": "5 awards given to projects and people advancing geomatics.",
-    "mtlTitle": "Montreal as the Backdrop",
-    "mtlDesc": "A city with world-class reputation for its technological and cultural dynamism."
+    "awardCta": "Discover the GAÏA Prize",
+    "awardDesc": "Attend the presentation of the GAÏA Prize, awarded by the ACSG since 1993 to honour a remarkable contribution to geomatics in Quebec.",
+    "reseauTitle": "Professional Community",
+    "reseauDesc": "Build lasting connections with Quebec's geomatics community: colleagues, partners, employers and the next generation."
   },
   "programme": {
     "title": "Program",
     "eyebrow": "GÉOMTL 2027",
-    "subtitle": "Three days of conferences, workshops, panels and networking.",
+    "subtitle": "Two days of conferences, workshops, panels and networking.",
     "day1": "Day 1 — October 4",
     "day2": "Day 2 — October 5",
     "all": "All",
@@ -158,13 +159,11 @@
     "allSectors": "All sectors"
   },
   "awards": {
-    "title": "GÉOMTL Awards",
+    "title": "GAÏA Prize",
     "eyebrow": "Recognizing excellence",
-    "subtitle": "Five awards that honor the people and projects advancing geomatics.",
-    "nominate": "Submit a nomination",
-    "categories": "Categories",
-    "pastWinners": "Past Winners",
-    "comingSoon": "Coming soon"
+    "subtitle": "Awarded since 1993 to recognize a remarkable contribution to geomatics in Quebec.",
+    "about": "About the prize",
+    "pastWinners": "Past Laureates"
   },
   "info": {
     "title": "Practical Info",
@@ -187,12 +186,7 @@
     "subtitle": "Choose the pass that suits you.",
     "earlyBird": "Early Bird",
     "standard": "Standard",
-    "group": "Group",
-    "earlyBirdPrice": "$395",
-    "standardPrice": "$495",
-    "groupPrice": "$420 / pers.",
     "buyNow": "Buy Now",
-    "popular": "Popular",
     "includes": "Includes",
     "taxNote": "Prices in CAD, taxes not included"
   },
@@ -251,7 +245,7 @@
     "programming": "Programming"
   },
   "footer": {
-    "tagline": "See, decide, act.",
+    "tagline": "Understanding the territory, shaping the future.",
     "navigation": "Navigation",
     "participate": "Participate",
     "resources": "Resources",

@@ -6,7 +6,7 @@
     "workshops": "Ateliers",
     "partners": "Partenaires",
     "exhibitors": "Exposants",
-    "awards": "Prix",
+    "awards": "Prix GAÏA",
     "info": "Infos pratiques",
     "tickets": "Billetterie",
     "gallery": "Galerie",
@@ -22,8 +22,8 @@
   "home": {
     "heroTitle": "GÉOMTL",
     "heroYear": "2027",
-    "heroTagline": "Voir, décider, agir.",
-    "heroDate": "3–5 octobre 2027",
+    "heroTagline": "Comprendre le territoire, façonner l'avenir.",
+    "heroDate": "4–5 octobre 2027",
     "heroVenue": "Centre de congrès de Saint-Hyacinthe",
     "heroCta1": "Participer",
     "heroCta2": "Devenir partenaire",
@@ -44,15 +44,15 @@
     "featuredSpeakersCta": "Voir tous les conférenciers",
     "whyTitle": "Pourquoi participer?",
     "whyEyebrow": "Rejoindre GÉOMTL 2027",
-    "whySubtitle": "Un événement unique qui rassemble la communauté géospatiale canadienne et internationale.",
+    "whySubtitle": "Un événement unique qui rassemble la communauté géospatiale québécoise, nationale et internationale.",
     "partnersTitle": "Nos partenaires",
     "partnersEyebrow": "Ils soutiennent GÉOMTL",
     "partnersCta": "Devenir partenaire",
     "programTitle": "Aperçu du programme",
-    "programEyebrow": "Trois jours de découvertes",
+    "programEyebrow": "Deux jours de découvertes",
     "programCta": "Voir le programme complet",
     "ctaTitle": "Prêt à vivre l'expérience GÉOMTL?",
-    "ctaSubtitle": "Rejoignez plus de 400 professionnels du géospatial à Saint-Hyacinthe du 3 au 5 octobre 2027.",
+    "ctaSubtitle": "Rejoignez plus de 400 professionnels du géospatial à Saint-Hyacinthe les 4 et 5 octobre 2027.",
     "ctaButton": "Réserver ma place"
   },
   "themes": {
@@ -67,22 +67,23 @@
   },
   "why": {
     "networkTitle": "Réseautage de haut niveau",
-    "networkDesc": "Rencontrez 1 000 professionnels, chercheurs et décideurs du secteur géospatial.",
+    "networkDesc": "Rencontrez plus de 400 professionnels, chercheurs et décideurs du secteur géospatial.",
     "expertiseTitle": "Expertise de pointe",
     "expertiseDesc": "Des conférenciers issus des secteurs public, privé et académique.",
     "innovTitle": "Découvrir l'innovation",
-    "innovDesc": "Les dernières solutions et technologies géospatiales, présentées en exposition.",
-    "workshopTitle": "Formation pratique",
-    "workshopDesc": "Des ateliers techniques pour développer vos compétences.",
+    "innovDesc": "Intelligence artificielle, jumeaux numériques, environnement : les tendances qui transforment le géospatial.",
+    "vitrineTitle": "Vitrine technologique",
+    "vitrineDesc": "Les dernières solutions géospatiales présentées par les exposants, en démonstration sur place.",
     "awardTitle": "Reconnaître l'excellence",
-    "awardDesc": "5 prix remis aux projets et aux personnes qui font avancer la géomatique.",
-    "mtlTitle": "Montréal comme toile de fond",
-    "mtlDesc": "Une ville de renom mondial pour son dynamisme technologique et culturel."
+    "awardCta": "Découvrir le prix GAÏA",
+    "awardDesc": "Assistez à la remise du prix GAÏA, décerné depuis 1993 par l'ACSG pour souligner un apport remarquable à la géomatique au Québec.",
+    "reseauTitle": "Réseau socioprofessionnel",
+    "reseauDesc": "Tissez des liens durables avec la communauté géomatique du Québec : collègues, partenaires, employeurs et relève."
   },
   "programme": {
     "title": "Programme",
     "eyebrow": "GÉOMTL 2027",
-    "subtitle": "Trois jours de conférences, ateliers, panels et réseautage.",
+    "subtitle": "Deux jours de conférences, ateliers, panels et réseautage.",
     "day1": "Jour 1 — 4 octobre",
     "day2": "Jour 2 — 5 octobre",
     "all": "Tout",
@@ -158,13 +159,11 @@
     "allSectors": "Tous les secteurs"
   },
   "awards": {
-    "title": "Prix GÉOMTL",
+    "title": "Prix GAÏA",
     "eyebrow": "Reconnaissance de l'excellence",
-    "subtitle": "Cinq prix qui honorent les personnes et projets qui font avancer la géomatique.",
-    "nominate": "Soumettre une candidature",
-    "categories": "Catégories",
-    "pastWinners": "Lauréats précédents",
-    "comingSoon": "À venir"
+    "subtitle": "Décerné depuis 1993 pour reconnaître un apport remarquable à la géomatique au Québec.",
+    "about": "À propos du prix",
+    "pastWinners": "Lauréats précédents"
   },
   "info": {
     "title": "Infos pratiques",
@@ -187,12 +186,7 @@
     "subtitle": "Choisissez la formule qui vous convient.",
     "earlyBird": "Accès anticipé",
     "standard": "Standard",
-    "group": "Groupe",
-    "earlyBirdPrice": "395 $",
-    "standardPrice": "495 $",
-    "groupPrice": "420 $ / pers.",
     "buyNow": "Acheter maintenant",
-    "popular": "Populaire",
     "includes": "Inclus",
     "taxNote": "Prix en CAD, taxes en sus"
   },
@@ -251,7 +245,7 @@
     "programming": "Programmation"
   },
   "footer": {
-    "tagline": "Voir, décider, agir.",
+    "tagline": "Comprendre le territoire, façonner l'avenir.",
     "navigation": "Navigation",
     "participate": "Participer",
     "resources": "Ressources",

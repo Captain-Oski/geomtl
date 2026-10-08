@@ -164,8 +164,8 @@ export default function NewsArticlePage({
               </h3>
               <p className="text-xs text-geo-ink-soft mb-4">
                 {locale === 'fr'
-                  ? '3–5 octobre 2027 · Centre de congrès de Saint-Hyacinthe'
-                  : 'October 3–5, 2027 · Centre de congrès de Saint-Hyacinthe'}
+                  ? '4–5 octobre 2027 · Centre de congrès de Saint-Hyacinthe'
+                  : 'October 4–5, 2027 · Centre de congrès de Saint-Hyacinthe'}
               </p>
               <Link
                 href={`/${locale}/billetterie`}

@@ -27,6 +27,7 @@ export default function Header() {
   // RDV Géomatique AGMQ) — les pages existent toujours en coulisse
   // (état "Bientôt disponible") mais ne sont pas mises en avant.
   const navLinks = [
+    { href: `/${locale}/billetterie`, label: t('buyTicket') },
     { href: `/${locale}/devenir-partenaire`, label: t('becomePartner') },
     { href: `/${locale}/infos`, label: t('info') },
     { href: `/${locale}/actualites`, label: t('news') },

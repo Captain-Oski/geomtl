@@ -1,12 +1,12 @@
 export const EVENT_CONFIG = {
   name: "GÉOMTL 2027",
-  dates: { fr: "3–5 octobre 2027", en: "October 3–5, 2027" },
+  dates: { fr: "4–5 octobre 2027", en: "October 4–5, 2027" },
   venue: { fr: "Centre de congrès de Saint-Hyacinthe", en: "Centre de congrès de Saint-Hyacinthe" },
   city: "Saint-Hyacinthe, QC",
-  stats: { participants: 400, days: 3, speakers: 60, workshops: 20, exhibitors: 26, awards: 5 },
+  stats: { participants: 400, days: 2, speakers: 60, workshops: 20, exhibitors: 26, awards: 1 },
   tagline: {
-    fr: "Voir, décider, agir.",
-    en: "See, decide, act."
+    fr: "Comprendre le territoire, façonner l'avenir.",
+    en: "Understanding the territory, shaping the future."
   },
   microSlogans: {
     fr: [
