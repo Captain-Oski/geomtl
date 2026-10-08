@@ -33,10 +33,10 @@ export default function ConstructionPage({ searchParams }: { searchParams: { acc
 
           <div className="mt-8 text-center text-geo-ink">
             <p className="font-display text-2xl sm:text-3xl font-bold">Site en construction</p>
-            <p className="mt-2 text-geo-ink-soft">
+            <p className="mt-3 text-lg sm:text-xl font-bold text-geo-ink">
               Le nouveau site de GÉOMTL 2027 sera bientôt en ligne.
               <br />
-              <span lang="en">Our new website is under construction — coming soon.</span>
+              <span lang="en">Our new website is under construction. Coming soon.</span>
             </p>
           </div>
 
