@@ -12,7 +12,7 @@ export function generateStaticParams() {
 
 const UPDATED = '26 mai 2026';
 const UPDATED_EN = 'May 26, 2026';
-const EMAIL = 'info@geomtl.ca';
+const EMAIL = 'info@geomtl.com';
 
 export default async function ConditionsPage({
   params: { locale },
@@ -28,7 +28,7 @@ export default async function ConditionsPage({
       title: "1. Acceptation des conditions",
       content: (
         <p>
-          En accédant au site <strong>geomtl.ca</strong> ou en vous inscrivant à l&apos;événement
+          En accédant au site <strong>geomtl.com</strong> ou en vous inscrivant à l&apos;événement
           GÉOMTL 2027, vous acceptez les présentes conditions d&apos;utilisation dans leur intégralité.
           Si vous n&apos;acceptez pas ces conditions, veuillez ne pas utiliser ce site.
         </p>
@@ -179,7 +179,7 @@ export default async function ConditionsPage({
       title: '1. Acceptance of Terms',
       content: (
         <p>
-          By accessing <strong>geomtl.ca</strong> or registering for the GÉOMTL 2027 event,
+          By accessing <strong>geomtl.com</strong> or registering for the GÉOMTL 2027 event,
           you agree to these terms of use in their entirety. If you do not accept these terms,
           please do not use this site.
         </p>

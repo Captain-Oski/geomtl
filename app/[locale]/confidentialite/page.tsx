@@ -12,7 +12,7 @@ export function generateStaticParams() {
 
 const UPDATED = '26 mai 2026';
 const UPDATED_EN = 'May 26, 2026';
-const EMAIL = 'confidentialite@geomtl.ca';
+const EMAIL = 'info@geomtl.com';
 
 export default async function ConfidentialitePage({
   params: { locale },
@@ -29,7 +29,7 @@ export default async function ConfidentialitePage({
       content: (
         <p>
           GÉOMTL (ci-après «&nbsp;nous&nbsp;») est responsable de la protection des renseignements
-          personnels collectés via le site <strong>geomtl.ca</strong>. Pour toute question,
+          personnels collectés via le site <strong>geomtl.com</strong>. Pour toute question,
           écrivez à <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.
         </p>
       ),
@@ -158,7 +158,7 @@ export default async function ConfidentialitePage({
       content: (
         <p>
           GÉOMTL ("we") is responsible for the protection of personal information collected
-          through the website <strong>geomtl.ca</strong>. For any question, write to{' '}
+          through the website <strong>geomtl.com</strong>. For any question, write to{' '}
           <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>.
         </p>
       ),

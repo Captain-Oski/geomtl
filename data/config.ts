@@ -22,8 +22,7 @@ export const EVENT_CONFIG = {
   },
   ticketUrl: "#billetterie",
   partnerUrl: "#devenir-partenaire",
-  email: "info@geomtl.ca",
-  phone: "+1 (514) 555-0200",
+  email: "info@geomtl.com",
   address: {
     fr: "1325, rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4",
     en: "1325 rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4"

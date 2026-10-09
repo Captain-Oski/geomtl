@@ -12,7 +12,7 @@ export const metadata = {
 
 const MOCK_PROFILE: Profile = {
   id: 'mock-id',
-  email: 'admin@geomtl.com',
+  email: 'info@geomtl.com',
   full_name: 'Admin GÉOMTL',
   role: 'admin',
   created_at: new Date().toISOString(),

@@ -229,20 +229,13 @@
     "teamTitle": "L'équipe"
   },
   "contact": {
-    "title": "Contact",
-    "eyebrow": "Nous joindre",
-    "subtitle": "Une question? Notre équipe est là pour vous aider.",
+    "title": "Nous joindre",
+    "subtitle": "Une question? Écrivez-nous à info@geomtl.com ou par le formulaire ci-dessous.",
     "nameLabel": "Nom et prénom",
     "emailLabel": "Courriel",
     "subjectLabel": "Sujet",
     "messageLabel": "Message",
-    "sendButton": "Envoyer le message",
-    "successMessage": "Votre message a été envoyé. Merci!",
-    "teamContacts": "Contacts par département",
-    "general": "Renseignements généraux",
-    "press": "Presse et médias",
-    "partnerships": "Partenariats",
-    "programming": "Programmation"
+    "sendButton": "Envoyer le message"
   },
   "footer": {
     "tagline": "Comprendre le territoire, façonner l'avenir.",

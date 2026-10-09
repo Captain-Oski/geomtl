@@ -29,7 +29,7 @@ export default function Footer() {
 
   const resourceLinks = [
     { href: `/${locale}/infos`, label: tNav('info') },
-    { href: `/${locale}/contact`, label: tNav('contact') },
+    { href: `/${locale}/apropos#contact`, label: tNav('contact') },
   ];
 
   const otherLocale = locale === 'fr' ? 'en' : 'fr';

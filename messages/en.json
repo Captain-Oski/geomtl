@@ -229,20 +229,13 @@
     "teamTitle": "The Team"
   },
   "contact": {
-    "title": "Contact",
-    "eyebrow": "Get in touch",
-    "subtitle": "A question? Our team is here to help.",
+    "title": "Get in touch",
+    "subtitle": "A question? Write to us at info@geomtl.com or use the form below.",
     "nameLabel": "Full Name",
     "emailLabel": "Email",
     "subjectLabel": "Subject",
     "messageLabel": "Message",
-    "sendButton": "Send Message",
-    "successMessage": "Your message has been sent. Thank you!",
-    "teamContacts": "Contacts by Department",
-    "general": "General Information",
-    "press": "Press & Media",
-    "partnerships": "Partnerships",
-    "programming": "Programming"
+    "sendButton": "Send Message"
   },
   "footer": {
     "tagline": "Understanding the territory, shaping the future.",

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
+import ContactSection from '@/components/about/ContactSection';
 import type { Metadata } from 'next';
 import { GlobeHemisphereWest } from '@phosphor-icons/react/dist/ssr/GlobeHemisphereWest';
 import { Handshake } from '@phosphor-icons/react/dist/ssr/Handshake';
@@ -182,6 +183,8 @@ export default async function AProposPage({
             ))}
           </div>
         </section>
+
+        <ContactSection />
       </Container>
     </div>
   );

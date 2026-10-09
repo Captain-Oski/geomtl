@@ -26,8 +26,8 @@ export const newsArticles: NewsArticle[] = [
       en: "GÉOMTL 2027 will host a geospatial hackathon. The theme, schedule and registration details will be announced soon."
     },
     content: {
-      fr: "GÉOMTL 2027 accueillera un hackathon géospatial. Développeurs, analystes, étudiants et passionnés de géomatique pourront former des équipes et relever un défi concret à partir de données géospatiales.\n\nLe thème, l'horaire et les modalités d'inscription seront annoncés prochainement sur ce site.\n\nPour toute question, écrivez-nous à info@geomtl.ca.",
-      en: "GÉOMTL 2027 will host a geospatial hackathon. Developers, analysts, students and geomatics enthusiasts will be able to form teams and take on a concrete challenge using geospatial data.\n\nThe theme, schedule and registration details will be announced soon on this website.\n\nFor any questions, write to us at info@geomtl.ca."
+      fr: "GÉOMTL 2027 accueillera un hackathon géospatial. Développeurs, analystes, étudiants et passionnés de géomatique pourront former des équipes et relever un défi concret à partir de données géospatiales.\n\nLe thème, l'horaire et les modalités d'inscription seront annoncés prochainement sur ce site.\n\nPour toute question, écrivez-nous à info@geomtl.com.",
+      en: "GÉOMTL 2027 will host a geospatial hackathon. Developers, analysts, students and geomatics enthusiasts will be able to form teams and take on a concrete challenge using geospatial data.\n\nThe theme, schedule and registration details will be announced soon on this website.\n\nFor any questions, write to us at info@geomtl.com."
     },
     date: "2026-10-08",
     category: "event",

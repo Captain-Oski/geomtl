@@ -89,8 +89,8 @@ export default function GaleriePage() {
           <Camera size={24} weight="light" className="text-geo-ink flex-shrink-0" aria-hidden="true" />
           <p className="text-sm text-geo-ink-soft">
             {locale === 'fr'
-              ? 'Photos de l\'édition GÉOMTL 2026. Les photos de 2027 seront disponibles après l\'événement. Crédit : Marie-Claude Beaumont, photographe officielle GÉOMTL.'
-              : 'Photos from the GÉOMTL 2026 edition. 2027 photos will be available after the event. Credit: Marie-Claude Beaumont, official GÉOMTL photographer.'}
+              ? 'Photos de l\'édition GÉOMTL 2026. Les photos de 2027 seront disponibles après l\'événement.'
+              : 'Photos from the GÉOMTL 2026 edition. 2027 photos will be available after the event.'}
           </p>
         </div>
 

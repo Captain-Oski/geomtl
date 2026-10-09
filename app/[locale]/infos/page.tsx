@@ -251,8 +251,8 @@ export default function InfosPage() {
           <div className="glass-2027 rounded-2xl p-6">
             <p className="text-geo-ink-soft leading-relaxed">
               {locale === 'fr'
-                ? 'Le Centre de congrès de Saint-Hyacinthe est entièrement accessible aux personnes à mobilité réduite. Toutes les salles sont équipées d\'ascenseurs, de rampes d\'accès, de places réservées au premier rang et de boucles magnétiques. Des services d\'interprétation en langue des signes québécoise (LSQ) et en American Sign Language (ASL) sont disponibles sur demande pour les keynotes principales. Contactez-nous à accessibilite@geomtl.ca pour tout besoin spécifique.'
-                : 'The Centre de congrès de Saint-Hyacinthe is fully accessible to people with reduced mobility. All rooms are equipped with elevators, ramps, reserved seating in the front row and hearing loops. Quebec Sign Language (LSQ) and American Sign Language (ASL) interpretation services are available upon request for main keynotes. Contact us at accessibility@geomtl.ca for any specific needs.'}
+                ? 'Le Centre de congrès de Saint-Hyacinthe est entièrement accessible aux personnes à mobilité réduite. Toutes les salles sont équipées d\'ascenseurs, de rampes d\'accès, de places réservées au premier rang et de boucles magnétiques. Des services d\'interprétation en langue des signes québécoise (LSQ) et en American Sign Language (ASL) sont disponibles sur demande pour les keynotes principales. Contactez-nous à info@geomtl.com pour tout besoin spécifique.'
+                : 'The Centre de congrès de Saint-Hyacinthe is fully accessible to people with reduced mobility. All rooms are equipped with elevators, ramps, reserved seating in the front row and hearing loops. Quebec Sign Language (LSQ) and American Sign Language (ASL) interpretation services are available upon request for main keynotes. Contact us at info@geomtl.com for any specific needs.'}
             </p>
           </div>
         </section>

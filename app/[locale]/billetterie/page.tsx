@@ -135,10 +135,10 @@ export default async function BilletteriePage({
               : 'Preferential rates are available for students ($195) and non-profits ($295). Contact us to get a discount code.'}
           </p>
           <a
-            href={`mailto:info@geomtl.ca`}
+            href={`mailto:info@geomtl.com`}
             className="inline-flex items-center gap-2 text-geo-teal-dark hover:underline text-sm font-semibold"
           >
-            info@geomtl.ca
+            info@geomtl.com
           </a>
         </div>
       </Container>
