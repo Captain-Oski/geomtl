@@ -3,10 +3,9 @@ import { setRequestLocale } from 'next-intl/server';
 import GlobeDemo from '@/components/demo/GlobeDemo';
 
 // Page de réglage du globe animé : non liée depuis le site et exclue des moteurs de recherche.
-export const metadata: Metadata = {
-  title: 'Démo du globe animé',
-  robots: { index: false, follow: false },
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  return { title: locale === 'fr' ? 'Démo du globe animé' : 'Animated globe demo', robots: { index: false, follow: false } };
+}
 
 export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];

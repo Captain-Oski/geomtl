@@ -18,7 +18,8 @@ export async function generateMetadata({
   const article = getNewsArticleBySlug(params.slug);
   if (!article) return {};
   const title = params.locale === 'fr' ? article.title.fr : article.title.en;
-  return { title };
+  // Titre absolu : le layout d'Actualités définit son propre titre, ce qui coupe le gabarit « | GÉOMTL 2027 ».
+  return { title: { absolute: `${title} | GÉOMTL 2027` } };
 }
 
 const categoryVariants: Record<string, 'rose' | 'orange' | 'yellow' | 'blue' | 'green' | 'gray'> = {

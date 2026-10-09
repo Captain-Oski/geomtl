@@ -28,10 +28,7 @@ export const EVENT_CONFIG = {
     en: "1325 rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4"
   },
   social: {
-    twitter: "https://twitter.com/geomtl",
-    linkedin: "https://linkedin.com/company/geomtl",
-    instagram: "https://instagram.com/geomtl",
-    youtube: "https://youtube.com/@geomtl"
+    linkedin: "https://www.linkedin.com/company/geomtl"
   }
 };
 

@@ -125,10 +125,15 @@ export default function DevenirPartenairePage() {
             subtitle={t('subtitle')}
           />
           <div className="text-center mt-4">
-            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027">
+            <a
+              href="/documents/GEOMTL-2027-Guide-exposant.pdf"
+              download="GEOMTL-2027-Guide-exposant.pdf"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
+            >
               <FileText size={20} weight="light" aria-hidden="true" />
-              {t('downloadProspectus')}
-            </button>
+              {t('downloadGuide')}
+              <span className="text-sm font-normal opacity-70">{fr ? '(PDF, 3,5 Mo)' : '(PDF, 3.5 MB)'}</span>
+            </a>
           </div>
         </Container>
       </div>
@@ -188,7 +193,7 @@ export default function DevenirPartenairePage() {
                     className={cn(
                       'relative h-full overflow-hidden p-6',
                       visuel.fond,
-                      visuel.globe && 'pb-44',
+                      visuel.globe && 'pb-36',
                       level === 'or' ? 'rounded-[14px]' : level === 'argent' ? 'rounded-[15px]' : 'rounded-2xl'
                     )}
                   >
@@ -199,7 +204,7 @@ export default function DevenirPartenairePage() {
                         alt=""
                         aria-hidden="true"
                         loading="lazy"
-                        className="pointer-events-none absolute inset-x-0 bottom-0 h-44 w-full object-cover object-top [mask-image:linear-gradient(to_bottom,transparent,black_45%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_45%)]"
+                        className="pointer-events-none absolute bottom-0 right-0 h-auto w-[70%] [mask-image:linear-gradient(to_bottom,transparent,black_40%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_40%)]"
                       />
                     )}
                     {level === 'bronze' && (
@@ -278,7 +283,7 @@ export default function DevenirPartenairePage() {
                       : 'The most convivial moment of the conference: more than 400 professionals gathered over drinks. Your organization is the host, from the first word to the last toast.'}
                   </p>
                   <p className="mt-6 font-display text-5xl font-black bg-gradient-to-r from-[#00735F] to-[#4F7A1E] bg-clip-text text-transparent">
-                    {fr ? '3 000 $' : '$3,000'}
+                    {fr ? '2 995 $' : '$2,995'}
                   </p>
                 </div>
 
@@ -344,13 +349,15 @@ export default function DevenirPartenairePage() {
           </div>
         </section>
 
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <section className="max-w-2xl mx-auto">
           <div>
             <h2 className="text-2xl font-bold text-geo-ink mb-4">{t('contactTitle')}</h2>
             <p className="text-geo-ink-soft mb-8">
               {fr
-                ? 'Vous souhaitez rejoindre GÉOMTL 2027 comme partenaire ou exposant? Écrivez à notre équipe partenariats.'
-                : 'Want to join GÉOMTL 2027 as a partner or exhibitor? Write to our partnerships team.'}
+                ? 'Vous souhaitez rejoindre GÉOMTL 2027 comme partenaire ou exposant? Écrivez-nous à '
+                : 'Want to join GÉOMTL 2027 as a partner or exhibitor? Write to us at '}
+              <a href={`mailto:${COURRIEL_PARTENARIATS}`} className="text-geo-teal-dark hover:underline">{COURRIEL_PARTENARIATS}</a>
+              {fr ? ' ou par le formulaire ci-dessous.' : ' or use the form below.'}
             </p>
 
             {sent ? (
@@ -419,28 +426,6 @@ export default function DevenirPartenairePage() {
                 </button>
               </form>
             )}
-          </div>
-
-          <div className="space-y-6">
-            <div className="glass-2027 rounded-2xl p-6">
-              <h3 className="text-lg font-bold text-geo-ink mb-3">
-                {fr ? 'Équipe partenariats' : 'Partnerships Team'}
-              </h3>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-geo-teal/15 border border-geo-teal-dark/30 flex items-center justify-center text-sm font-bold text-geo-teal-dark">
-                  CG
-                </div>
-                <div>
-                  <p className="text-geo-ink text-sm font-semibold">Clément Glogowski</p>
-                  <p className="text-xs text-geo-ink-soft">
-                    {fr ? 'Partenariats, exposants et expérience participants' : 'Partnerships, Exhibitors & Attendee Experience'}
-                  </p>
-                  <a href={`mailto:${COURRIEL_PARTENARIATS}`} className="text-xs text-geo-teal-dark/80 hover:text-geo-teal-dark">
-                    {COURRIEL_PARTENARIATS}
-                  </a>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
       </Container>

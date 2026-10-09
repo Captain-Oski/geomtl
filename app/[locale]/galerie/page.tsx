@@ -1,141 +1,99 @@
-'use client';
-
-import { Camera } from '@phosphor-icons/react/dist/ssr/Camera';
-import { MagnifyingGlassPlus } from '@phosphor-icons/react/dist/ssr/MagnifyingGlassPlus';
-import { DownloadSimple } from '@phosphor-icons/react/dist/ssr/DownloadSimple';
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { useTranslations, useLocale } from 'next-intl';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
+import { EDITIONS, FLICKR_ALBUMS_URL } from '@/data/galerie';
+import { ArrowSquareOut } from '@phosphor-icons/react/dist/ssr/ArrowSquareOut';
+import { Camera } from '@phosphor-icons/react/dist/ssr/Camera';
 import { cn } from '@/lib/utils';
 
-type GalleryCategory = 'all' | 'keynotes' | 'workshops' | 'networking' | 'exposition' | 'awards';
+export function generateStaticParams() {
+  return [{ locale: 'fr' }, { locale: 'en' }];
+}
 
-const galleryImages = Array.from({ length: 24 }, (_, i) => {
-  const categories: GalleryCategory[] = ['keynotes', 'workshops', 'networking', 'exposition', 'awards'];
-  const category = categories[i % categories.length];
-  const colors = [
-    ['#20FEFD', '#01CDA5'],
-    ['#01CDA5', '#1BC868'],
-    ['#1BC868', '#D0DC00'],
-    ['#D0DC00', '#6A8C3A'],
-    ['#20FEFD', '#1BC868'],
-    ['#6A8C3A', '#01CDA5'],
-  ];
-  const colorPair = colors[i % colors.length];
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  return { title: locale === 'fr' ? 'Galerie' : 'Gallery' };
+}
 
-  return {
-    id: `img-${i + 1}`,
-    category,
-    gradient: `linear-gradient(135deg, ${colorPair[0]}40 0%, ${colorPair[1]}40 100%)`,
-    span: i % 7 === 0 ? 'col-span-2 row-span-2' : ''
-  };
-});
-
-const categoryLabels: Record<GalleryCategory, { fr: string; en: string }> = {
-  all: { fr: 'Toutes', en: 'All' },
-  keynotes: { fr: 'Keynotes', en: 'Keynotes' },
-  workshops: { fr: 'Ateliers', en: 'Workshops' },
-  networking: { fr: 'Réseautage', en: 'Networking' },
-  exposition: { fr: 'Exposition', en: 'Exhibition' },
-  awards: { fr: 'Prix', en: 'Awards' }
-};
-
-export default function GaleriePage() {
-  const t = useTranslations('gallery');
-  const locale = useLocale();
-  const [activeCategory, setActiveCategory] = useState<GalleryCategory>('all');
-
-  const filtered = galleryImages.filter(
-    img => activeCategory === 'all' || img.category === activeCategory
-  );
-
-  const categories: GalleryCategory[] = ['all', 'keynotes', 'workshops', 'networking', 'exposition', 'awards'];
+export default async function GaleriePage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
+  const t = await getTranslations({ locale, namespace: 'gallery' });
+  const fr = locale === 'fr';
 
   return (
     <div className="min-h-screen bg-geo-cream pt-20">
       <div className="page-header-2027 py-16 sm:py-20">
         <Container>
-          <SectionTitle
-            eyebrow={t('eyebrow')}
-            title={t('title')}
-            subtitle={t('subtitle')}
-          />
+          <SectionTitle eyebrow={t('eyebrow')} title={t('title')} subtitle={t('subtitle')} />
         </Container>
       </div>
 
-      <Container className="py-12">
-        {/* Category tabs */}
-        <div className="flex flex-wrap gap-2 mb-10">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={cn(
-                'px-4 py-2 rounded-xl text-sm font-semibold transition-all',
-                activeCategory === cat
-                  ? 'bg-geo-teal/15 text-geo-teal-dark border border-geo-teal-dark/40'
-                  : 'glass-2027 text-geo-ink-soft hover:text-geo-ink border border-geo-ink/10'
-              )}
-            >
-              {locale === 'fr' ? categoryLabels[cat].fr : categoryLabels[cat].en}
-            </button>
-          ))}
-        </div>
-
-        {/* Photo note */}
-        <div className="glass-2027 rounded-xl p-4 mb-8 flex items-center gap-3">
-          <Camera size={24} weight="light" className="text-geo-ink flex-shrink-0" aria-hidden="true" />
-          <p className="text-sm text-geo-ink-soft">
-            {locale === 'fr'
-              ? 'Photos de l\'édition GÉOMTL 2026. Les photos de 2027 seront disponibles après l\'événement.'
-              : 'Photos from the GÉOMTL 2026 edition. 2027 photos will be available after the event.'}
-          </p>
-        </div>
-
-        {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {filtered.map((img, index) => (
-            <motion.div
-              key={img.id}
-              className={`rounded-xl overflow-hidden cursor-pointer group relative ${img.span}`}
-              style={{ minHeight: '160px' }}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.03 }}
-              whileHover={{ scale: 1.02 }}
-            >
-              <div
-                className="w-full h-full flex items-end justify-start p-3"
-                style={{ background: img.gradient, minHeight: '160px' }}
+      <Container className="py-12 space-y-16">
+        {EDITIONS.map((edition) => (
+          <section key={edition.annee} id={`edition-${edition.annee}`} className="scroll-mt-28">
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+              <h2 className="font-display text-3xl font-bold text-geo-ink">GÉOMTL {edition.annee}</h2>
+              <a
+                href={edition.album}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-geo-teal-dark hover:underline"
               >
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-geo-ink/40 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                  <MagnifyingGlassPlus size={28} weight="light" className="text-white" aria-hidden="true" />
-                </div>
-                {/* Category badge */}
-                <span className="relative z-10 text-xs px-2 py-0.5 rounded-full glass-2027 border border-white/20 text-white/70">
-                  {locale === 'fr' ? categoryLabels[img.category].fr : categoryLabels[img.category].en}
-                </span>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                {fr ? 'Voir l\'album complet sur Flickr' : 'See the full album on Flickr'}
+                <ArrowSquareOut size={16} weight="light" aria-hidden="true" />
+              </a>
+            </div>
 
-        {/* CTA for official photos */}
-        <div className="mt-12 glass-2027 rounded-2xl p-8 text-center">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+              {edition.photos.map((photo, index) => (
+                <a
+                  key={photo.src}
+                  href={photo.lien}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    'group relative block overflow-hidden rounded-xl bg-geo-ink/5',
+                    index === 0 ? 'col-span-2 row-span-2' : 'aspect-[3/2]'
+                  )}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={photo.src}
+                    alt={fr ? photo.alt.fr : photo.alt.en}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-3 pb-2 pt-8 text-xs text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                    {fr ? photo.alt.fr : photo.alt.en}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        <div className="glass-2027 rounded-2xl p-8 text-center">
+          <Camera size={32} weight="light" className="mx-auto mb-3 text-geo-ink" aria-hidden="true" />
           <h3 className="text-xl font-bold text-geo-ink mb-3">
-            {locale === 'fr' ? 'Télécharger les photos officielles' : 'Download Official Photos'}
+            {fr ? 'Toutes les photos sur Flickr' : 'All photos on Flickr'}
           </h3>
-          <p className="text-geo-ink-soft text-sm mb-6">
-            {locale === 'fr'
-              ? 'Toutes les photos GÉOMTL 2026 sont disponibles en haute résolution pour les médias et participants. Usage libre sous licence CC BY 4.0.'
-              : 'All GÉOMTL 2026 photos are available in high resolution for media and attendees. Free use under CC BY 4.0 license.'}
+          <p className="text-geo-ink-soft text-sm mb-6 max-w-xl mx-auto">
+            {fr
+              ? 'Retrouvez les albums complets des éditions précédentes sur le compte Flickr de l\'ACSG – Section Montréal. Les photos de 2027 y seront publiées après l\'événement.'
+              : 'Browse the full albums of past editions on the ACSG – Montréal Section Flickr account. 2027 photos will be published there after the event.'}
           </p>
-          <button className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all">
-            <DownloadSimple size={20} weight="light" aria-hidden="true" />{locale === 'fr' ? 'Télécharger (ZIP)' : 'Download (ZIP)'}
-          </button>
+          <a
+            href={FLICKR_ALBUMS_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all"
+          >
+            {fr ? 'Voir les albums' : 'See the albums'}
+            <ArrowSquareOut size={18} weight="bold" aria-hidden="true" />
+          </a>
+          <p className="mt-4 text-xs text-geo-ink-soft">
+            {fr ? 'Photos : ACSG – Section Montréal' : 'Photos: ACSG – Montréal Section'}
+          </p>
         </div>
       </Container>
     </div>

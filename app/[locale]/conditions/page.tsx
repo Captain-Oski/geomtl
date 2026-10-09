@@ -2,9 +2,9 @@ import { setRequestLocale } from 'next-intl/server';
 import Container from '@/components/ui/Container';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: "Conditions d'utilisation | Terms of Use",
-};
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  return { title: locale === 'fr' ? "Conditions d'utilisation" : 'Terms of Use' };
+}
 
 export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];

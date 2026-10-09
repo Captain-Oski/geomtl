@@ -11,13 +11,15 @@ export function formatDate(dateString: string, locale: string = 'fr'): string {
     return date.toLocaleDateString('fr-CA', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
+      timeZone: 'UTC'
     });
   }
   return date.toLocaleDateString('en-CA', {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
+    timeZone: 'UTC'
   });
 }
 

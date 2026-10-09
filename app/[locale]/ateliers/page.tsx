@@ -2,7 +2,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ComingSoon from '@/components/ui/ComingSoon';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = { title: 'Ateliers' };
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  return { title: locale === 'fr' ? 'Ateliers' : 'Workshops' };
+}
 
 export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
@@ -27,8 +29,8 @@ export default async function AteliersPage({
       title={t('title')}
       message={
         locale === 'fr'
-          ? 'La liste des ateliers pratiques sera annoncée prochainement. Restez à l\'affût — l\'annonce officielle est prévue en octobre 2026, au RDV Géomatique AGMQ.'
-          : 'The list of hands-on workshops will be announced soon. Stay tuned — the official announcement is planned for October 2026, at the RDV Géomatique AGMQ.'
+          ? 'La liste des ateliers pratiques sera annoncée prochainement. Restez à l\'affût!'
+          : 'The list of hands-on workshops will be announced soon. Stay tuned!'
       }
     />
   );

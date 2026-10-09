@@ -4,7 +4,9 @@ import SectionTitle from '@/components/ui/SectionTitle';
 import { Trophy } from '@phosphor-icons/react/dist/ssr/Trophy';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = { title: 'Prix GAÏA' };
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  return { title: locale === 'fr' ? 'Prix GAÏA' : 'GAÏA Prize' };
+}
 
 export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];

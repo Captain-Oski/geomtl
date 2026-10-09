@@ -2,7 +2,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ComingSoon from '@/components/ui/ComingSoon';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = { title: 'Conférenciers' };
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  return { title: locale === 'fr' ? 'Conférenciers' : 'Speakers' };
+}
 
 export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
@@ -27,8 +29,8 @@ export default async function ConferenciersPage({
       title={t('title')}
       message={
         locale === 'fr'
-          ? 'Notre programmation de conférenciers sera annoncée prochainement. Restez à l\'affût — l\'annonce officielle est prévue en octobre 2026, au RDV Géomatique AGMQ.'
-          : 'Our speaker lineup will be announced soon. Stay tuned — the official announcement is planned for October 2026, at the RDV Géomatique AGMQ.'
+          ? 'Notre programmation de conférenciers sera annoncée prochainement. Restez à l\'affût!'
+          : 'Our speaker lineup will be announced soon. Stay tuned!'
       }
     />
   );

@@ -2,7 +2,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ComingSoon from '@/components/ui/ComingSoon';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = { title: 'Programme' };
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  return { title: locale === 'fr' ? 'Programme' : 'Program' };
+}
 
 export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
@@ -27,8 +29,8 @@ export default async function ProgrammePage({
       title={t('title')}
       message={
         locale === 'fr'
-          ? 'La grille horaire complète sera dévoilée prochainement. Restez à l\'affût — l\'annonce officielle est prévue en octobre 2026, au RDV Géomatique AGMQ.'
-          : 'The full schedule will be unveiled soon. Stay tuned — the official announcement is planned for October 2026, at the RDV Géomatique AGMQ.'
+          ? 'La grille horaire complète sera dévoilée prochainement. Restez à l\'affût!'
+          : 'The full schedule will be unveiled soon. Stay tuned!'
       }
     />
   );

@@ -2,9 +2,7 @@ import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { EVENT_CONFIG } from '@/data/config';
 import GeoMTLLogo from '@/components/ui/GeoMTLLogo';
-import { XLogo } from '@phosphor-icons/react/dist/ssr/XLogo';
 import { LinkedinLogo } from '@phosphor-icons/react/dist/ssr/LinkedinLogo';
-import { InstagramLogo } from '@phosphor-icons/react/dist/ssr/InstagramLogo';
 import { Mountains } from '@phosphor-icons/react/dist/ssr/Mountains';
 
 export default function Footer() {
@@ -51,9 +49,7 @@ export default function Footer() {
             <div className="flex gap-4 pt-2">
               {/* Social icons */}
               {[
-                { label: 'X', href: EVENT_CONFIG.social.twitter, Icon: XLogo },
                 { label: 'LinkedIn', href: EVENT_CONFIG.social.linkedin, Icon: LinkedinLogo },
-                { label: 'Instagram', href: EVENT_CONFIG.social.instagram, Icon: InstagramLogo },
               ].map((social) => (
                 <a
                   key={social.label}

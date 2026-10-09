@@ -138,7 +138,7 @@
     "title": "Devenir partenaire",
     "eyebrow": "Partenariat GÉOMTL 2027",
     "subtitle": "Positionnez votre organisation au cœur de la communauté géospatiale canadienne.",
-    "downloadProspectus": "Télécharger le prospectus",
+    "downloadGuide": "Télécharger le guide de l'exposant",
     "contactTitle": "Nous contacter",
     "nameLabel": "Nom et prénom",
     "orgLabel": "Organisation",
@@ -168,7 +168,7 @@
   "info": {
     "title": "Infos pratiques",
     "eyebrow": "GÉOMTL 2027",
-    "subtitle": "Tout ce qu'il faut savoir pour préparer votre venue à Montréal.",
+    "subtitle": "Tout ce qu'il faut savoir pour préparer votre venue à Saint-Hyacinthe.",
     "venueTitle": "Lieu",
     "transportTitle": "Transport",
     "accomTitle": "Hébergement",
@@ -192,14 +192,8 @@
   },
   "gallery": {
     "title": "Galerie",
-    "eyebrow": "GÉOMTL 2026",
-    "subtitle": "Revivez les moments forts de l'édition précédente.",
-    "all": "Toutes",
-    "keynotes": "Keynotes",
-    "workshops": "Ateliers",
-    "networking": "Réseautage",
-    "exposition": "Exposition",
-    "awards": "Cérémonie des prix"
+    "eyebrow": "Éditions précédentes",
+    "subtitle": "Revivez les moments forts de GÉOMTL 2025, 2023 et 2019."
   },
   "news": {
     "title": "Actualités",

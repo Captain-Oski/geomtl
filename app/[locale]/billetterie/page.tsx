@@ -5,7 +5,9 @@ import type { Metadata } from 'next';
 import { Check } from '@phosphor-icons/react/dist/ssr/Check';
 import { EVENT_CONFIG } from '@/data/config';
 
-export const metadata: Metadata = { title: 'Billetterie' };
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  return { title: locale === 'fr' ? 'Billetterie' : 'Tickets' };
+}
 
 export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
@@ -55,14 +57,14 @@ export default async function BilletteriePage({
         'Accès aux 2 jours de conférence',
         'Accès à toutes les sessions',
         'Pauses-café et déjeuners inclus',
-        'Cocktail de bienvenue',
+        'Accès à la soirée réseautage',
         'Accès à l\'app GÉOMTL 2027',
         'Certificat de participation'
       ] : [
         'Access to 2 days of conference',
         'Access to all sessions',
         'Coffee breaks and lunches included',
-        'Welcome cocktail',
+        'Networking evening access',
         'Access to GÉOMTL 2027 app',
         'Certificate of participation'
       ]

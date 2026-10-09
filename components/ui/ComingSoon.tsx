@@ -19,8 +19,8 @@ interface ComingSoonProps {
  */
 export default function ComingSoon({ locale, eyebrow, title, message }: ComingSoonProps) {
   const defaultMessage = locale === 'fr'
-    ? 'Cette section sera dévoilée prochainement. Restez à l\'affût — l\'annonce officielle est prévue en octobre 2026, au RDV Géomatique AGMQ.'
-    : 'This section will be unveiled soon. Stay tuned — the official announcement is planned for October 2026, at the RDV Géomatique AGMQ.';
+    ? 'Cette section sera dévoilée prochainement. Restez à l\'affût!'
+    : 'This section will be unveiled soon. Stay tuned!';
 
   return (
     <div className="min-h-screen bg-geo-cream pt-20">

@@ -2,7 +2,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ComingSoon from '@/components/ui/ComingSoon';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = { title: 'Partenaires' };
+export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+  return { title: locale === 'fr' ? 'Partenaires' : 'Partners' };
+}
 
 export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
@@ -28,8 +30,8 @@ export default async function PartenairesPage({
       title={t('title')}
       message={
         locale === 'fr'
-          ? 'Nos partenaires seront dévoilés prochainement. Restez à l\'affût — l\'annonce officielle est prévue en octobre 2026, au RDV Géomatique AGMQ. Vous représentez une organisation intéressée à s\'associer à GÉOMTL 2027?'
-          : 'Our partners will be unveiled soon. Stay tuned — the official announcement is planned for October 2026, at the RDV Géomatique AGMQ. Represent an organization interested in partnering with GÉOMTL 2027?'
+          ? 'Nos partenaires seront dévoilés prochainement. Restez à l\'affût! Vous représentez une organisation intéressée à s\'associer à GÉOMTL 2027?'
+          : 'Our partners will be unveiled soon. Stay tuned! Represent an organization interested in partnering with GÉOMTL 2027?'
       }
     />
   );
