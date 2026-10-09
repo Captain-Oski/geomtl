@@ -18,9 +18,24 @@ import { Handshake } from '@phosphor-icons/react/dist/ssr/Handshake';
 import { Presentation } from '@phosphor-icons/react/dist/ssr/Presentation';
 import { Leaf } from '@phosphor-icons/react/dist/ssr/Leaf';
 import { Storefront } from '@phosphor-icons/react/dist/ssr/Storefront';
-import { ArrowSquareOut } from '@phosphor-icons/react/dist/ssr/ArrowSquareOut';
+import { Microphone } from '@phosphor-icons/react/dist/ssr/Microphone';
+import { Martini } from '@phosphor-icons/react/dist/ssr/Martini';
+import { Ticket } from '@phosphor-icons/react/dist/ssr/Ticket';
+import { Television } from '@phosphor-icons/react/dist/ssr/Television';
+import { IdentificationBadge } from '@phosphor-icons/react/dist/ssr/IdentificationBadge';
+import { cn } from '@/lib/utils';
 
 const COURRIEL_PARTENARIATS = 'info@geomtl.com';
+
+// Gradation décroissante Or > Argent > Bronze > Exposant : crèmes de plus en plus clairs
+// et globe de la marque recoloré du plus intense au plus pâle (mêmes réglages que /demo).
+// Fonds fixes, indépendants du thème, assortis au fond de chaque image.
+const NIVEAUX_VISUELS: Record<string, { globe?: string; fond: string; accent: string }> = {
+  or: { globe: '/images/brand/cartes/or.webp', fond: 'bg-[#E6E1CF]', accent: '#00735F' },
+  argent: { globe: '/images/brand/cartes/argent.webp', fond: 'bg-[#ECE9DD]', accent: '#0E6F80' },
+  bronze: { globe: '/images/brand/cartes/bronze.webp', fond: 'bg-[#F2F0E7] ring-1 ring-inset ring-black/10', accent: '#4F7A1E' },
+  exposant: { fond: 'bg-[#F8F7F2] ring-1 ring-inset ring-black/10', accent: '#5A5A52' },
+};
 
 export default function DevenirPartenairePage() {
   const t = useTranslations('becomePartner');
@@ -68,6 +83,22 @@ export default function DevenirPartenairePage() {
     { Icon: Megaphone, titre: 'Visibility', texte: 'Build your reputation in the community and attract new talent.' },
     { Icon: Handshake, titre: 'Networking', texte: 'Connect with future collaborators from the many geospatial organizations attending.' },
     { Icon: Presentation, titre: 'Inspiration', texte: 'Present your products and services, and demonstrate what\'s new.' },
+  ];
+
+  const avantages57 = fr ? [
+    { Icon: Microphone, titre: 'Mot d\'accueil', texte: '5 minutes au micro pour lancer la soirée.' },
+    { Icon: Martini, titre: 'Cocktail signature', texte: 'Un cocktail créé à votre nom, servi toute la soirée.' },
+    { Icon: Ticket, titre: 'La tournée est sur vous', texte: 'Des coupons de consommation à vos couleurs remis aux participants.' },
+    { Icon: Television, titre: 'Écrans à votre image', texte: 'Votre logo et votre vidéo en boucle dans la salle.' },
+    { Icon: Megaphone, titre: '« Présenté par »', texte: 'Votre nom dans le programme, l\'app et l\'infolettre.' },
+    { Icon: IdentificationBadge, titre: '2 passes incluses', texte: '2 passes d\'accès à la conférence pour votre équipe.' },
+  ] : [
+    { Icon: Microphone, titre: 'Welcome remarks', texte: '5 minutes at the mic to kick off the evening.' },
+    { Icon: Martini, titre: 'Signature cocktail', texte: 'A cocktail named after you, served all evening.' },
+    { Icon: Ticket, titre: 'The round is on you', texte: 'Drink tickets in your colours handed to attendees.' },
+    { Icon: Television, titre: 'Screens in your image', texte: 'Your logo and video looping in the room.' },
+    { Icon: Megaphone, titre: '“Presented by”', texte: 'Your name in the program, the app and the newsletter.' },
+    { Icon: IdentificationBadge, titre: '2 included passes', texte: '2 conference passes for your team.' },
   ];
 
   const kiosque = fr ? [
@@ -132,44 +163,137 @@ export default function DevenirPartenairePage() {
                 ? partnerLevelBenefits[level].fr
                 : partnerLevelBenefits[level].en;
 
-              // Variables de la charte (et non des hex) pour suivre le thème
-              const canaux = {
-                or: '--rgb-geo-lime-dark',
-                argent: '--rgb-geo-teal-dark',
-                bronze: '--rgb-geo-olive',
-                exposant: '--rgb-geo-ink-soft'
-              };
-              const color = `rgb(var(${canaux[level]}))`;
+              const visuel = NIVEAUX_VISUELS[level];
+              const color = visuel.accent;
 
               return (
                 <motion.div
                   key={level}
-                  className="glass-2027 rounded-2xl p-6 relative overflow-hidden"
+                  className={cn(
+                    'relative h-full rounded-2xl',
+                    level === 'or' && 'p-[2px] bg-gradient-geo-2027 shadow-geo-2027',
+                    level === 'argent' && 'p-px bg-gradient-geo-2027'
+                  )}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.07 }}
-                  style={{ borderTop: `2px solid rgb(var(${canaux[level]}) / 0.38)` }}
                 >
+                  {/* À cheval sur le bord, hors du flux : les noms des niveaux restent alignés */}
+                  {level === 'or' && (
+                    <span className="absolute -top-3 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-geo-2027 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-geo-noir shadow-sm">
+                      {fr ? 'Partenaire principal' : 'Lead partner'}
+                    </span>
+                  )}
                   <div
-                    className="text-xs font-bold uppercase tracking-wider mb-1"
-                    style={{ color }}
+                    className={cn(
+                      'relative h-full overflow-hidden p-6',
+                      visuel.fond,
+                      visuel.globe && 'pb-44',
+                      level === 'or' ? 'rounded-[14px]' : level === 'argent' ? 'rounded-[15px]' : 'rounded-2xl'
+                    )}
                   >
-                    {data.name}
+                    {visuel.globe && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={visuel.globe}
+                        alt=""
+                        aria-hidden="true"
+                        loading="lazy"
+                        className="pointer-events-none absolute inset-x-0 bottom-0 h-44 w-full object-cover object-top [mask-image:linear-gradient(to_bottom,transparent,black_45%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_45%)]"
+                      />
+                    )}
+                    {level === 'bronze' && (
+                      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-gradient-geo-2027" />
+                    )}
+
+                    <div className="relative">
+                      <div className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color }}>
+                        {data.name}
+                      </div>
+                      <div
+                        className={cn(
+                          'text-3xl font-black',
+                          level === 'or'
+                            ? 'bg-gradient-to-r from-[#00735F] to-[#4F7A1E] bg-clip-text text-transparent'
+                            : 'text-geo-noir'
+                        )}
+                      >
+                        {data.price}
+                      </div>
+                      <div className="text-xs mb-4 text-[#5A5A52]">{data.capacity}</div>
+                      <ul className="space-y-2">
+                        {data.benefits.map((benefit, i) => (
+                          <li key={i} className="flex items-start gap-2 text-xs text-[#4A4A44]">
+                            <Check size={14} weight={level === 'exposant' ? 'light' : 'bold'} color={color} className="mt-0.5 flex-shrink-0" aria-hidden="true" />
+                            {benefit}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                  <div className="text-2xl font-black text-geo-ink">{data.price}</div>
-                  <div className="text-xs text-geo-ink-soft mb-4">{data.capacity}</div>
-                  <ul className="space-y-2">
-                    {data.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs text-geo-ink-soft">
-                        <Check size={14} weight="light" color={color} className="mt-0.5 flex-shrink-0" aria-hidden="true" />
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
                 </motion.div>
               );
             })}
           </div>
+
+          <motion.div
+            className="mt-8 rounded-3xl p-[2px] bg-gradient-geo-2027 shadow-geo-2027"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Fond crème fixe avec le globe standard de la charte, quel que soit le thème */}
+            <div className="relative overflow-hidden rounded-[22px] bg-[#F4F3EE] px-6 py-8 sm:px-10 sm:py-10">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/brand/cartes/cinq-a-sept.webp"
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="pointer-events-none absolute inset-0 h-full w-full object-cover object-top"
+              />
+              <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-[#F4F3EE] from-35% via-[#F4F3EE]/60 via-55% to-transparent to-80%" />
+
+              <div className="relative grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+                <div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="rounded-full bg-gradient-geo-2027 px-3 py-1 text-xs font-bold uppercase tracking-wider text-geo-noir">
+                      {fr ? 'À la carte' : 'À la carte'}
+                    </span>
+                    <span className="rounded-full border border-geo-noir/20 bg-white/50 px-3 py-1 text-xs font-semibold text-geo-noir">
+                      {fr ? 'Exclusif · 1 seul partenaire' : 'Exclusive · 1 partner only'}
+                    </span>
+                  </div>
+                  <h3 className="mt-5 font-display text-3xl sm:text-4xl font-bold leading-tight text-geo-noir">
+                    {fr ? 'Le 5@7 réseautage, ' : 'The networking 5@7, '}
+                    <span className="text-[#00735F]">{fr ? 'présenté par vous' : 'presented by you'}</span>
+                  </h3>
+                  <p className="mt-3 font-semibold text-geo-noir">
+                    {fr ? 'Lundi 4 octobre 2027, de 17 h à 19 h' : 'Monday, October 4, 2027, 5 to 7 pm'}
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-[#4A4A44] max-w-lg">
+                    {fr
+                      ? 'Le moment le plus convivial du congrès : plus de 400 professionnels réunis autour d\'un verre. Votre organisation en est l\'hôte, du premier mot au dernier toast.'
+                      : 'The most convivial moment of the conference: more than 400 professionals gathered over drinks. Your organization is the host, from the first word to the last toast.'}
+                  </p>
+                  <p className="mt-6 font-display text-5xl font-black bg-gradient-to-r from-[#00735F] to-[#4F7A1E] bg-clip-text text-transparent">
+                    {fr ? '3 000 $' : '$3,000'}
+                  </p>
+                </div>
+
+                <ul className="grid gap-3 sm:grid-cols-2">
+                  {avantages57.map(({ Icon, titre, texte }) => (
+                    <li key={titre} className="rounded-2xl border border-white/70 bg-white/75 p-4 shadow-sm backdrop-blur-md">
+                      <Icon size={26} weight="light" className="text-[#00735F]" aria-hidden="true" />
+                      <p className="mt-2 text-sm font-semibold text-geo-noir">{titre}</p>
+                      <p className="mt-1 text-xs leading-relaxed text-[#4A4A44]">{texte}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </motion.div>
         </section>
 
         <section>
@@ -316,26 +440,6 @@ export default function DevenirPartenairePage() {
                   </a>
                 </div>
               </div>
-            </div>
-
-            <div className="glass-2027 rounded-2xl p-6">
-              <h3 className="text-lg font-bold text-geo-ink mb-3">
-                {fr ? 'Un événement de l\'ACSG – Section Montréal' : 'An ACSG – Montréal Section event'}
-              </h3>
-              <p className="text-sm text-geo-ink-soft leading-relaxed">
-                {fr
-                  ? 'GÉOMTL est organisé par la section montréalaise de l\'Association canadienne des sciences géomatiques (ACSG), une association scientifique et technique sans but lucratif vouée à l\'avancement de la géomatique au Canada. Active depuis 1953, la section de Montréal présente cet événement depuis 1981 pour créer des occasions d\'affaires et d\'échanges en géomatique.'
-                  : 'GÉOMTL is organized by the Montréal section of the ACSG (Canadian Institute of Geomatics), a non-profit scientific and technical association dedicated to advancing geomatics in Canada. Active since 1953, the Montréal section has presented this event since 1981 to create business and networking opportunities in geomatics.'}
-              </p>
-              <a
-                href="https://acsg-montreal.ca"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-geo-teal-dark hover:underline"
-              >
-                acsg-montreal.ca
-                <ArrowSquareOut size={14} weight="light" aria-hidden="true" />
-              </a>
             </div>
           </div>
         </section>

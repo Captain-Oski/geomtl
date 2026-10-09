@@ -27,12 +27,10 @@ export const partnerLevelBenefits = {
       capacity: "1 disponible",
       benefits: [
         "6 passes d'accès incluses",
-        "2 kiosques d'exposition",
+        "1 kiosque de 20 pieds",
         "25 minutes de scène principale",
-        "2 accès aux plénières",
-        "Meilleur emplacement",
-        "Priorité au renouvellement",
-        "Visibilité maximale"
+        "Commandite de la salle principale, sur 2 jours",
+        "Visibilité de premier plan dans nos communications et sur nos réseaux sociaux"
       ]
     },
     en: {
@@ -41,12 +39,10 @@ export const partnerLevelBenefits = {
       capacity: "1 available",
       benefits: [
         "6 included passes",
-        "2 exhibition booths",
+        "One 20-ft booth",
         "25 minutes main stage time",
-        "2 plenary access",
-        "Prime location",
-        "Renewal priority",
-        "Maximum visibility"
+        "Main room sponsorship, for both days",
+        "Top billing in our communications and on our social media"
       ]
     }
   },
@@ -57,12 +53,11 @@ export const partnerLevelBenefits = {
       capacity: "4 disponibles",
       benefits: [
         "4 passes d'accès incluses",
-        "1 kiosque d'exposition",
-        "4 x 5 minutes en salles",
-        "Accès à 4 salles partenaires",
-        "1 vitrine d'exposition",
-        "Kiosques centraux",
-        "Accès aux activations partenaires"
+        "1 kiosque de 10 pieds",
+        "5 minutes de scène principale",
+        "Salle de conférence commanditée à votre nom, sur 2 jours",
+        "25 minutes de vitrine technologique",
+        "Visibilité dans nos communications et sur nos réseaux sociaux"
       ]
     },
     en: {
@@ -71,12 +66,11 @@ export const partnerLevelBenefits = {
       capacity: "4 available",
       benefits: [
         "4 included passes",
-        "1 exhibition booth",
-        "4 x 5-min sessions",
-        "Access to 4 partner rooms",
-        "1 showcase display",
-        "Central booth location",
-        "Partner activity access"
+        "One 10-ft booth",
+        "5 minutes main stage time",
+        "Conference room sponsored in your name, for both days",
+        "25 minutes of technology showcase",
+        "Visibility in our communications and on our social media"
       ]
     }
   },
@@ -87,12 +81,10 @@ export const partnerLevelBenefits = {
       capacity: "4 disponibles",
       benefits: [
         "2 passes d'accès incluses",
-        "1 kiosque d'exposition",
-        "Accès aux pauses/lounges",
-        "1 vitrine d'exposition",
-        "Kiosques stratégiques",
-        "Visibilité standard",
-        "Accès au réseautage"
+        "1 kiosque de 10 pieds",
+        "Lounge à vos couleurs pendant une demi-journée (écrans, vidéos, gobelets à votre logo)",
+        "25 minutes de vitrine technologique",
+        "Mention sur nos réseaux sociaux"
       ]
     },
     en: {
@@ -101,12 +93,10 @@ export const partnerLevelBenefits = {
       capacity: "4 available",
       benefits: [
         "2 included passes",
-        "1 exhibition booth",
-        "Lounge access",
-        "1 showcase display",
-        "Strategic booth location",
-        "Standard visibility",
-        "Networking access"
+        "One 10-ft booth",
+        "Lounge in your brand colours for half a day (screens, videos, cups with your logo)",
+        "25 minutes of technology showcase",
+        "Mention on our social media"
       ]
     }
   },
@@ -117,11 +107,7 @@ export const partnerLevelBenefits = {
       capacity: "16 disponibles",
       benefits: [
         "2 passes d'accès incluses",
-        "1 kiosque d'exposition",
-        "Vitrine si disponible",
-        "Salon d'exposition",
-        "Accès aux activations",
-        "Visibilité d'exposition"
+        "1 kiosque de 10 pieds"
       ]
     },
     en: {
@@ -130,11 +116,7 @@ export const partnerLevelBenefits = {
       capacity: "16 available",
       benefits: [
         "2 included passes",
-        "1 exhibition booth",
-        "Showcase if available",
-        "Exhibition hall access",
-        "Activity access",
-        "Exhibition visibility"
+        "One 10-ft booth"
       ]
     }
   }
