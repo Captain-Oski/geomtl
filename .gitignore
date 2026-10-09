@@ -15,3 +15,6 @@ next-env.d.ts
 scripts/globe/.travail/
 scripts/globe/source/
 __pycache__/
+
+# Exports d'images générés localement
+exports/
