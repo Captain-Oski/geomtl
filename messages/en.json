@@ -67,7 +67,7 @@
   },
   "why": {
     "networkTitle": "High-level Networking",
-    "networkDesc": "Meet more than 400 professionals, researchers and decision-makers in the geospatial sector.",
+    "networkDesc": "Meet more than 400 professionals, researchers, decision-makers, technicians, users, developers, analysts and project managers from the geospatial sector at our much-anticipated networking 5@7.",
     "expertiseTitle": "Cutting-edge Expertise",
     "expertiseDesc": "Speakers from the public, private and academic sectors.",
     "innovTitle": "Discover Innovation",
@@ -76,9 +76,10 @@
     "vitrineDesc": "The latest geospatial solutions presented by exhibitors, with live demonstrations on site.",
     "awardTitle": "Recognize Excellence",
     "awardCta": "Discover the GAÏA Prize",
-    "awardDesc": "Attend the presentation of the GAÏA Prize, awarded by the ACSG since 1993 to honour a remarkable contribution to geomatics in Quebec.",
-    "reseauTitle": "Professional Community",
-    "reseauDesc": "Build lasting connections with Quebec's geomatics community: colleagues, partners, employers and the next generation."
+    "awardDesc": "Attend the presentation of the GAÏA Prize, awarded by ACSG-Mtl since 1993 to honour a remarkable contribution to geomatics in Quebec.",
+    "releveTitle": "Developing the Next Generation",
+    "releveDesc": "Meet the next generation at the presentation of the ACSG-Mtl scholarships.",
+    "releveCta": "Discover the scholarship program"
   },
   "programme": {
     "title": "Program",
@@ -137,7 +138,7 @@
   "becomePartner": {
     "title": "Become a Partner",
     "eyebrow": "GÉOMTL 2027 Partnership",
-    "subtitle": "Position your organization at the heart of the Canadian geospatial community.",
+    "subtitle": "Position your organization at the heart of the Quebec geospatial community.",
     "downloadGuide": "Download the Exhibitor Guide",
     "contactTitle": "Contact Us",
     "nameLabel": "Full Name",
@@ -184,11 +185,8 @@
     "title": "Tickets",
     "eyebrow": "GÉOMTL 2027",
     "subtitle": "Choose the pass that suits you.",
-    "earlyBird": "Early Bird",
-    "standard": "Standard",
     "buyNow": "Buy Now",
-    "includes": "Includes",
-    "taxNote": "Prices in CAD, taxes not included"
+    "includes": "Includes"
   },
   "gallery": {
     "title": "Gallery",
@@ -219,7 +217,6 @@
     "missionTitle": "Our Mission",
     "visionTitle": "Our Vision",
     "historyTitle": "Our History",
-    "valuesTitle": "Our Values",
     "teamTitle": "The Team"
   },
   "contact": {

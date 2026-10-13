@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { EVENT_CONFIG } from '@/data/config';
 import GeoMTLLogo from '@/components/ui/GeoMTLLogo';
+import Slogan from '@/components/ui/Slogan';
 import { LinkedinLogo } from '@phosphor-icons/react/dist/ssr/LinkedinLogo';
 import { Mountains } from '@phosphor-icons/react/dist/ssr/Mountains';
 
@@ -43,8 +44,8 @@ export default function Footer() {
             <Link href={`/${locale}`} aria-label="GÉOMTL 2027 — Accueil" className="text-white inline-flex">
               <GeoMTLLogo height={34} showYear={true} />
             </Link>
-            <p className="text-geo-papier leading-relaxed max-w-xs">
-              {t('tagline')}
+            <p className="font-slogan font-bold text-lg leading-[1.1] text-geo-papier max-w-xs">
+              <Slogan texte={t('tagline')} />
             </p>
             <div className="flex gap-4 pt-2">
               {/* Social icons */}

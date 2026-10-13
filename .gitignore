@@ -14,6 +14,8 @@ next-env.d.ts
 # Scripts du globe : fichiers intermédiaires et image source du studio (non versionnée)
 scripts/globe/.travail/
 scripts/globe/source/
+# Scripts des cartes de partenariat : capture intermédiaire du globe
+scripts/cartes/.travail/
 __pycache__/
 
 # Exports d'images générés localement

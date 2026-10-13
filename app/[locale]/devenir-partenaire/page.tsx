@@ -8,7 +8,6 @@ import SectionTitle from '@/components/ui/SectionTitle';
 import { partnerLevelBenefits, PARTNER_LEVELS_ORDER } from '@/data/partners';
 import { Check } from '@phosphor-icons/react/dist/ssr/Check';
 import { EnvelopeSimple } from '@phosphor-icons/react/dist/ssr/EnvelopeSimple';
-import { FileText } from '@phosphor-icons/react/dist/ssr/FileText';
 import { UsersThree } from '@phosphor-icons/react/dist/ssr/UsersThree';
 import { Lightbulb } from '@phosphor-icons/react/dist/ssr/Lightbulb';
 import { Megaphone } from '@phosphor-icons/react/dist/ssr/Megaphone';
@@ -17,24 +16,42 @@ import { TrendUp } from '@phosphor-icons/react/dist/ssr/TrendUp';
 import { Handshake } from '@phosphor-icons/react/dist/ssr/Handshake';
 import { Presentation } from '@phosphor-icons/react/dist/ssr/Presentation';
 import { Leaf } from '@phosphor-icons/react/dist/ssr/Leaf';
+import { MapTrifold } from '@phosphor-icons/react/dist/ssr/MapTrifold';
 import { Storefront } from '@phosphor-icons/react/dist/ssr/Storefront';
 import { Microphone } from '@phosphor-icons/react/dist/ssr/Microphone';
 import { Martini } from '@phosphor-icons/react/dist/ssr/Martini';
-import { Ticket } from '@phosphor-icons/react/dist/ssr/Ticket';
 import { Television } from '@phosphor-icons/react/dist/ssr/Television';
 import { IdentificationBadge } from '@phosphor-icons/react/dist/ssr/IdentificationBadge';
+import PlanKiosques from '@/components/partners/PlanKiosques';
 import { cn } from '@/lib/utils';
 
 const COURRIEL_PARTENARIATS = 'info@geomtl.com';
 
-// Gradation décroissante Or > Argent > Bronze > Exposant : crèmes de plus en plus clairs
-// et globe de la marque recoloré du plus intense au plus pâle (mêmes réglages que /demo).
-// Fonds fixes, indépendants du thème, assortis au fond de chaque image.
-const NIVEAUX_VISUELS: Record<string, { globe?: string; fond: string; accent: string }> = {
-  or: { globe: '/images/brand/cartes/or.webp', fond: 'bg-[#E6E1CF]', accent: '#00735F' },
-  argent: { globe: '/images/brand/cartes/argent.webp', fond: 'bg-[#ECE9DD]', accent: '#0E6F80' },
-  bronze: { globe: '/images/brand/cartes/bronze.webp', fond: 'bg-[#F2F0E7] ring-1 ring-inset ring-black/10', accent: '#4F7A1E' },
-  exposant: { fond: 'bg-[#F8F7F2] ring-1 ring-inset ring-black/10', accent: '#5A5A52' },
+// Même gabarit pour les quatre niveaux : seule la matière change. Le globe de
+// la charte est recoloré en or, argent, bronze et graphite (scripts/cartes),
+// et la même rampe sert au filet du haut ; l'accent, plus foncé, colore
+// l'étiquette et les coches. Fond crème fixe, indépendant du thème.
+const NIVEAUX_VISUELS: Record<string, { globe: string; filet: string; accent: string }> = {
+  or: {
+    globe: '/images/brand/cartes/or.webp',
+    filet: 'linear-gradient(90deg, #8E6410, #F0CB62 40%, #D3A12C 65%, #8E6410)',
+    accent: '#7A5608',
+  },
+  argent: {
+    globe: '/images/brand/cartes/argent.webp',
+    filet: 'linear-gradient(90deg, #5F6871, #D2D7DC 40%, #A2AAB2 65%, #5F6871)',
+    accent: '#4F5861',
+  },
+  bronze: {
+    globe: '/images/brand/cartes/bronze.webp',
+    filet: 'linear-gradient(90deg, #74401E, #DA9E6F 40%, #B36F3F 65%, #74401E)',
+    accent: '#7A4220',
+  },
+  exposant: {
+    globe: '/images/brand/cartes/exposant.webp',
+    filet: 'linear-gradient(90deg, #55544D, #BDBAB0 40%, #8F8D84 65%, #55544D)',
+    accent: '#4A4944',
+  },
 };
 
 export default function DevenirPartenairePage() {
@@ -88,17 +105,15 @@ export default function DevenirPartenairePage() {
   const avantages57 = fr ? [
     { Icon: Microphone, titre: 'Mot d\'accueil', texte: '5 minutes au micro pour lancer la soirée.' },
     { Icon: Martini, titre: 'Cocktail signature', texte: 'Un cocktail créé à votre nom, servi toute la soirée.' },
-    { Icon: Ticket, titre: 'La tournée est sur vous', texte: 'Des coupons de consommation à vos couleurs remis aux participants.' },
     { Icon: Television, titre: 'Écrans à votre image', texte: 'Votre logo et votre vidéo en boucle dans la salle.' },
-    { Icon: Megaphone, titre: '« Présenté par »', texte: 'Votre nom dans le programme, l\'app et l\'infolettre.' },
-    { Icon: IdentificationBadge, titre: '2 passes incluses', texte: '2 passes d\'accès à la conférence pour votre équipe.' },
+    { Icon: Megaphone, titre: '« Présenté par »', texte: 'Votre nom dans le programme, le site Web et l\'infolettre.' },
+    { Icon: IdentificationBadge, titre: '2 passes complètes incluses', texte: '2 passes complètes (2 jours) pour votre équipe.' },
   ] : [
     { Icon: Microphone, titre: 'Welcome remarks', texte: '5 minutes at the mic to kick off the evening.' },
     { Icon: Martini, titre: 'Signature cocktail', texte: 'A cocktail named after you, served all evening.' },
-    { Icon: Ticket, titre: 'The round is on you', texte: 'Drink tickets in your colours handed to attendees.' },
     { Icon: Television, titre: 'Screens in your image', texte: 'Your logo and video looping in the room.' },
-    { Icon: Megaphone, titre: '“Presented by”', texte: 'Your name in the program, the app and the newsletter.' },
-    { Icon: IdentificationBadge, titre: '2 included passes', texte: '2 conference passes for your team.' },
+    { Icon: Megaphone, titre: '“Presented by”', texte: 'Your name in the program, on the website and in the newsletter.' },
+    { Icon: IdentificationBadge, titre: '2 full passes included', texte: '2 full passes (both days) for your team.' },
   ];
 
   const kiosque = fr ? [
@@ -124,17 +139,6 @@ export default function DevenirPartenairePage() {
             title={t('title')}
             subtitle={t('subtitle')}
           />
-          <div className="text-center mt-4">
-            <a
-              href="/documents/GEOMTL-2027-Guide-exposant.pdf"
-              download="GEOMTL-2027-Guide-exposant.pdf"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
-            >
-              <FileText size={20} weight="light" aria-hidden="true" />
-              {t('downloadGuide')}
-              <span className="text-sm font-normal opacity-70">{fr ? '(PDF, 3,5 Mo)' : '(PDF, 3.5 MB)'}</span>
-            </a>
-          </div>
         </Container>
       </div>
 
@@ -174,62 +178,50 @@ export default function DevenirPartenairePage() {
               return (
                 <motion.div
                   key={level}
-                  className={cn(
-                    'relative h-full rounded-2xl',
-                    level === 'or' && 'p-[2px] bg-gradient-geo-2027 shadow-geo-2027',
-                    level === 'argent' && 'p-px bg-gradient-geo-2027'
-                  )}
+                  className="relative h-full"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.07 }}
                 >
                   {/* À cheval sur le bord, hors du flux : les noms des niveaux restent alignés */}
                   {level === 'or' && (
-                    <span className="absolute -top-3 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-gradient-geo-2027 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-geo-noir shadow-sm">
+                    <span
+                      className="absolute -top-3 left-1/2 z-10 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-[#3A2A05] shadow-sm"
+                      style={{ background: 'linear-gradient(90deg, #E2B243, #F6DC8A 50%, #E2B243)' }}
+                    >
                       {fr ? 'Partenaire principal' : 'Lead partner'}
                     </span>
                   )}
                   <div
                     className={cn(
-                      'relative h-full overflow-hidden p-6',
-                      visuel.fond,
-                      visuel.globe && 'pb-36',
-                      level === 'or' ? 'rounded-[14px]' : level === 'argent' ? 'rounded-[15px]' : 'rounded-2xl'
+                      'relative h-full overflow-hidden rounded-2xl border bg-[#F4F3EE] p-6 pb-40',
+                      level === 'or'
+                        ? 'border-[#D3A12C]/70 shadow-[0_14px_40px_-16px_rgba(142,100,16,0.45)]'
+                        : 'border-black/10 shadow-sm'
                     )}
                   >
-                    {visuel.globe && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={visuel.globe}
-                        alt=""
-                        aria-hidden="true"
-                        loading="lazy"
-                        className="pointer-events-none absolute bottom-0 right-0 h-auto w-[70%] [mask-image:linear-gradient(to_bottom,transparent,black_40%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_40%)]"
-                      />
-                    )}
-                    {level === 'bronze' && (
-                      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-gradient-geo-2027" />
-                    )}
+                    <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5" style={{ background: visuel.filet }} />
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={visuel.globe}
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      width={800}
+                      height={489}
+                      className="pointer-events-none absolute -bottom-2 -right-2 h-auto w-[80%] [mask-image:linear-gradient(to_bottom,transparent,black_35%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent,black_35%)]"
+                    />
 
                     <div className="relative">
-                      <div className="text-xs font-bold uppercase tracking-wider mb-1" style={{ color }}>
+                      <div className="text-xs font-bold uppercase tracking-[0.14em] mb-1" style={{ color }}>
                         {data.name}
                       </div>
-                      <div
-                        className={cn(
-                          'text-3xl font-black',
-                          level === 'or'
-                            ? 'bg-gradient-to-r from-[#00735F] to-[#4F7A1E] bg-clip-text text-transparent'
-                            : 'text-geo-noir'
-                        )}
-                      >
-                        {data.price}
-                      </div>
+                      <div className="text-3xl font-black text-geo-noir">{data.price}</div>
                       <div className="text-xs mb-4 text-[#5A5A52]">{data.capacity}</div>
                       <ul className="space-y-2">
                         {data.benefits.map((benefit, i) => (
                           <li key={i} className="flex items-start gap-2 text-xs text-[#4A4A44]">
-                            <Check size={14} weight={level === 'exposant' ? 'light' : 'bold'} color={color} className="mt-0.5 flex-shrink-0" aria-hidden="true" />
+                            <Check size={14} weight="bold" color={color} className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                             {benefit}
                           </li>
                         ))}
@@ -289,7 +281,7 @@ export default function DevenirPartenairePage() {
 
                 <ul className="grid gap-3 sm:grid-cols-2">
                   {avantages57.map(({ Icon, titre, texte }) => (
-                    <li key={titre} className="rounded-2xl border border-white/70 bg-white/75 p-4 shadow-sm backdrop-blur-md">
+                    <li key={titre} className="rounded-2xl border border-white/70 bg-white/75 p-4 shadow-sm backdrop-blur-md sm:odd:last:col-span-2">
                       <Icon size={26} weight="light" className="text-[#00735F]" aria-hidden="true" />
                       <p className="mt-2 text-sm font-semibold text-geo-noir">{titre}</p>
                       <p className="mt-1 text-xs leading-relaxed text-[#4A4A44]">{texte}</p>
@@ -346,6 +338,24 @@ export default function DevenirPartenairePage() {
                   : 'We encourage partners and exhibitors to limit paper printing, favour digital and sustainable approaches, and take back any undistributed promotional material.'}
               </p>
             </div>
+          </div>
+
+          <div className="glass-2027 rounded-2xl p-6 mt-4">
+            <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+              <h3 className="text-lg font-bold text-geo-ink flex items-center gap-2">
+                <MapTrifold size={24} weight="light" aria-hidden="true" />
+                {fr ? 'Plan des kiosques' : 'Booth floor plan'}
+              </h3>
+              <span className="rounded-full border border-geo-ink/15 px-3 py-1 text-xs font-semibold text-geo-ink-soft">
+                {fr ? 'Plan préliminaire' : 'Preliminary plan'}
+              </span>
+            </div>
+            <PlanKiosques fr={fr} />
+            <p className="text-xs text-geo-ink-soft mt-3">
+              {fr
+                ? 'L\'emplacement et le nombre de kiosques peuvent encore changer.'
+                : 'Booth locations and count may still change.'}
+            </p>
           </div>
         </section>
 

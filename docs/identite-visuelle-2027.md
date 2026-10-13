@@ -57,6 +57,7 @@ Le bouton lune / soleil du Header (`components/layout/ThemeToggle.tsx`) bascule 
 |--------|---------|----|
 | Globe en trame (animé) | `public/images/brand/globe-trame.json` + `terre-densite.png` | Hero de l'accueil. Voir [globe-anime.md](globe-anime.md). |
 | Dégradé en trame | `public/images/brand/degrade-trame.jpg` / `.webp` | Bandeau d'appel à l'action de l'accueil et en-têtes des pages intérieures. |
+| Globes des niveaux de partenariat | `public/images/brand/cartes/or.webp`, `argent.webp`, `bronze.webp`, `exposant.webp` | Cartes Or, Argent, Bronze et Exposant de la page Devenir partenaire. Le globe de la charte, recoloré en or, argent, bronze et graphite sur fond transparent. Se régénèrent avec `scripts/cartes/` (capture depuis `/demo`, puis teinte). |
 
 Les en-têtes des pages intérieures utilisent la classe `page-header-2027` (`styles/globals.css`). Elle pose le dégradé en trame et repasse en encre les éléments qui disparaîtraient dessus : sur-titre en dégradé, texte secondaire et boutons en dégradé. En mode sombre, le dégradé est éteint sous un voile d'encre et ces éléments gardent leurs couleurs vives.
 

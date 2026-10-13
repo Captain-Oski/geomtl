@@ -40,11 +40,11 @@ export default function Header() {
   return (
     <>
       <header
+        // Barre grise (crème foncé) comme la maquette du studio : elle se
+        // détache du hero crème dès le haut de la page.
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          scrolled
-            ? 'bg-geo-cream/90 backdrop-blur-md border-b border-geo-ink/10 shadow-card-2027'
-            : 'bg-transparent'
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-geo-cream-dark/95 backdrop-blur-md',
+          scrolled && 'border-b border-geo-ink/10 shadow-card-2027'
         )}
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -138,7 +138,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 bg-geo-cream/95 backdrop-blur-xl border-b border-geo-ink/10 lg:hidden"
+            className="fixed top-16 left-0 right-0 z-40 bg-geo-cream-dark/95 backdrop-blur-xl border-b border-geo-ink/10 lg:hidden"
           >
             <div className="px-4 py-6 space-y-1">
               {navLinks.map((link) => (

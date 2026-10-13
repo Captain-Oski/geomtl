@@ -12,9 +12,15 @@
   --yellow-geo: #ffd60a;
   --light-gray: #f0f4f8;
   --mid-gray: #8896a8;
+}
 
+/* Polices de repli seulement : next/font définit --font-inter et
+   --font-display sur <html> (layouts [locale] et construction), avec les
+   noms internes des polices qu'il charge. :where() garde une spécificité
+   nulle pour ne jamais écraser ces valeurs ; sans lui, tout le site
+   s'affichait dans la police du système (Segoe UI, San Francisco). */
+:where(:root) {
   --font-inter: 'Inter', system-ui, sans-serif;
-
   --font-display: 'Space Grotesk', var(--font-inter);
 }
 

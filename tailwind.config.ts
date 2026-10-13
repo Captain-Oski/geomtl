@@ -55,6 +55,10 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
         display: ['var(--font-display)', 'var(--font-inter)', 'system-ui', 'sans-serif'],
+        // Police du slogan dans la maquette du studio : Programme (Optimo),
+        // sous licence commerciale. Tant que ses fichiers web ne sont pas dans
+        // le projet, le navigateur passe à la police d'affichage du site.
+        slogan: ['Programme', 'var(--font-display)', 'var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

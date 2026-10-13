@@ -172,8 +172,9 @@ export default function InfosPage() {
                 <li className="flex items-start gap-3">
                   <GlobeHemisphereWest size={20} weight="light" className="text-geo-ink mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <div>
-                    <p className="text-geo-ink font-semibold">{locale === 'fr' ? 'Langues' : 'Languages'}</p>
-                    <p>{locale === 'fr' ? 'Français et anglais' : 'French and English'}</p>
+                    {/* Environ 95 % des allocutions sont en français */}
+                    <p className="text-geo-ink font-semibold">{locale === 'fr' ? 'Langue' : 'Language'}</p>
+                    <p>{locale === 'fr' ? 'Français' : 'French'}</p>
                   </div>
                 </li>
               </ul>

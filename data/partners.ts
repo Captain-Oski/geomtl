@@ -82,7 +82,7 @@ export const partnerLevelBenefits = {
       benefits: [
         "2 passes d'accès incluses",
         "1 kiosque de 10 pieds",
-        "Lounge à vos couleurs pendant une demi-journée (écrans, vidéos, gobelets à votre logo)",
+        "Le lounge café à vos couleurs pendant une demi-journée : votre logo et vos vidéos sur les écrans, gobelets à votre logo",
         "25 minutes de vitrine technologique",
         "Mention sur nos réseaux sociaux"
       ]
@@ -94,7 +94,7 @@ export const partnerLevelBenefits = {
       benefits: [
         "2 included passes",
         "One 10-ft booth",
-        "Lounge in your brand colours for half a day (screens, videos, cups with your logo)",
+        "The café lounge in your colours for half a day: your logo and videos on the screens, cups with your logo",
         "25 minutes of technology showcase",
         "Mention on our social media"
       ]

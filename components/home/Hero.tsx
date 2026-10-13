@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { EVENT_CONFIG } from '@/data/config';
 import GeoMTLLogo from '@/components/ui/GeoMTLLogo';
+import Slogan from '@/components/ui/Slogan';
 import GlobeTrame, { type IdeaKey, type ReglagesGlobe } from '@/components/home/GlobeTrame';
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import { cn } from '@/lib/utils';
@@ -56,7 +57,11 @@ export default function Hero({ reglages, onIdee, masquerTexte = false }: HeroPro
               <br />
               {venue}
             </p>
-            <p className="max-w-xs">{tagline}</p>
+            {/* Specs de la maquette : Programme Bold, 33,93 px sur une maquette de
+                1920 px de large (d'où 1,767vw), interligne 1,1, approche 0, #282828 */}
+            <p className="font-slogan font-bold text-[clamp(1.125rem,1.767vw,2.125rem)] leading-[1.1] tracking-normal text-[#282828] dark:text-geo-ink lg:whitespace-nowrap">
+              <Slogan texte={tagline} />
+            </p>
           </div>
           <span className="flex-shrink-0 rounded-md px-3 py-1 font-display text-xl sm:text-2xl lg:text-3xl font-bold bg-geo-ink text-geo-cream">
             2027

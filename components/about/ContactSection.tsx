@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { EVENT_CONFIG } from '@/data/config';
 import { EnvelopeSimple } from '@phosphor-icons/react/dist/ssr/EnvelopeSimple';
-import { MapPin } from '@phosphor-icons/react/dist/ssr/MapPin';
 
 const champ =
   'w-full px-4 py-3 glass-2027 rounded-xl text-geo-ink placeholder:text-geo-ink-soft/50 border border-geo-ink/10 focus:border-geo-teal-dark/50 focus:outline-none text-sm';
@@ -146,14 +145,6 @@ export default function ContactSection() {
               <a href={`mailto:${EVENT_CONFIG.email}`} className="hover:text-geo-ink transition-colors">
                 {EVENT_CONFIG.email}
               </a>
-            </div>
-            <div className="flex items-start gap-3 text-geo-ink-soft">
-              <MapPin size={20} weight="light" className="text-geo-ink flex-shrink-0 mt-0.5" aria-hidden="true" />
-              <span>
-                {fr ? EVENT_CONFIG.venue.fr : EVENT_CONFIG.venue.en}
-                <br />
-                {fr ? EVENT_CONFIG.address.fr : EVENT_CONFIG.address.en}
-              </span>
             </div>
           </div>
         </div>

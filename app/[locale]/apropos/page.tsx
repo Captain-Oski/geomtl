@@ -5,15 +5,8 @@ import SectionTitle from '@/components/ui/SectionTitle';
 import ContactSection from '@/components/about/ContactSection';
 import Histoire from '@/components/about/Histoire';
 import type { Metadata } from 'next';
-import { GlobeHemisphereWest } from '@phosphor-icons/react/dist/ssr/GlobeHemisphereWest';
-import { Handshake } from '@phosphor-icons/react/dist/ssr/Handshake';
-import { Lightbulb } from '@phosphor-icons/react/dist/ssr/Lightbulb';
-import { Leaf } from '@phosphor-icons/react/dist/ssr/Leaf';
-import { Translate } from '@phosphor-icons/react/dist/ssr/Translate';
-import { Mountains } from '@phosphor-icons/react/dist/ssr/Mountains';
 import { Target } from '@phosphor-icons/react/dist/ssr/Target';
 import { Binoculars } from '@phosphor-icons/react/dist/ssr/Binoculars';
-import { Diamond } from '@phosphor-icons/react/dist/ssr/Diamond';
 import { UsersThree } from '@phosphor-icons/react/dist/ssr/UsersThree';
 import { Trophy } from '@phosphor-icons/react/dist/ssr/Trophy';
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight';
@@ -33,22 +26,6 @@ export default async function AProposPage({
 }) {
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'about' });
-
-  const values = locale === 'fr' ? [
-    { Icon: GlobeHemisphereWest, title: 'Ouverture', desc: 'Nous croyons que les données géospatiales doivent être accessibles à tous, quel que soit leur niveau d\'expertise ou leurs moyens.' },
-    { Icon: Handshake, title: 'Collaboration', desc: 'Le géospatial se construit à la croisée des secteurs. Nous facilitons les échanges entre le public, le privé, l\'académique et la société civile.' },
-    { Icon: Lightbulb, title: 'Innovation', desc: 'Nous embrassons les nouvelles technologies tout en ancrant l\'innovation dans les besoins réels du territoire et des communautés.' },
-    { Icon: Leaf, title: 'Responsabilité', desc: 'Le géospatial est un outil puissant. Nous nous engageons à l\'utiliser de manière éthique, inclusive et durable.' },
-    { Icon: Translate, title: 'Bilinguisme', desc: 'GÉOMTL rassemble une communauté francophone et anglophone : tous nos contenus sont offerts en français et en anglais.' },
-    { Icon: Mountains, title: 'Territoire', desc: 'Nous reconnaissons que Montréal est situé sur les terres non cédées des Kanien\'kehá:ka. Le territoire est notre raison d\'être.' },
-  ] : [
-    { Icon: GlobeHemisphereWest, title: 'Openness', desc: 'We believe geospatial data should be accessible to all, regardless of their level of expertise or means.' },
-    { Icon: Handshake, title: 'Collaboration', desc: 'Geospatial is built at the crossroads of sectors. We facilitate exchanges between public, private, academic and civil society.' },
-    { Icon: Lightbulb, title: 'Innovation', desc: 'We embrace new technologies while anchoring innovation in the real needs of the territory and communities.' },
-    { Icon: Leaf, title: 'Responsibility', desc: 'Geospatial is a powerful tool. We are committed to using it ethically, inclusively and sustainably.' },
-    { Icon: Translate, title: 'Bilingualism', desc: 'GÉOMTL brings together a French- and English-speaking community: all our content is available in French and English.' },
-    { Icon: Mountains, title: 'Territory', desc: 'We acknowledge that Montreal is located on the unceded lands of the Kanien\'kehá:ka. Territory is our raison d\'être.' },
-  ];
 
   const team = [
     { name: 'Martin Carpentier',       org: 'Jakarto',        role: locale === 'fr' ? 'Président et coordonnateur'                         : 'President & Coordinator',                         initials: 'MC', color: '#20FEFD' },
@@ -124,20 +101,6 @@ export default async function AProposPage({
         </section>
 
         <Histoire locale={locale} titre={t('historyTitle')} />
-
-        {/* Values */}
-        <section>
-          <h2 className="text-2xl font-bold text-geo-ink mb-6 flex items-center gap-2"><Diamond size={26} weight="light" aria-hidden="true" />{t('valuesTitle')}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {values.map(value => (
-              <div key={value.title} className="glass-2027 rounded-xl p-5">
-                <value.Icon size={28} weight="light" className="text-geo-ink mb-3" aria-hidden="true" />
-                <h3 className="font-bold text-geo-ink mb-2">{value.title}</h3>
-                <p className="text-sm text-geo-ink-soft leading-relaxed">{value.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* Team */}
         <section>
