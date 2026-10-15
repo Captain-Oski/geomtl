@@ -7,6 +7,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
 import Badge from '@/components/ui/Badge';
+import CarteInfolettre from '@/components/ui/CarteInfolettre';
 import { newsArticles } from '@/data/news';
 import { formatDate } from '@/lib/utils';
 import { cn } from '@/lib/utils';
@@ -121,6 +122,8 @@ export default function ActualitesPage() {
             );
           })}
         </div>
+
+        <CarteInfolettre locale={locale} className="mt-12" />
       </Container>
     </div>
   );

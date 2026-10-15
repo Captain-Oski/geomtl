@@ -19,6 +19,7 @@ import { Star } from '@phosphor-icons/react/dist/ssr/Star';
 import { Wheelchair } from '@phosphor-icons/react/dist/ssr/Wheelchair';
 import { Question } from '@phosphor-icons/react/dist/ssr/Question';
 import { CaretDown } from '@phosphor-icons/react/dist/ssr/CaretDown';
+import CarteInfolettre from '@/components/ui/CarteInfolettre';
 
 const faqs = {
   fr: [
@@ -47,8 +48,8 @@ const faqs = {
       a: 'Oui, les billets sont transférables. Connectez-vous à votre compte billetterie pour effectuer le transfert, au moins 72h avant l\'événement.'
     },
     {
-      q: 'La conférence est-elle diffusée en ligne?',
-      a: 'Certaines keynotes seront diffusées en direct. Aucune rediffusion ne sera offerte après l\'événement. Une formule hybride payante sera proposée pour les personnes ne pouvant pas se déplacer.'
+      q: 'L\'événement se tient-il en présentiel?',
+      a: 'Oui, GÉOMTL 2027 se tient uniquement en présentiel, au Centre de congrès de Saint-Hyacinthe.'
     },
     {
       q: 'Comment soumettre une proposition de conférence?',
@@ -81,8 +82,8 @@ const faqs = {
       a: 'Yes, tickets are transferable. Log in to your ticketing account to make the transfer, at least 72 hours before the event.'
     },
     {
-      q: 'Will the conference be streamed online?',
-      a: 'Some keynotes will be live-streamed. No replays will be available after the event. A paid hybrid format will be offered for those unable to attend in person.'
+      q: 'Is the event held in person?',
+      a: 'Yes, GÉOMTL 2027 is held in person only, at the Centre de congrès de Saint-Hyacinthe.'
     },
     {
       q: 'How do I submit a conference proposal?',
@@ -122,6 +123,7 @@ export default function InfosPage() {
       </div>
 
       <Container className="py-12 space-y-16">
+        <CarteInfolettre locale={locale} />
         {/* Venue */}
         <section>
           <h2 className="text-2xl font-bold text-geo-ink mb-6 flex items-center gap-2"><MapPin size={26} weight="light" aria-hidden="true" />{t('venueTitle')}</h2>
@@ -166,7 +168,7 @@ export default function InfosPage() {
                   <Clock size={20} weight="light" className="text-geo-ink mt-0.5 flex-shrink-0" aria-hidden="true" />
                   <div>
                     <p className="text-geo-ink font-semibold">{locale === 'fr' ? 'Horaires' : 'Hours'}</p>
-                    <p>{locale === 'fr' ? 'Jour 1 : 8h00–19h00 · Jour 2 : 8h30–17h00' : 'Day 1: 8:00am–7:00pm · Day 2: 8:30am–5:00pm'}</p>
+                    <p>{locale === 'fr' ? 'Jour 1 : 8h30–16h45, puis 5 à 7 réseautage dès 18h · Jour 2 : 8h30–16h45' : 'Day 1: 8:30am–4:45pm, then networking reception from 6pm · Day 2: 8:30am–4:45pm'}</p>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">

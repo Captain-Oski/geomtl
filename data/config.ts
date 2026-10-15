@@ -23,6 +23,9 @@ export const EVENT_CONFIG = {
   ticketUrl: "#billetterie",
   partnerUrl: "#devenir-partenaire",
   email: "info@geomtl.com",
+  // Lien du formulaire d'inscription à l'infolettre (Cyberimpact, Mailchimp…) ;
+  // tant qu'il est vide, les boutons ouvrent un courriel prérempli vers `email`.
+  newsletterUrl: null as string | null,
   address: {
     fr: "1325, rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4",
     en: "1325 rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4"

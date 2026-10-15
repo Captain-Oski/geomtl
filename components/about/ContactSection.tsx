@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { EVENT_CONFIG } from '@/data/config';
 import { EnvelopeSimple } from '@phosphor-icons/react/dist/ssr/EnvelopeSimple';
+import BoutonInfolettre from '@/components/ui/BoutonInfolettre';
 
 const champ =
   'w-full px-4 py-3 glass-2027 rounded-xl text-geo-ink placeholder:text-geo-ink-soft/50 border border-geo-ink/10 focus:border-geo-teal-dark/50 focus:outline-none text-sm';
@@ -146,6 +147,16 @@ export default function ContactSection() {
                 {EVENT_CONFIG.email}
               </a>
             </div>
+          </div>
+
+          <div className="mt-6 border-t border-geo-ink/10 pt-6">
+            <h3 className="text-lg font-bold text-geo-ink mb-2">{fr ? 'Infolettre' : 'Newsletter'}</h3>
+            <p className="text-sm text-geo-ink-soft mb-4">
+              {fr
+                ? 'Recevez les annonces de GÉOMTL 2027 : programme, inscriptions et nouveautés.'
+                : 'Get GÉOMTL 2027 announcements: program, registration and news.'}
+            </p>
+            <BoutonInfolettre locale={locale} />
           </div>
         </div>
       </div>

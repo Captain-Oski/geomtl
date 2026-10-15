@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight';
+import BoutonInfolettre from '@/components/ui/BoutonInfolettre';
 
 export default function HomeCTA() {
   const t = useTranslations('home');
@@ -53,6 +54,7 @@ export default function HomeCTA() {
               {t('heroCta2')}
             </Link>
           </div>
+          <BoutonInfolettre locale={locale} className="mt-4" />
         </motion.div>
       </div>
     </section>
