@@ -18,6 +18,7 @@ import { Bed } from '@phosphor-icons/react/dist/ssr/Bed';
 import { Star } from '@phosphor-icons/react/dist/ssr/Star';
 import { Question } from '@phosphor-icons/react/dist/ssr/Question';
 import { CaretDown } from '@phosphor-icons/react/dist/ssr/CaretDown';
+import { ArrowSquareOut } from '@phosphor-icons/react/dist/ssr/ArrowSquareOut';
 import CarteInfolettre from '@/components/ui/CarteInfolettre';
 
 // Sans formulaire d'infolettre en ligne, l'inscription passe par courriel.
@@ -26,6 +27,18 @@ const lienInfolettre = (fr: boolean) =>
   `mailto:${EVENT_CONFIG.courriels.info}?subject=${encodeURIComponent(fr ? 'Inscription à l\'infolettre GÉOMTL' : 'GÉOMTL newsletter subscription')}`;
 const LIEN = 'font-semibold text-geo-teal-dark hover:underline';
 const COURRIEL_CONFERENCIERS = EVENT_CONFIG.courriels.conferencier;
+
+// Réservation individuelle au tarif négocié, jusqu'à la date de relâche du bloc
+const HOTEL = {
+  nom: 'Sheraton Saint-Hyacinthe',
+  etoiles: 4,
+  groupe: 'GéoMontréal congrès 2027',
+  telephones: [
+    { affiche: '450-250-5555', tel: '+14502505555' },
+    { affiche: '1-833-250-8555', tel: '+18332508555' }
+  ],
+  reservation: 'https://app.marriott.com/reslink?id=1792699166193&key=GRP&app=resvlink'
+};
 
 const faqs = {
   fr: [
@@ -43,7 +56,13 @@ const faqs = {
     },
     {
       q: 'Y a-t-il des accommodations recommandées près du lieu?',
-      a: 'Le Sheraton Saint-Hyacinthe est attenant au Centre de congrès : pas besoin de sortir à l\'extérieur. Un bloc de chambres est réservé au tarif de groupe de 219 $/nuit. Réservez au 450-250-5555 ou au 1-833-250-8555 en mentionnant « GEOMTL2027 » avant le 2 septembre 2027.'
+      a: (
+        <>
+          {'Le Sheraton Saint-Hyacinthe est attenant au Centre de congrès : pas besoin de sortir à l\'extérieur. Un tarif négocié de 219 $/nuit est offert jusqu\'au 2 septembre 2027 : '}
+          <a href={HOTEL.reservation} target="_blank" rel="noopener noreferrer" className={LIEN}>réservez en ligne</a>
+          {` ou au ${HOTEL.telephones.map((n) => n.affiche).join(' ou au ')}, en mentionnant le groupe « ${HOTEL.groupe} ».`}
+        </>
+      )
     },
     {
       q: 'Puis-je transférer mon billet à un collègue?',
@@ -80,7 +99,13 @@ const faqs = {
     },
     {
       q: 'Are there recommended accommodations near the venue?',
-      a: 'The Sheraton Saint-Hyacinthe is directly connected to the convention centre: no need to go outside. A room block is reserved at the group rate of $219/night. Book at 1-833-250-8555 with the code "GEOMTL2027" before September 2, 2027.'
+      a: (
+        <>
+          {'The Sheraton Saint-Hyacinthe is directly connected to the convention centre: no need to go outside. A negotiated rate of $219/night is available until September 2, 2027: '}
+          <a href={HOTEL.reservation} target="_blank" rel="noopener noreferrer" className={LIEN}>book online</a>
+          {` or call ${HOTEL.telephones.map((n) => n.affiche).join(' or ')} and mention the group "${HOTEL.groupe}".`}
+        </>
+      )
     },
     {
       q: 'Can I transfer my ticket to a colleague?',
@@ -104,22 +129,13 @@ const faqs = {
   ]
 };
 
-const hotels = {
-  fr: [
-    { name: 'Sheraton Saint-Hyacinthe', stars: 4, distance: 'Sur place (attenant au Centre de congrès)', price: 'à partir de 219 $/nuit', code: 'GEOMTL2027' }
-  ],
-  en: [
-    { name: 'Sheraton Saint-Hyacinthe', stars: 4, distance: 'On site (connected to the convention centre)', price: 'from $219/night', code: 'GEOMTL2027' }
-  ]
-};
-
 export default function InfosPage() {
   const t = useTranslations('info');
   const locale = useLocale();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   const faqList = locale === 'fr' ? faqs.fr : faqs.en;
-  const hotelList = locale === 'fr' ? hotels.fr : hotels.en;
+  const fr = locale === 'fr';
   const address = locale === 'fr' ? EVENT_CONFIG.address.fr : EVENT_CONFIG.address.en;
 
   return (
@@ -242,21 +258,43 @@ export default function InfosPage() {
         {/* Accommodation */}
         <section>
           <h2 className="text-2xl font-bold text-geo-ink mb-6 flex items-center gap-2"><Bed size={26} weight="light" aria-hidden="true" />{t('accomTitle')}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {hotelList.map(hotel => (
-              <div key={hotel.name} className="glass-2027 rounded-2xl p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="font-bold text-geo-ink text-base">{hotel.name}</h3>
-                  <span className="flex gap-0.5 text-geo-lime-dark" aria-label={`${hotel.stars} / 5`}>{Array.from({ length: hotel.stars }, (_, i) => <Star key={i} size={14} weight="fill" aria-hidden="true" />)}</span>
-                </div>
-                <p className="text-geo-ink-soft text-sm mb-1 flex items-center gap-1.5"><MapPin size={16} weight="light" className="flex-shrink-0" aria-hidden="true" />{hotel.distance}</p>
-                <p className="text-geo-teal-dark font-semibold text-sm mb-3">{hotel.price}</p>
-                <div className="flex items-center gap-2 p-2 rounded-lg bg-geo-ink/5 border border-geo-ink/10">
-                  <span className="text-xs text-geo-ink-soft">{locale === 'fr' ? 'Code :' : 'Code:'}</span>
-                  <span className="text-xs font-mono font-bold text-geo-teal-dark">{hotel.code}</span>
-                </div>
+          <div className="glass-2027 rounded-2xl p-6 max-w-3xl">
+            <div className="flex items-start justify-between mb-3">
+              <h3 className="font-bold text-geo-ink text-base">{HOTEL.nom}</h3>
+              <span className="flex gap-0.5 text-geo-lime-dark" aria-label={`${HOTEL.etoiles} / 5`}>{Array.from({ length: HOTEL.etoiles }, (_, i) => <Star key={i} size={14} weight="fill" aria-hidden="true" />)}</span>
+            </div>
+            <p className="text-geo-ink-soft text-sm mb-1 flex items-center gap-1.5"><MapPin size={16} weight="light" className="flex-shrink-0" aria-hidden="true" />{fr ? 'Sur place (attenant au Centre de congrès)' : 'On site (connected to the convention centre)'}</p>
+            <p className="text-geo-teal-dark font-semibold text-sm mb-3">{fr ? 'Tarif négocié : 219 $/nuit' : 'Negotiated rate: $219/night'}</p>
+            <p className="text-geo-ink-soft text-sm leading-relaxed mb-4">
+              {fr
+                ? 'Réservation individuelle : chaque participant réserve sa chambre directement auprès de l\'hôtel, en ligne ou par téléphone, et mentionne le nom du groupe pour obtenir le tarif négocié.'
+                : 'Individual booking: each attendee books their room directly with the hotel, online or by phone, and mentions the group name to get the negotiated rate.'}
+            </p>
+            <dl className="grid gap-3 sm:grid-cols-3 text-sm mb-5">
+              <div className="p-3 rounded-lg bg-geo-ink/5 border border-geo-ink/10">
+                <dt className="text-xs text-geo-ink-soft">{fr ? 'Nom du groupe' : 'Group name'}</dt>
+                <dd className="font-bold text-geo-teal-dark">{HOTEL.groupe}</dd>
               </div>
-            ))}
+              <div className="p-3 rounded-lg bg-geo-ink/5 border border-geo-ink/10">
+                <dt className="text-xs text-geo-ink-soft">{fr ? 'Téléphone' : 'Phone'}</dt>
+                {HOTEL.telephones.map((n) => (
+                  <dd key={n.tel}><a href={`tel:${n.tel}`} className="font-semibold text-geo-ink hover:underline">{n.affiche}</a></dd>
+                ))}
+              </div>
+              <div className="p-3 rounded-lg bg-geo-ink/5 border border-geo-ink/10">
+                <dt className="text-xs text-geo-ink-soft">{fr ? 'Réserver avant le' : 'Book before'}</dt>
+                <dd className="font-semibold text-geo-ink">{fr ? '2 septembre 2027' : 'September 2, 2027'}</dd>
+              </div>
+            </dl>
+            <a
+              href={HOTEL.reservation}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-geo-2027 px-5 py-2.5 text-sm font-bold text-geo-noir transition-opacity hover:opacity-90"
+            >
+              {fr ? 'Réserver en ligne' : 'Book online'}
+              <ArrowSquareOut size={16} weight="light" aria-hidden="true" />
+            </a>
           </div>
         </section>
 
