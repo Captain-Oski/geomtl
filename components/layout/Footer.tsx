@@ -5,6 +5,7 @@ import GeoMTLLogo from '@/components/ui/GeoMTLLogo';
 import Slogan from '@/components/ui/Slogan';
 import { LinkedinLogo } from '@phosphor-icons/react/dist/ssr/LinkedinLogo';
 import { Mountains } from '@phosphor-icons/react/dist/ssr/Mountains';
+import BoutonInfolettre from '@/components/ui/BoutonInfolettre';
 
 export default function Footer() {
   const t = useTranslations('footer');
@@ -62,6 +63,7 @@ export default function Footer() {
                   <social.Icon size={18} weight="light" aria-hidden="true" />
                 </a>
               ))}
+              <BoutonInfolettre locale={locale} variante="pied" />
             </div>
           </div>
 

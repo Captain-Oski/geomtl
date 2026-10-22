@@ -269,7 +269,7 @@ export default function DevenirPartenaire({ kiosques }: { kiosques: KiosquePubli
                     <span className="text-[#00735F]">{fr ? 'présentée par vous' : 'presented by you'}</span>
                   </h3>
                   <p className="mt-3 font-semibold text-geo-noir">
-                    {fr ? 'Lundi 4 octobre 2027, de 17 h à 19 h' : 'Monday, October 4, 2027, 5 to 7 pm'}
+                    {fr ? 'Lundi 4 octobre 2027, dès 18 h' : 'Monday, October 4, 2027, from 6 pm'}
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-[#4A4A44] max-w-lg">
                     {fr
