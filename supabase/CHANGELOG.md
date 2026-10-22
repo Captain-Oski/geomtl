@@ -24,6 +24,7 @@ Toutes les migrations sont dans [`supabase/migrations/`](./migrations/).
 | V003 | [V003__tables_support.sql](./migrations/V003__tables_support.sql) | Tables `contracts`, `contacts`, `activations`, `deliverables`, `kpis` · RLS | 2025-05-27 | ⏳ |
 | V004 | [V004__partners.sql](./migrations/V004__partners.sql) | Table `partners` complète · trigger · RLS · vue publique · seed | 2025-05-27 | ⏳ |
 | V005 | [V005__exhibitors.sql](./migrations/V005__exhibitors.sql) | Table `exhibitors` complète · trigger · RLS · vue publique · seed | 2025-05-27 | ⏳ |
+| V007 | [V007__kiosques.sql](./migrations/V007__kiosques.sql) | Tables `kiosques` (26 emplacements, état public décidé par le comité) et `demandes_kiosques` (formulaire public) · RLS sans accès anon | 2026-10-22 | ✅ |
 
 ---
 

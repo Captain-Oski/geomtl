@@ -313,3 +313,51 @@ export type KPI = {
   recorded_at: string
   notes: string | null
 }
+
+// ─── Kiosques et demandes de réservation (V007) ───────────
+
+export type StatutKiosque = 'disponible' | 'reserve'
+
+export type Kiosque = {
+  numero: number
+  statut: StatutKiosque
+  organisation_affichee: string | null
+  logo_url: string | null
+  site_url: string | null
+  exhibitor_id: string | null
+  partner_id: string | null
+  notes_internes: string | null
+  updated_by: string | null
+  updated_at: string
+}
+
+// Ce que le site public reçoit : rien d'interne
+export type KiosquePublic = Pick<Kiosque, 'numero' | 'statut' | 'organisation_affichee' | 'logo_url' | 'site_url'>
+
+export type NiveauDemande = 'exposant' | 'bronze' | 'argent' | 'or' | 'a_determiner'
+
+export type StatutDemande = 'nouvelle' | 'en_traitement' | 'acceptee' | 'refusee' | 'archivee' | 'spam'
+
+export type DemandeKiosque = {
+  id: string
+  created_at: string
+  kiosque_numero: number | null // null : sans préférence
+  niveau: NiveauDemande
+  organisation: string
+  principal_nom: string
+  principal_courriel: string
+  principal_telephone: string
+  kiosque_nom: string
+  kiosque_courriel: string
+  kiosque_telephone: string
+  message: string | null
+  langue: 'fr' | 'en'
+  consentement: boolean
+  statut: StatutDemande
+  traite_par: string | null
+  traite_le: string | null
+  notes_internes: string | null
+  fiche_exhibitor_id: string | null
+  fiche_partner_id: string | null
+  empreinte_ip: string | null
+}

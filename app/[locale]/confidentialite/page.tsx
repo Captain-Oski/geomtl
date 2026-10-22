@@ -42,6 +42,7 @@ export default async function ConfidentialitePage({
           <p>Nous collectons uniquement les renseignements que vous nous fournissez volontairement :</p>
           <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
             <li>Formulaire de contact : nom, courriel, message</li>
+            <li>Demande pour devenir partenaire ou exposant : organisation, contact principal et responsable du kiosque (nom, courriel, téléphone), niveau et kiosque souhaités, message</li>
             <li>Infolettre : adresse courriel</li>
             <li>Inscription à un atelier : nom, courriel, organisation</li>
           </ul>
@@ -89,6 +90,7 @@ export default async function ConfidentialitePage({
       content: (
         <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
           <li>Répondre à vos demandes de contact ou d&apos;information</li>
+          <li>Traiter vos demandes pour devenir partenaire ou exposant et réserver un kiosque (accessibles seulement au comité organisateur)</li>
           <li>Vous envoyer notre infolettre (si vous y avez souscrit)</li>
           <li>Gérer vos inscriptions aux ateliers et à l&apos;événement</li>
           <li>Mémoriser vos préférences de navigation (langue, consentement)</li>
@@ -101,6 +103,7 @@ export default async function ConfidentialitePage({
       content: (
         <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
           <li>Messages de contact : 12 mois</li>
+          <li>Demandes pour devenir partenaire ou exposant : jusqu&apos;à 6 mois après l&apos;événement</li>
           <li>Inscriptions à l&apos;infolettre : jusqu&apos;à désabonnement</li>
           <li>Données d&apos;inscription à l&apos;événement : 24 mois après l&apos;événement</li>
         </ul>
@@ -171,6 +174,7 @@ export default async function ConfidentialitePage({
           <p>We only collect information you voluntarily provide:</p>
           <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
             <li>Contact form: name, email, message</li>
+            <li>Partner or exhibitor request: organization, main contact and booth contact (name, email, phone), desired level and booth, message</li>
             <li>Newsletter: email address</li>
             <li>Workshop registration: name, email, organization</li>
           </ul>
@@ -217,6 +221,7 @@ export default async function ConfidentialitePage({
       content: (
         <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
           <li>Responding to your contact or information requests</li>
+          <li>Processing your partner or exhibitor and booth requests (accessible only to the organizing committee)</li>
           <li>Sending our newsletter (if you subscribed)</li>
           <li>Managing workshop and event registrations</li>
           <li>Remembering your browsing preferences (language, consent)</li>
@@ -229,6 +234,7 @@ export default async function ConfidentialitePage({
       content: (
         <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
           <li>Contact messages: 12 months</li>
+          <li>Partner or exhibitor requests: until 6 months after the event</li>
           <li>Newsletter subscriptions: until unsubscription</li>
           <li>Event registration data: 24 months after the event</li>
         </ul>

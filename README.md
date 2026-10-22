@@ -38,7 +38,15 @@ NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=          # serveur uniquement, jamais exposé client
 NEXT_PUBLIC_SITE_URL=               # pour les emails d'invitation (prod)
+
+# Demandes de kiosque (voir docs/demandes-kiosques.md)
+RESEND_API_KEY=                     # envoi des courriels
+DEMANDES_SEL=                       # sel secret de l'empreinte IP
+COURRIEL_EXPEDITEUR=                # facultatif, domaine vérifié dans Resend
+COURRIEL_COMITE=                    # facultatif, partenariat@geomtl.com par défaut
 ```
+
+Le détail de chaque variable est dans `.env.local.example`.
 
 ---
 
@@ -75,6 +83,7 @@ Le composant React `GeoMTLLogo` dessine le mot-symbole GÉOMTL dans la couleur d
 
 - [Globe animé du hero](docs/globe-anime.md) : fonctionnement, réglages, régénération des données
 - [Identité visuelle 2027 dans le code](docs/identite-visuelle-2027.md) : couleurs, mode sombre, icônes, visuels
+- [Demandes de kiosque](docs/demandes-kiosques.md) : plan interactif, formulaire, traitement dans l'admin, sécurité, configuration de Resend
 
 ---
 
@@ -93,5 +102,5 @@ UPDATE public.profiles SET role = 'admin' WHERE email = 'ton@email.com';
 
 ## Migrations SQL
 
-Les migrations sont dans `supabase/migrations/` et numérotées `V000` → `V006`.  
+Les migrations sont dans `supabase/migrations/` et numérotées `V000` → `V007`.  
 Exécuter dans l'ordre via le SQL Editor de Supabase.

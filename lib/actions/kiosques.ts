@@ -1,0 +1,254 @@
+'use server'
+
+import { revalidatePath, revalidateTag } from 'next/cache'
+import { createClient } from '@/lib/supabase/server'
+import { ETIQUETTE_KIOSQUES } from '@/lib/data/kiosques'
+import type { NiveauDemande, PartnerType, StatutDemande } from '@/lib/supabase/types'
+
+// Actions de l'admin sur les kiosques et les demandes de réservation.
+// Elles passent par la session de l'utilisateur : la RLS (migration V007)
+// limite déjà les écritures aux rôles admin et editor, et chaque action
+// revérifie le rôle avant d'agir. Un kiosque ne passe à « reserve » que par
+// confirmerReservation, jamais par une demande.
+
+const MOCK_MSG = 'Supabase non configuré - modifications non persistées en mode mock.'
+
+type Resultat = { error?: string; avertissement?: string }
+
+async function assertEditeur(): Promise<{ error?: string; userId?: string }> {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return { error: MOCK_MSG }
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return { error: 'Non authentifié.' }
+  const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single()
+  if (profile?.role !== 'admin' && profile?.role !== 'editor') {
+    return { error: 'Accès refusé - rôle admin ou éditeur requis.' }
+  }
+  return { userId: user.id }
+}
+
+// Le plan public et l'admin se mettent à jour tout de suite
+function rafraichir() {
+  revalidateTag(ETIQUETTE_KIOSQUES)
+  revalidatePath('/fr/devenir-partenaire')
+  revalidatePath('/en/devenir-partenaire')
+  revalidatePath('/admin/kiosques')
+  revalidatePath('/admin', 'layout')
+}
+
+// Adresse de logo ou de site : https, ou chemin du site (/images/...)
+function urlSure(valeur: string | null | undefined): string | null | false {
+  const v = (valeur ?? '').trim()
+  if (!v) return null
+  if (v.length > 500) return false
+  if (v.startsWith('/') && !v.startsWith('//')) return v
+  try {
+    const u = new URL(v)
+    return u.protocol === 'https:' ? u.toString() : false
+  } catch {
+    return false
+  }
+}
+
+// ─── Demandes ─────────────────────────────────────────────
+
+const STATUTS_MANUELS: StatutDemande[] = ['nouvelle', 'en_traitement', 'refusee', 'archivee', 'spam']
+
+export async function changerStatutDemande(id: string, statut: StatutDemande): Promise<Resultat> {
+  const check = await assertEditeur()
+  if (check.error) return check
+  if (!STATUTS_MANUELS.includes(statut)) return { error: 'Statut invalide.' }
+
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('demandes_kiosques')
+    .update({ statut, traite_par: check.userId, traite_le: new Date().toISOString() })
+    .eq('id', id)
+  if (error) return { error: error.message }
+  rafraichir()
+  return {}
+}
+
+export async function enregistrerNotesDemande(id: string, notes: string): Promise<Resultat> {
+  const check = await assertEditeur()
+  if (check.error) return check
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('demandes_kiosques')
+    .update({ notes_internes: notes.slice(0, 5000) || null })
+    .eq('id', id)
+  if (error) return { error: error.message }
+  revalidatePath('/admin/kiosques')
+  return {}
+}
+
+const TYPE_PARTENAIRE: Partial<Record<NiveauDemande, PartnerType>> = {
+  or: 'Gold',
+  argent: 'Silver',
+  bronze: 'Bronze',
+}
+
+// Accepter : crée la fiche exposant ou partenaire préremplie et la relie à la
+// demande. Le kiosque reste disponible en public jusqu'à confirmerReservation.
+export async function accepterDemande(id: string, niveau: Exclude<NiveauDemande, 'a_determiner'>): Promise<Resultat> {
+  const check = await assertEditeur()
+  if (check.error) return check
+
+  const supabase = await createClient()
+  const { data: demande, error: erreurLecture } = await supabase
+    .from('demandes_kiosques')
+    .select('*')
+    .eq('id', id)
+    .single()
+  if (erreurLecture || !demande) return { error: erreurLecture?.message ?? 'Demande introuvable.' }
+  if (demande.fiche_exhibitor_id || demande.fiche_partner_id) return { error: 'Cette demande a déjà une fiche.' }
+
+  const date = new Date(demande.created_at).toLocaleDateString('fr-CA')
+  const kiosque: number | null = demande.kiosque_numero
+  const memePersonne = demande.kiosque_courriel === demande.principal_courriel
+  const commun = {
+    company_name: demande.organisation,
+    primary_contact_name: demande.principal_nom,
+    primary_contact_email: demande.principal_courriel,
+    primary_contact_phone: demande.principal_telephone,
+    // Responsable du kiosque en contact secondaire (pas de champ téléphone secondaire)
+    secondary_contact_name: memePersonne ? null : demande.kiosque_nom,
+    secondary_contact_email: memePersonne ? null : demande.kiosque_courriel,
+    notes_contact: [
+      memePersonne ? null : `Responsable du kiosque : ${demande.kiosque_nom}, ${demande.kiosque_courriel}, ${demande.kiosque_telephone}`,
+      demande.message,
+    ].filter(Boolean).join('\n\n') || null,
+    status: 'contacted',
+    year: 2027,
+    internal_notes: `Créée depuis la demande du site reçue le ${date} (${kiosque ? `kiosque ${kiosque} souhaité` : 'sans préférence de kiosque'}).`,
+  }
+  const table = niveau === 'exposant' ? 'exhibitors' : 'partners'
+  const extra = niveau === 'exposant' ? {} : { partner_type: TYPE_PARTENAIRE[niveau] }
+
+  // Le numéro de kiosque est unique par année : s'il est déjà attribué à une
+  // autre fiche, on crée la fiche sans numéro, à attribuer ensuite.
+  let avertissement: string | undefined
+  let creation = await supabase
+    .from(table)
+    .insert({ ...commun, ...extra, booth_number: kiosque ? String(kiosque) : null, booth_status: kiosque ? 'assigned' : 'to_assign' })
+    .select('id')
+    .single()
+  if (creation.error?.code === '23505') {
+    avertissement = `Le kiosque ${kiosque} est déjà attribué à une autre fiche : la fiche est créée sans numéro de kiosque.`
+    creation = await supabase
+      .from(table)
+      .insert({ ...commun, ...extra, booth_number: null, booth_status: 'to_assign' })
+      .select('id')
+      .single()
+  }
+  if (creation.error || !creation.data) return { error: creation.error?.message ?? 'Création de la fiche impossible.' }
+
+  const { error } = await supabase
+    .from('demandes_kiosques')
+    .update({
+      statut: 'acceptee',
+      traite_par: check.userId,
+      traite_le: new Date().toISOString(),
+      fiche_exhibitor_id: niveau === 'exposant' ? creation.data.id : null,
+      fiche_partner_id: niveau === 'exposant' ? null : creation.data.id,
+    })
+    .eq('id', id)
+  if (error) return { error: error.message }
+
+  revalidatePath(niveau === 'exposant' ? '/admin/exhibitors' : '/admin/partners')
+  rafraichir()
+  return { avertissement }
+}
+
+// ─── Kiosques ─────────────────────────────────────────────
+
+export interface DonneesReservation {
+  organisation_affichee: string
+  logo_url?: string | null
+  site_url?: string | null
+  exhibitor_id?: string | null
+  partner_id?: string | null
+  notes_internes?: string | null
+}
+
+function preparer(d: DonneesReservation) {
+  const nom = d.organisation_affichee.trim().slice(0, 150)
+  const logo = urlSure(d.logo_url)
+  const site = urlSure(d.site_url)
+  if (!nom) return { error: 'Le nom affiché est requis.' }
+  if (logo === false) return { error: 'Adresse du logo invalide (https:// ou /images/...).' }
+  if (site === false) return { error: 'Adresse du site invalide (https://...).' }
+  return {
+    valeurs: {
+      organisation_affichee: nom,
+      logo_url: logo,
+      site_url: site,
+      exhibitor_id: d.exhibitor_id || null,
+      partner_id: d.partner_id || null,
+      notes_internes: d.notes_internes?.slice(0, 5000) || null,
+    },
+  }
+}
+
+// Le seul passage à « Indisponible ». Écriture atomique : si le kiosque
+// n'est plus disponible (autre membre du comité plus rapide), rien ne change.
+export async function confirmerReservation(numero: number, donnees: DonneesReservation): Promise<Resultat> {
+  const check = await assertEditeur()
+  if (check.error) return check
+  const p = preparer(donnees)
+  if ('error' in p) return { error: p.error }
+
+  const supabase = await createClient()
+  const { data, error } = await supabase
+    .from('kiosques')
+    .update({ ...p.valeurs, statut: 'reserve', updated_by: check.userId })
+    .eq('numero', numero)
+    .eq('statut', 'disponible')
+    .select('numero')
+  if (error) return { error: error.message }
+  if (!data || data.length === 0) return { error: `Le kiosque ${numero} n'est plus disponible : il vient d'être réservé.` }
+  rafraichir()
+  return {}
+}
+
+// Modifier le nom, le logo ou le lien d'un kiosque déjà réservé
+export async function modifierReservation(numero: number, donnees: DonneesReservation): Promise<Resultat> {
+  const check = await assertEditeur()
+  if (check.error) return check
+  const p = preparer(donnees)
+  if ('error' in p) return { error: p.error }
+
+  const supabase = await createClient()
+  const { data, error } = await supabase
+    .from('kiosques')
+    .update({ ...p.valeurs, updated_by: check.userId })
+    .eq('numero', numero)
+    .eq('statut', 'reserve')
+    .select('numero')
+  if (error) return { error: error.message }
+  if (!data || data.length === 0) return { error: `Le kiosque ${numero} n'est pas réservé.` }
+  rafraichir()
+  return {}
+}
+
+export async function libererKiosque(numero: number): Promise<Resultat> {
+  const check = await assertEditeur()
+  if (check.error) return check
+
+  const supabase = await createClient()
+  const { error } = await supabase
+    .from('kiosques')
+    .update({
+      statut: 'disponible',
+      organisation_affichee: null,
+      logo_url: null,
+      site_url: null,
+      exhibitor_id: null,
+      partner_id: null,
+      updated_by: check.userId,
+    })
+    .eq('numero', numero)
+  if (error) return { error: error.message }
+  rafraichir()
+  return {}
+}

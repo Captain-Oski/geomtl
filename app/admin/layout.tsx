@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { AdminLayout } from '@/components/admin/AdminLayout'
+import { compterNouvellesDemandes } from '@/lib/data/kiosques'
 import type { Profile } from '@/lib/supabase/types'
 import '@/styles/globals.css'
 
@@ -61,10 +62,12 @@ export default async function AdminRootLayout({
     redirect('/login?error=unauthorized')
   }
 
+  const nouvellesDemandes = await compterNouvellesDemandes()
+
   return (
     <html lang="fr">
       <body className="bg-gray-950">
-        <AdminLayout profile={profile as Profile}>{children}</AdminLayout>
+        <AdminLayout profile={profile as Profile} nouvellesDemandes={nouvellesDemandes}>{children}</AdminLayout>
       </body>
     </html>
   )

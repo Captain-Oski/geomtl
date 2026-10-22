@@ -3,14 +3,20 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr/ArrowUpRight';
-import { RESERVATIONS_APERCU, RESERVATIONS_KIOSQUES, type ReservationKiosque } from '@/data/kiosques';
+import { KIOSQUES_APERCU } from '@/data/kiosques';
+import ModaleReservation from '@/components/partners/ModaleReservation';
+import type { KiosquePublic } from '@/lib/supabase/types';
 import { cn } from '@/lib/utils';
 
 // Plan interactif du salon des exposants, d'après le plan du comité (salle
 // agrandie). Les kiosques sont dessinés ouverts côté allée, comme sur ce plan,
 // pour montrer leur orientation. Chaque kiosque affiche « Disponible », ou
-// « Indisponible » avec le logo de l'organisation qui l'a réservé
-// (data/kiosques.ts). Un clic sur un kiosque en affiche le détail.
+// « Indisponible » avec le logo de l'organisation qui l'a réservé. L'état vient
+// de la base (table kiosques), et seul le comité le change dans l'admin. Un
+// clic sur un kiosque en affiche le détail. Le bouton « Devenir partenaire ou
+// exposant », en haut et en bas du plan, ouvre la demande (ModaleReservation),
+// où l'on choisit son kiosque dans la liste. En mode admin, ni boutons ni
+// détail : la page de l'admin les gère.
 // Coordonnées : celles du plan du comité, multipliées par 10.
 
 type Ouverture = 'haut' | 'bas';
@@ -112,27 +118,73 @@ function lignes(nom: string, max = 14) {
   return out;
 }
 
-export default function PlanKiosques({ fr, onReserver }: { fr: boolean; onReserver?: (numero: number) => void }) {
-  const [reservations, setReservations] = useState(RESERVATIONS_KIOSQUES);
+type Reservation = { organisation: string | null; logo: string | null; site: string | null };
+
+export default function PlanKiosques({
+  fr,
+  kiosques,
+  mode = 'public',
+  choisi: choisiExterne,
+  onChoisir,
+}: {
+  fr: boolean;
+  kiosques: KiosquePublic[];
+  mode?: 'public' | 'admin';
+  choisi?: number | null; // fourni par l'admin, qui affiche lui-même le détail
+  onChoisir?: (numero: number | null) => void;
+}) {
+  const [etats, setEtats] = useState(kiosques);
   const [apercu, setApercu] = useState(false);
-  const [choisi, setChoisi] = useState<number | null>(null);
+  const [choisiInterne, setChoisiInterne] = useState<number | null>(null);
   const [survol, setSurvol] = useState<number | null>(null);
+  const [formulaire, setFormulaire] = useState(false);
+  const choisi = choisiExterne !== undefined ? choisiExterne : choisiInterne;
+  const setChoisi = (n: number | null) => {
+    setChoisiInterne(n);
+    onChoisir?.(n);
+  };
+
+  useEffect(() => setEtats(kiosques), [kiosques]);
 
   // Aperçu des réservations fictives : serveur de développement seulement
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'production' && new URLSearchParams(window.location.search).has('apercu-kiosques')) {
-      setReservations({ ...RESERVATIONS_APERCU, ...RESERVATIONS_KIOSQUES });
+    if (mode === 'public' && process.env.NODE_ENV !== 'production' && new URLSearchParams(window.location.search).has('apercu-kiosques')) {
+      setEtats(kiosques.map((k) => KIOSQUES_APERCU.find((a) => a.numero === k.numero) ?? k));
       setApercu(true);
     }
-  }, []);
+  }, [kiosques, mode]);
 
-  const reservation = (n: number): ReservationKiosque | undefined => reservations[n];
-  const disponibles = KIOSQUES.filter((k) => !reservation(k.numero)).length;
+  const reservation = (n: number): Reservation | undefined => {
+    const k = etats.find((e) => e.numero === n);
+    return k && k.statut === 'reserve' ? { organisation: k.organisation_affichee, logo: k.logo_url, site: k.site_url } : undefined;
+  };
+  const kiosquesDisponibles = KIOSQUES.filter((k) => !reservation(k.numero)).map((k) => k.numero);
+  const disponibles = kiosquesDisponibles.length;
   const libelle = (pris: boolean) => (pris ? (fr ? 'Indisponible' : 'Unavailable') : (fr ? 'Disponible' : 'Available'));
   const detail = choisi !== null ? reservation(choisi) : undefined;
 
+  const bouton = (position: 'haut' | 'bas') =>
+    mode === 'public' && (
+      <div className={cn('flex flex-col items-center gap-2 text-center sm:flex-row sm:justify-between sm:text-left', position === 'haut' ? 'mb-4' : 'mt-5')}>
+        <p className="text-sm text-geo-ink-soft">
+          {position === 'haut'
+            ? (fr ? 'Choisissez votre kiosque sur le plan, puis faites votre demande.' : 'Pick your booth on the plan, then send your request.')
+            : (fr ? 'Le comité confirme chaque réservation après avoir reçu votre demande.' : 'The committee confirms each booking after receiving your request.')}
+        </p>
+        <button
+          type="button"
+          onClick={() => setFormulaire(true)}
+          className="group inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-geo-2027 px-5 py-2.5 text-sm font-bold text-geo-noir shadow-geo-2027 transition-opacity hover:opacity-90"
+        >
+          {fr ? 'Devenir partenaire ou exposant' : 'Become a partner or exhibitor'}
+          <ArrowRight size={16} weight="light" className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+        </button>
+      </div>
+    );
+
   return (
     <div>
+      {bouton('haut')}
       {apercu && (
         <p className="mb-3 rounded-lg border border-dashed border-geo-ink/30 px-3 py-2 text-xs text-geo-ink-soft">
           {fr
@@ -205,7 +257,7 @@ export default function PlanKiosques({ fr, onReserver }: { fr: boolean; onReserv
                 role="button"
                 tabIndex={0}
                 aria-pressed={actif}
-                aria-label={`${fr ? 'Kiosque' : 'Booth'} ${k.numero}, ${libelle(pris).toLowerCase()}${r ? `, ${r.organisation}` : ''}`}
+                aria-label={`${fr ? 'Kiosque' : 'Booth'} ${k.numero}, ${libelle(pris).toLowerCase()}${r?.organisation ? `, ${r.organisation}` : ''}`}
                 onClick={choisir}
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choisir(); } }}
                 onMouseEnter={() => setSurvol(k.numero)}
@@ -236,7 +288,7 @@ export default function PlanKiosques({ fr, onReserver }: { fr: boolean; onReserv
                     {r.logo ? (
                       <image href={r.logo} x={k.x + 25} y={cy - 55} width={k.l - 50} height={95} preserveAspectRatio="xMidYMid meet" />
                     ) : (
-                      lignes(r.organisation).map((ligne, i, tout) => (
+                      r.organisation && lignes(r.organisation).map((ligne, i, tout) => (
                         <text key={i} x={cx} y={cy - 5 + (i - (tout.length - 1) / 2) * 34} textAnchor="middle" dominantBaseline="central" fontSize="28" fontWeight="600" className="fill-geo-ink">{ligne}</text>
                       ))
                     )}
@@ -268,7 +320,8 @@ export default function PlanKiosques({ fr, onReserver }: { fr: boolean; onReserv
         <span className="sm:hidden">{fr ? 'Faites glisser pour voir tout le plan.' : 'Swipe to see the whole plan.'}</span>
       </div>
 
-      {/* Détail du kiosque choisi */}
+      {/* Détail du kiosque choisi (en mode admin, la page de l'admin l'affiche) */}
+      {mode === 'public' && (
       <div aria-live="polite" className="mt-4 rounded-xl border border-geo-ink/10 bg-geo-cream p-4 sm:p-5">
         {choisi === null ? (
           <p className="text-sm text-geo-ink-soft">
@@ -291,10 +344,10 @@ export default function PlanKiosques({ fr, onReserver }: { fr: boolean; onReserv
               <div className="flex flex-1 items-center gap-4 sm:justify-end">
                 {detail.logo && (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={detail.logo} alt={`${fr ? 'Logo de' : 'Logo of'} ${detail.organisation}`} className="h-10 w-auto max-w-[140px] object-contain" />
+                  <img src={detail.logo} alt={detail.organisation ? `${fr ? 'Logo de' : 'Logo of'} ${detail.organisation}` : ''} className="h-10 w-auto max-w-[140px] object-contain" />
                 )}
                 <div className="text-sm">
-                  <p className="font-semibold text-geo-ink">{detail.organisation}</p>
+                  {detail.organisation && <p className="font-semibold text-geo-ink">{detail.organisation}</p>}
                   {detail.site && (
                     <a href={detail.site} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-geo-teal-dark hover:underline">
                       {detail.site.replace(/^https?:\/\//, '')}
@@ -304,25 +357,28 @@ export default function PlanKiosques({ fr, onReserver }: { fr: boolean; onReserv
                 </div>
               </div>
             ) : (
-              <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
-                <p className="text-sm text-geo-ink-soft">
-                  {fr ? 'Ce kiosque est libre. Écrivez-nous pour le réserver.' : 'This booth is free. Write to us to book it.'}
-                </p>
-                {onReserver && (
-                  <button
-                    type="button"
-                    onClick={() => onReserver(choisi)}
-                    className="group inline-flex items-center justify-center gap-2 rounded-lg bg-geo-ink px-4 py-2 text-sm font-semibold text-geo-cream hover:bg-geo-ink/85 transition-colors"
-                  >
-                    {fr ? 'Réserver ce kiosque' : 'Book this booth'}
-                    <ArrowRight size={16} weight="light" className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
-                  </button>
-                )}
-              </div>
+              <p className="flex-1 text-sm text-geo-ink-soft sm:text-right">
+                {fr
+                  ? 'Ce kiosque est libre : choisissez-le dans le formulaire « Devenir partenaire ou exposant ».'
+                  : 'This booth is free: pick it in the “Become a partner or exhibitor” form.'}
+              </p>
             )}
           </div>
         )}
       </div>
+      )}
+
+      {bouton('bas')}
+
+      {mode === 'public' && (
+        <ModaleReservation
+          fr={fr}
+          ouvert={formulaire}
+          kiosqueInitial={choisi}
+          kiosquesDisponibles={kiosquesDisponibles}
+          onFermer={() => setFormulaire(false)}
+        />
+      )}
     </div>
   );
 }

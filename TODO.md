@@ -58,7 +58,7 @@ Liste des tâches à compléter avant la mise en ligne. Organisée par priorité
 - [ ] **Page d'erreur 404** (`app/not-found.tsx`) avec lien retour accueil
 - [ ] **Page d'erreur 500** (`app/error.tsx`) pour les erreurs serveur
 - [ ] **Section exposants publique** (`PublicExhibitorsSection`) sur le site public
-- [ ] **Section carte du salon** - plan interactif des kiosques (voir IDEAS.md)
+- [x] **Section carte du salon** - plan interactif des kiosques et demandes de réservation (voir docs/demandes-kiosques.md)
 - [ ] **Page agenda/programme** - liste des sessions et présentations
 - [ ] **Recherche** dans la liste publique des exposants/partenaires
 

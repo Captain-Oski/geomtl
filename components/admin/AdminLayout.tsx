@@ -15,6 +15,7 @@ const NAV_ITEMS: NavItem[] = [
   { href: '/admin',              label: 'Tableau de bord', roles: ['admin', 'editor', 'viewer'] },
   { href: '/admin/partners',     label: 'Partenaires',     roles: ['admin', 'editor', 'viewer'] },
   { href: '/admin/exhibitors',   label: 'Exposants',       roles: ['admin', 'editor', 'viewer'] },
+  { href: '/admin/kiosques',     label: 'Kiosques',        roles: ['admin', 'editor', 'viewer'] },
   { href: '/admin/programme',    label: 'Programmation',   roles: ['admin', 'editor', 'viewer'] },
   { href: '/admin/contacts',     label: 'Contacts',        roles: ['admin', 'editor'] },
   { href: '/admin/activations',  label: 'Activations',     roles: ['admin', 'editor', 'viewer'] },
@@ -25,9 +26,11 @@ const NAV_ITEMS: NavItem[] = [
 
 export function AdminLayout({
   profile,
+  nouvellesDemandes = 0,
   children,
 }: {
   profile: Profile
+  nouvellesDemandes?: number // demandes de kiosque jamais ouvertes : pastille du menu
   children: React.ReactNode
 }) {
   const pathname = usePathname()
@@ -56,13 +59,21 @@ export function AdminLayout({
               <Link
                 key={item.href}
                 href={item.href}
-                className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                className={`flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors ${
                   isActive
                     ? 'bg-rose-500/15 text-rose-400 font-medium'
                     : 'text-gray-400 hover:text-white hover:bg-gray-800'
                 }`}
               >
                 {item.label}
+                {item.href === '/admin/kiosques' && nouvellesDemandes > 0 && (
+                  <span
+                    className="rounded-full bg-rose-500 px-1.5 py-0.5 text-[10px] font-bold leading-none text-white"
+                    aria-label={`${nouvellesDemandes} nouvelle${nouvellesDemandes > 1 ? 's' : ''} demande${nouvellesDemandes > 1 ? 's' : ''}`}
+                  >
+                    {nouvellesDemandes}
+                  </span>
+                )}
               </Link>
             )
           })}
