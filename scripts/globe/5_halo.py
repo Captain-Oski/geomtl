@@ -130,7 +130,7 @@ for n, (x0, y0, sg, c, a) in enumerate(blobs, 1):
     blob_shapes.append('<circle cx="%s" cy="%s" r="%s" fill="url(#touche-%d)"/>' % (f1(x0), f1(y0), f1(3 * sg), n))
 circles = "\n    ".join('<circle cx="%s" cy="%s" r="%s"/>' % (f1(x), f1(y), f1(r)) for x, y, r, i, j in prev["trame"]["points"])
 svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">
-  <title>GeoMTL 2027 — globe en trame</title>
+  <title>GeoMTL 2027 - globe en trame</title>
   <defs>
     <radialGradient id="globe-degrade" gradientUnits="userSpaceOnUse" cx="{f1(gx)}" cy="{f1(gy)}" r="{f1(R_end)}">
       {grad}

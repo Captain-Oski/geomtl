@@ -11,7 +11,7 @@ export function generateStaticParams() {
 }
 
 // La liste des partenaires confirmés n'est pas encore annoncée publiquement
-// (lancement prévu octobre 2026, RDV Géomatique AGMQ) — aucune donnée
+// (lancement prévu octobre 2026, RDV Géomatique AGMQ) - aucune donnée
 // maquette (incluant les noms d'organisations utilisés comme exemples)
 // n'est chargée sur cette page tant que la section n'est pas réactivée
 // avec les vrais partenaires confirmés.

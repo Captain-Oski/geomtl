@@ -6,8 +6,8 @@ import type { Session } from '@/lib/supabase/types'
 export const MOCK_SESSIONS: Session[] = [
   {
     id: 's1',
-    title_fr: 'Conférence d\'ouverture — La géomatique au cœur de la transition',
-    title_en: 'Opening Keynote — Geomatics at the Heart of Transition',
+    title_fr: 'Conférence d\'ouverture - La géomatique au cœur de la transition',
+    title_en: 'Opening Keynote - Geomatics at the Heart of Transition',
     description_fr: 'Allocution d\'ouverture par le président du comité organisateur.',
     description_en: 'Opening address by the chair of the organizing committee.',
     type: 'keynote',
@@ -66,8 +66,8 @@ export const MOCK_SESSIONS: Session[] = [
   },
   {
     id: 's4',
-    title_fr: 'Jumeaux numériques urbains — retours d\'expérience',
-    title_en: 'Urban Digital Twins — Lessons Learned',
+    title_fr: 'Jumeaux numériques urbains - retours d\'expérience',
+    title_en: 'Urban Digital Twins - Lessons Learned',
     description_fr: 'Trois villes partagent leur parcours de mise en œuvre.',
     description_en: 'Three cities share their implementation journey.',
     type: 'panel',
@@ -86,8 +86,8 @@ export const MOCK_SESSIONS: Session[] = [
   },
   {
     id: 's5',
-    title_fr: 'Atelier — QGIS avancé pour l\'analyse environnementale',
-    title_en: 'Workshop — Advanced QGIS for Environmental Analysis',
+    title_fr: 'Atelier - QGIS avancé pour l\'analyse environnementale',
+    title_en: 'Workshop - Advanced QGIS for Environmental Analysis',
     description_fr: 'Atelier pratique, places limitées à 30 participants.',
     description_en: 'Hands-on workshop, limited to 30 participants.',
     type: 'workshop',

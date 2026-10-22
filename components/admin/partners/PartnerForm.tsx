@@ -182,7 +182,7 @@ export function PartnerForm({ partner }: { partner?: Partner }) {
         </div>
         <span className="text-xs font-medium text-gray-300 w-8 text-right">{completeness}%</span>
         {form.status === 'ready_to_publish' && !form.public_visibility && (
-          <span className="text-xs text-violet-400 ml-2">Prêt — activer la visibilité publique</span>
+          <span className="text-xs text-violet-400 ml-2">Prêt - activer la visibilité publique</span>
         )}
       </div>
 

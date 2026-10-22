@@ -13,7 +13,7 @@ export async function savePartner(
   id?: string
 ): Promise<{ error?: string; id?: string }> {
   if (MOCK_MODE) {
-    return { error: 'Supabase non configuré — configurez .env.local pour sauvegarder les données.' }
+    return { error: 'Supabase non configuré - configurez .env.local pour sauvegarder les données.' }
   }
 
   if (!data.company_name?.trim()) return { error: 'Le nom de la compagnie est obligatoire.' }

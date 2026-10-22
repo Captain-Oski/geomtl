@@ -46,7 +46,7 @@ const BOOTH_STYLES: Record<BoothStatus, string> = {
 }
 
 const BOOTH_LABELS: Record<BoothStatus, string> = {
-  not_required: '—',
+  not_required: '-',
   to_assign:    'À attribuer',
   assigned:     'Attribué',
   confirmed:    'Confirmé',

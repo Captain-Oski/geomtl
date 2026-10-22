@@ -57,8 +57,8 @@ export default async function ConditionsPage({
       content: (
         <div className="space-y-2">
           <p>
-            L&apos;ensemble du contenu de ce site — textes, images, logos, graphiques, vidéos,
-            présentation et architecture — est la propriété exclusive de GÉOMTL ou de ses
+            L&apos;ensemble du contenu de ce site (textes, images, logos, graphiques, vidéos,
+            présentation et architecture) est la propriété exclusive de GÉOMTL ou de ses
             partenaires et est protégé par les lois canadiennes et québécoises sur le droit d&apos;auteur.
           </p>
           <p>
@@ -208,8 +208,8 @@ export default async function ConditionsPage({
       content: (
         <div className="space-y-2">
           <p>
-            All content on this site — text, images, logos, graphics, videos, layout and
-            architecture — is the exclusive property of GÉOMTL or its partners and is protected
+            All content on this site (text, images, logos, graphics, videos, layout and
+            architecture) is the exclusive property of GÉOMTL or its partners and is protected
             by Canadian and Quebec copyright laws.
           </p>
           <p>

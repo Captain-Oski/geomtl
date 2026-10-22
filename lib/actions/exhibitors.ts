@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { createClient } from '@/lib/supabase/server'
 import type { Exhibitor, ExhibitorStatus, PaymentStatus } from '@/lib/supabase/types'
 
-const MOCK_MSG = 'Supabase non configuré — modifications non persistées en mode mock.'
+const MOCK_MSG = 'Supabase non configuré - modifications non persistées en mode mock.'
 
 export async function saveExhibitor(
   data: Partial<Exhibitor>,

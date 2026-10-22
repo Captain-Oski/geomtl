@@ -4,7 +4,7 @@ import GeoMTLLogo from '@/components/ui/GeoMTLLogo';
 import { EVENT_CONFIG } from '@/data/config';
 
 export const metadata: Metadata = {
-  title: 'GÉOMTL 2027 — Site en construction',
+  title: 'GÉOMTL 2027 - Site en construction',
   robots: { index: false, follow: false },
 };
 
@@ -28,7 +28,7 @@ export default function ConstructionPage({ searchParams }: { searchParams: { acc
         </div>
 
         <div className="mt-auto pt-16">
-          <h1 className="sr-only">GÉOMTL 2027 — Site en construction</h1>
+          <h1 className="sr-only">GÉOMTL 2027 - Site en construction</h1>
           <GeoMTLLogo showYear={false} className="w-full h-auto text-geo-ink" />
 
           <div className="mt-8 text-center text-geo-ink">

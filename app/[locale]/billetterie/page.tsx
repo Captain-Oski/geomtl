@@ -3,6 +3,7 @@ import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
 import type { Metadata } from 'next';
 import { Check } from '@phosphor-icons/react/dist/ssr/Check';
+import { EVENT_CONFIG } from '@/data/config';
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   return { title: locale === 'fr' ? 'Billetterie' : 'Tickets' };
@@ -22,7 +23,7 @@ export default async function BilletteriePage({
 
   const fr = locale === 'fr';
   const prix = (montant: number) => (fr ? `${montant} $` : `$${montant}`);
-  const COURRIEL_INSCRIPTION = 'inscription@geomtl.com';
+  const COURRIEL_INSCRIPTION = EVENT_CONFIG.courriels.inscription;
 
   // Tarifs et forfaits validés par le comité (JD, octobre 2026). Seul le
   // forfait 2 jours a un tarif régulier connu après le 15 août.
@@ -37,12 +38,12 @@ export default async function BilletteriePage({
         'Conférences, vitrines technologiques et ateliers',
         'Salon des exposants',
         'Midis-conférences',
-        '5 à 7 réseautage du 4 octobre'
+        'Soirée réseautage du 4 octobre, avec bouchées dînatoires'
       ] : [
         'Conferences, technology showcases and workshops',
         'Exhibition hall',
         'Lunch talks',
-        'Networking 5@7 on October 4'
+        'Networking evening on October 4, with hearty hors d\'oeuvres'
       ]
     },
     {
@@ -54,12 +55,12 @@ export default async function BilletteriePage({
         'Conférences, vitrines technologiques et ateliers',
         'Salon des exposants',
         'Midi-conférence',
-        '5 à 7 réseautage du 4 octobre'
+        'Soirée réseautage du 4 octobre, avec bouchées dînatoires'
       ] : [
         'Conferences, technology showcases and workshops',
         'Exhibition hall',
         'Lunch talk',
-        'Networking 5@7 on October 4'
+        'Networking evening on October 4, with hearty hors d\'oeuvres'
       ]
     },
     {

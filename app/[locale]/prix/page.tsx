@@ -64,8 +64,8 @@ export default async function PrixPage({
           </p>
           <p className="text-geo-ink-soft leading-relaxed mt-4">
             {fr
-              ? 'Le prix GAÏA 2027 sera remis lors de GÉOMTL 2027, les 4 et 5 octobre au Centre de congrès de Saint-Hyacinthe.'
-              : 'The 2027 GAÏA Prize will be presented at GÉOMTL 2027, on October 4–5 at the Centre de congrès de Saint-Hyacinthe.'}
+              ? 'Le prix GAÏA 2027 sera remis lors de GÉOMTL 2027, du 3 au 5 octobre au Centre de congrès de Saint-Hyacinthe.'
+              : 'The 2027 GAÏA Prize will be presented at GÉOMTL 2027, on October 3–5 at the Centre de congrès de Saint-Hyacinthe.'}
           </p>
         </section>
 

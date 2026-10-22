@@ -1,208 +1,328 @@
-import { Coffee } from '@phosphor-icons/react/dist/ssr/Coffee';
-import { Drop } from '@phosphor-icons/react/dist/ssr/Drop';
+'use client';
 
-// Plan du salon des exposants (Centre de congrès de Saint-Hyacinthe), redessiné
-// en vectoriel d'après le plan préliminaire (public/kiosques.webp). Tout est en
-// style neutre et suit le thème (clair / sombre) : le plan n'indique pas quels
-// kiosques sont pris. Au centre, le lounge café, aux couleurs d'un partenaire
-// Bronze chaque demi-journée (écrans, vidéos, gobelets à son logo).
+import { useEffect, useState } from 'react';
+import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight';
+import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr/ArrowUpRight';
+import { RESERVATIONS_APERCU, RESERVATIONS_KIOSQUES, type ReservationKiosque } from '@/data/kiosques';
+import { cn } from '@/lib/utils';
 
-const LARGEUR_KIOSQUE = 1374 / 9; // 9 kiosques par rangée, de x = 353 à x = 1727
-const COTE_ILOT = 152.5;
+// Plan interactif du salon des exposants, d'après le plan du comité (salle
+// agrandie). Les kiosques sont dessinés ouverts côté allée, comme sur ce plan,
+// pour montrer leur orientation. Chaque kiosque affiche « Disponible », ou
+// « Indisponible » avec le logo de l'organisation qui l'a réservé
+// (data/kiosques.ts). Un clic sur un kiosque en affiche le détail.
+// Coordonnées : celles du plan du comité, multipliées par 10.
 
-type Kiosque = { numero: number; x: number; y: number; l: number; h: number };
+type Ouverture = 'haut' | 'bas';
+type Kiosque = { numero: number; x: number; y: number; l: number; h: number; ouvert: Ouverture };
 
-const kiosques: Kiosque[] = [
-  // Rangée du haut : 1 à 9
-  ...Array.from({ length: 9 }, (_, i) => ({ numero: i + 1, x: 353 + i * LARGEUR_KIOSQUE, y: 12, l: LARGEUR_KIOSQUE, h: 151 })),
-  // Îlot de gauche : 10, 11 / 14, 15 — îlot de droite : 12, 13 / 16, 17
-  ...[
-    [10, 420, 262], [11, 420 + COTE_ILOT, 262], [14, 420, 262 + COTE_ILOT], [15, 420 + COTE_ILOT, 262 + COTE_ILOT],
-    [12, 1315, 262], [13, 1315 + COTE_ILOT, 262], [16, 1315, 262 + COTE_ILOT], [17, 1315 + COTE_ILOT, 262 + COTE_ILOT],
-  ].map(([numero, x, y]) => ({ numero, x, y, l: COTE_ILOT, h: COTE_ILOT })),
-  // Rangée du bas : 18 à 26
-  ...Array.from({ length: 9 }, (_, i) => ({ numero: i + 18, x: 353 + i * LARGEUR_KIOSQUE, y: 664, l: LARGEUR_KIOSQUE, h: 151 })),
+const SALLE = { x0: 55, y0: 110, x1: 3518, y1: 2325 };
+
+const RANGEE_HAUT = [[1, 100], [2, 395], [3, 690], [4, 980], [5, 1580], [6, 1865], [7, 2220], [8, 2520], [9, 3125]];
+const RANGEE_BAS = [[18, 375], [19, 660], [20, 955], [21, 1240], [22, 1530], [23, 1830], [24, 2115], [25, 2410], [26, 2705]];
+// Îlots : kiosques du haut ouverts vers le haut, kiosques du bas vers le bas, dos à dos
+const ILOTS = [
+  [10, 490, 920, 'haut'], [11, 780, 920, 'haut'], [14, 490, 1200, 'bas'], [15, 780, 1200, 'bas'],
+  [12, 2225, 920, 'haut'], [13, 2510, 920, 'haut'], [16, 2225, 1200, 'bas'], [17, 2510, 1200, 'bas'],
+] as const;
+
+const KIOSQUES: Kiosque[] = [
+  ...RANGEE_HAUT.map(([numero, x]) => ({ numero, x, y: SALLE.y0, l: 245, h: 265, ouvert: 'bas' as const })),
+  ...ILOTS.map(([numero, x, y, ouvert]) => ({ numero, x, y, l: 245, h: 280, ouvert })),
+  ...RANGEE_BAS.map(([numero, x]) => ({ numero, x, y: SALLE.y1 - 265, l: 245, h: 265, ouvert: 'haut' as const })),
+].sort((a, b) => a.numero - b.numero);
+
+// Portes doubles : [mur, début, fin] ; elles s'ouvrent vers l'extérieur
+const PORTES: ['gauche' | 'haut' | 'droite', number, number][] = [
+  ['gauche', 440, 750], ['gauche', 1590, 1860],
+  ['haut', 1300, 1490], ['haut', 2870, 3060],
+  ['droite', 540, 710], ['droite', 1600, 1760],
 ];
 
-// Portes doubles : charnières et sens d'ouverture (vers l'extérieur de la salle)
-const PORTES = [
-  // Mur de gauche
-  'M215 236 L162 236 M215 289 A53 53 0 0 1 162 236 M215 342 L162 342 M215 289 A53 53 0 0 0 162 342',
-  // Mur de droite, en haut et en bas
-  'M1932 250 L1979.5 250 M1932 297.5 A47.5 47.5 0 0 0 1979.5 250 M1932 345 L1979.5 345 M1932 297.5 A47.5 47.5 0 0 1 1979.5 345',
-  'M1932 645 L1979.5 645 M1932 692.5 A47.5 47.5 0 0 0 1979.5 645 M1932 740 L1979.5 740 M1932 692.5 A47.5 47.5 0 0 1 1979.5 740',
-  // Mur du bas, à droite
-  'M1795 815 L1795 862.5 M1842.5 815 A47.5 47.5 0 0 1 1795 862.5 M1890 815 L1890 862.5 M1842.5 815 A47.5 47.5 0 0 0 1890 862.5',
+// Tables (rectangles coupés en segments) et tables rondes de la pause-café
+const TABLES: { x: number; y: number; l: number; h: number; segments: number }[] = [
+  { x: 380, y: 1010, l: 80, h: 360, segments: 2 },
+  { x: 1070, y: 1030, l: 75, h: 350, segments: 2 },
+  { x: 2105, y: 1025, l: 80, h: 350, segments: 2 },
+  { x: 3130, y: 970, l: 80, h: 520, segments: 3 },
+  { x: 3290, y: 970, l: 85, h: 520, segments: 3 },
+];
+const TABLES_RONDES = [[3255, 770], [3255, 1710]];
+
+// Cloisons de la salle, en pointillés comme sur le plan du comité
+const CLOISONS = [
+  'M55 1130 H380', 'M1145 1130 H2105', 'M2755 1130 H3518',
+  'M1205 375 V1130', 'M2367 375 V920',
 ];
 
-// Lounge café : zone délimitée entre les deux îlots
-const LOUNGE = { x: 820, y: 192, l: 476, h: 440 };
-const CENTRE_X = LOUNGE.x + LOUNGE.l / 2; // 1058
-
-// Îlots de trois fauteuils autour d'une table basse ; « ouvert » = côté sans fauteuil
-const SALONS: { x: number; y: number; ouvert: 'haut' | 'bas' }[] = [
-  // Ouverts vers le centre : le comptoir et le titre restent dégagés
-  { x: 910, y: 272, ouvert: 'bas' },
-  { x: 1206, y: 272, ouvert: 'bas' },
-  { x: 910, y: 548, ouvert: 'haut' },
-  { x: 1206, y: 548, ouvert: 'haut' },
-];
-
-// Écrans commerciaux sur pied, au milieu de chaque côté du lounge
-const ECRANS: { x: number; y: number; l: number; h: number }[] = [
-  { x: CENTRE_X - 48, y: 201, l: 96, h: 12 },
-  { x: CENTRE_X - 48, y: 611, l: 96, h: 12 },
-  { x: 829, y: 364, l: 12, h: 96 },
-  { x: 1275, y: 364, l: 12, h: 96 },
-];
-
-// Fauteuil vu de dessus : assise arrondie, dossier du côté opposé à la table
-function Fauteuil({ x, y, dossier }: { x: number; y: number; dossier: 'gauche' | 'droite' | 'haut' | 'bas' }) {
-  const c = 40; // environ 3 pi à l'échelle du plan (un kiosque de 10 pi fait 152)
-  const e = 10; // épaisseur du dossier
-  const d = {
-    gauche: { x: x - c / 2, y: y - c / 2, l: e, h: c },
-    droite: { x: x + c / 2 - e, y: y - c / 2, l: e, h: c },
-    haut: { x: x - c / 2, y: y - c / 2, l: c, h: e },
-    bas: { x: x - c / 2, y: y + c / 2 - e, l: c, h: e },
-  }[dossier];
-  return (
-    <g>
-      <rect x={x - c / 2} y={y - c / 2} width={c} height={c} rx="10" strokeWidth="2.5" className="fill-geo-cream stroke-geo-ink/45" />
-      <rect x={d.x} y={d.y} width={d.l} height={d.h} rx="4" className="fill-geo-ink/35" />
-    </g>
-  );
+function murs() {
+  const parMur: Record<string, [number, number][]> = { gauche: [], haut: [], droite: [] };
+  PORTES.forEach(([mur, a, b]) => parMur[mur].push([a, b]));
+  const segments = (debut: number, fin: number, trous: [number, number][]) => {
+    const morceaux: [number, number][] = [];
+    let curseur = debut;
+    [...trous].sort((p, q) => p[0] - q[0]).forEach(([a, b]) => { morceaux.push([curseur, a]); curseur = b; });
+    morceaux.push([curseur, fin]);
+    return morceaux;
+  };
+  const { x0, y0, x1, y1 } = SALLE;
+  return [
+    ...segments(y0, y1, parMur.gauche).map(([a, b]) => `M${x0} ${a} V${b}`),
+    ...segments(x0, x1, parMur.haut).map(([a, b]) => `M${a} ${y0} H${b}`),
+    ...segments(y0, y1, parMur.droite).map(([a, b]) => `M${x1} ${a} V${b}`),
+    `M${x0} ${y1} H${x1}`,
+  ].join(' ');
 }
 
-export default function PlanKiosques({ fr }: { fr: boolean }) {
-  const eau = fr ? 'Station d\'eau' : 'Water station';
+// Battants et arcs d'une porte double ; sens de l'arc calculé par produit vectoriel
+function porte([mur, a, b]: (typeof PORTES)[number]) {
+  const m = (a + b) / 2;
+  const L = (b - a) / 2;
+  const vertical = mur !== 'haut';
+  const paroi = mur === 'gauche' ? SALLE.x0 : mur === 'droite' ? SALLE.x1 : SALLE.y0;
+  const s = mur === 'droite' ? 1 : -1;
+  const pt = (le: number, t: number) => (vertical ? [paroi + t, le] : [le, paroi + t]);
+  return [a, b].map((charniere) => {
+    const [cx, cy] = pt(charniere, 0);
+    const [ox, oy] = pt(charniere, s * L); // battant ouvert
+    const [fx, fy] = pt(m, 0); // battant fermé
+    const balayage = (fx - cx) * (oy - cy) - (fy - cy) * (ox - cx) > 0 ? 1 : 0;
+    return `M${cx} ${cy} L${ox} ${oy} M${fx} ${fy} A${L} ${L} 0 0 ${balayage} ${ox} ${oy}`;
+  }).join(' ');
+}
+
+// Murs d'un kiosque : trois côtés, le côté ouvert donnant sur l'allée
+function contour(k: Kiosque) {
+  const x1 = k.x + k.l, y1 = k.y + k.h;
+  return k.ouvert === 'bas'
+    ? `M${k.x} ${y1} V${k.y} H${x1} V${y1}`
+    : `M${k.x} ${k.y} V${y1} H${x1} V${k.y}`;
+}
+
+// Nom de l'organisation sur deux lignes au plus, quand il n'y a pas de logo
+function lignes(nom: string, max = 14) {
+  const mots = nom.split(' ');
+  const out: string[] = [''];
+  for (const mot of mots) {
+    const courant = out[out.length - 1];
+    if (!courant || (courant + ' ' + mot).length <= max) out[out.length - 1] = courant ? `${courant} ${mot}` : mot;
+    else if (out.length < 2) out.push(mot);
+    else { out[1] = `${out[1].slice(0, max - 1)}…`; break; }
+  }
+  return out;
+}
+
+export default function PlanKiosques({ fr, onReserver }: { fr: boolean; onReserver?: (numero: number) => void }) {
+  const [reservations, setReservations] = useState(RESERVATIONS_KIOSQUES);
+  const [apercu, setApercu] = useState(false);
+  const [choisi, setChoisi] = useState<number | null>(null);
+  const [survol, setSurvol] = useState<number | null>(null);
+
+  // Aperçu des réservations fictives : serveur de développement seulement
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'production' && new URLSearchParams(window.location.search).has('apercu-kiosques')) {
+      setReservations({ ...RESERVATIONS_APERCU, ...RESERVATIONS_KIOSQUES });
+      setApercu(true);
+    }
+  }, []);
+
+  const reservation = (n: number): ReservationKiosque | undefined => reservations[n];
+  const disponibles = KIOSQUES.filter((k) => !reservation(k.numero)).length;
+  const libelle = (pris: boolean) => (pris ? (fr ? 'Indisponible' : 'Unavailable') : (fr ? 'Disponible' : 'Available'));
+  const detail = choisi !== null ? reservation(choisi) : undefined;
 
   return (
     <div>
+      {apercu && (
+        <p className="mb-3 rounded-lg border border-dashed border-geo-ink/30 px-3 py-2 text-xs text-geo-ink-soft">
+          {fr
+            ? 'Aperçu local : réservations fictives pour vérifier le rendu. Elles ne s\'affichent jamais en production.'
+            : 'Local preview: sample bookings to check the layout. They never appear in production.'}
+        </p>
+      )}
+
       {/* Sur mobile, le plan garde une taille lisible et défile horizontalement */}
       <div className="overflow-x-auto rounded-xl border border-geo-ink/10 bg-geo-cream">
         <svg
-          viewBox="100 0 1910 885"
-          role="img"
-          aria-labelledby="plan-kiosques-titre plan-kiosques-desc"
-          className="block h-auto w-full min-w-[720px]"
+          viewBox="-120 0 3750 2345"
+          role="group"
+          aria-labelledby="plan-kiosques-titre"
+          aria-describedby="plan-kiosques-desc"
+          className="block h-auto w-full min-w-[760px] select-none"
         >
           <title id="plan-kiosques-titre">{fr ? 'Plan du salon des exposants' : 'Exhibition hall floor plan'}</title>
           <desc id="plan-kiosques-desc">
             {fr
-              ? '26 kiosques numérotés : 1 à 9 le long du mur du haut, 18 à 26 le long du mur du bas, et deux îlots de quatre kiosques (10, 11, 14, 15 à gauche ; 12, 13, 16, 17 à droite). Au centre, le lounge café : un comptoir barista, quatre îlots de fauteuils et quatre écrans, aux couleurs d\'un partenaire Bronze chaque demi-journée. Une station d\'eau borde l\'îlot de gauche côté lounge ; la pause-café est à droite de la salle.'
-              : '26 numbered booths: 1 to 9 along the top wall, 18 to 26 along the bottom wall, and two islands of four booths (10, 11, 14, 15 on the left; 12, 13, 16, 17 on the right). In the centre, the café lounge: a barista counter, four armchair seating areas and four screens, in the colours of a Bronze partner each half-day. A water station flanks the left island on the lounge side; the coffee break area is on the right side of the hall.'}
+              ? '26 kiosques ouverts sur les allées : 1 à 9 le long du mur du haut, 18 à 26 le long du mur du bas, et deux îlots de quatre kiosques dos à dos (10, 11, 14, 15 à gauche ; 12, 13, 16, 17 à droite). Au centre, l\'Espace café avec le barista et deux vélos café ; la pause-café est à droite. Chaque kiosque est un bouton qui indique s\'il est disponible.'
+              : '26 booths open onto the aisles: 1 to 9 along the top wall, 18 to 26 along the bottom wall, and two islands of four back-to-back booths (10, 11, 14, 15 on the left; 12, 13, 16, 17 on the right). In the centre, the Café Space with the barista and two coffee bikes; the coffee break area is on the right. Each booth is a button that tells whether it is available.'}
           </desc>
 
-          {/* Salle : plancher, puis murs interrompus aux portes */}
-          <rect x="215" y="12" width="1717" height="803" className="fill-geo-cream-dark/50" />
-          <path
-            d="M215 12 H1932 V250 M1932 345 V645 M1932 740 V815 H1890 M1795 815 H215 V342 M215 236 V12"
-            fill="none"
-            strokeWidth="5"
-            strokeLinecap="square"
-            className="stroke-geo-ink/45"
-          />
-          {PORTES.map((d) => (
-            <path key={d} d={d} fill="none" strokeWidth="2.5" className="stroke-geo-ink/35" />
+          {/* Salle */}
+          <rect x={SALLE.x0} y={SALLE.y0} width={SALLE.x1 - SALLE.x0} height={SALLE.y1 - SALLE.y0} className="fill-geo-cream-dark/50" />
+          <path d={murs()} fill="none" strokeWidth="9" strokeLinecap="square" className="stroke-geo-ink/50" />
+          {PORTES.map((p) => (
+            <path key={`${p[0]}-${p[1]}`} d={porte(p)} fill="none" strokeWidth="4" className="stroke-geo-ink/35" />
+          ))}
+          {CLOISONS.map((d) => (
+            <path key={d} d={d} fill="none" strokeWidth="4" strokeDasharray="22 16" className="stroke-geo-ink/20" />
           ))}
 
-          {/* Lounge café */}
-          <rect
-            x={LOUNGE.x}
-            y={LOUNGE.y}
-            width={LOUNGE.l}
-            height={LOUNGE.h}
-            rx="44"
-            strokeWidth="2.5"
-            strokeDasharray="10 8"
-            className="fill-geo-cream/70 stroke-geo-ink/30"
-          />
-          {SALONS.map(({ x, y, ouvert }) => (
-            <g key={`${x}-${y}`}>
-              <Fauteuil x={x - 56} y={y} dossier="gauche" />
-              <Fauteuil x={x + 56} y={y} dossier="droite" />
-              {ouvert === 'haut'
-                ? <Fauteuil x={x} y={y + 56} dossier="bas" />
-                : <Fauteuil x={x} y={y - 56} dossier="haut" />}
-              <circle cx={x} cy={y} r="20" strokeWidth="2.5" className="fill-geo-cream-dark stroke-geo-ink/45" />
-            </g>
-          ))}
-          {ECRANS.map((e) => (
-            <rect key={`${e.x}-${e.y}`} x={e.x} y={e.y} width={e.l} height={e.h} rx="3" className="fill-geo-ink" />
-          ))}
-
-          <text x={CENTRE_X} y="330" textAnchor="middle" fontSize="38" fontWeight="700" className="font-display fill-geo-ink">
-            {fr ? 'Lounge café' : 'Café lounge'}
+          {/* Espace café : barista et deux vélos café */}
+          <rect x="1230" y="1190" width="790" height="280" rx="70" className="fill-geo-ink/[0.04]" />
+          <text x="1625" y="1300" textAnchor="middle" fontSize="64" fontWeight="700" className="font-display fill-geo-ink">
+            {fr ? 'Espace café' : 'Café Space'}
           </text>
-          {/* Comptoir barista */}
-          <rect x={CENTRE_X - 92} y="360" width="184" height="52" rx="26" strokeWidth="2.5" className="fill-geo-cream-dark stroke-geo-ink/45" />
-          <Coffee x={CENTRE_X - 74} y={370} size={32} weight="light" className="text-geo-ink" aria-hidden="true" />
-          <text x={CENTRE_X + 18} y="393" textAnchor="middle" fontSize="18" fontWeight="700" letterSpacing="4" className="fill-geo-ink">
-            BARISTA
-          </text>
-          <text x={CENTRE_X} y="448" textAnchor="middle" fontSize="16" fontWeight="600" className="fill-geo-ink-soft">
-            {fr ? 'Aux couleurs d\'un partenaire Bronze' : 'In the colours of a Bronze partner'}
-          </text>
-          <text x={CENTRE_X} y="470" textAnchor="middle" fontSize="16" fontWeight="600" className="fill-geo-ink-soft">
-            {fr ? 'chaque demi-journée' : 'each half-day'}
+          <text x="1625" y="1385" textAnchor="middle" fontSize="38" fontWeight="600" className="fill-geo-ink-soft">
+            {fr ? 'Barista · 2 vélos café' : 'Barista · 2 coffee bikes'}
           </text>
 
-          {/* Kiosques : tous identiques, sans couleur d'état */}
-          {kiosques.map((k) => (
-            <g key={k.numero}>
-              <rect x={k.x} y={k.y} width={k.l} height={k.h} strokeWidth="3" className="fill-geo-cream stroke-geo-ink/40" />
-              <text
-                x={k.x + k.l / 2}
-                y={k.y + k.h / 2}
-                textAnchor="middle"
-                dominantBaseline="central"
-                fontSize="52"
-                fontWeight="700"
-                className="font-display fill-geo-ink"
-              >
-                {k.numero}
-              </text>
-            </g>
-          ))}
-
-          {/* Station d'eau, côté lounge de l'îlot de gauche */}
-          <rect x="725" y="325" width="32" height="177" rx="6" strokeWidth="2.5" className="fill-geo-cream stroke-geo-ink/40" />
-          <Drop x={729} y={398} size={24} weight="light" className="text-geo-ink-soft" aria-hidden="true" />
-          <text transform="translate(790 413) rotate(90)" textAnchor="middle" fontSize="21" fontWeight="600" className="fill-geo-ink-soft">{eau}</text>
-
-          {/* Pause-café : deux longues tables et deux tables rondes */}
-          {[1769, 1841].map((x) => (
-            <g key={x}>
-              {[297, 385.7, 474.3].map((y) => (
-                <rect key={y} x={x} y={y} width="32" height="88.7" strokeWidth="2.5" className="fill-geo-cream stroke-geo-ink/40" />
+          {/* Tables et pause-café */}
+          {TABLES.map((t) => (
+            <g key={`${t.x}-${t.y}`}>
+              {Array.from({ length: t.segments }, (_, i) => (
+                <rect key={i} x={t.x} y={t.y + (i * t.h) / t.segments} width={t.l} height={t.h / t.segments} strokeWidth="4" className="fill-geo-cream stroke-geo-ink/40" />
               ))}
             </g>
           ))}
-          {[198, 658].map((y) => (
-            <circle key={y} cx="1818" cy={y} r="38" strokeWidth="2.5" className="fill-geo-cream stroke-geo-ink/40" />
+          {TABLES_RONDES.map(([cx, cy]) => (
+            <circle key={cy} cx={cx} cy={cy} r="90" strokeWidth="4" className="fill-geo-cream stroke-geo-ink/40" />
           ))}
-          <text transform="translate(1744 430) rotate(90)" textAnchor="middle" fontSize="23" fontWeight="700" className="fill-geo-ink">
+          <text transform="translate(3075 1230) rotate(90)" textAnchor="middle" fontSize="44" fontWeight="700" className="fill-geo-ink">
             {fr ? 'Pause-café' : 'Coffee break'}
           </text>
+
+          {/* Kiosques */}
+          {KIOSQUES.map((k) => {
+            const r = reservation(k.numero);
+            const pris = Boolean(r);
+            const actif = choisi === k.numero;
+            const cx = k.x + k.l / 2;
+            const cy = k.y + k.h / 2;
+            const choisir = () => setChoisi(actif ? null : k.numero);
+            return (
+              <g
+                key={k.numero}
+                role="button"
+                tabIndex={0}
+                aria-pressed={actif}
+                aria-label={`${fr ? 'Kiosque' : 'Booth'} ${k.numero}, ${libelle(pris).toLowerCase()}${r ? `, ${r.organisation}` : ''}`}
+                onClick={choisir}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); choisir(); } }}
+                onMouseEnter={() => setSurvol(k.numero)}
+                onMouseLeave={() => setSurvol(null)}
+                onFocus={() => setSurvol(k.numero)}
+                onBlur={() => setSurvol(null)}
+                className="cursor-pointer outline-none"
+              >
+                <rect
+                  x={k.x}
+                  y={k.y}
+                  width={k.l}
+                  height={k.h}
+                  className={cn(
+                    'transition-colors',
+                    actif ? 'fill-geo-teal/25' : survol === k.numero ? 'fill-geo-teal/10' : pris ? 'fill-geo-cream-dark' : 'fill-geo-cream'
+                  )}
+                />
+                <path
+                  d={contour(k)}
+                  fill="none"
+                  strokeWidth={actif || survol === k.numero ? 10 : 6}
+                  className={actif || survol === k.numero ? 'stroke-geo-teal-dark' : 'stroke-geo-ink/60'}
+                />
+                {pris && r ? (
+                  <>
+                    <text x={k.x + 22} y={k.y + 46} fontSize="36" fontWeight="700" className="font-display fill-geo-ink">{k.numero}</text>
+                    {r.logo ? (
+                      <image href={r.logo} x={k.x + 25} y={cy - 55} width={k.l - 50} height={95} preserveAspectRatio="xMidYMid meet" />
+                    ) : (
+                      lignes(r.organisation).map((ligne, i, tout) => (
+                        <text key={i} x={cx} y={cy - 5 + (i - (tout.length - 1) / 2) * 34} textAnchor="middle" dominantBaseline="central" fontSize="28" fontWeight="600" className="fill-geo-ink">{ligne}</text>
+                      ))
+                    )}
+                    <text x={cx} y={k.y + k.h - 28} textAnchor="middle" fontSize="28" fontWeight="600" className="fill-geo-ink-soft">{libelle(true)}</text>
+                  </>
+                ) : (
+                  <>
+                    <text x={cx} y={cy - 18} textAnchor="middle" dominantBaseline="central" fontSize="68" fontWeight="700" className="font-display fill-geo-ink">{k.numero}</text>
+                    <text x={cx} y={cy + 55} textAnchor="middle" dominantBaseline="central" fontSize="32" fontWeight="600" className="fill-geo-teal-dark">{libelle(false)}</text>
+                  </>
+                )}
+              </g>
+            );
+          })}
         </svg>
       </div>
 
-      <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-xs text-geo-ink-soft">
-        <li className="flex items-center gap-2">
-          <span aria-hidden="true" className="h-3.5 w-3.5 border-2 border-geo-ink/40 bg-geo-cream" />
-          {fr ? 'Kiosque de 10 pi × 10 pi' : '10 ft × 10 ft booth'}
-        </li>
-        <li className="flex items-center gap-2">
-          <span aria-hidden="true" className="h-3.5 w-3.5 rounded-[4px] border-2 border-l-[5px] border-geo-ink/45 bg-geo-cream" />
-          {fr ? 'Fauteuil lounge' : 'Lounge armchair'}
-        </li>
-        <li className="flex items-center gap-2">
-          <span aria-hidden="true" className="h-1.5 w-5 rounded-sm bg-geo-ink" />
-          {fr ? 'Écran : logo et vidéos du partenaire Bronze' : 'Screen: Bronze partner logo and videos'}
-        </li>
-        <li className="sm:hidden">{fr ? 'Faites glisser pour voir tout le plan.' : 'Swipe to see the whole plan.'}</li>
-      </ul>
+      {/* Légende et compte */}
+      <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-geo-ink-soft">
+        <span className="flex items-center gap-2">
+          <svg aria-hidden="true" viewBox="0 0 16 16" className="h-4 w-4"><path d="M2 14V2h12v12" fill="none" stroke="currentColor" strokeWidth="1.8" /></svg>
+          {fr ? 'Kiosque de 10 pi × 10 pi, ouvert sur l\'allée' : '10 ft × 10 ft booth, open onto the aisle'}
+        </span>
+        <span className="flex items-center gap-2"><span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-geo-teal-dark" />{libelle(false)}</span>
+        <span className="flex items-center gap-2"><span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-geo-ink/40" />{libelle(true)}</span>
+        <span className="font-semibold text-geo-ink">
+          {fr ? `${disponibles} kiosques disponibles sur ${KIOSQUES.length}` : `${disponibles} of ${KIOSQUES.length} booths available`}
+        </span>
+        <span className="sm:hidden">{fr ? 'Faites glisser pour voir tout le plan.' : 'Swipe to see the whole plan.'}</span>
+      </div>
+
+      {/* Détail du kiosque choisi */}
+      <div aria-live="polite" className="mt-4 rounded-xl border border-geo-ink/10 bg-geo-cream p-4 sm:p-5">
+        {choisi === null ? (
+          <p className="text-sm text-geo-ink-soft">
+            {fr ? 'Choisissez un kiosque sur le plan pour voir s\'il est disponible.' : 'Select a booth on the plan to see whether it is available.'}
+          </p>
+        ) : (
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="flex items-center gap-3">
+              <p className="font-display text-2xl font-bold text-geo-ink">{fr ? 'Kiosque' : 'Booth'} {choisi}</p>
+              <span
+                className={cn(
+                  'rounded-full px-2.5 py-1 text-xs font-semibold',
+                  detail ? 'bg-geo-ink/10 text-geo-ink-soft' : 'bg-geo-teal/15 text-geo-teal-dark'
+                )}
+              >
+                {libelle(Boolean(detail))}
+              </span>
+            </div>
+            {detail ? (
+              <div className="flex flex-1 items-center gap-4 sm:justify-end">
+                {detail.logo && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={detail.logo} alt={`${fr ? 'Logo de' : 'Logo of'} ${detail.organisation}`} className="h-10 w-auto max-w-[140px] object-contain" />
+                )}
+                <div className="text-sm">
+                  <p className="font-semibold text-geo-ink">{detail.organisation}</p>
+                  {detail.site && (
+                    <a href={detail.site} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-geo-teal-dark hover:underline">
+                      {detail.site.replace(/^https?:\/\//, '')}
+                      <ArrowUpRight size={14} weight="light" aria-hidden="true" />
+                    </a>
+                  )}
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-1 flex-col gap-3 sm:flex-row sm:items-center sm:justify-end">
+                <p className="text-sm text-geo-ink-soft">
+                  {fr ? 'Ce kiosque est libre. Écrivez-nous pour le réserver.' : 'This booth is free. Write to us to book it.'}
+                </p>
+                {onReserver && (
+                  <button
+                    type="button"
+                    onClick={() => onReserver(choisi)}
+                    className="group inline-flex items-center justify-center gap-2 rounded-lg bg-geo-ink px-4 py-2 text-sm font-semibold text-geo-cream hover:bg-geo-ink/85 transition-colors"
+                  >
+                    {fr ? 'Réserver ce kiosque' : 'Book this booth'}
+                    <ArrowRight size={16} weight="light" className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

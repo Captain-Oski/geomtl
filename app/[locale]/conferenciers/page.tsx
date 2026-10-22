@@ -11,7 +11,7 @@ export function generateStaticParams() {
 }
 
 // La liste des conférenciers n'est pas encore annoncée publiquement
-// (lancement prévu octobre 2026, RDV Géomatique AGMQ) — aucune donnée
+// (lancement prévu octobre 2026, RDV Géomatique AGMQ) - aucune donnée
 // maquette n'est chargée sur cette page tant que la section n'est pas
 // réactivée avec de vraies confirmations.
 export default async function ConferenciersPage({

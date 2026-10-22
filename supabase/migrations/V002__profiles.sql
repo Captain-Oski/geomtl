@@ -12,7 +12,7 @@
 -- ────────────────────────────────────────────────────────────
 -- TABLE : profiles
 -- Créée automatiquement à chaque connexion Google OAuth.
--- Rôle NULL par défaut — l'admin attribue manuellement :
+-- Rôle NULL par défaut - l'admin attribue manuellement :
 --   UPDATE geomtl2027.profiles SET role = 'admin' WHERE email = 'ton@email.com';
 -- ────────────────────────────────────────────────────────────
 create table if not exists geomtl2027.profiles (

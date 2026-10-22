@@ -16,9 +16,14 @@ import { Train } from '@phosphor-icons/react/dist/ssr/Train';
 import { Bicycle } from '@phosphor-icons/react/dist/ssr/Bicycle';
 import { Bed } from '@phosphor-icons/react/dist/ssr/Bed';
 import { Star } from '@phosphor-icons/react/dist/ssr/Star';
-import { Wheelchair } from '@phosphor-icons/react/dist/ssr/Wheelchair';
 import { Question } from '@phosphor-icons/react/dist/ssr/Question';
 import { CaretDown } from '@phosphor-icons/react/dist/ssr/CaretDown';
+
+// Pas encore de formulaire d'infolettre sur le site : l'inscription passe par courriel.
+const lienInfolettre = (fr: boolean) =>
+  `mailto:${EVENT_CONFIG.courriels.info}?subject=${encodeURIComponent(fr ? 'Inscription à l\'infolettre GÉOMTL' : 'GÉOMTL newsletter subscription')}`;
+const LIEN = 'font-semibold text-geo-teal-dark hover:underline';
+const COURRIEL_CONFERENCIERS = EVENT_CONFIG.courriels.conferencier;
 
 const faqs = {
   fr: [
@@ -32,27 +37,30 @@ const faqs = {
     },
     {
       q: 'Les repas sont-ils inclus dans le billet?',
-      a: 'Le billet comprend les cafés de bienvenue, les pauses-café des deux journées, ainsi que les dîners du 4 et 5 octobre servis dans la zone d\'exposition. Le cocktail dinatoire du lundi soir est également inclus.'
+      a: 'Le billet comprend les cafés de bienvenue, les pauses-café des deux journées, ainsi que les dîners du 4 et 5 octobre servis dans la zone d\'exposition. La soirée réseautage du lundi 4 octobre, avec bouchées dînatoires, est incluse dans les forfaits 2 jours et 1 jour du 4 octobre.'
     },
     {
       q: 'Y a-t-il des accommodations recommandées près du lieu?',
-      a: 'Le Sheraton Saint-Hyacinthe est attenant au Centre de congrès — pas besoin de sortir à l\'extérieur. Un bloc de chambres est réservé au tarif de groupe de 219 $/nuit. Réservez au 450-250-5555 ou au 1-833-250-8555 en mentionnant « GEOMTL2027 » avant le 2 septembre 2027.'
-    },
-    {
-      q: 'L\'événement est-il accessible aux personnes à mobilité réduite?',
-      a: 'Oui, le Centre de congrès de Saint-Hyacinthe est entièrement accessible. Des ascenseurs, rampes d\'accès et espaces réservés sont disponibles dans toutes les salles. Contactez-nous à l\'avance pour tout besoin spécifique.'
+      a: 'Le Sheraton Saint-Hyacinthe est attenant au Centre de congrès : pas besoin de sortir à l\'extérieur. Un bloc de chambres est réservé au tarif de groupe de 219 $/nuit. Réservez au 450-250-5555 ou au 1-833-250-8555 en mentionnant « GEOMTL2027 » avant le 2 septembre 2027.'
     },
     {
       q: 'Puis-je transférer mon billet à un collègue?',
-      a: 'Oui, les billets sont transférables. Connectez-vous à votre compte billetterie pour effectuer le transfert, au moins 72h avant l\'événement.'
+      a: 'Non. Les billets sont nominatifs, non transférables et non remboursables.'
     },
     {
       q: 'La conférence est-elle diffusée en ligne?',
-      a: 'Certaines keynotes seront diffusées en direct. Aucune rediffusion ne sera offerte après l\'événement. Une formule hybride payante sera proposée pour les personnes ne pouvant pas se déplacer.'
+      a: 'Non, la conférence ne sera pas diffusée en ligne.'
     },
     {
       q: 'Comment soumettre une proposition de conférence?',
-      a: 'L\'appel à propositions pour GÉOMTL 2027 est ouvert jusqu\'au 15 mars 2027. Consultez la page Programmation pour les détails et le formulaire de soumission.'
+      a: (
+        <>
+          {'Plus de détails viendront avec notre infolettre : '}
+          <a href={lienInfolettre(true)} className={LIEN}>inscrivez-vous</a>
+          {' pour les recevoir. Pour toute question d\'ici là, écrivez à '}
+          <a href={`mailto:${COURRIEL_CONFERENCIERS}`} className={LIEN}>{COURRIEL_CONFERENCIERS}</a>.
+        </>
+      )
     }
   ],
   en: [
@@ -66,27 +74,30 @@ const faqs = {
     },
     {
       q: 'Are meals included in the ticket?',
-      a: 'The ticket includes welcome coffees, coffee breaks on both days, and lunches on October 4 and 5 served in the exhibition area. The Monday evening cocktail dinner is also included.'
+      a: 'The ticket includes welcome coffees, coffee breaks on both days, and lunches on October 4 and 5 served in the exhibition area. The Monday, October 4 networking evening, with hearty hors d\'oeuvres, is included in the 2-day and October 4 one-day packages.'
     },
     {
       q: 'Are there recommended accommodations near the venue?',
-      a: 'The Sheraton Saint-Hyacinthe is directly connected to the convention centre — no need to go outside. A room block is reserved at the group rate of $219/night. Book at 1-833-250-8555 with the code "GEOMTL2027" before September 2, 2027.'
-    },
-    {
-      q: 'Is the event accessible to people with reduced mobility?',
-      a: 'Yes, the Centre de congrès de Saint-Hyacinthe is fully accessible. Elevators, ramps and reserved spaces are available in all rooms. Contact us in advance for any specific needs.'
+      a: 'The Sheraton Saint-Hyacinthe is directly connected to the convention centre: no need to go outside. A room block is reserved at the group rate of $219/night. Book at 1-833-250-8555 with the code "GEOMTL2027" before September 2, 2027.'
     },
     {
       q: 'Can I transfer my ticket to a colleague?',
-      a: 'Yes, tickets are transferable. Log in to your ticketing account to make the transfer, at least 72 hours before the event.'
+      a: 'No. Tickets are issued in the attendee\'s name and are non-transferable and non-refundable.'
     },
     {
       q: 'Will the conference be streamed online?',
-      a: 'Some keynotes will be live-streamed. No replays will be available after the event. A paid hybrid format will be offered for those unable to attend in person.'
+      a: 'No, the conference will not be streamed online.'
     },
     {
       q: 'How do I submit a conference proposal?',
-      a: 'The call for proposals for GÉOMTL 2027 is open until March 15, 2027. See the Programming page for details and the submission form.'
+      a: (
+        <>
+          {'More details will come with our newsletter: '}
+          <a href={lienInfolettre(false)} className={LIEN}>subscribe</a>
+          {' to receive them. For any questions in the meantime, write to '}
+          <a href={`mailto:${COURRIEL_CONFERENCIERS}`} className={LIEN}>{COURRIEL_CONFERENCIERS}</a>.
+        </>
+      )
     }
   ]
 };
@@ -243,18 +254,6 @@ export default function InfosPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* Accessibility */}
-        <section>
-          <h2 className="text-2xl font-bold text-geo-ink mb-6 flex items-center gap-2"><Wheelchair size={26} weight="light" aria-hidden="true" />{t('accessTitle')}</h2>
-          <div className="glass-2027 rounded-2xl p-6">
-            <p className="text-geo-ink-soft leading-relaxed">
-              {locale === 'fr'
-                ? 'Le Centre de congrès de Saint-Hyacinthe est entièrement accessible aux personnes à mobilité réduite. Toutes les salles sont équipées d\'ascenseurs, de rampes d\'accès, de places réservées au premier rang et de boucles magnétiques. Des services d\'interprétation en langue des signes québécoise (LSQ) et en American Sign Language (ASL) sont disponibles sur demande pour les keynotes principales. Contactez-nous à info@geomtl.com pour tout besoin spécifique.'
-                : 'The Centre de congrès de Saint-Hyacinthe is fully accessible to people with reduced mobility. All rooms are equipped with elevators, ramps, reserved seating in the front row and hearing loops. Quebec Sign Language (LSQ) and American Sign Language (ASL) interpretation services are available upon request for main keynotes. Contact us at info@geomtl.com for any specific needs.'}
-            </p>
           </div>
         </section>
 

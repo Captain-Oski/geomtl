@@ -24,13 +24,14 @@ export default function Header() {
 
   // Programme, Conférenciers, Ateliers, Exposants et Partenaires restent
   // masqués de la navigation jusqu'au lancement public (octobre 2026,
-  // RDV Géomatique AGMQ) — les pages existent toujours en coulisse
+  // RDV Géomatique AGMQ) - les pages existent toujours en coulisse
   // (état "Bientôt disponible") mais ne sont pas mises en avant.
+  // Actualités est aussi masquée à la demande du comité : la page reste
+  // accessible par son adresse, sans lien dans la navigation.
   const navLinks = [
     { href: `/${locale}/billetterie`, label: t('buyTicket') },
     { href: `/${locale}/devenir-partenaire`, label: t('becomePartner') },
     { href: `/${locale}/infos`, label: t('info') },
-    { href: `/${locale}/actualites`, label: t('news') },
     { href: `/${locale}/apropos`, label: t('about') },
   ];
 
@@ -53,7 +54,7 @@ export default function Header() {
             <Link
               href={`/${locale}`}
               className="flex items-center group text-geo-ink"
-              aria-label="GÉOMTL 2027 — Accueil"
+              aria-label="GÉOMTL 2027, accueil"
             >
               <GeoMTLLogo
                 height={28}

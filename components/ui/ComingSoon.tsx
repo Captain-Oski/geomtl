@@ -13,7 +13,7 @@ interface ComingSoonProps {
 
 /**
  * Placeholder pour les sections pas encore annoncées publiquement
- * (conférenciers, programme, ateliers, exposants, partenaires) — le
+ * (conférenciers, programme, ateliers, exposants, partenaires) - le
  * lancement officiel de ces contenus est prévu en octobre 2026, au
  * RDV Géomatique AGMQ. Aucune donnée maquette n'est importée ici.
  */

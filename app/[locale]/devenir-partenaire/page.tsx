@@ -24,8 +24,9 @@ import { Television } from '@phosphor-icons/react/dist/ssr/Television';
 import { IdentificationBadge } from '@phosphor-icons/react/dist/ssr/IdentificationBadge';
 import PlanKiosques from '@/components/partners/PlanKiosques';
 import { cn } from '@/lib/utils';
+import { EVENT_CONFIG } from '@/data/config';
 
-const COURRIEL_PARTENARIATS = 'info@geomtl.com';
+const COURRIEL_PARTENARIATS = EVENT_CONFIG.courriels.partenariat;
 
 // Même gabarit pour les quatre niveaux : seule la matière change. Le globe de
 // la charte est recoloré en or, argent, bronze et graphite (scripts/cartes),
@@ -63,10 +64,21 @@ export default function DevenirPartenairePage() {
   });
   const [sent, setSent] = useState(false);
 
+  // Depuis le plan : préremplit le formulaire avec le kiosque choisi et y amène le visiteur
+  const reserverKiosque = (numero: number) => {
+    setFormData((f) => ({
+      ...f,
+      message: fr ? `Bonjour, nous souhaitons réserver le kiosque ${numero}.` : `Hello, we would like to book booth ${numero}.`,
+    }));
+    setSent(false);
+    document.getElementById('formulaire-partenaire')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.setTimeout(() => document.getElementById('partenaire-nom')?.focus({ preventScroll: true }), 500);
+  };
+
   // Pas de service d'envoi côté serveur : on ouvre le logiciel de courriel du visiteur, message prérempli.
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const sujet = fr ? `Partenariat GÉOMTL 2027 — ${formData.org}` : `GÉOMTL 2027 partnership — ${formData.org}`;
+    const sujet = fr ? `Partenariat GÉOMTL 2027 - ${formData.org}` : `GÉOMTL 2027 partnership - ${formData.org}`;
     const corps = [
       `${fr ? 'Nom' : 'Name'} : ${formData.name}`,
       `${fr ? 'Organisation' : 'Organization'} : ${formData.org}`,
@@ -82,12 +94,12 @@ export default function DevenirPartenairePage() {
     { Icon: UsersThree, titre: 'Participer', texte: 'Faire partie de l\'événement de référence de l\'industrie géospatiale et favoriser son développement au Québec.' },
     { Icon: Lightbulb, titre: 'Inspirer', texte: 'Faire rayonner votre expertise et connaître les perspectives d\'avenir dans le domaine.' },
     { Icon: Megaphone, titre: 'Valoriser', texte: 'Profiter d\'une visibilité potentielle auprès de 4 000 personnes intéressées aux technologies géospatiales, dont plus de 200 entreprises.' },
-    { Icon: ChatsCircle, titre: 'Échanger', texte: 'Faire des rencontres enrichissantes avec des passionnés dans le salon des exposants et au 5 à 7 réseautage.' },
+    { Icon: ChatsCircle, titre: 'Échanger', texte: 'Faire des rencontres enrichissantes avec des passionnés dans le salon des exposants et à la soirée réseautage.' },
   ] : [
     { Icon: UsersThree, titre: 'Participate', texte: 'Be part of the geospatial industry\'s reference event and support its development in Quebec.' },
     { Icon: Lightbulb, titre: 'Inspire', texte: 'Showcase your expertise and learn about the future of the field.' },
     { Icon: Megaphone, titre: 'Gain visibility', texte: 'Reach a potential audience of 4,000 people interested in geospatial technologies, including more than 200 companies.' },
-    { Icon: ChatsCircle, titre: 'Connect', texte: 'Have meaningful conversations with enthusiasts in the exhibition hall and at the networking reception.' },
+    { Icon: ChatsCircle, titre: 'Connect', texte: 'Have meaningful conversations with enthusiasts in the exhibition hall and at the networking evening.' },
   ];
 
   const raisonsExposant = fr ? [
@@ -104,13 +116,13 @@ export default function DevenirPartenairePage() {
 
   const avantages57 = fr ? [
     { Icon: Microphone, titre: 'Mot d\'accueil', texte: '5 minutes au micro pour lancer la soirée.' },
-    { Icon: Martini, titre: 'Cocktail signature', texte: 'Un cocktail créé à votre nom, servi toute la soirée.' },
+    { Icon: Martini, titre: 'Bar et bouchées dînatoires', texte: 'Un service de bar et des bouchées dînatoires seront servis aux participants.' },
     { Icon: Television, titre: 'Écrans à votre image', texte: 'Votre logo et votre vidéo en boucle dans la salle.' },
     { Icon: Megaphone, titre: '« Présenté par »', texte: 'Votre nom dans le programme, le site Web et l\'infolettre.' },
     { Icon: IdentificationBadge, titre: '2 passes complètes incluses', texte: '2 passes complètes (2 jours) pour votre équipe.' },
   ] : [
     { Icon: Microphone, titre: 'Welcome remarks', texte: '5 minutes at the mic to kick off the evening.' },
-    { Icon: Martini, titre: 'Signature cocktail', texte: 'A cocktail named after you, served all evening.' },
+    { Icon: Martini, titre: 'Bar and hors d\'oeuvres', texte: 'Bar service and hearty hors d\'oeuvres will be served to attendees.' },
     { Icon: Television, titre: 'Screens in your image', texte: 'Your logo and video looping in the room.' },
     { Icon: Megaphone, titre: '“Presented by”', texte: 'Your name in the program, on the website and in the newsletter.' },
     { Icon: IdentificationBadge, titre: '2 full passes included', texte: '2 full passes (both days) for your team.' },
@@ -118,13 +130,11 @@ export default function DevenirPartenairePage() {
 
   const kiosque = fr ? [
     'Un espace de 10 pi × 10 pi au cœur du salon, là où sont servies les pauses-café',
-    'Une cloison arrière de 8 pi et deux cloisons latérales de 3 pi, en tissu',
     'Une table nappée de 6 pi et 2 chaises',
     'Wi-Fi gratuit du Centre de congrès',
     'Électricité (une prise de 15 A)',
   ] : [
     'A 10 ft × 10 ft space in the heart of the exhibition hall, where coffee breaks are served',
-    'An 8 ft back wall and two 3 ft side walls, in fabric',
     'A 6 ft draped table and 2 chairs',
     'Free convention centre Wi-Fi',
     'Electricity (one 15 A outlet)',
@@ -263,16 +273,16 @@ export default function DevenirPartenairePage() {
                     </span>
                   </div>
                   <h3 className="mt-5 font-display text-3xl sm:text-4xl font-bold leading-tight text-geo-noir">
-                    {fr ? 'Le 5@7 réseautage, ' : 'The networking 5@7, '}
-                    <span className="text-[#00735F]">{fr ? 'présenté par vous' : 'presented by you'}</span>
+                    {fr ? 'La soirée réseautage, ' : 'The networking evening, '}
+                    <span className="text-[#00735F]">{fr ? 'présentée par vous' : 'presented by you'}</span>
                   </h3>
                   <p className="mt-3 font-semibold text-geo-noir">
                     {fr ? 'Lundi 4 octobre 2027, de 17 h à 19 h' : 'Monday, October 4, 2027, 5 to 7 pm'}
                   </p>
                   <p className="mt-3 text-sm leading-relaxed text-[#4A4A44] max-w-lg">
                     {fr
-                      ? 'Le moment le plus convivial du congrès : plus de 400 professionnels réunis autour d\'un verre. Votre organisation en est l\'hôte, du premier mot au dernier toast.'
-                      : 'The most convivial moment of the conference: more than 400 professionals gathered over drinks. Your organization is the host, from the first word to the last toast.'}
+                      ? 'Le moment le plus convivial du congrès : plus de 400 professionnels réunis autour d\'un verre, avec des bouchées dînatoires. Votre organisation en est l\'hôte, du premier mot au dernier toast.'
+                      : 'The most convivial moment of the conference: more than 400 professionals gathered over drinks and hearty hors d\'oeuvres. Your organization is the host, from the first word to the last toast.'}
                   </p>
                   <p className="mt-6 font-display text-5xl font-black bg-gradient-to-r from-[#00735F] to-[#4F7A1E] bg-clip-text text-transparent">
                     {fr ? '2 995 $' : '$2,995'}
@@ -323,8 +333,8 @@ export default function DevenirPartenairePage() {
               </ul>
               <p className="text-xs text-geo-ink-soft mt-4">
                 {fr
-                  ? 'Limite de 2 espaces par exposant. D\'autres aménagements sont possibles moyennant des frais supplémentaires : contactez-nous pour en discuter.'
-                  : 'Limit of 2 spaces per exhibitor. Other setups are possible for an additional fee: contact us to discuss your project.'}
+                  ? 'Limite de 1 espace par organisation.'
+                  : 'Limit of 1 space per organization.'}
               </p>
             </div>
             <div className="glass-2027 rounded-2xl p-6">
@@ -350,7 +360,7 @@ export default function DevenirPartenairePage() {
                 {fr ? 'Plan préliminaire' : 'Preliminary plan'}
               </span>
             </div>
-            <PlanKiosques fr={fr} />
+            <PlanKiosques fr={fr} onReserver={reserverKiosque} />
             <p className="text-xs text-geo-ink-soft mt-3">
               {fr
                 ? 'L\'emplacement et le nombre de kiosques peuvent encore changer.'
@@ -359,7 +369,7 @@ export default function DevenirPartenairePage() {
           </div>
         </section>
 
-        <section className="max-w-2xl mx-auto">
+        <section id="formulaire-partenaire" className="max-w-2xl mx-auto scroll-mt-28">
           <div>
             <h2 className="text-2xl font-bold text-geo-ink mb-4">{t('contactTitle')}</h2>
             <p className="text-geo-ink-soft mb-8">

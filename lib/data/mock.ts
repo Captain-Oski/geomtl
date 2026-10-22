@@ -1,6 +1,6 @@
 import type { PublicPartner, Exhibitor, Activation } from '@/lib/supabase/types'
 
-// Données publiques filtrées — sans infos sensibles
+// Données publiques filtrées - sans infos sensibles
 export const MOCK_PUBLIC_PARTNERS: PublicPartner[] = [
   {
     id: 'p1',

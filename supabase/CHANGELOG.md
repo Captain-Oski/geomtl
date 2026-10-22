@@ -1,4 +1,4 @@
-# GeoMTL 2027 — Journal des migrations SQL Supabase
+# GeoMTL 2027 - Journal des migrations SQL Supabase
 
 Toutes les migrations sont dans [`supabase/migrations/`](./migrations/).  
 À exécuter **dans l'ordre numérique** dans le SQL Editor de Supabase.
@@ -40,9 +40,9 @@ Toutes les migrations sont dans [`supabase/migrations/`](./migrations/).
 V000 → V001 → V002 → V003 → V004 → V005
 ```
 
-**V000** doit être la toute première — elle crée le schéma `geomtl2027`.  
-**V002** doit suivre V001 — `get_my_role()` référence la table `profiles` créée dans V002.  
-**V003** doit précéder V004 et V005 — ces dernières ajoutent des FK vers les tables de support.
+**V000** doit être la toute première - elle crée le schéma `geomtl2027`.  
+**V002** doit suivre V001 - `get_my_role()` référence la table `profiles` créée dans V002.  
+**V003** doit précéder V004 et V005 - ces dernières ajoutent des FK vers les tables de support.
 
 ## Étape obligatoire après V000
 

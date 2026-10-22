@@ -1,7 +1,7 @@
-# GeoMTL 2027 — IDEAS : Fonctionnalités futures
+# GeoMTL 2027 - IDEAS : Fonctionnalités futures
 
 Idées et améliorations potentielles pour les prochaines versions.
-Aucun engagement — sert de backlog d'inspiration.
+Aucun engagement - sert de backlog d'inspiration.
 
 ---
 
@@ -160,7 +160,7 @@ Aucun engagement — sert de backlog d'inspiration.
 ## 🔔 Notifications en temps réel (admin)
 
 - « Un nouveau partenaire vient de s'inscrire via le portail »
-- « MapGenie n'a toujours pas envoyé son logo — relance prévue demain »
+- « MapGenie n'a toujours pas envoyé son logo - relance prévue demain »
 - Via Supabase Realtime (websockets) ou simple polling
 - Badge de notification dans la sidebar admin
 

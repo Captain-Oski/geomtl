@@ -129,7 +129,7 @@ create or replace view geomtl2027.public_sessions_view as
     start_time;
 
 -- ────────────────────────────────────────────────────────────
--- SEED — quelques sessions de démo
+-- SEED - quelques sessions de démo
 -- ────────────────────────────────────────────────────────────
 insert into geomtl2027.sessions (
   title_fr, title_en,
@@ -139,8 +139,8 @@ insert into geomtl2027.sessions (
   public_visibility, status, display_order
 ) values
 (
-  'Conférence d''ouverture — La géomatique au cœur de la transition',
-  'Opening Keynote — Geomatics at the Heart of Transition',
+  'Conférence d''ouverture - La géomatique au cœur de la transition',
+  'Opening Keynote - Geomatics at the Heart of Transition',
   'Allocution d''ouverture par le président du comité organisateur.',
   'Opening address by the chair of the organizing committee.',
   'keynote', 'evening', '18:00', '19:00', 'Salle principale',
@@ -166,8 +166,8 @@ insert into geomtl2027.sessions (
   true, 'confirmed', 10
 ),
 (
-  'Jumeaux numériques urbains — retours d''expérience',
-  'Urban Digital Twins — Lessons Learned',
+  'Jumeaux numériques urbains - retours d''expérience',
+  'Urban Digital Twins - Lessons Learned',
   'Trois villes partagent leur parcours de mise en œuvre de jumeaux numériques.',
   'Three cities share their digital twin implementation journey.',
   'panel', 'day1', '10:30', '12:00', 'Salle A',
@@ -175,8 +175,8 @@ insert into geomtl2027.sessions (
   true, 'confirmed', 20
 ),
 (
-  'Atelier — QGIS avancé pour l''analyse environnementale',
-  'Workshop — Advanced QGIS for Environmental Analysis',
+  'Atelier - QGIS avancé pour l''analyse environnementale',
+  'Workshop - Advanced QGIS for Environmental Analysis',
   'Atelier pratique intensif, places limitées à 30 participants.',
   'Intensive hands-on workshop, limited to 30 participants.',
   'workshop', 'day1', '13:30', '17:00', 'Salle formation B',
@@ -193,8 +193,8 @@ insert into geomtl2027.sessions (
   true, 'confirmed', 50
 ),
 (
-  'Table ronde — Gouvernance des données géospatiales ouvertes',
-  'Roundtable — Open Geospatial Data Governance',
+  'Table ronde - Gouvernance des données géospatiales ouvertes',
+  'Roundtable - Open Geospatial Data Governance',
   'Enjeux juridiques, éthiques et techniques de l''ouverture des données géospatiales.',
   'Legal, ethical, and technical challenges of open geospatial data.',
   'panel', 'day2', '10:30', '12:00', 'Salle A',

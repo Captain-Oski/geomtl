@@ -51,7 +51,7 @@ const JALONS: Jalon[] = [
   {
     annee: 2027,
     titre: { fr: '23e édition', en: '23rd edition' },
-    repere: { fr: '4 et 5 octobre · Centre de congrès de Saint-Hyacinthe', en: 'October 4–5 · Centre de congrès de Saint-Hyacinthe' },
+    repere: { fr: 'Du 3 au 5 octobre · Centre de congrès de Saint-Hyacinthe', en: 'October 3–5 · Centre de congrès de Saint-Hyacinthe' },
     texte: {
       fr: 'GÉOMTL revient à Saint-Hyacinthe avec une nouvelle identité, signée elle aussi par Studio Le Séisme : « Comprendre le territoire, façonner l\'avenir ».',
       en: 'GÉOMTL returns to Saint-Hyacinthe with a new identity, also by Studio Le Séisme: “Understanding the territory, shaping the future”.',

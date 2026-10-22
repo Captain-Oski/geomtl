@@ -9,7 +9,7 @@ import { createClient } from '@/lib/supabase/client'
 //   - type=signup    → confirmation de compte, redirect vers /admin
 //   - type=invite    → même chose qu'un signup
 //
-// Supabase envoie le token dans le hash (#) — non lisible côté serveur.
+// Supabase envoie le token dans le hash (#) - non lisible côté serveur.
 // Cette page est donc un Client Component.
 
 type FlowType = 'recovery' | 'signup' | 'invite' | 'unknown'
@@ -177,7 +177,7 @@ function Layout({ children }: { children: React.ReactNode }) {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <span className="text-rose-500 font-bold text-3xl tracking-tight">GÉOMTL</span>
-          <p className="text-gray-500 mt-2 text-sm">Administration — GÉOMTL 2027</p>
+          <p className="text-gray-500 mt-2 text-sm">Administration - GÉOMTL 2027</p>
         </div>
         <div className="bg-gray-900 border border-gray-800 rounded-2xl p-8">
           {children}

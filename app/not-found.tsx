@@ -41,7 +41,7 @@ export default function NotFound() {
               Page introuvable
             </h1>
             <p style={{ color: '#8896a8', marginBottom: '2rem', maxWidth: '400px' }}>
-              Cette coordonnée n&apos;existe pas sur notre carte. — This coordinate doesn&apos;t exist on our map.
+              Cette coordonnée n&apos;existe pas sur notre carte. / This coordinate doesn&apos;t exist on our map.
             </p>
 
             <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>

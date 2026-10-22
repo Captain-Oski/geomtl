@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { PartnerForm } from '@/components/admin/partners/PartnerForm'
 
 export const metadata = {
-  title: 'Nouveau partenaire — Admin GÉOMTL',
+  title: 'Nouveau partenaire - Admin GÉOMTL',
 }
 
 export default function NewPartnerPage() {

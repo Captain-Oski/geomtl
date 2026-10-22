@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import type { Role } from '@/lib/supabase/types'
 
-const MOCK_MSG = 'Supabase non configuré — modifications non persistées en mode mock.'
+const MOCK_MSG = 'Supabase non configuré - modifications non persistées en mode mock.'
 
 // ─── Inviter un utilisateur par courriel ──────────────────
 // Supabase envoie un email avec un lien magique.
@@ -24,7 +24,7 @@ export async function inviteUser(email: string): Promise<{ error?: string }> {
     })
     if (error) return { error: error.message }
   } catch {
-    return { error: 'Client admin indisponible — vérifiez SUPABASE_SERVICE_ROLE_KEY.' }
+    return { error: 'Client admin indisponible - vérifiez SUPABASE_SERVICE_ROLE_KEY.' }
   }
 
   revalidatePath('/admin/users')
@@ -68,7 +68,7 @@ export async function createUser(
         .eq('id', data.user.id)
     }
   } catch {
-    return { error: 'Client admin indisponible — vérifiez SUPABASE_SERVICE_ROLE_KEY.' }
+    return { error: 'Client admin indisponible - vérifiez SUPABASE_SERVICE_ROLE_KEY.' }
   }
 
   revalidatePath('/admin/users')
@@ -76,7 +76,7 @@ export async function createUser(
 }
 
 // ─── Vérification que l'appelant est admin ─────────────────
-// Chaque action re-vérifie indépendamment — ne pas faire confiance au client.
+// Chaque action re-vérifie indépendamment - ne pas faire confiance au client.
 
 async function assertAdmin(): Promise<{ error?: string }> {
   const supabase = await createClient()
@@ -89,7 +89,7 @@ async function assertAdmin(): Promise<{ error?: string }> {
     .eq('id', user.id)
     .single()
 
-  if (profile?.role !== 'admin') return { error: 'Accès refusé — rôle admin requis.' }
+  if (profile?.role !== 'admin') return { error: 'Accès refusé - rôle admin requis.' }
   return {}
 }
 
@@ -151,7 +151,7 @@ export async function deleteUser(targetId: string): Promise<{ error?: string }> 
     const { error } = await adminClient.auth.admin.deleteUser(targetId)
     if (error) return { error: error.message }
   } catch (e) {
-    return { error: 'Client admin indisponible — vérifiez SUPABASE_SERVICE_ROLE_KEY.' }
+    return { error: 'Client admin indisponible - vérifiez SUPABASE_SERVICE_ROLE_KEY.' }
   }
 
   revalidatePath('/admin/users')

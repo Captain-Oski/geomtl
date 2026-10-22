@@ -13,10 +13,9 @@ export default function Footer() {
 
   // Programme, Conférenciers, Ateliers, Exposants et Partenaires restent
   // masqués de la navigation jusqu'au lancement public (octobre 2026,
-  // RDV Géomatique AGMQ).
+  // RDV Géomatique AGMQ). Actualités est masquée à la demande du comité.
   const navLinks = [
     { href: `/${locale}`, label: tNav('home') },
-    { href: `/${locale}/actualites`, label: tNav('news') },
     { href: `/${locale}/prix`, label: tNav('awards') },
     { href: `/${locale}/apropos`, label: tNav('about') },
   ];
@@ -41,7 +40,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand column */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href={`/${locale}`} aria-label="GÉOMTL 2027 — Accueil" className="text-white inline-flex">
+            <Link href={`/${locale}`} aria-label="GÉOMTL 2027, accueil" className="text-white inline-flex">
               <GeoMTLLogo height={34} showYear={true} />
             </Link>
             <p className="font-slogan font-bold text-lg leading-[1.1] text-geo-papier max-w-xs">

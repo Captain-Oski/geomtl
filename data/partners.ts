@@ -28,7 +28,7 @@ export const partnerLevelBenefits = {
       benefits: [
         "6 passes d'accès incluses",
         "1 kiosque de 20 pieds",
-        "25 minutes de scène principale",
+        "15 minutes de scène principale",
         "Commandite de la salle principale, sur 2 jours",
         "Visibilité de premier plan dans nos communications et sur nos réseaux sociaux"
       ]
@@ -40,7 +40,7 @@ export const partnerLevelBenefits = {
       benefits: [
         "6 included passes",
         "One 20-ft booth",
-        "25 minutes main stage time",
+        "15 minutes main stage time",
         "Main room sponsorship, for both days",
         "Top billing in our communications and on our social media"
       ]
@@ -78,11 +78,11 @@ export const partnerLevelBenefits = {
     fr: {
       name: "Bronze",
       price: "6 995 $",
-      capacity: "4 disponibles",
+      capacity: "8 disponibles",
       benefits: [
         "2 passes d'accès incluses",
         "1 kiosque de 10 pieds",
-        "Le lounge café à vos couleurs pendant une demi-journée : votre logo et vos vidéos sur les écrans, gobelets à votre logo",
+        "L'Espace café à vos couleurs pendant une demi-journée : votre logo et vos vidéos sur les écrans, gobelets à votre logo",
         "25 minutes de vitrine technologique",
         "Mention sur nos réseaux sociaux"
       ]
@@ -90,11 +90,11 @@ export const partnerLevelBenefits = {
     en: {
       name: "Bronze",
       price: "$6,995",
-      capacity: "4 available",
+      capacity: "8 available",
       benefits: [
         "2 included passes",
         "One 10-ft booth",
-        "The café lounge in your colours for half a day: your logo and videos on the screens, cups with your logo",
+        "The Café Space in your colours for half a day: your logo and videos on the screens, cups with your logo",
         "25 minutes of technology showcase",
         "Mention on our social media"
       ]

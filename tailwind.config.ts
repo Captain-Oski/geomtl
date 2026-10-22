@@ -30,7 +30,7 @@ const config: Config = {
         'mid-gray': '#8896a8',
         'dark-glass': 'rgba(10, 22, 40, 0.7)',
 
-        // ── Nouvelle identité 2027 (Studio Le Séisme) — site public ──
+        // ── Nouvelle identité 2027 (Studio Le Séisme) - site public ──
         // Relevées dans les visuels du globe en trame de points ; les
         // variantes "-dark" sont dérivées (même teinte, plus foncée).
         // Les valeurs vivent dans styles/globals.css (variables --rgb-geo-*)

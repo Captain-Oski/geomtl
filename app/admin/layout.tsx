@@ -6,7 +6,7 @@ import type { Profile } from '@/lib/supabase/types'
 import '@/styles/globals.css'
 
 export const metadata = {
-  title: 'Admin — GÉOMTL 2027',
+  title: 'Admin - GÉOMTL 2027',
   robots: 'noindex, nofollow',
 }
 

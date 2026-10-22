@@ -5,7 +5,7 @@ import { ExhibitorForm } from '@/components/admin/exhibitors/ExhibitorForm'
 import { ExhibitorStatusBadge } from '@/components/admin/exhibitors/ExhibitorStatusBadge'
 
 export const metadata = {
-  title: 'Modifier un exposant — Admin GÉOMTL',
+  title: 'Modifier un exposant - Admin GÉOMTL',
 }
 
 export default async function EditExhibitorPage({

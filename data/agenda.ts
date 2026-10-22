@@ -17,7 +17,7 @@ export interface AgendaItem {
 
 export const agendaItems: AgendaItem[] = [
 
-  // === SOIRÉE MARDI — 13 octobre ===
+  // === SOIRÉE MARDI - 13 octobre ===
   {
     id: "e001",
     day: 0,
@@ -32,7 +32,7 @@ export const agendaItems: AgendaItem[] = [
       fr: "Arrivée des participants, enregistrement et premières rencontres autour d'un cocktail dinatoire. L'occasion idéale de renouer avec la communauté géospatiale avant le lancement officiel du congrès.",
       en: "Participant arrival, registration and first connections over a dinner cocktail. The ideal opportunity to reconnect with the geospatial community before the official congress launch."
     },
-    room: { fr: "Grand Salon — Niveau 6", en: "Grand Salon — Level 6" },
+    room: { fr: "Grand Salon - Niveau 6", en: "Grand Salon - Level 6" },
     duration: 90
   },
   {
@@ -42,14 +42,14 @@ export const agendaItems: AgendaItem[] = [
     endTime: "20:00",
     type: "networking",
     title: {
-      fr: "GéoSpark — Activité brise-glace",
-      en: "GeoSpark — Icebreaker Activity"
+      fr: "GéoSpark - Activité brise-glace",
+      en: "GeoSpark - Icebreaker Activity"
     },
     description: {
-      fr: "Une activité conçue pour créer des connexions inattendues. Deux formats au choix selon l'énergie du groupe : (A) Speed-dating géothématique — chaque participant s'inscrit à l'une des 4 thématiques du congrès (IA, Jumeau numérique, Environnement, AICO) et tourne en rotations de 7 minutes pour échanger avec les autres thématiques; (B) Mur collaboratif — atelier géant de post-its numériques (Miro) pour cartographier les défis, attentes et idées de la communauté, clustérisées en direct et réutilisées tout au long du congrès.",
-      en: "An activity designed to spark unexpected connections. Two formats depending on group energy: (A) Geothematic speed-dating — each participant registers for one of the 4 congress themes (AI, Digital Twin, Environment, AICO) and rotates in 7-minute rounds to connect with other themes; (B) Collaborative wall — giant digital post-it workshop (Miro) to map the community's challenges, expectations and ideas, clustered live and reused throughout the congress."
+      fr: "Une activité conçue pour créer des connexions inattendues. Deux formats au choix selon l'énergie du groupe : (A) Speed-dating géothématique - chaque participant s'inscrit à l'une des 4 thématiques du congrès (IA, Jumeau numérique, Environnement, AICO) et tourne en rotations de 7 minutes pour échanger avec les autres thématiques; (B) Mur collaboratif - atelier géant de post-its numériques (Miro) pour cartographier les défis, attentes et idées de la communauté, clustérisées en direct et réutilisées tout au long du congrès.",
+      en: "An activity designed to spark unexpected connections. Two formats depending on group energy: (A) Geothematic speed-dating - each participant registers for one of the 4 congress themes (AI, Digital Twin, Environment, AICO) and rotates in 7-minute rounds to connect with other themes; (B) Collaborative wall - giant digital post-it workshop (Miro) to map the community's challenges, expectations and ideas, clustered live and reused throughout the congress."
     },
-    room: { fr: "Grand Salon — Niveau 6", en: "Grand Salon — Level 6" },
+    room: { fr: "Grand Salon - Niveau 6", en: "Grand Salon - Level 6" },
     duration: 90,
     track: "Brise-glace"
   },
@@ -64,14 +64,14 @@ export const agendaItems: AgendaItem[] = [
       en: "Open Networking & Buffet"
     },
     description: {
-      fr: "La soirée se poursuit en mode informel. Échanges libres, musique d'ambiance et buffet. Les résultats du brise-glace sont affichés en temps réel — une première carte collective de la communauté GÉOMTL 2027.",
-      en: "The evening continues in informal mode. Free conversation, ambient music and buffet. Icebreaker results are displayed in real time — a first collective map of the GÉOMTL 2027 community."
+      fr: "La soirée se poursuit en mode informel. Échanges libres, musique d'ambiance et buffet. Les résultats du brise-glace sont affichés en temps réel - une première carte collective de la communauté GÉOMTL 2027.",
+      en: "The evening continues in informal mode. Free conversation, ambient music and buffet. Icebreaker results are displayed in real time - a first collective map of the GÉOMTL 2027 community."
     },
-    room: { fr: "Grand Salon — Niveau 6", en: "Grand Salon — Level 6" },
+    room: { fr: "Grand Salon - Niveau 6", en: "Grand Salon - Level 6" },
     duration: 120
   },
 
-  // === DAY 1 — 4 octobre ===
+  // === DAY 1 - 4 octobre ===
   {
     id: "a001",
     day: 1,
@@ -105,7 +105,7 @@ export const agendaItems: AgendaItem[] = [
     },
     speakerIds: ["s013"],
     speakerNames: ["Sarah MacKenzie"],
-    room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
+    room: { fr: "Grande salle - Niveau 5", en: "Grand Hall - Level 5" },
     duration: 30
   },
   {
@@ -124,7 +124,7 @@ export const agendaItems: AgendaItem[] = [
     },
     speakerIds: ["s001"],
     speakerNames: ["Sophie Tremblay"],
-    room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
+    room: { fr: "Grande salle - Niveau 5", en: "Grand Hall - Level 5" },
     duration: 60
   },
   {
@@ -187,8 +187,8 @@ export const agendaItems: AgendaItem[] = [
     endTime: "13:30",
     type: "networking",
     title: {
-      fr: "Dîner et réseautage — Exposants",
-      en: "Lunch & Networking — Exhibitors"
+      fr: "Dîner et réseautage - Exposants",
+      en: "Lunch & Networking - Exhibitors"
     },
     description: {
       fr: "Repas servi dans la zone d'exposition. L'occasion idéale de visiter les kiosques des 50+ exposants.",
@@ -266,7 +266,7 @@ export const agendaItems: AgendaItem[] = [
     },
     speakerIds: ["s013", "s006", "s001"],
     speakerNames: ["Sarah MacKenzie", "Jean-François Leblanc", "Sophie Tremblay"],
-    room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
+    room: { fr: "Grande salle - Niveau 5", en: "Grand Hall - Level 5" },
     duration: 75
   },
   {
@@ -285,7 +285,7 @@ export const agendaItems: AgendaItem[] = [
     },
     speakerIds: ["s017"],
     speakerNames: ["Émilie Poirier"],
-    room: { fr: "Salle Démo — A", en: "Demo Room — A" },
+    room: { fr: "Salle Démo - A", en: "Demo Room - A" },
     duration: 60,
     track: "Technologie"
   },
@@ -305,7 +305,7 @@ export const agendaItems: AgendaItem[] = [
     },
     speakerIds: ["s016"],
     speakerNames: ["Robert Cloutier"],
-    room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
+    room: { fr: "Grande salle - Niveau 5", en: "Grand Hall - Level 5" },
     duration: 60,
     track: "Participation citoyenne"
   },
@@ -316,8 +316,8 @@ export const agendaItems: AgendaItem[] = [
     endTime: "19:00",
     type: "networking",
     title: {
-      fr: "Cocktail de bienvenue — Terrasse du Palais",
-      en: "Welcome Cocktail — Palais Terrace"
+      fr: "Cocktail de bienvenue - Terrasse du Palais",
+      en: "Welcome Cocktail - Palais Terrace"
     },
     description: {
       fr: "Soirée de réseautage informelle avec vue sur le Vieux-Port de Montréal. DJ set et bouchées gastronomiques.",
@@ -327,7 +327,7 @@ export const agendaItems: AgendaItem[] = [
     duration: 105
   },
 
-  // === DAY 2 — 5 octobre ===
+  // === DAY 2 - 5 octobre ===
   {
     id: "b001",
     day: 2,
@@ -348,8 +348,8 @@ export const agendaItems: AgendaItem[] = [
     endTime: "10:00",
     type: "keynote",
     title: {
-      fr: "Keynote : IA géospatiale — Entre promesses et responsabilités",
-      en: "Keynote: Geospatial AI — Between Promise and Responsibility"
+      fr: "Keynote : IA géospatiale - Entre promesses et responsabilités",
+      en: "Keynote: Geospatial AI - Between Promise and Responsibility"
     },
     description: {
       fr: "Amina Diallo explore comment l'intelligence artificielle transforme le géospatial à l'échelle mondiale, et les questions éthiques que cela soulève pour les communautés vulnérables.",
@@ -357,7 +357,7 @@ export const agendaItems: AgendaItem[] = [
     },
     speakerIds: ["s003"],
     speakerNames: ["Amina Diallo"],
-    room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
+    room: { fr: "Grande salle - Niveau 5", en: "Grand Hall - Level 5" },
     duration: 60
   },
   {
@@ -420,8 +420,8 @@ export const agendaItems: AgendaItem[] = [
     endTime: "12:30",
     type: "panel",
     title: {
-      fr: "Panel : Géospatial et santé publique — cartographier les inégalités",
-      en: "Panel: Geospatial and Public Health — Mapping Inequalities"
+      fr: "Panel : Géospatial et santé publique - cartographier les inégalités",
+      en: "Panel: Geospatial and Public Health - Mapping Inequalities"
     },
     description: {
       fr: "Discussion sur l'utilisation des données géospatiales pour comprendre et réduire les inégalités de santé dans les villes canadiennes.",
@@ -429,7 +429,7 @@ export const agendaItems: AgendaItem[] = [
     },
     speakerIds: ["s011", "s005"],
     speakerNames: ["Nadia Khalil", "Isabelle Roy"],
-    room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
+    room: { fr: "Grande salle - Niveau 5", en: "Grand Hall - Level 5" },
     duration: 60,
     track: "Villes intelligentes"
   },
@@ -440,8 +440,8 @@ export const agendaItems: AgendaItem[] = [
     endTime: "13:30",
     type: "networking",
     title: {
-      fr: "Dîner — Espace détente",
-      en: "Lunch — Lounge Space"
+      fr: "Dîner - Espace détente",
+      en: "Lunch - Lounge Space"
     },
     room: { fr: "Espace détente", en: "Lounge Space" },
     duration: 60
@@ -553,7 +553,7 @@ export const agendaItems: AgendaItem[] = [
       fr: "Remise du prix GAÏA, décerné par les sections Montréal et Champlain de l'ACSG pour reconnaître un apport remarquable à la géomatique au Québec.",
       en: "Presentation of the GAÏA Prize, awarded by the Montréal and Champlain sections of the ACSG to recognize a remarkable contribution to geomatics in Quebec."
     },
-    room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
+    room: { fr: "Grande salle - Niveau 5", en: "Grand Hall - Level 5" },
     duration: 60
   },
   {
@@ -563,14 +563,14 @@ export const agendaItems: AgendaItem[] = [
     endTime: "17:30",
     type: "keynote",
     title: {
-      fr: "Clôture : GÉOMTL 2028 — Premières annonces",
-      en: "Closing: GÉOMTL 2028 — First Announcements"
+      fr: "Clôture : GÉOMTL 2028 - Premières annonces",
+      en: "Closing: GÉOMTL 2028 - First Announcements"
     },
     description: {
       fr: "Discours de clôture et premières annonces pour GÉOMTL 2028. Merci à tous les participants, conférenciers, partenaires et exposants.",
       en: "Closing remarks and first announcements for GÉOMTL 2028. Thank you to all participants, speakers, partners and exhibitors."
     },
-    room: { fr: "Grande salle — Niveau 5", en: "Grand Hall — Level 5" },
+    room: { fr: "Grande salle - Niveau 5", en: "Grand Hall - Level 5" },
     duration: 30
   }
 ];

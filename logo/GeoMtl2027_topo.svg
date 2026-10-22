@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
-  GeoMTL 2027 — Topographic version
+  GeoMTL 2027 - Topographic version
   ViewBox 1400×840 | Letterforms at scale(3.0), centered
   Isolignes: topographic displacement bowing away from letter region (y=285–535)
   Colors: solarGrad from cream (#fcde9c) → purple (#7c1d6f), vertical
@@ -11,7 +11,7 @@
   xmlns="http://www.w3.org/2000/svg">
 
   <defs>
-    <!-- Gradient vertical — commun lettres et isolignes -->
+    <!-- Gradient vertical - commun lettres et isolignes -->
     <linearGradient id="isoGrad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="840">
       <stop offset="0%"    stop-color="#fcde9c"/>
       <stop offset="18%"   stop-color="#faa476"/>
@@ -129,7 +129,7 @@
   </g>
 
   <!-- ═══════════════════════════════════════════════════════
-       GÉOMTL — lettres vectorielles (identiques à l'original)
+       GÉOMTL - lettres vectorielles (identiques à l'original)
        transform : translate(90,285) scale(3)
   ═══════════════════════════════════════════════════════ -->
   <g transform="translate(90,285) scale(3)" fill="url(#letterGrad)" fill-rule="nonzero">
@@ -150,7 +150,7 @@
   </g>
 
   <!-- ═══════════════════════════════════════════════════════
-       2027 — superscript, même transform
+       2027 - superscript, même transform
   ═══════════════════════════════════════════════════════ -->
   <g transform="translate(90,285) scale(3)" fill="url(#yearGrad)" fill-rule="nonzero">
     <!-- 2 -->

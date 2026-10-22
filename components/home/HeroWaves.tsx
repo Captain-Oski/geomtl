@@ -1,6 +1,6 @@
 'use client'
 
-// Système nerveux organique — couvre toute la section hero (inset-0).
+// Système nerveux organique - couvre toute la section hero (inset-0).
 // viewBox 1440×900 avec preserveAspectRatio="none" → s'adapte à n'importe quelle hauteur.
 // Origine hors cadre gauche (x=-288), branches qui s'étalent de y≈0 à y≈900.
 export function HeroWaves() {
@@ -23,13 +23,13 @@ export function HeroWaves() {
         <g opacity="0.20">
           {/* Tronc central ondulant */}
           <path strokeWidth="4.5" d="M-288,450 C-120,440 200,462 420,447 C680,430 920,466 1150,450 C1280,440 1380,456 1440,450"/>
-          {/* Branches supérieures — étalées de y≈10 à y≈235 */}
+          {/* Branches supérieures - étalées de y≈10 à y≈235 */}
           <path strokeWidth="3.0"  d="M-20,445 C80,380 200,260 380,140 C480,70 580,30 720,10"/>
           <path strokeWidth="2.6"  d="M150,440 C250,370 380,278 520,182 C620,110 720,70 850,40"/>
           <path strokeWidth="2.2"  d="M380,442 C480,372 610,290 740,212 C840,150 940,115 1060,82"/>
           <path strokeWidth="2.1"  d="M650,445 C750,382 878,312 1010,252 C1100,210 1200,185 1330,158"/>
           <path strokeWidth="2.0"  d="M950,448 C1040,392 1140,342 1240,298 C1320,264 1380,250 1440,236"/>
-          {/* Branches inférieures — étalées de y≈680 à y≈870 */}
+          {/* Branches inférieures - étalées de y≈680 à y≈870 */}
           <path strokeWidth="3.3"  d="M-50,455 C60,522 185,602 315,682 C410,742 505,792 620,842"/>
           <path strokeWidth="2.5"  d="M200,460 C315,532 450,622 580,712 C670,776 760,822 880,868"/>
           <path strokeWidth="2.3"  d="M460,455 C570,527 700,617 830,702 C920,764 1010,807 1125,852"/>
@@ -37,7 +37,7 @@ export function HeroWaves() {
           <path strokeWidth="2.0"  d="M1020,452 C1095,517 1180,577 1275,637 C1345,682 1400,712 1440,752"/>
         </g>
 
-        {/* Nervures secondaires — émergent en cours de route des primaires */}
+        {/* Nervures secondaires - émergent en cours de route des primaires */}
         <g opacity="0.14">
           {/* Secondaires supérieures */}
           <path strokeWidth="1.35" d="M120,362 C180,292 240,222 310,162 C360,117 410,87 460,57"/>

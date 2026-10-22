@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3600 2202" width="3600" height="2202">
-  <title>GeoMTL 2027 — globe en trame</title>
+  <title>GeoMTL 2027 - globe en trame</title>
   <defs>
     <radialGradient id="globe-degrade" gradientUnits="userSpaceOnUse" cx="2476.6" cy="2320.7" r="1924">
       <stop offset="0" stop-color="#C7DC03"/>

@@ -31,8 +31,8 @@ import { SessionStatusBadge, SessionTypeBadge } from './SessionStatusBadge'
 // ─── Constantes ───────────────────────────────────────────
 
 const DAYS: { id: SessionDay; label: string }[] = [
-  { id: 'day1',    label: 'Jour 1 — 4 oct.' },
-  { id: 'day2',    label: 'Jour 2 — 5 oct.' },
+  { id: 'day1',    label: 'Jour 1 - 4 oct.' },
+  { id: 'day2',    label: 'Jour 2 - 5 oct.' },
 ]
 
 const DAY_IDS = DAYS.map((d) => d.id)
@@ -124,7 +124,7 @@ function SessionCard({
         {s.room && <p className="text-xs text-gray-600 mt-0.5">📍 {s.room}</p>}
       </div>
 
-      {/* Actions — masquées sauf au survol */}
+      {/* Actions - masquées sauf au survol */}
       {!overlay && (
         <div className="flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
           <Link

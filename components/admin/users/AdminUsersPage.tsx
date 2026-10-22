@@ -347,7 +347,7 @@ export function AdminUsersPage({ profiles, currentUserId }: Props) {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
             <div className="flex items-start gap-2">
               <RoleBadge role="admin" />
-              <p className="text-gray-400 text-xs">Accès complet — gestion des utilisateurs, suppression, contrats.</p>
+              <p className="text-gray-400 text-xs">Accès complet - gestion des utilisateurs, suppression, contrats.</p>
             </div>
             <div className="flex items-start gap-2">
               <RoleBadge role="editor" />
@@ -355,7 +355,7 @@ export function AdminUsersPage({ profiles, currentUserId }: Props) {
             </div>
             <div className="flex items-start gap-2">
               <RoleBadge role="viewer" />
-              <p className="text-gray-400 text-xs">Lecture seule — aucune modification possible.</p>
+              <p className="text-gray-400 text-xs">Lecture seule - aucune modification possible.</p>
             </div>
           </div>
         </div>
@@ -406,7 +406,7 @@ export function AdminUsersPage({ profiles, currentUserId }: Props) {
                       {self ? (
                         <div className="flex items-center gap-2">
                           <RoleBadge role={profile.role} />
-                          <span className="text-gray-600 text-xs">— non modifiable</span>
+                          <span className="text-gray-600 text-xs">(non modifiable)</span>
                         </div>
                       ) : (
                         <select
@@ -435,7 +435,7 @@ export function AdminUsersPage({ profiles, currentUserId }: Props) {
                     {/* Actions */}
                     <td className="py-4 px-4 text-right">
                       {self ? (
-                        <span className="text-gray-700 text-xs">—</span>
+                        <span className="text-gray-700 text-xs">-</span>
                       ) : (
                         <div className="flex items-center justify-end gap-2">
                           {profile.role !== null && (

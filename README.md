@@ -1,10 +1,10 @@
 # GeoMTL 2027
 
-Site web officiel de la conférence GeoMTL 2027 — le rendez-vous de la communauté géospatiale francophone.
+Site web officiel de la conférence GeoMTL 2027 - le rendez-vous de la communauté géospatiale francophone.
 
 ![alt text](images/readme.png)
 
-**4–5 octobre 2027 · Centre de congrès de Saint-Hyacinthe**
+**3–5 octobre 2027 · Centre de congrès de Saint-Hyacinthe**
 
 ---
 
@@ -65,7 +65,7 @@ logo/                 Fichiers SVG du logo GeoMTL 2027
 
 ## Logo
 
-Le logo officiel est `logo/GeoMtl2027_v3_creme-violet.svg` — dégradé crème→violet en 7 paliers.
+Le logo officiel est `logo/GeoMtl2027_v3_creme-violet.svg` - dégradé crème→violet en 7 paliers.
 
 Le composant React `GeoMTLLogo` dessine le mot-symbole GÉOMTL dans la couleur du texte (encre sur le site). Le hero l'affiche en grand par-dessus le globe animé.
 

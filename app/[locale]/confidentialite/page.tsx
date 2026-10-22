@@ -70,7 +70,7 @@ export default async function ConfidentialitePage({
             <div className="glass-2027 rounded-xl p-4">
               <p className="font-semibold text-geo-ink text-sm mb-1">Témoin de consentement</p>
               <p className="text-sm">
-                <code className="text-geo-teal-dark text-xs">geomtl_cookie_consent</code> — stocké
+                <code className="text-geo-teal-dark text-xs">geomtl_cookie_consent</code> : stocké
                 dans votre navigateur (localStorage) pour mémoriser votre choix sur cette bannière.
                 Durée : indéfinie, jusqu&apos;à suppression manuelle.
               </p>
@@ -140,7 +140,7 @@ export default async function ConfidentialitePage({
     },
     {
       id: 'contact',
-      title: '8. Contact — Responsable de la protection des renseignements personnels',
+      title: '8. Contact : responsable de la protection des renseignements personnels',
       content: (
         <div className="glass-2027 rounded-xl p-5 space-y-1 text-sm">
           <p className="text-geo-ink font-semibold">GÉOMTL 2027</p>
@@ -198,7 +198,7 @@ export default async function ConfidentialitePage({
             <div className="glass-2027 rounded-xl p-4">
               <p className="font-semibold text-geo-ink text-sm mb-1">Consent cookie</p>
               <p className="text-sm">
-                <code className="text-geo-teal-dark text-xs">geomtl_cookie_consent</code> — stored in
+                <code className="text-geo-teal-dark text-xs">geomtl_cookie_consent</code>: stored in
                 your browser (localStorage) to remember your banner choice.
                 Duration: indefinite, until manually cleared.
               </p>
@@ -267,7 +267,7 @@ export default async function ConfidentialitePage({
     },
     {
       id: 'contact',
-      title: '8. Contact — Privacy Officer',
+      title: '8. Contact: Privacy Officer',
       content: (
         <div className="glass-2027 rounded-xl p-5 space-y-1 text-sm">
           <p className="text-geo-ink font-semibold">GÉOMTL 2027</p>
@@ -286,7 +286,7 @@ export default async function ConfidentialitePage({
       <div className="page-header-2027 py-16 sm:py-20">
         <Container>
           <p className="text-xs font-semibold tracking-widest uppercase text-geo-teal-dark mb-3">
-            {fr ? 'Loi 25 — Conformité' : 'Law 25 — Compliance'}
+            {fr ? 'Loi 25 : conformité' : 'Law 25: Compliance'}
           </p>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-geo-ink mb-3">
             {fr ? 'Politique de confidentialité' : 'Privacy Policy'}

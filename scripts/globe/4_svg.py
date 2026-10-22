@@ -96,7 +96,7 @@ f1 = lambda v: ("%.1f" % v).rstrip("0").rstrip(".")
 stop_xml = "\n      ".join('<stop offset="%s" stop-color="%s"/>' % (("%.4f" % o).rstrip("0").rstrip(".") or "0", hexc(c)) for o, c in stops)
 circles = "\n    ".join('<circle cx="%s" cy="%s" r="%s"/>' % (f1(x), f1(y), f1(rad_)) for x, y, rad_, _, _ in dots)
 svg = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">
-  <title>GeoMTL 2027 — globe en trame</title>
+  <title>GeoMTL 2027 - globe en trame</title>
   <defs>
     <radialGradient id="globe-degrade" gradientUnits="userSpaceOnUse" cx="{f1(gx)}" cy="{f1(gy)}" r="{f1(R_end)}">
       {stop_xml}

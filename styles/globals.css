@@ -24,7 +24,7 @@
   --font-display: 'Space Grotesk', var(--font-inter);
 }
 
-/* ── Identité 2027 (Studio Le Séisme) — site public ────────────────
+/* ── Identité 2027 (Studio Le Séisme) - site public ────────────────
    Relevées dans les visuels du globe en trame de points. Canaux RGB
    séparés pour que Tailwind puisse y ajouter une opacité (bg-geo-ink/85) ;
    les classes geo-* de tailwind.config.ts lisent ces variables. */
@@ -99,7 +99,7 @@ body {
     radial-gradient(ellipse at 50% 80%, rgba(10, 65, 120, 0.15) 0%, transparent 60%);
 }
 
-/* Section with subtle isoline accent — place relative on parent, then add isoline child */
+/* Section with subtle isoline accent - place relative on parent, then add isoline child */
 .section-topo {
   position: relative;
   overflow: hidden;
@@ -280,7 +280,7 @@ a {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-/* Badge styles — harmonisés à la palette 2027 (turquoise / lime / encre) */
+/* Badge styles - harmonisés à la palette 2027 (turquoise / lime / encre) */
 .badge-rose {
   background: rgba(1, 205, 165, 0.14);
   color: var(--geo-teal-dark);
@@ -312,7 +312,7 @@ a {
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   Identité 2027 (Studio Le Séisme) — site public
+   Identité 2027 (Studio Le Séisme) - site public
    Suffixe "-2027" pour cohabiter avec l'ancienne palette (encore
    utilisée par /admin) sans rien casser.
    ══════════════════════════════════════════════════════════════════ */
@@ -325,7 +325,7 @@ a {
   background-clip: text;
 }
 
-/* Tache dégradée + trame demi-teinte (halftone) — le motif graphique
+/* Tache dégradée + trame demi-teinte (halftone) - le motif graphique
    signature de la marque 2027. Purement en CSS : pas d'image à charger. */
 .halftone-blob-2027 {
   position: relative;

@@ -104,7 +104,7 @@ export function ExhibitorTable({ exhibitors }: Props) {
 
                   {/* Secteur */}
                   <td className="py-3 px-3 text-gray-400 text-xs">
-                    {e.sector ?? <span className="text-gray-600">—</span>}
+                    {e.sector ?? <span className="text-gray-600">-</span>}
                   </td>
 
                   {/* Statut */}
@@ -127,7 +127,7 @@ export function ExhibitorTable({ exhibitors }: Props) {
                         )}
                       </div>
                     ) : (
-                      <span className="text-gray-600 text-xs">—</span>
+                      <span className="text-gray-600 text-xs">-</span>
                     )}
                   </td>
 
@@ -180,7 +180,7 @@ export function ExhibitorTable({ exhibitors }: Props) {
 
                   {/* Responsable */}
                   <td className="py-3 px-3 text-gray-400 text-xs">
-                    {e.internal_owner_name ?? <span className="text-gray-600">—</span>}
+                    {e.internal_owner_name ?? <span className="text-gray-600">-</span>}
                   </td>
 
                   {/* Relance */}
@@ -191,7 +191,7 @@ export function ExhibitorTable({ exhibitors }: Props) {
                         {new Date(e.follow_up_date).toLocaleDateString('fr-CA')}
                       </span>
                     ) : (
-                      <span className="text-gray-600 text-xs">—</span>
+                      <span className="text-gray-600 text-xs">-</span>
                     )}
                   </td>
 

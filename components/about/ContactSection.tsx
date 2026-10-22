@@ -14,36 +14,46 @@ export default function ContactSection() {
   const fr = locale === 'fr';
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [sent, setSent] = useState(false);
+  const { info, inscription, partenariat, conferencier } = EVENT_CONFIG.courriels;
 
-  const subjects = fr ? [
-    'Renseignements généraux',
-    'Inscription et billetterie',
-    'Partenariat et exposition',
-    'Proposition de conférence',
-    'Médias et presse',
-    'Accessibilité',
-    'Autre'
+  // Chaque sujet est envoyé à l'adresse de l'équipe concernée
+  const subjects: { nom: string; courriel: string }[] = fr ? [
+    { nom: 'Renseignements généraux', courriel: info },
+    { nom: 'Inscription et billetterie', courriel: inscription },
+    { nom: 'Partenariat et exposition', courriel: partenariat },
+    { nom: 'Proposition de conférence', courriel: conferencier },
+    { nom: 'Médias et presse', courriel: info },
+    { nom: 'Accessibilité', courriel: info },
+    { nom: 'Autre', courriel: info }
   ] : [
-    'General information',
-    'Registration and ticketing',
-    'Partnership and exhibition',
-    'Conference proposal',
-    'Media and press',
-    'Accessibility',
-    'Other'
+    { nom: 'General information', courriel: info },
+    { nom: 'Registration and ticketing', courriel: inscription },
+    { nom: 'Partnership and exhibition', courriel: partenariat },
+    { nom: 'Conference proposal', courriel: conferencier },
+    { nom: 'Media and press', courriel: info },
+    { nom: 'Accessibility', courriel: info },
+    { nom: 'Other', courriel: info }
+  ];
+  const destinataire = subjects.find((s) => s.nom === formData.subject)?.courriel ?? info;
+
+  const coordonnees = [
+    { libelle: fr ? 'Renseignements généraux' : 'General information', courriel: info },
+    { libelle: fr ? 'Inscriptions' : 'Registration', courriel: inscription },
+    { libelle: fr ? 'Partenariats et exposants' : 'Partners and exhibitors', courriel: partenariat },
+    { libelle: fr ? 'Conférenciers' : 'Speakers', courriel: conferencier },
   ];
 
   // Pas de service d'envoi côté serveur : on ouvre le logiciel de courriel du visiteur, message prérempli.
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const sujet = `GÉOMTL 2027 — ${formData.subject || (fr ? 'Message' : 'Message')}`;
+    const sujet = `GÉOMTL 2027 - ${formData.subject || (fr ? 'Message' : 'Message')}`;
     const corps = [
       `${fr ? 'Nom' : 'Name'} : ${formData.name}`,
       `${fr ? 'Courriel' : 'Email'} : ${formData.email}`,
       '',
       formData.message,
     ].join('\n');
-    window.location.href = `mailto:${EVENT_CONFIG.email}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
+    window.location.href = `mailto:${destinataire}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
     setSent(true);
   };
 
@@ -67,7 +77,7 @@ export default function ContactSection() {
               </p>
               <p className="text-sm text-geo-ink-soft mt-3">
                 {fr ? 'Rien ne s\'est ouvert? Écrivez-nous directement à ' : 'Nothing opened? Write to us directly at '}
-                <a href={`mailto:${EVENT_CONFIG.email}`} className="text-geo-teal-dark hover:underline">{EVENT_CONFIG.email}</a>.
+                <a href={`mailto:${destinataire}`} className="text-geo-teal-dark hover:underline">{destinataire}</a>.
               </p>
               <button
                 onClick={() => { setSent(false); setFormData({ name: '', email: '', subject: '', message: '' }); }}
@@ -111,8 +121,8 @@ export default function ContactSection() {
                   className={`${champ} bg-transparent`}
                 >
                   <option value="" className="bg-geo-cream">{fr ? '-- Choisir un sujet --' : '-- Choose a subject --'}</option>
-                  {subjects.map(s => (
-                    <option key={s} value={s} className="bg-geo-cream">{s}</option>
+                  {subjects.map(({ nom }) => (
+                    <option key={nom} value={nom} className="bg-geo-cream">{nom}</option>
                   ))}
                 </select>
               </div>
@@ -139,14 +149,19 @@ export default function ContactSection() {
 
         <div className="glass-2027 rounded-2xl p-6 h-fit">
           <h3 className="text-lg font-bold text-geo-ink mb-4">{fr ? 'Coordonnées' : 'Contact details'}</h3>
-          <div className="space-y-3 text-sm">
-            <div className="flex items-center gap-3 text-geo-ink-soft">
-              <EnvelopeSimple size={20} weight="light" className="text-geo-ink flex-shrink-0" aria-hidden="true" />
-              <a href={`mailto:${EVENT_CONFIG.email}`} className="hover:text-geo-ink transition-colors">
-                {EVENT_CONFIG.email}
-              </a>
-            </div>
-          </div>
+          <ul className="space-y-4 text-sm">
+            {coordonnees.map(({ libelle, courriel }) => (
+              <li key={courriel} className="flex items-start gap-3">
+                <EnvelopeSimple size={20} weight="light" className="text-geo-ink flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <div>
+                  <p className="font-semibold text-geo-ink">{libelle}</p>
+                  <a href={`mailto:${courriel}`} className="text-geo-ink-soft hover:text-geo-ink transition-colors">
+                    {courriel}
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

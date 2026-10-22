@@ -61,7 +61,7 @@ export function PaymentStatusBadge({ status }: { status: PaymentStatus }) {
 // ─── Booth Status ─────────────────────────────────────────
 
 const BOOTH_MAP: Record<BoothStatus, BadgeProps> = {
-  not_required: { label: '—',            className: 'bg-gray-800 text-gray-600' },
+  not_required: { label: '-',            className: 'bg-gray-800 text-gray-600' },
   to_assign:    { label: 'À attribuer',  className: 'bg-orange-900/60 text-orange-300' },
   assigned:     { label: 'Attribué',     className: 'bg-blue-900/60 text-blue-300' },
   confirmed:    { label: 'Confirmé',     className: 'bg-emerald-900/60 text-emerald-400' },

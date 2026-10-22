@@ -1,6 +1,6 @@
 export const EVENT_CONFIG = {
   name: "GÉOMTL 2027",
-  dates: { fr: "4–5 octobre 2027", en: "October 4–5, 2027" },
+  dates: { fr: "3–5 octobre 2027", en: "October 3–5, 2027" },
   venue: { fr: "Centre de congrès de Saint-Hyacinthe", en: "Centre de congrès de Saint-Hyacinthe" },
   city: "Saint-Hyacinthe, QC",
   stats: { participants: 400, days: 2, speakers: 60, workshops: 20, exhibitors: 26, awards: 1 },
@@ -23,6 +23,13 @@ export const EVENT_CONFIG = {
   ticketUrl: "#billetterie",
   partnerUrl: "#devenir-partenaire",
   email: "info@geomtl.com",
+  // Une adresse par sujet ; info@ reste l'adresse générale.
+  courriels: {
+    info: "info@geomtl.com",
+    inscription: "inscription@geomtl.com",
+    partenariat: "partenariat@geomtl.com",
+    conferencier: "conferencier@geomtl.com"
+  },
   address: {
     fr: "1325, rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4",
     en: "1325 rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4"

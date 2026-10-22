@@ -8,16 +8,16 @@ import HomeCTA from './HomeCTA';
 // définies par l'équipe.
 // Conférenciers, programme, ateliers, exposants et partenaires ne sont pas
 // encore annoncés publiquement (lancement prévu octobre 2026 au RDV
-// Géomatique AGMQ) — FeaturedSpeakers, ProgramPreview et PartnersSection
+// Géomatique AGMQ) - FeaturedSpeakers, ProgramPreview et PartnersSection
 // restent hors de la page d'accueil tant que ces sections ne sont pas
 // réactivées avec de vraies données.
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
   const fr = locale === 'fr';
   return {
-    title: fr ? 'GÉOMTL 2027 — Comprendre le territoire, façonner l\'avenir' : 'GÉOMTL 2027 — Understanding the territory, shaping the future',
+    title: fr ? 'GÉOMTL 2027 - Comprendre le territoire, façonner l\'avenir' : 'GÉOMTL 2027 - Understanding the territory, shaping the future',
     description: fr
-      ? 'La conférence géospatiale de référence du Québec. 4–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
-      : "Quebec's reference geospatial conference. October 4–5, 2027, Centre de congrès de Saint-Hyacinthe.",
+      ? 'La conférence géospatiale de référence du Québec. 3–5 octobre 2027, Centre de congrès de Saint-Hyacinthe.'
+      : "Quebec's reference geospatial conference. October 3–5, 2027, Centre de congrès de Saint-Hyacinthe.",
   };
 }
 

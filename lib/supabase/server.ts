@@ -19,7 +19,7 @@ export async function createClient() {
               cookieStore.set(name, value, options)
             )
           } catch {
-            // Server Component en lecture seule — les cookies ne peuvent pas être écrits ici
+            // Server Component en lecture seule - les cookies ne peuvent pas être écrits ici
           }
         },
       },

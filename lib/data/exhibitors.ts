@@ -219,7 +219,7 @@ export const MOCK_ADMIN_EXHIBITORS: Exhibitor[] = [
     primary_contact_phone: null,
     secondary_contact_name: null,
     secondary_contact_email: null,
-    notes_contact: 'Startup — contacts informels.',
+    notes_contact: 'Startup - contacts informels.',
     status: 'contacted',
     communication_date: '2025-05-01',
     invoice_sent_date: null,

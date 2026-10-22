@@ -11,7 +11,7 @@ export function generateStaticParams() {
 }
 
 // La liste des ateliers n'est pas encore annoncée publiquement (lancement
-// prévu octobre 2026, RDV Géomatique AGMQ) — aucune donnée maquette
+// prévu octobre 2026, RDV Géomatique AGMQ) - aucune donnée maquette
 // n'est chargée sur cette page tant que la section n'est pas réactivée
 // avec les vrais ateliers.
 export default async function AteliersPage({

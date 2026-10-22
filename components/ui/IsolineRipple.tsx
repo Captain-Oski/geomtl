@@ -30,13 +30,13 @@ function buildPath(baseY: number, lineIdx: number, t: number, amp: number, speed
   for (let s = 0; s <= SEGMENTS; s++) {
     const x = (s / SEGMENTS) * W;
 
-    // Ondulation de base (statique, organique — réplique l'allure ISO.png)
+    // Ondulation de base (statique, organique - réplique l'allure ISO.png)
     const organic = 3.2 * Math.sin(x * 0.009 + lineIdx * 1.07)
                   + 1.6 * Math.cos(x * 0.018 + lineIdx * 0.63);
 
-    // Onde ripple principale — voyageuse horizontale + propagation inter-lignes
+    // Onde ripple principale - voyageuse horizontale + propagation inter-lignes
     const ripple1 = amp * Math.sin(x * 0.007 - t * speed + lineIdx * vertPhase);
-    // Harmonique secondaire — donne de la texture
+    // Harmonique secondaire - donne de la texture
     const ripple2 = (amp * 0.35) * Math.sin(x * 0.015 - t * speed * 1.4 + lineIdx * vertPhase * 1.3);
 
     pts.push({ x, y: baseY + organic + ripple1 + ripple2 });
@@ -80,7 +80,7 @@ export default function IsolineRipple({
 
   const pathRefs  = useRef<(SVGPathElement | null)[]>([]);
 
-  // Logo zone — centré dans le viewBox, scale fixe
+  // Logo zone - centré dans le viewBox, scale fixe
   const logoScale  = 1.4;
   const logoW      = 409.9 * logoScale;
   const logoH      = 83.1  * logoScale;
@@ -113,14 +113,14 @@ export default function IsolineRipple({
       aria-hidden="true"
     >
       <defs>
-        {/* Gradient isolignes — crème → violet, pleine hauteur SVG */}
+        {/* Gradient isolignes - crème → violet, pleine hauteur SVG */}
         <linearGradient id={gradId} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2={H}>
           <stop offset="0%"   stopColor="#01CDA5"/>
           <stop offset="50%"  stopColor="#1BC868"/>
           <stop offset="100%" stopColor="#D0DC00"/>
         </linearGradient>
 
-        {/* Gradient lettres — espace local lettre y=0..83.1, identique à solarGrad dans GeoMTLLogo */}
+        {/* Gradient lettres - espace local lettre y=0..83.1, identique à solarGrad dans GeoMTLLogo */}
         <linearGradient id={gradLetId} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="83.1"
           gradientTransform={`translate(${logoX.toFixed(1)},${logoY.toFixed(1)}) scale(${logoScale})`}>
           <stop offset="0%"   stopColor="#01CDA5"/>
@@ -128,7 +128,7 @@ export default function IsolineRipple({
           <stop offset="100%" stopColor="#D0DC00"/>
         </linearGradient>
 
-        {/* Gradient 2027 — identique à solarGradSup de GeoMtl2027_v3_creme-violet.svg */}
+        {/* Gradient 2027 - identique à solarGradSup de GeoMtl2027_v3_creme-violet.svg */}
         <linearGradient id={gradYrId} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="25.4"
           gradientTransform={`translate(${logoX.toFixed(1)},${logoY.toFixed(1)}) scale(${logoScale})`}>
           <stop offset="0%"   stopColor="#01CDA5"/>

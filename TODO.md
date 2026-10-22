@@ -1,10 +1,10 @@
-# GeoMTL 2027 — TODO : Production Ready
+# GeoMTL 2027 - TODO : Production Ready
 
 Liste des tâches à compléter avant la mise en ligne. Organisée par priorité.
 
 ---
 
-## 🔴 Critique — Bloquant pour le lancement
+## 🔴 Critique - Bloquant pour le lancement
 
 ### Infrastructure Supabase
 - [x] Créer le projet Supabase (geomtl-2027)
@@ -28,7 +28,7 @@ Liste des tâches à compléter avant la mise en ligne. Organisée par priorité
 
 ---
 
-## 🟠 Important — Avant les premières utilisations réelles
+## 🟠 Important - Avant les premières utilisations réelles
 
 ### Données réelles
 - [ ] Remplacer les données mock par les vrais partenaires et exposants
@@ -52,28 +52,28 @@ Liste des tâches à compléter avant la mise en ligne. Organisée par priorité
 
 ---
 
-## 🟡 À faire — Avant l'événement
+## 🟡 À faire - Avant l'événement
 
 ### Fonctionnalités manquantes
 - [ ] **Page d'erreur 404** (`app/not-found.tsx`) avec lien retour accueil
 - [ ] **Page d'erreur 500** (`app/error.tsx`) pour les erreurs serveur
 - [ ] **Section exposants publique** (`PublicExhibitorsSection`) sur le site public
-- [ ] **Section carte du salon** — plan interactif des kiosques (voir IDEAS.md)
-- [ ] **Page agenda/programme** — liste des sessions et présentations
+- [ ] **Section carte du salon** - plan interactif des kiosques (voir IDEAS.md)
+- [ ] **Page agenda/programme** - liste des sessions et présentations
 - [ ] **Recherche** dans la liste publique des exposants/partenaires
 
-### Admin — Modules manquants
-- [ ] `/admin/contacts` — gestion des contacts liés aux partenaires/exposants
-- [ ] `/admin/activations` — programme des activations partenaires
-- [ ] `/admin/contracts` — suivi des contrats (admin seulement)
-- [ ] `/admin/deliverables` — suivi des livrables
-- [ ] `/admin/kpis` — tableau de bord KPI avec graphiques
+### Admin - Modules manquants
+- [ ] `/admin/contacts` - gestion des contacts liés aux partenaires/exposants
+- [ ] `/admin/activations` - programme des activations partenaires
+- [ ] `/admin/contracts` - suivi des contrats (admin seulement)
+- [ ] `/admin/deliverables` - suivi des livrables
+- [ ] `/admin/kpis` - tableau de bord KPI avec graphiques
 
-### Admin — Améliorations
+### Admin - Améliorations
 - [ ] **Export CSV** de la liste des partenaires / exposants
 - [ ] **Pagination** dans les tableaux admin (si > 50 entrées)
 - [ ] **Historique des modifications** par partenaire (audit log)
-- [ ] **Gestion des utilisateurs admin** — interface pour attribuer les rôles (pas juste SQL)
+- [ ] **Gestion des utilisateurs admin** - interface pour attribuer les rôles (pas juste SQL)
 
 ### Sécurité
 - [ ] Revoir les politiques RLS (tester avec différents rôles)
@@ -82,7 +82,7 @@ Liste des tâches à compléter avant la mise en ligne. Organisée par priorité
 
 ---
 
-## 🟢 Souhaitable — Avant / pendant l'événement
+## 🟢 Souhaitable - Avant / pendant l'événement
 
 ### Qualité
 - [ ] Tests de base (au moins les Server Actions critiques)
@@ -107,9 +107,9 @@ Liste des tâches à compléter avant la mise en ligne. Organisée par priorité
 - [x] Mode mock (développement sans Supabase)
 - [x] Internationalisation FR/EN (next-intl)
 - [x] Protection des routes `/admin` par middleware
-- [x] Logo GeoMTL 2027 — dégradé crème→violet (`GeoMtl2027_v3_creme-violet.svg`) dans header, footer et hero
-- [x] Hero animé — isolignes ondulantes 60fps via GSAP (`IsolineRipple` component)
-- [x] Hero pleine largeur — animation bord à bord, fond transparent sur `bg-deep-blue`
-- [x] Bouton CTA renommé « Participer » (FR) / « Participate » (EN) — moins commercial
+- [x] Logo GeoMTL 2027 - dégradé crème→violet (`GeoMtl2027_v3_creme-violet.svg`) dans header, footer et hero
+- [x] Hero animé - isolignes ondulantes 60fps via GSAP (`IsolineRipple` component)
+- [x] Hero pleine largeur - animation bord à bord, fond transparent sur `bg-deep-blue`
+- [x] Bouton CTA renommé « Participer » (FR) / « Participate » (EN) - moins commercial
 - [x] Page actualités avec articles, catégories et sidebar articles connexes
 - [x] Bannière cookie conforme Loi 25 (Québec)

@@ -5,7 +5,7 @@ import { PartnerForm } from '@/components/admin/partners/PartnerForm'
 import { PartnerTypeBadge, PartnerStatusBadge } from '@/components/admin/partners/PartnerStatusBadge'
 
 export const metadata = {
-  title: 'Modifier un partenaire — Admin GÉOMTL',
+  title: 'Modifier un partenaire - Admin GÉOMTL',
 }
 
 export default async function EditPartnerPage({

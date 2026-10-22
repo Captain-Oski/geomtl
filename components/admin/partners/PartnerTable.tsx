@@ -133,7 +133,7 @@ export function PartnerTable({ partners }: Props) {
                         )}
                       </div>
                     ) : (
-                      <span className="text-gray-600 text-xs">—</span>
+                      <span className="text-gray-600 text-xs">-</span>
                     )}
                   </td>
 
@@ -163,7 +163,7 @@ export function PartnerTable({ partners }: Props) {
                     {p.booth_number ? (
                       <span className="text-white text-xs font-mono">{p.booth_number}</span>
                     ) : (
-                      <span className="text-gray-600 text-xs">—</span>
+                      <span className="text-gray-600 text-xs">-</span>
                     )}
                   </td>
 
@@ -188,7 +188,7 @@ export function PartnerTable({ partners }: Props) {
                   {/* Responsable */}
                   <td className="px-4 py-3">
                     <span className="text-xs text-gray-400 truncate block max-w-[110px]">
-                      {p.internal_owner_name ?? '—'}
+                      {p.internal_owner_name ?? '-'}
                     </span>
                   </td>
 
@@ -200,7 +200,7 @@ export function PartnerTable({ partners }: Props) {
                         {followUpDate.toLocaleDateString('fr-CA', { month: 'short', day: 'numeric' })}
                       </span>
                     ) : (
-                      <span className="text-gray-600 text-xs">—</span>
+                      <span className="text-gray-600 text-xs">-</span>
                     )}
                   </td>
 

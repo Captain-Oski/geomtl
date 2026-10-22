@@ -154,5 +154,5 @@ ${pathEls}
 </svg>`;
 
 fs.writeFileSync('c:/Users/cglogowski/geomtl/logo/GeoMtl2027_neural.svg', svg, 'utf-8');
-console.log('Done —', Math.round(svg.length/1024), 'KB,', paths.length, 'fibres');
+console.log('Done -', Math.round(svg.length/1024), 'KB,', paths.length, 'fibres');
 console.log('textTop=', textTop.toFixed(0), 'textBottom=', textBottom.toFixed(0), 'scale=', scale.toFixed(3));

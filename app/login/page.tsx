@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
 const ERROR_MESSAGES: Record<string, string> = {
-  unauthorized:       "Votre compte n'a pas encore de rôle attribué — contactez l'administrateur.",
+  unauthorized:       "Votre compte n'a pas encore de rôle attribué - contactez l'administrateur.",
   auth_callback_error:'Erreur lors de la connexion. Veuillez réessayer.',
   no_profile:         'Profil introuvable. Contactez l\'administrateur.',
 }
@@ -71,7 +71,7 @@ function LoginForm() {
 
       {isMock ? (
         <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl px-4 py-3 text-yellow-400 text-sm">
-          Supabase non configuré — ajoutez les variables dans{' '}
+          Supabase non configuré - ajoutez les variables dans{' '}
           <code className="font-mono">.env.local</code> pour activer l&apos;authentification.
         </div>
       ) : (
@@ -131,7 +131,7 @@ export default function LoginPage() {
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
           <span className="text-rose-500 font-bold text-3xl tracking-tight">GÉOMTL</span>
-          <p className="text-gray-500 mt-2 text-sm">Administration — GÉOMTL 2027</p>
+          <p className="text-gray-500 mt-2 text-sm">Administration - GÉOMTL 2027</p>
         </div>
         <LoginForm />
       </div>
