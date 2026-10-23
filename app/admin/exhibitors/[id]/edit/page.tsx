@@ -8,11 +8,12 @@ export const metadata = {
   title: 'Modifier un exposant - Admin GÉOMTL',
 }
 
-export default async function EditExhibitorPage({
-  params,
-}: {
-  params: { id: string }
-}) {
+export default async function EditExhibitorPage(
+  props: {
+    params: Promise<{ id: string }>
+  }
+) {
+  const params = await props.params;
   const exhibitor = await getExhibitorById(params.id)
   if (!exhibitor) notFound()
 

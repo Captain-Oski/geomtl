@@ -7,11 +7,12 @@ export const metadata = {
   title: 'Modifier session - Admin GÉOMTL',
 }
 
-export default async function EditSessionPage({
-  params,
-}: {
-  params: { id: string }
-}) {
+export default async function EditSessionPage(
+  props: {
+    params: Promise<{ id: string }>
+  }
+) {
+  const params = await props.params;
   const session = await getSessionById(params.id)
   if (!session) notFound()
 

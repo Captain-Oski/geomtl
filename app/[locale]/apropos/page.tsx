@@ -16,7 +16,13 @@ import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 // réafficher.
 const AFFICHER_PRESENTATION = false;
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   return { title: locale === 'fr' ? 'À propos' : 'About' };
 }
 
@@ -24,11 +30,17 @@ export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
 }
 
-export default async function AProposPage({
-  params: { locale }
-}: {
-  params: { locale: string };
-}) {
+export default async function AProposPage(
+  props: {
+    params: Promise<{ locale: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'about' });
 

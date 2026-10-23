@@ -2,7 +2,13 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import ComingSoon from '@/components/ui/ComingSoon';
 import type { Metadata } from 'next';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   return { title: locale === 'fr' ? 'Ateliers' : 'Workshops' };
 }
 
@@ -14,11 +20,17 @@ export function generateStaticParams() {
 // prévu octobre 2026, RDV Géomatique AGMQ) - aucune donnée maquette
 // n'est chargée sur cette page tant que la section n'est pas réactivée
 // avec les vrais ateliers.
-export default async function AteliersPage({
-  params: { locale }
-}: {
-  params: { locale: string };
-}) {
+export default async function AteliersPage(
+  props: {
+    params: Promise<{ locale: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'workshops' });
 

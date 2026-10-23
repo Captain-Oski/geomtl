@@ -5,7 +5,13 @@ import type { Metadata } from 'next';
 import { Check } from '@phosphor-icons/react/dist/ssr/Check';
 import NotesBillets from '@/components/billetterie/NotesBillets';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   return { title: locale === 'fr' ? 'Billetterie' : 'Tickets' };
 }
 
@@ -13,11 +19,17 @@ export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
 }
 
-export default async function BilletteriePage({
-  params: { locale }
-}: {
-  params: { locale: string };
-}) {
+export default async function BilletteriePage(
+  props: {
+    params: Promise<{ locale: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'tickets' });
 

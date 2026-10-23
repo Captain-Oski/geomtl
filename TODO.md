@@ -46,17 +46,17 @@ Liste des tâches à compléter avant la mise en ligne. Organisée par priorité
 - [ ] Vérifier et compléter `messages/fr.json`
 
 ### SEO & Métadonnées
-- [ ] Ajouter `metadata` (title, description, og:image) dans chaque page publique
-- [ ] Générer un favicon et les icônes d'application
-- [ ] Créer `public/robots.txt` et `sitemap.xml`
+- [ ] Ajouter `metadata` (title, description) dans chaque page publique ; l'image de partage est commune (`app/[locale]/opengraph-image.tsx`)
+- [x] Favicon et icônes d'application (`app/favicon.ico`, `app/icon.svg`, `app/apple-icon.png`)
+- [x] `robots.txt` et `sitemap.xml` (`app/robots.ts`, `app/sitemap.ts`)
 
 ---
 
 ## 🟡 À faire - Avant l'événement
 
 ### Fonctionnalités manquantes
-- [ ] **Page d'erreur 404** (`app/not-found.tsx`) avec lien retour accueil
-- [ ] **Page d'erreur 500** (`app/error.tsx`) pour les erreurs serveur
+- [x] **Page d'erreur 404** dans le style 2027 : `app/[locale]/not-found.tsx` (avec en-tête et pied de page, alimentée par `app/[locale]/[...rest]/page.tsx`) et `app/not-found.tsx` (hors des pages du site)
+- [x] **Page d'erreur 500** (`app/[locale]/error.tsx`, et `app/global-error.tsx` en dernier recours)
 - [ ] **Section exposants publique** (`PublicExhibitorsSection`) sur le site public
 - [x] **Section carte du salon** - plan interactif des kiosques et demandes de réservation (voir docs/demandes-kiosques.md)
 - [ ] **Page agenda/programme** - liste des sessions et présentations

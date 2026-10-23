@@ -10,11 +10,12 @@ export async function generateStaticParams() {
   return newsArticles.map(n => ({ slug: n.slug }));
 }
 
-export async function generateMetadata({
-  params
-}: {
-  params: { slug: string; locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ slug: string; locale: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
   const article = getNewsArticleBySlug(params.slug);
   if (!article) return {};
   const title = params.locale === 'fr' ? article.title.fr : article.title.en;
@@ -38,11 +39,12 @@ const categoryLabels: Record<string, { fr: string; en: string }> = {
   community: { fr: 'Communauté', en: 'Community' }
 };
 
-export default function NewsArticlePage({
-  params
-}: {
-  params: { slug: string; locale: string };
-}) {
+export default async function NewsArticlePage(
+  props: {
+    params: Promise<{ slug: string; locale: string }>;
+  }
+) {
+  const params = await props.params;
   const article = getNewsArticleBySlug(params.slug);
   if (!article) notFound();
 

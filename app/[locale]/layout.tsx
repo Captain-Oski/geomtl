@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import CookieBanner from '@/components/ui/CookieBanner';
 import { SCRIPT_THEME } from '@/lib/theme-script';
+import { URL_SITE } from '@/lib/site';
 import '@/styles/globals.css';
 
 const inter = Inter({
@@ -30,12 +31,20 @@ export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
 }
 
-export async function generateMetadata({
-  params: { locale }
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ locale: string }>;
+  }
+): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   return {
+    // Adresses absolues des aperçus de partage (opengraph-image) et des icônes
+    metadataBase: new URL(URL_SITE),
     title: {
       default: 'GÉOMTL 2027',
       template: '%s | GÉOMTL 2027'
@@ -54,17 +63,29 @@ export async function generateMetadata({
       siteName: 'GÉOMTL 2027',
       locale: locale === 'fr' ? 'fr_CA' : 'en_CA',
       type: 'website'
+    },
+    twitter: {
+      card: 'summary_large_image'
     }
   };
 }
 
-export default async function LocaleLayout({
-  children,
-  params: { locale }
-}: {
-  children: React.ReactNode;
-  params: { locale: string };
-}) {
+export default async function LocaleLayout(
+  props: {
+    children: React.ReactNode;
+    params: Promise<{ locale: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
+  const {
+    children
+  } = props;
+
   const validLocales = ['fr', 'en'];
   if (!validLocales.includes(locale)) {
     notFound();

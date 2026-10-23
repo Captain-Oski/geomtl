@@ -2,7 +2,13 @@ import { setRequestLocale } from 'next-intl/server';
 import Container from '@/components/ui/Container';
 import type { Metadata } from 'next';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   return { title: locale === 'fr' ? "Conditions d'utilisation" : 'Terms of Use' };
 }
 
@@ -10,15 +16,21 @@ export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
 }
 
-const UPDATED = '26 mai 2026';
-const UPDATED_EN = 'May 26, 2026';
+const UPDATED = '23 octobre 2026';
+const UPDATED_EN = 'October 23, 2026';
 const EMAIL = 'info@geomtl.com';
 
-export default async function ConditionsPage({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export default async function ConditionsPage(
+  props: {
+    params: Promise<{ locale: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   setRequestLocale(locale);
   const fr = locale === 'fr';
 
@@ -83,12 +95,8 @@ export default async function ConditionsPage({
             sont exactes et complètes.
           </p>
           <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
-            <li>Les billets sont nominatifs et non transférables sauf autorisation expresse.</li>
-            <li>
-              La politique d&apos;annulation sera détaillée lors de l&apos;ouverture de la billetterie.
-              En règle générale : remboursement intégral si annulation 30 jours avant l&apos;événement,
-              remboursement de 50 % entre 15 et 29 jours, aucun remboursement dans les 14 jours.
-            </li>
+            <li>Les billets sont nominatifs et non transférables.</li>
+            <li>Aucun échange et aucun remboursement.</li>
             <li>GÉOMTL se réserve le droit de modifier le programme sans remboursement automatique.</li>
             <li>
               En cas d&apos;annulation de l&apos;événement pour cause de force majeure, un avoir ou
@@ -234,12 +242,8 @@ export default async function ConditionsPage({
             is accurate and complete.
           </p>
           <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
-            <li>Tickets are non-transferable unless expressly authorized.</li>
-            <li>
-              The cancellation policy will be detailed when ticketing opens. Generally: full
-              refund if cancelled 30 days before the event, 50% refund between 15–29 days,
-              no refund within 14 days.
-            </li>
+            <li>Tickets are issued in the attendee&apos;s name and are non-transferable.</li>
+            <li>No exchanges and no refunds.</li>
             <li>GÉOMTL reserves the right to modify the program without automatic refund.</li>
             <li>
               In the event of cancellation due to force majeure, a credit or partial refund

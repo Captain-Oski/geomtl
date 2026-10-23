@@ -11,7 +11,13 @@ import HomeCTA from './HomeCTA';
 // Géomatique AGMQ) - FeaturedSpeakers, ProgramPreview et PartnersSection
 // restent hors de la page d'accueil tant que ces sections ne sont pas
 // réactivées avec de vraies données.
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   const fr = locale === 'fr';
   return {
     title: fr ? 'GÉOMTL 2027 - Comprendre le territoire, façonner l\'avenir' : 'GÉOMTL 2027 - Understanding the territory, shaping the future',

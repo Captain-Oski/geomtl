@@ -27,11 +27,12 @@ async function roleCourant(): Promise<Role | null> {
   return (data?.role as Role) ?? null
 }
 
-export default async function OrganisationsPage({
-  searchParams,
-}: {
-  searchParams: { onglet?: string }
-}) {
+export default async function OrganisationsPage(
+  props: {
+    searchParams: Promise<{ onglet?: string }>
+  }
+) {
+  const searchParams = await props.searchParams;
   const [kiosques, demandes, exhibitors, partners, role] = await Promise.all([
     getKiosquesAdmin(),
     getDemandesKiosques(),

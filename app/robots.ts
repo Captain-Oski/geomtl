@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { siteEnConstruction } from '@/lib/acces-comite';
+import { URL_SITE } from '@/lib/site';
 
 export default function robots(): MetadataRoute.Robots {
   if (siteEnConstruction()) {
@@ -15,5 +16,6 @@ export default function robots(): MetadataRoute.Robots {
 
   return {
     rules: { userAgent: '*', allow: '/', disallow: ['/admin', '/login', '/auth', '/api'] },
+    sitemap: `${URL_SITE}/sitemap.xml`,
   };
 }

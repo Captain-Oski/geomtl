@@ -2,7 +2,13 @@ import { setRequestLocale } from 'next-intl/server';
 import Container from '@/components/ui/Container';
 import type { Metadata } from 'next';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   return { title: locale === 'fr' ? 'Politique de confidentialité' : 'Privacy Policy' };
 }
 
@@ -10,15 +16,21 @@ export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
 }
 
-const UPDATED = '26 mai 2026';
-const UPDATED_EN = 'May 26, 2026';
+const UPDATED = '23 octobre 2026';
+const UPDATED_EN = 'October 23, 2026';
 const EMAIL = 'info@geomtl.com';
 
-export default async function ConfidentialitePage({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
+export default async function ConfidentialitePage(
+  props: {
+    params: Promise<{ locale: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   setRequestLocale(locale);
   const fr = locale === 'fr';
 

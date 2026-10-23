@@ -8,7 +8,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function ConstructionPage({ searchParams }: { searchParams: { acces?: string } }) {
+export default async function ConstructionPage(props: { searchParams: Promise<{ acces?: string }> }) {
+  const searchParams = await props.searchParams;
   const refuse = searchParams.acces === 'refuse';
 
   return (

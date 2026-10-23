@@ -6,11 +6,17 @@ import { getKiosquesPublics } from '@/lib/data/kiosques';
 // d'un kiosque ; sinon la page se régénère au plus toutes les 5 minutes.
 export const revalidate = 300;
 
-export default async function DevenirPartenairePage({
-  params: { locale }
-}: {
-  params: { locale: string };
-}) {
+export default async function DevenirPartenairePage(
+  props: {
+    params: Promise<{ locale: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   setRequestLocale(locale);
   const kiosques = await getKiosquesPublics();
   return <DevenirPartenaire kiosques={kiosques} />;

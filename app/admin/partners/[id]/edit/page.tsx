@@ -8,11 +8,12 @@ export const metadata = {
   title: 'Modifier un partenaire - Admin GÉOMTL',
 }
 
-export default async function EditPartnerPage({
-  params,
-}: {
-  params: { id: string }
-}) {
+export default async function EditPartnerPage(
+  props: {
+    params: Promise<{ id: string }>
+  }
+) {
+  const params = await props.params;
   const partner = await getPartnerById(params.id)
   if (!partner) notFound()
 

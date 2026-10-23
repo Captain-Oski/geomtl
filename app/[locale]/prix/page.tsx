@@ -4,7 +4,13 @@ import SectionTitle from '@/components/ui/SectionTitle';
 import { Trophy } from '@phosphor-icons/react/dist/ssr/Trophy';
 import type { Metadata } from 'next';
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string } }): Promise<Metadata> {
+export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   return { title: locale === 'fr' ? 'Prix GAÏA' : 'GAÏA Prize' };
 }
 
@@ -30,11 +36,17 @@ const laureats = [
   { annee: 1993, noms: ['Roland Provencher'], organisation: 'Ville de Montréal' },
 ];
 
-export default async function PrixPage({
-  params: { locale }
-}: {
-  params: { locale: string };
-}) {
+export default async function PrixPage(
+  props: {
+    params: Promise<{ locale: string }>;
+  }
+) {
+  const params = await props.params;
+
+  const {
+    locale
+  } = params;
+
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'awards' });
   const fr = locale === 'fr';

@@ -10,7 +10,7 @@ Site web officiel de la conférence GeoMTL 2027 - le rendez-vous de la communaut
 
 ## Stack technique
 
-- **Framework** : Next.js 14 (App Router, Server Components)
+- **Framework** : Next.js 15 (App Router, Server Components), React 19
 - **Langage** : TypeScript
 - **Style** : Tailwind CSS, identité visuelle 2027 (crème, encre, dégradé cyan → citron) ; l'admin garde l'ancienne palette
 - **Icônes** : Phosphor Icons, graisse Light
@@ -48,6 +48,22 @@ COURRIEL_COMITE=                    # facultatif, partenariat@geomtl.com par dé
 ```
 
 Le détail de chaque variable est dans `.env.local.example`.
+
+---
+
+## Ouverture au public
+
+Le site reste caché (page « Site en construction ») tant que `SITE_PUBLIC` n'est pas `true`.
+
+1. Dans Vercel, mettre `SITE_PUBLIC=true` et `NEXT_PUBLIC_SITE_URL=https://geomtl.com`, puis **redéployer** : `robots.txt` et `sitemap.xml` sont produits à la compilation.
+2. Une fois le site ouvert, inscrire `https://geomtl.com/sitemap.xml` dans Google Search Console.
+
+Fichiers liés :
+
+- **Icônes** : `app/favicon.ico` (16, 32 et 48 px), `app/icon.svg` et `app/apple-icon.png`. C'est le G du logo (`components/ui/GeoMTLLogo.tsx`) en encre sur le dégradé 2027.
+- **Image de partage** (LinkedIn, courriels, messageries) : `app/[locale]/opengraph-image.tsx`, une version par langue, générée par Next.
+- **Référencement** : `app/sitemap.ts` (les pages listées dans `PAGES`, à compléter quand une page masquée est lancée) et `app/robots.ts`.
+- **Pages d'erreur** : `app/[locale]/not-found.tsx` (404 du site, alimentée par la route `app/[locale]/[...rest]`), `app/not-found.tsx` (404 hors des pages du site), `app/[locale]/error.tsx` (erreur 500) et `app/global-error.tsx` (dernier recours).
 
 ---
 
