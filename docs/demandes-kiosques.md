@@ -1,6 +1,6 @@
 # Demandes de kiosque
 
-La page **Devenir partenaire** (`/fr/devenir-partenaire`) affiche le plan interactif des 26 kiosques du salon des exposants. Chaque kiosque est « Disponible » ou « Indisponible » (avec le logo de l'organisation). Un formulaire permet de demander un kiosque ; le comité traite les demandes dans l'admin, à `/admin/kiosques`.
+La page **Devenir partenaire** (`/fr/devenir-partenaire`) affiche le plan interactif des 26 kiosques du salon des exposants. Chaque kiosque est « Disponible » ou « Indisponible » (avec le logo de l'organisation). Un formulaire permet de demander un kiosque ; le comité traite les demandes dans l'admin, sous **Partenaires et exposants** (`/admin/organisations`).
 
 **Règle d'or : une demande ne change jamais ce que voit le public.** Un kiosque passe à « Indisponible » seulement quand un membre du comité confirme sa réservation dans l'admin.
 
@@ -8,31 +8,32 @@ La page **Devenir partenaire** (`/fr/devenir-partenaire`) affiche le plan intera
 
 ### 1. Le visiteur fait sa demande
 
-- Le bouton **« Devenir partenaire ou exposant »**, en haut et en bas du plan, ouvre le formulaire dans une fenêtre.
-- Un clic sur un kiosque libre du plan le présélectionne dans le formulaire.
+- Trois boutons ouvrent le même formulaire, dans une fenêtre : **« Devenir partenaire »** tout en haut de la page, et **« Devenir partenaire ou exposant »** en haut et en bas du plan. La page ne contient qu'un seul formulaire, que ces boutons se partagent.
+- Un clic sur un kiosque libre du plan le présélectionne dans le formulaire ; le bouton du haut de la page l'ouvre sans kiosque choisi.
+- Sous le plan, la ligne « Des questions? Écrivez-nous à partenariat@geomtl.com » remplace l'ancien formulaire « Nous contacter », qui ouvrait le logiciel de courriel du visiteur.
 - Le formulaire demande :
-  - le niveau (Exposant, Bronze, Argent, Or ou À déterminer) ;
+  - le niveau (Exposant, Bronze, Argent, Or, Commandite de la soirée réseautage ou À déterminer) ;
   - le kiosque souhaité, parmi les kiosques disponibles, ou « Sans préférence » ;
   - l'organisation ;
-  - le **contact principal** et le **responsable du kiosque** (nom, courriel, téléphone), avec une case « Même personne que le contact principal » ;
+  - le **responsable de la facturation** et le **responsable du kiosque sur place lors de l'événement** (nom, courriel, téléphone), avec une case « Même personne que le responsable de la facturation » ;
   - un message facultatif et le consentement (Loi 25).
 
 ### 2. Le site enregistre la demande et avertit tout le monde
 
 - La demande est enregistrée avec le statut **nouvelle**.
-- Un courriel part au comité (partenariat@geomtl.com). En y répondant, on écrit directement au contact principal.
-- Un accusé de réception part au contact principal, avec le responsable du kiosque en copie s'il est différent.
+- Un courriel part au comité (partenariat@geomtl.com). En y répondant, on écrit directement au responsable de la facturation.
+- Un accusé de réception part au responsable de la facturation, avec le responsable du kiosque en copie s'il est différent.
 - Si un courriel échoue, la demande reste enregistrée : rien ne se perd, l'échec est noté dans les journaux de Vercel.
 
 ### 3. Le comité traite la demande (onglet « Demandes »)
 
-- La pastille du menu **Kiosques** compte les nouvelles demandes.
+- La pastille du menu **Partenaires et exposants** compte les nouvelles demandes. Quand il y en a, la page s'ouvre sur l'onglet « Demandes ».
 - Le détail d'une demande offre :
   - **En traitement**, **Refuser**, **Archiver** et **Indésirable** ;
-  - **Accepter** : crée la fiche préremplie (organisation, contacts, kiosque souhaité, message) et la relie à la demande. Le niveau « Exposant » crée une fiche dans Exposants ; Bronze, Argent et Or créent une fiche dans Partenaires. **Le kiosque reste disponible.**
+  - **Accepter** : crée la fiche préremplie (organisation, kiosque souhaité, message ; le responsable de la facturation en contact principal et le responsable du kiosque en contact secondaire) et la relie à la demande. Le niveau « Exposant » crée une fiche d'exposant ; Bronze, Argent, Or et la commandite de la soirée créent une fiche de partenaire du type correspondant. Les deux apparaissent dans l'onglet « Organisations ». **Le kiosque reste disponible.**
   - des notes internes, jamais publiées.
 
-### 4. Le comité confirme la réservation (onglet « Plan et réservations »)
+### 4. Le comité confirme la réservation (onglet « Plan des kiosques »)
 
 - Un clic sur un kiosque ouvre sa fiche, avec les demandes en cours pour ce kiosque.
 - **Confirmer la réservation** : choisir la fiche liée (qui reprend le nom, le logo et le site), vérifier le nom affiché, puis confirmer. Le kiosque passe à « Indisponible » sur le site public, avec le logo.
@@ -77,9 +78,10 @@ Variables d'environnement, dans `.env.local` en local et dans **Vercel → Setti
 | Variable | Rôle | Obligatoire |
 |---|---|---|
 | `SUPABASE_SERVICE_ROLE_KEY` | Enregistrer les demandes et lire le plan, côté serveur | Oui |
-| `RESEND_API_KEY` | Envoyer les courriels. Sans elle, les demandes sont enregistrées mais aucun courriel ne part. | Oui |
+| `GMAIL_UTILISATEUR` | Compte Google Workspace qui envoie les courriels : `info@geomtl.com` | Oui |
+| `GMAIL_MOT_DE_PASSE` | Mot de passe d'application de ce compte. Sans lui, les demandes sont enregistrées mais aucun courriel ne part. | Oui |
 | `DEMANDES_SEL` | Sel secret de l'empreinte IP : une longue chaîne aléatoire, à ne plus changer ensuite | Oui |
-| `COURRIEL_EXPEDITEUR` | Expéditeur des courriels, sur un domaine vérifié dans Resend. Par défaut : `GÉOMTL 2027 <kiosques@geomtl.com>` | Non |
+| `COURRIEL_EXPEDITEUR` | Expéditeur affiché, un alias du compte. Par défaut : `GÉOMTL 2027 <partenariat@geomtl.com>` | Non |
 | `COURRIEL_COMITE` | Destinataire des avis de nouvelle demande. Par défaut : partenariat@geomtl.com | Non |
 
 Pour générer `DEMANDES_SEL` :
@@ -88,38 +90,43 @@ Pour générer `DEMANDES_SEL` :
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
 
-### Resend
+### Envoi par Gmail (Google Workspace)
 
-- **Le plan gratuit suffit** : 3 000 courriels par mois et 100 par jour. Chaque demande envoie 2 courriels. Au-delà de la limite, les courriels ne partent plus, mais les demandes restent enregistrées.
-- **Vérifier le domaine geomtl.com** : dans Resend, **Domains → Add Domain**, puis ajouter les enregistrements DNS indiqués chez le gestionnaire du domaine. Ensuite, mettre `COURRIEL_EXPEDITEUR` sur une adresse @geomtl.com.
-- **Tant que le domaine n'est pas vérifié**, Resend est en mode test : il n'envoie que depuis `onboarding@resend.dev`, et seulement vers l'adresse du compte Resend.
+Les courriels partent du compte Google Workspace **info@geomtl.com**, en tant que **partenariat@geomtl.com** (un alias de info@). Le domaine est déjà authentifié pour Google (SPF, DKIM et DMARC) : aucun DNS à modifier.
+
+1. Sur le compte info@, activer la **validation en deux étapes** (myaccount.google.com → Sécurité).
+2. Créer un **mot de passe d'application** (myaccount.google.com/apppasswords), nommé par exemple « Site GÉOMTL ». Le copier dans `GMAIL_MOT_DE_PASSE`, sans les espaces.
+3. Dans le Gmail de info@ : **Paramètres → Comptes → Envoyer des e-mails en tant que → Ajouter une autre adresse**, entrer partenariat@geomtl.com et cocher « Traiter comme un alias ». Sans cette étape, Gmail affiche info@ comme expéditeur.
+
+À savoir :
+
+- **Sécurité :** le mot de passe d'application ouvre toute la boîte info@ (lecture et envoi, pour tous les alias). Il reste seulement dans `.env.local` et dans Vercel. En cas de doute, le révoquer sur myaccount.google.com/apppasswords et en créer un autre.
+- **Limite :** environ 2 000 envois par jour pour un compte Workspace, bien au-delà des besoins (2 courriels par demande).
+- **Avis au comité :** il est envoyé à partenariat@, donc à la boîte même qui l'envoie. Gmail range parfois ces courriels « à soi-même » seulement dans Envoyés. Si c'est le cas, diriger l'avis vers une autre boîte avec `COURRIEL_COMITE` ; la pastille de l'admin signale de toute façon les nouvelles demandes.
+- Les courriels envoyés par le site apparaissent dans les Envoyés de info@.
 
 ## Tester en local
 
-Attention : en local, le site utilise la **base de production**. Les demandes de test sont visibles par tout le comité ; les marquer « Indésirable » après le test.
+Attention : en local, le site utilise la **base de production**, et les courriels partent vraiment. Les demandes de test sont visibles par tout le comité ; les marquer « Indésirable » après le test.
 
-1. Dans `.env.local`, pour le mode test de Resend :
-
-   ```
-   COURRIEL_EXPEDITEUR=GÉOMTL 2027 <onboarding@resend.dev>
-   COURRIEL_COMITE=adresse-du-compte-resend@exemple.com
-   ```
-
+1. Dans `.env.local`, remplir `GMAIL_UTILISATEUR` et `GMAIL_MOT_DE_PASSE`, et mettre sa propre adresse dans `COURRIEL_COMITE` pour ne pas écrire au comité.
 2. `npm run dev`, puis se connecter à `/login` avec son compte de l'admin.
-3. Sur `/fr/devenir-partenaire`, envoyer une demande avec l'adresse du compte Resend comme contact principal, et cocher « Même personne » pour le responsable du kiosque. En mode test, Resend refuse toute autre adresse, même en copie.
-4. Les deux courriels arrivent dans la boîte du compte Resend, et la demande apparaît dans `/admin/kiosques`.
+3. Sur `/fr/devenir-partenaire`, envoyer une demande avec sa propre adresse pour le responsable de la facturation.
+4. L'avis du comité et l'accusé de réception arrivent dans sa boîte, et la demande apparaît dans l'onglet « Demandes » de **Partenaires et exposants**.
 
 ## Fichiers
 
 | Fichier | Rôle |
 |---|---|
-| `components/partners/PlanKiosques.tsx` | Plan SVG interactif, en mode public ou admin |
+| `components/partners/DevenirPartenaire.tsx` | Page publique : bouton du haut, plan, formulaire de demande unique, ligne de contact |
+| `components/partners/PlanKiosques.tsx` | Plan SVG interactif, en mode public ou admin ; ses boutons demandent à la page d'ouvrir le formulaire |
 | `components/partners/ModaleReservation.tsx` | Formulaire de demande, dans une fenêtre |
 | `lib/demandes-kiosques.ts` | Validation partagée entre le formulaire et la route |
 | `app/api/demandes-kiosques/route.ts` | Route publique : contrôles, enregistrement, courriels |
 | `lib/data/kiosques.ts` | Lecture du plan public (en cache) et des données de l'admin |
 | `lib/actions/kiosques.ts` | Actions de l'admin : statut, Accepter, Confirmer, Libérer |
-| `app/admin/kiosques/page.tsx` et `components/admin/kiosques/` | Page de l'admin |
+| `app/admin/organisations/page.tsx` et `components/admin/organisations/` | Page « Partenaires et exposants » : onglets Demandes, Organisations et Plan des kiosques |
+| `components/admin/kiosques/DemandesKiosques.tsx` | Onglet « Demandes » |
 | `data/kiosques.ts` | Plan de repli sans Supabase, et aperçu `?apercu-kiosques` en développement |
 
 ## À venir

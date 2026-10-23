@@ -14,10 +14,9 @@ export default function Footer() {
 
   // Programme, Conférenciers, Ateliers, Exposants et Partenaires restent
   // masqués de la navigation jusqu'au lancement public (octobre 2026,
-  // RDV Géomatique AGMQ). Actualités est masquée à la demande du comité.
+  // RDV Géomatique AGMQ). Actualités et le Prix GAÏA sont masqués à la demande du comité.
   const navLinks = [
     { href: `/${locale}`, label: tNav('home') },
-    { href: `/${locale}/prix`, label: tNav('awards') },
     { href: `/${locale}/apropos`, label: tNav('about') },
   ];
 

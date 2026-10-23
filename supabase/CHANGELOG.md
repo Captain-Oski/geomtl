@@ -25,6 +25,7 @@ Toutes les migrations sont dans [`supabase/migrations/`](./migrations/).
 | V004 | [V004__partners.sql](./migrations/V004__partners.sql) | Table `partners` complète · trigger · RLS · vue publique · seed | 2025-05-27 | ⏳ |
 | V005 | [V005__exhibitors.sql](./migrations/V005__exhibitors.sql) | Table `exhibitors` complète · trigger · RLS · vue publique · seed | 2025-05-27 | ⏳ |
 | V007 | [V007__kiosques.sql](./migrations/V007__kiosques.sql) | Tables `kiosques` (26 emplacements, état public décidé par le comité) et `demandes_kiosques` (formulaire public) · RLS sans accès anon | 2026-10-22 | ✅ |
+| V008 | [V008__types_partenaires.sql](./migrations/V008__types_partenaires.sql) | Types de partenaire : Or, Argent, Bronze, Soirée réseautage (`Networking`) · niveau `soiree` dans les demandes du site | 2026-10-23 | ✅ |
 
 ---
 

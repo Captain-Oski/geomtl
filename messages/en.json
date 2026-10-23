@@ -140,12 +140,6 @@
     "eyebrow": "GÉOMTL 2027 Partnership",
     "subtitle": "Position your organization at the heart of the Quebec geospatial community.",
     "downloadGuide": "Download the Exhibitor Guide",
-    "contactTitle": "Contact Us",
-    "nameLabel": "Full Name",
-    "orgLabel": "Organization",
-    "emailLabel": "Email",
-    "messageLabel": "Message",
-    "sendButton": "Send",
     "benefits": "Benefits",
     "pricing": "Investment"
   },
@@ -183,7 +177,7 @@
   "tickets": {
     "title": "Tickets",
     "eyebrow": "GÉOMTL 2027",
-    "subtitle": "Choose the pass that suits you.",
+    "subtitle": "One pass for both days of GÉOMTL 2027.",
     "buyNow": "Buy Now",
     "includes": "Includes"
   },

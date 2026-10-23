@@ -7,7 +7,6 @@ import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
 import { partnerLevelBenefits, PARTNER_LEVELS_ORDER } from '@/data/partners';
 import { Check } from '@phosphor-icons/react/dist/ssr/Check';
-import { EnvelopeSimple } from '@phosphor-icons/react/dist/ssr/EnvelopeSimple';
 import { UsersThree } from '@phosphor-icons/react/dist/ssr/UsersThree';
 import { Lightbulb } from '@phosphor-icons/react/dist/ssr/Lightbulb';
 import { Megaphone } from '@phosphor-icons/react/dist/ssr/Megaphone';
@@ -22,12 +21,12 @@ import { Microphone } from '@phosphor-icons/react/dist/ssr/Microphone';
 import { Martini } from '@phosphor-icons/react/dist/ssr/Martini';
 import { Television } from '@phosphor-icons/react/dist/ssr/Television';
 import { IdentificationBadge } from '@phosphor-icons/react/dist/ssr/IdentificationBadge';
+import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import PlanKiosques from '@/components/partners/PlanKiosques';
+import ModaleReservation from '@/components/partners/ModaleReservation';
 import { cn } from '@/lib/utils';
 import { EVENT_CONFIG } from '@/data/config';
 import type { KiosquePublic } from '@/lib/supabase/types';
-
-const COURRIEL_PARTENARIATS = EVENT_CONFIG.courriels.partenariat;
 
 // Même gabarit pour les quatre niveaux : seule la matière change. Le globe de
 // la charte est recoloré en or, argent, bronze et graphite (scripts/cartes),
@@ -62,26 +61,14 @@ export default function DevenirPartenaire({ kiosques }: { kiosques: KiosquePubli
   const t = useTranslations('becomePartner');
   const locale = useLocale();
   const fr = locale === 'fr';
-  const [formData, setFormData] = useState({
-    name: '', org: '', email: '', message: ''
-  });
-  const [sent, setSent] = useState(false);
-
-  // Pas de service d'envoi côté serveur : on ouvre le logiciel de courriel du visiteur, message prérempli.
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const sujet = fr ? `Partenariat GÉOMTL 2027 - ${formData.org}` : `GÉOMTL 2027 partnership - ${formData.org}`;
-    const corps = [
-      `${fr ? 'Nom' : 'Name'} : ${formData.name}`,
-      `${fr ? 'Organisation' : 'Organization'} : ${formData.org}`,
-      `${fr ? 'Courriel' : 'Email'} : ${formData.email}`,
-      '',
-      formData.message,
-    ].join('\n');
-    window.location.href = `mailto:${COURRIEL_PARTENARIATS}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;
-    setSent(true);
+  // Un seul formulaire de demande pour la page : bouton du haut et boutons du plan
+  const disponibles = kiosques.filter((k) => k.statut === 'disponible').map((k) => k.numero);
+  const [formulaire, setFormulaire] = useState(false);
+  const [demande, setDemande] = useState<{ kiosque: number | null; disponibles: number[] }>({ kiosque: null, disponibles });
+  const ouvrirDemande = (kiosque: number | null, liste: number[]) => {
+    setDemande({ kiosque, disponibles: liste });
+    setFormulaire(true);
   };
-
   const raisonsPartenaire = fr ? [
     { Icon: UsersThree, titre: 'Participer', texte: 'Faire partie de l\'événement de référence de l\'industrie géospatiale et favoriser son développement au Québec.' },
     { Icon: Lightbulb, titre: 'Inspirer', texte: 'Faire rayonner votre expertise et connaître les perspectives d\'avenir dans le domaine.' },
@@ -141,8 +128,26 @@ export default function DevenirPartenaire({ kiosques }: { kiosques: KiosquePubli
             title={t('title')}
             subtitle={t('subtitle')}
           />
+          <div className="mt-8 flex justify-center">
+            <button
+              type="button"
+              onClick={() => ouvrirDemande(null, disponibles)}
+              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-geo-2027 px-6 py-3 text-sm font-bold text-geo-noir shadow-geo-2027 transition-opacity hover:opacity-90"
+            >
+              {fr ? 'Devenir partenaire' : 'Become a partner'}
+              <ArrowRight size={16} weight="light" className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
+            </button>
+          </div>
         </Container>
       </div>
+
+      <ModaleReservation
+        fr={fr}
+        ouvert={formulaire}
+        kiosqueInitial={demande.kiosque}
+        kiosquesDisponibles={demande.disponibles}
+        onFermer={() => setFormulaire(false)}
+      />
 
       <Container className="py-12 space-y-16">
         <section>
@@ -352,93 +357,19 @@ export default function DevenirPartenaire({ kiosques }: { kiosques: KiosquePubli
                 {fr ? 'Plan préliminaire' : 'Preliminary plan'}
               </span>
             </div>
-            <PlanKiosques fr={fr} kiosques={kiosques} />
+            <PlanKiosques fr={fr} kiosques={kiosques} onDemande={ouvrirDemande} />
             <p className="text-xs text-geo-ink-soft mt-3">
               {fr
                 ? 'L\'emplacement et le nombre de kiosques peuvent encore changer.'
                 : 'Booth locations and count may still change.'}
             </p>
           </div>
-        </section>
-
-        <section className="max-w-2xl mx-auto">
-          <div>
-            <h2 className="text-2xl font-bold text-geo-ink mb-4">{t('contactTitle')}</h2>
-            <p className="text-geo-ink-soft mb-8">
-              {fr
-                ? 'Vous souhaitez rejoindre GÉOMTL 2027 comme partenaire ou exposant? Écrivez-nous à '
-                : 'Want to join GÉOMTL 2027 as a partner or exhibitor? Write to us at '}
-              <a href={`mailto:${COURRIEL_PARTENARIATS}`} className="text-geo-teal-dark hover:underline">{COURRIEL_PARTENARIATS}</a>
-              {fr ? ' ou par le formulaire ci-dessous.' : ' or use the form below.'}
-            </p>
-
-            {sent ? (
-              <div className="glass-2027 rounded-2xl p-8 text-center">
-                <EnvelopeSimple size={40} weight="light" className="mx-auto mb-4 text-geo-teal-dark" aria-hidden="true" />
-                <p className="text-geo-ink font-semibold">
-                  {fr
-                    ? 'Votre logiciel de courriel s\'est ouvert avec votre message prérempli : il ne reste qu\'à l\'envoyer.'
-                    : 'Your email app has opened with your message pre-filled: just send it.'}
-                </p>
-                <p className="text-sm text-geo-ink-soft mt-3">
-                  {fr ? 'Rien ne s\'est ouvert? Écrivez-nous directement à ' : 'Nothing opened? Write to us directly at '}
-                  <a href={`mailto:${COURRIEL_PARTENARIATS}`} className="text-geo-teal-dark hover:underline">{COURRIEL_PARTENARIATS}</a>.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="partenaire-nom" className="block text-sm font-medium text-geo-ink-soft mb-1">{t('nameLabel')}</label>
-                  <input
-                    id="partenaire-nom"
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 glass-2027 rounded-xl text-geo-ink placeholder:text-geo-ink-soft/50 border border-geo-ink/10 focus:border-geo-teal-dark/50 focus:outline-none text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="partenaire-org" className="block text-sm font-medium text-geo-ink-soft mb-1">{t('orgLabel')}</label>
-                  <input
-                    id="partenaire-org"
-                    type="text"
-                    required
-                    value={formData.org}
-                    onChange={e => setFormData({ ...formData, org: e.target.value })}
-                    className="w-full px-4 py-3 glass-2027 rounded-xl text-geo-ink placeholder:text-geo-ink-soft/50 border border-geo-ink/10 focus:border-geo-teal-dark/50 focus:outline-none text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="partenaire-courriel" className="block text-sm font-medium text-geo-ink-soft mb-1">{t('emailLabel')}</label>
-                  <input
-                    id="partenaire-courriel"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={e => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 glass-2027 rounded-xl text-geo-ink placeholder:text-geo-ink-soft/50 border border-geo-ink/10 focus:border-geo-teal-dark/50 focus:outline-none text-sm"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="partenaire-message" className="block text-sm font-medium text-geo-ink-soft mb-1">{t('messageLabel')}</label>
-                  <textarea
-                    id="partenaire-message"
-                    rows={4}
-                    value={formData.message}
-                    onChange={e => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-4 py-3 glass-2027 rounded-xl text-geo-ink placeholder:text-geo-ink-soft/50 border border-geo-ink/10 focus:border-geo-teal-dark/50 focus:outline-none text-sm resize-none"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all"
-                >
-                  {t('sendButton')}
-                </button>
-              </form>
-            )}
-          </div>
+          <p className="mt-8 text-center text-geo-ink-soft">
+            {fr ? 'Des questions? Écrivez-nous à ' : 'Questions? Write to us at '}
+            <a href={`mailto:${EVENT_CONFIG.courriels.partenariat}`} className="font-semibold text-geo-teal-dark hover:underline">
+              {EVENT_CONFIG.courriels.partenariat}
+            </a>
+          </p>
         </section>
       </Container>
     </div>

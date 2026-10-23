@@ -63,8 +63,8 @@ Liste des tâches à compléter avant la mise en ligne. Organisée par priorité
 - [ ] **Recherche** dans la liste publique des exposants/partenaires
 
 ### Admin - Modules manquants
+Les liens de ces modules ont été retirés du menu tant que les pages n'existent pas (les tables sont en place, vides).
 - [ ] `/admin/contacts` - gestion des contacts liés aux partenaires/exposants
-- [ ] `/admin/activations` - programme des activations partenaires
 - [ ] `/admin/contracts` - suivi des contrats (admin seulement)
 - [ ] `/admin/deliverables` - suivi des livrables
 - [ ] `/admin/kpis` - tableau de bord KPI avec graphiques

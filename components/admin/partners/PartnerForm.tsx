@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { savePartner } from '@/lib/actions/partners'
+import { TYPES_PARTENAIRE } from '@/lib/partenaires'
 import type {
   Partner, PartnerType, PartnerStatus, PaymentStatus, BoothStatus,
 } from '@/lib/supabase/types'
@@ -24,15 +25,6 @@ const DEFAULTS: Partial<Partner> = {
 }
 
 // ─── Option lists ──────────────────────────────────────────
-
-const TYPES: { value: PartnerType; label: string }[] = [
-  { value: 'Platinum', label: 'Platine' },
-  { value: 'Gold',     label: 'Or' },
-  { value: 'Silver',   label: 'Argent' },
-  { value: 'Bronze',   label: 'Bronze' },
-  { value: 'Exhibitor',label: 'Exposant' },
-  { value: 'Other',    label: 'Autre' },
-]
 
 const STATUSES: { value: PartnerStatus; label: string }[] = [
   { value: 'prospect',         label: 'Prospect' },
@@ -148,7 +140,7 @@ export function PartnerForm({ partner }: { partner?: Partner }) {
       return
     }
 
-    router.push('/admin/partners')
+    router.push('/admin/organisations?onglet=organisations')
     router.refresh()
   }
 
@@ -220,7 +212,7 @@ export function PartnerForm({ partner }: { partner?: Partner }) {
               onChange={(e) => set('partner_type', e.target.value as PartnerType)}
               className={inputClass}
             >
-              {TYPES.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
+              {TYPES_PARTENAIRE.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
             </select>
           </div>
           <div>
@@ -315,11 +307,11 @@ export function PartnerForm({ partner }: { partner?: Partner }) {
       <Section title="③ Contact">
         <Grid>
           <div>
-            <label className={labelClass}>Nom du contact principal</label>
+            <label className={labelClass}>Nom du responsable de la facturation</label>
             {txt('primary_contact_name')}
           </div>
           <div>
-            <label className={labelClass}>Email principal</label>
+            <label className={labelClass}>Courriel du responsable de la facturation</label>
             <input
               type="email"
               value={String(form.primary_contact_email ?? '')}
@@ -328,17 +320,17 @@ export function PartnerForm({ partner }: { partner?: Partner }) {
             />
           </div>
           <div>
-            <label className={labelClass}>Téléphone principal</label>
+            <label className={labelClass}>Téléphone du responsable de la facturation</label>
             {txt('primary_contact_phone')}
           </div>
         </Grid>
         <Grid>
           <div>
-            <label className={labelClass}>Nom du contact secondaire</label>
+            <label className={labelClass}>Nom du responsable du kiosque</label>
             {txt('secondary_contact_name')}
           </div>
           <div>
-            <label className={labelClass}>Email secondaire</label>
+            <label className={labelClass}>Courriel du responsable du kiosque</label>
             <input
               type="email"
               value={String(form.secondary_contact_email ?? '')}
@@ -403,8 +395,8 @@ export function PartnerForm({ partner }: { partner?: Partner }) {
         </div>
       </Section>
 
-      {/* ⑤ Activation / Kiosque */}
-      <Section title="⑤ Activation &amp; Kiosque">
+      {/* ⑤ Kiosque */}
+      <Section title="⑤ Kiosque et livrables">
         <Grid>
           <div>
             <label className={labelClass}>Statut du kiosque</label>
@@ -435,16 +427,6 @@ export function PartnerForm({ partner }: { partner?: Partner }) {
               className={`${inputClass} font-mono`}
               placeholder="PARTENAIRE2027"
             />
-          </div>
-        </Grid>
-        <Grid>
-          <div>
-            <label className={labelClass}>Type d&apos;activation</label>
-            {txt('activation_type')}
-          </div>
-          <div className="sm:col-span-2">
-            <label className={labelClass}>Description de l&apos;activation</label>
-            {textarea('activation_description', 2)}
           </div>
         </Grid>
         <Grid>

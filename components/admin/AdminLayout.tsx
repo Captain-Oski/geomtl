@@ -9,19 +9,17 @@ type NavItem = {
   href: string
   label: string
   roles: Role[]
+  // Autres pages qui appartiennent à cette entrée (fiches de partenaire ou d'exposant)
+  prefixes?: string[]
 }
 
+const ORGANISATIONS = '/admin/organisations'
+
 const NAV_ITEMS: NavItem[] = [
-  { href: '/admin',              label: 'Tableau de bord', roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/partners',     label: 'Partenaires',     roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/exhibitors',   label: 'Exposants',       roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/kiosques',     label: 'Kiosques',        roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/programme',    label: 'Programmation',   roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/contacts',     label: 'Contacts',        roles: ['admin', 'editor'] },
-  { href: '/admin/activations',  label: 'Activations',     roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/deliverables', label: 'Livrables',       roles: ['admin', 'editor', 'viewer'] },
-  { href: '/admin/contracts',    label: 'Contrats',        roles: ['admin'] },
-  { href: '/admin/users',        label: 'Utilisateurs',    roles: ['admin'] },
+  { href: '/admin',           label: 'Tableau de bord',          roles: ['admin', 'editor', 'viewer'] },
+  { href: ORGANISATIONS,      label: 'Partenaires et exposants', roles: ['admin', 'editor', 'viewer'], prefixes: ['/admin/partners', '/admin/exhibitors'] },
+  { href: '/admin/programme', label: 'Programmation',            roles: ['admin', 'editor', 'viewer'] },
+  { href: '/admin/users',     label: 'Utilisateurs',             roles: ['admin'] },
 ]
 
 export function AdminLayout({
@@ -53,7 +51,7 @@ export function AdminLayout({
             const isActive =
               item.href === '/admin'
                 ? pathname === '/admin'
-                : pathname.startsWith(item.href)
+                : [item.href, ...(item.prefixes ?? [])].some((p) => pathname.startsWith(p))
 
             return (
               <Link
@@ -66,7 +64,7 @@ export function AdminLayout({
                 }`}
               >
                 {item.label}
-                {item.href === '/admin/kiosques' && nouvellesDemandes > 0 && (
+                {item.href === ORGANISATIONS && nouvellesDemandes > 0 && (
                   <span
                     className="rounded-full bg-rose-500 px-1.5 py-0.5 text-[10px] font-bold leading-none text-white"
                     aria-label={`${nouvellesDemandes} nouvelle${nouvellesDemandes > 1 ? 's' : ''} demande${nouvellesDemandes > 1 ? 's' : ''}`}

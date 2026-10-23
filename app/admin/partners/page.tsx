@@ -1,11 +1,5 @@
-import { getPartners } from '@/lib/data/partners'
-import { AdminPartnersPage } from '@/components/admin/partners/AdminPartnersPage'
+import { redirect } from 'next/navigation'
 
-export const metadata = {
-  title: 'Partenaires - Admin GÉOMTL',
-}
-
-export default async function PartnersPage() {
-  const partners = await getPartners()
-  return <AdminPartnersPage partners={partners} />
+export default function PartnersPage() {
+  redirect('/admin/organisations?onglet=organisations')
 }

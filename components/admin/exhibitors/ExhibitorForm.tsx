@@ -83,7 +83,7 @@ export function ExhibitorForm({ exhibitor }: Props) {
     const res = await saveExhibitor(form, exhibitor?.id)
     setSaving(false)
     if (res.error) { setError(res.error); return }
-    router.push('/admin/exhibitors')
+    router.push('/admin/organisations?onglet=organisations')
   }
 
   return (
@@ -214,14 +214,14 @@ export function ExhibitorForm({ exhibitor }: Props) {
 
       {/* ── Contact ── */}
       <Section title="Contact">
-        <Field label="Nom contact principal">
+        <Field label="Nom du responsable de la facturation">
           <input
             className={input}
             value={form.primary_contact_name ?? ''}
             onChange={(e) => set('primary_contact_name', e.target.value || null)}
           />
         </Field>
-        <Field label="Email contact principal">
+        <Field label="Courriel du responsable de la facturation">
           <input
             type="email"
             className={input}
@@ -229,7 +229,7 @@ export function ExhibitorForm({ exhibitor }: Props) {
             onChange={(e) => set('primary_contact_email', e.target.value || null)}
           />
         </Field>
-        <Field label="Téléphone contact principal">
+        <Field label="Téléphone du responsable de la facturation">
           <input
             type="tel"
             className={input}
@@ -237,14 +237,14 @@ export function ExhibitorForm({ exhibitor }: Props) {
             onChange={(e) => set('primary_contact_phone', e.target.value || null)}
           />
         </Field>
-        <Field label="Nom contact secondaire">
+        <Field label="Nom du responsable du kiosque">
           <input
             className={input}
             value={form.secondary_contact_name ?? ''}
             onChange={(e) => set('secondary_contact_name', e.target.value || null)}
           />
         </Field>
-        <Field label="Email contact secondaire">
+        <Field label="Courriel du responsable du kiosque">
           <input
             type="email"
             className={input}
@@ -396,7 +396,7 @@ export function ExhibitorForm({ exhibitor }: Props) {
         </button>
         <button
           type="button"
-          onClick={() => router.push('/admin/exhibitors')}
+          onClick={() => router.push('/admin/organisations?onglet=organisations')}
           className="text-gray-400 hover:text-white text-sm transition-colors"
         >
           Annuler

@@ -20,7 +20,7 @@ export async function savePartner(
   if (!data.partner_type) return { error: 'Le type de partenaire est obligatoire.' }
   if (!data.year) return { error: "L'année est obligatoire." }
   if (data.primary_contact_email && !isValidEmail(data.primary_contact_email)) {
-    return { error: 'Adresse email du contact principal invalide.' }
+    return { error: 'Courriel du responsable de la facturation invalide.' }
   }
   if (data.website_url && !isValidUrl(data.website_url)) {
     return { error: 'URL du site web invalide (inclure https://).' }
@@ -36,7 +36,7 @@ export async function savePartner(
       .eq('id', id)
 
     if (error) return { error: error.message }
-    revalidatePath('/admin/partners')
+    revalidatePath('/admin/organisations')
     return { id }
   } else {
     const { data: created, error } = await supabase
@@ -46,7 +46,7 @@ export async function savePartner(
       .single()
 
     if (error) return { error: error.message }
-    revalidatePath('/admin/partners')
+    revalidatePath('/admin/organisations')
     return { id: created.id }
   }
 }
@@ -58,7 +58,7 @@ export async function deletePartner(id: string): Promise<{ error?: string }> {
   const { error } = await supabase.from('partners').delete().eq('id', id)
 
   if (error) return { error: error.message }
-  revalidatePath('/admin/partners')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -72,7 +72,7 @@ export async function archivePartner(id: string): Promise<{ error?: string }> {
     .eq('id', id)
 
   if (error) return { error: error.message }
-  revalidatePath('/admin/partners')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -91,7 +91,7 @@ export async function togglePartnerVisibility(
     .eq('id', id)
 
   if (error) return { error: error.message }
-  revalidatePath('/admin/partners')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -108,7 +108,7 @@ export async function updatePartnerStatus(
     .eq('id', id)
 
   if (error) return { error: error.message }
-  revalidatePath('/admin/partners')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -125,7 +125,7 @@ export async function updatePaymentStatus(
     .eq('id', id)
 
   if (error) return { error: error.message }
-  revalidatePath('/admin/partners')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -142,7 +142,7 @@ export async function markLogoReceived(
     .eq('id', id)
 
   if (error) return { error: error.message }
-  revalidatePath('/admin/partners')
+  revalidatePath('/admin/organisations')
   return {}
 }
 

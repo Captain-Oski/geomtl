@@ -1,7 +1,10 @@
 import Link from 'next/link'
 import { getPartners } from '@/lib/data/partners'
 import { getExhibitors } from '@/lib/data/exhibitors'
+import { compterNouvellesDemandes, getKiosquesAdmin } from '@/lib/data/kiosques'
 import type { Partner, Exhibitor } from '@/lib/supabase/types'
+
+const LISTE = '/admin/organisations?onglet=organisations'
 
 // ─── Stat card ────────────────────────────────────────────
 
@@ -24,20 +27,6 @@ function StatCard({ label, value, variant = 'default' }: StatCardProps) {
       <div className={`text-2xl font-bold tabular-nums ${colorMap[variant]}`}>{value}</div>
       <div className="text-xs text-gray-500 mt-0.5 leading-tight">{label}</div>
     </div>
-  )
-}
-
-// ─── Quick link card ──────────────────────────────────────
-
-function QuickLink({ label, href, description }: { label: string; href: string; description: string }) {
-  return (
-    <Link
-      href={href}
-      className="block bg-gray-900 border border-gray-800 rounded-xl p-5 hover:border-rose-500/40 transition-colors group"
-    >
-      <div className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors mb-1">{label}</div>
-      <div className="text-xs text-gray-600">{description}</div>
-    </Link>
   )
 }
 
@@ -77,9 +66,15 @@ function exhibitorStats(exhibitors: Exhibitor[]) {
 // ─── Page ─────────────────────────────────────────────────
 
 export default async function AdminDashboardPage() {
-  const [partners, exhibitors] = await Promise.all([getPartners(), getExhibitors()])
+  const [partners, exhibitors, nouvellesDemandes, kiosques] = await Promise.all([
+    getPartners(),
+    getExhibitors(),
+    compterNouvellesDemandes(),
+    getKiosquesAdmin(),
+  ])
   const ps = partnerStats(partners)
   const es = exhibitorStats(exhibitors)
+  const kiosquesDisponibles = kiosques.filter((k) => k.statut === 'disponible').length
 
   return (
     <div className="p-8 space-y-10">
@@ -88,11 +83,24 @@ export default async function AdminDashboardPage() {
         <p className="text-gray-500 text-sm">GÉOMTL 2027 - Panneau d&apos;administration</p>
       </div>
 
+      {/* ── Demandes et kiosques ── */}
+      <section>
+        <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Demandes et kiosques</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          <Link href="/admin/organisations?onglet=demandes" className="rounded-xl transition-colors hover:ring-1 hover:ring-rose-500/40">
+            <StatCard label="Nouvelles demandes" value={nouvellesDemandes} variant={nouvellesDemandes > 0 ? 'warning' : 'muted'} />
+          </Link>
+          <Link href="/admin/organisations?onglet=plan" className="rounded-xl transition-colors hover:ring-1 hover:ring-rose-500/40">
+            <StatCard label={`Kiosques disponibles sur ${kiosques.length}`} value={kiosquesDisponibles} />
+          </Link>
+        </div>
+      </section>
+
       {/* ── Partenaires ── */}
       <section>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Partenaires</h2>
-          <Link href="/admin/partners" className="text-xs text-rose-400 hover:text-rose-300 transition-colors">
+          <Link href={LISTE} className="text-xs text-rose-400 hover:text-rose-300 transition-colors">
             Voir tout →
           </Link>
         </div>
@@ -110,7 +118,7 @@ export default async function AdminDashboardPage() {
       <section>
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider">Exposants</h2>
-          <Link href="/admin/exhibitors" className="text-xs text-rose-400 hover:text-rose-300 transition-colors">
+          <Link href={LISTE} className="text-xs text-rose-400 hover:text-rose-300 transition-colors">
             Voir tout →
           </Link>
         </div>
@@ -122,17 +130,6 @@ export default async function AdminDashboardPage() {
           <StatCard label="Logos manquants" value={es.logoMissing} variant={es.logoMissing > 0 ? 'warning' : 'muted'} />
           <StatCard label="Kiosques à attribuer" value={es.boothsToAssign} variant={es.boothsToAssign > 0 ? 'warning' : 'muted'} />
           <StatCard label="Prêts / non publiés" value={es.readyToPublish} variant={es.readyToPublish > 0 ? 'info' : 'muted'} />
-        </div>
-      </section>
-
-      {/* ── Accès rapide ── */}
-      <section>
-        <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Accès rapide</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          <QuickLink label="Contacts" href="/admin/contacts" description="Personnes-ressources" />
-          <QuickLink label="Contrats" href="/admin/contracts" description="Contrats signés et en cours" />
-          <QuickLink label="Activations" href="/admin/activations" description="Activations partenaires" />
-          <QuickLink label="Livrables" href="/admin/deliverables" description="Suivi des engagements" />
         </div>
       </section>
     </div>

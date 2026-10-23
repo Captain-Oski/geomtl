@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useTranslations, useLocale } from 'next-intl';
 import Container from '@/components/ui/Container';
 import SectionTitle from '@/components/ui/SectionTitle';
@@ -20,6 +21,7 @@ import { Question } from '@phosphor-icons/react/dist/ssr/Question';
 import { CaretDown } from '@phosphor-icons/react/dist/ssr/CaretDown';
 import { ArrowSquareOut } from '@phosphor-icons/react/dist/ssr/ArrowSquareOut';
 import CarteInfolettre from '@/components/ui/CarteInfolettre';
+import NotesBillets from '@/components/billetterie/NotesBillets';
 
 // Sans formulaire d'infolettre en ligne, l'inscription passe par courriel.
 const lienInfolettre = (fr: boolean) =>
@@ -52,21 +54,31 @@ const faqs = {
     },
     {
       q: 'Les repas sont-ils inclus dans le billet?',
-      a: 'Le billet comprend les cafés de bienvenue, les pauses-café des deux journées, ainsi que les dîners du 4 et 5 octobre servis dans la zone d\'exposition. La soirée réseautage du lundi 4 octobre, avec bouchées dînatoires, est incluse dans les forfaits 2 jours et 1 jour du 4 octobre.'
+      a: (
+        <>
+          {'Ce qui est inclus varie selon le forfait. Consultez la description de chaque billet sur la page '}
+          <Link href="/fr/billetterie" className={LIEN}>Billetterie</Link>.
+        </>
+      )
     },
     {
       q: 'Y a-t-il des accommodations recommandées près du lieu?',
       a: (
         <>
-          {'Le Sheraton Saint-Hyacinthe est attenant au Centre de congrès : pas besoin de sortir à l\'extérieur. Un tarif négocié de 219 $/nuit est offert jusqu\'au 2 septembre 2027 : '}
-          <a href={HOTEL.reservation} target="_blank" rel="noopener noreferrer" className={LIEN}>réservez en ligne</a>
-          {` ou au ${HOTEL.telephones.map((n) => n.affiche).join(' ou au ')}, en mentionnant le groupe « ${HOTEL.groupe} ».`}
+          {`Le Sheraton Saint-Hyacinthe est attenant au Centre de congrès : pas besoin de sortir à l'extérieur. Chaque participant réserve sa chambre directement auprès de l'hôtel, avant la date de relâche du 2 septembre 2027, en mentionnant le nom du groupe « ${HOTEL.groupe} » pour obtenir le tarif négocié de 219 $/nuit : `}
+          <a href={HOTEL.reservation} target="_blank" rel="noopener noreferrer" className={LIEN}>en ligne</a>
+          {` ou au ${HOTEL.telephones.map((n) => n.affiche).join(' ou au ')}.`}
         </>
       )
     },
     {
       q: 'Puis-je transférer mon billet à un collègue?',
-      a: 'Non. Les billets sont nominatifs, non transférables et non remboursables.'
+      a: (
+        <>
+          <p>Non. Les billets sont nominatifs et non transférables. Voici les conditions indiquées sous les billets :</p>
+          <NotesBillets fr className="mt-3" />
+        </>
+      )
     },
     {
       q: 'La conférence est-elle diffusée en ligne?',
@@ -76,9 +88,8 @@ const faqs = {
       q: 'Comment soumettre une proposition de conférence?',
       a: (
         <>
-          {'Plus de détails viendront avec notre infolettre : '}
-          <a href={lienInfolettre(true)} className={LIEN}>inscrivez-vous</a>
-          {' pour les recevoir. Pour toute question d\'ici là, écrivez à '}
+          <a href={lienInfolettre(true)} className={LIEN}>Inscrivez-vous à l&apos;infolettre</a>
+          {' pour recevoir tous les détails de l\'appel de propositions dès leur publication. Pour toute question d\'ici là, écrivez à '}
           <a href={`mailto:${COURRIEL_CONFERENCIERS}`} className={LIEN}>{COURRIEL_CONFERENCIERS}</a>.
         </>
       )
@@ -95,21 +106,32 @@ const faqs = {
     },
     {
       q: 'Are meals included in the ticket?',
-      a: 'The ticket includes welcome coffees, coffee breaks on both days, and lunches on October 4 and 5 served in the exhibition area. The Monday, October 4 networking evening, with hearty hors d\'oeuvres, is included in the 2-day and October 4 one-day packages.'
+      a: (
+        <>
+          {'What is included depends on the package. See the description of each ticket on the '}
+          <Link href="/en/billetterie" className={LIEN}>Tickets</Link>
+          {' page.'}
+        </>
+      )
     },
     {
       q: 'Are there recommended accommodations near the venue?',
       a: (
         <>
-          {'The Sheraton Saint-Hyacinthe is directly connected to the convention centre: no need to go outside. A negotiated rate of $219/night is available until September 2, 2027: '}
-          <a href={HOTEL.reservation} target="_blank" rel="noopener noreferrer" className={LIEN}>book online</a>
-          {` or call ${HOTEL.telephones.map((n) => n.affiche).join(' or ')} and mention the group "${HOTEL.groupe}".`}
+          {`The Sheraton Saint-Hyacinthe is directly connected to the convention centre: no need to go outside. Each attendee books their room directly with the hotel, before the September 2, 2027 release date, mentioning the group name "${HOTEL.groupe}" to get the negotiated rate of $219/night: `}
+          <a href={HOTEL.reservation} target="_blank" rel="noopener noreferrer" className={LIEN}>online</a>
+          {` or by calling ${HOTEL.telephones.map((n) => n.affiche).join(' or ')}.`}
         </>
       )
     },
     {
       q: 'Can I transfer my ticket to a colleague?',
-      a: 'No. Tickets are issued in the attendee\'s name and are non-transferable and non-refundable.'
+      a: (
+        <>
+          <p>No. Tickets are issued in the attendee&apos;s name and are non-transferable. Here are the conditions listed under the tickets:</p>
+          <NotesBillets fr={false} className="mt-3" />
+        </>
+      )
     },
     {
       q: 'Will the conference be streamed online?',
@@ -119,9 +141,8 @@ const faqs = {
       q: 'How do I submit a conference proposal?',
       a: (
         <>
-          {'More details will come with our newsletter: '}
-          <a href={lienInfolettre(false)} className={LIEN}>subscribe</a>
-          {' to receive them. For any questions in the meantime, write to '}
+          <a href={lienInfolettre(false)} className={LIEN}>Subscribe to the newsletter</a>
+          {' to receive all the details of the call for proposals as soon as they are published. For any questions in the meantime, write to '}
           <a href={`mailto:${COURRIEL_CONFERENCIERS}`} className={LIEN}>{COURRIEL_CONFERENCIERS}</a>.
         </>
       )
@@ -315,7 +336,7 @@ export default function InfosPage() {
                 </button>
                 {openFaq === index && (
                   <div className="px-5 pb-5">
-                    <p className="text-geo-ink-soft text-sm leading-relaxed">{faq.a}</p>
+                    <div className="text-geo-ink-soft text-sm leading-relaxed">{faq.a}</div>
                   </div>
                 )}
               </div>

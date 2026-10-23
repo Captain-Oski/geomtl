@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
-import { MOCK_PUBLIC_PARTNERS, MOCK_EXHIBITORS, MOCK_ACTIVATIONS } from './mock'
-import type { PublicPartner, Exhibitor, Activation } from '@/lib/supabase/types'
+import { MOCK_PUBLIC_PARTNERS, MOCK_EXHIBITORS } from './mock'
+import type { PublicPartner, Exhibitor } from '@/lib/supabase/types'
 
 function isSupabaseConfigured() {
   return (
@@ -58,27 +58,4 @@ export async function getPublicExhibitors(): Promise<Exhibitor[]> {
   }
 
   return (data ?? []) as Exhibitor[]
-}
-
-export async function getPublicActivations(): Promise<Activation[]> {
-  if (!isSupabaseConfigured()) {
-    return MOCK_ACTIVATIONS.filter(
-      (a) => a.public_visibility && ['active', 'completed'].includes(a.status)
-    )
-  }
-
-  const supabase = getPublicClient()
-  const { data, error } = await supabase
-    .from('activations')
-    .select('*')
-    .eq('public_visibility', true)
-    .in('status', ['active', 'completed'])
-    .order('created_at', { ascending: true })
-
-  if (error) {
-    console.error('[getPublicActivations]', error.message)
-    return []
-  }
-
-  return (data ?? []) as Activation[]
 }

@@ -3,9 +3,10 @@
 import { useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import PlanKiosques from '@/components/partners/PlanKiosques'
-import { DemandesKiosques } from './DemandesKiosques'
+import { DemandesKiosques } from '@/components/admin/kiosques/DemandesKiosques'
+import { ListeOrganisations } from './ListeOrganisations'
 import { confirmerReservation, libererKiosque, modifierReservation } from '@/lib/actions/kiosques'
-import type { DemandeKiosque, Kiosque } from '@/lib/supabase/types'
+import type { DemandeKiosque, Exhibitor, Kiosque, Partner } from '@/lib/supabase/types'
 
 export type FicheLiee = {
   id: string
@@ -16,21 +17,32 @@ export type FicheLiee = {
   detail: string
 }
 
-type Onglet = 'demandes' | 'plan'
+export type Onglet = 'demandes' | 'organisations' | 'plan'
 
-export function AdminKiosquesPage({
+export type Executer = (
+  fn: () => Promise<{ error?: string; avertissement?: string }>,
+  succes?: string
+) => Promise<boolean>
+
+export function AdminOrganisationsPage({
+  ongletInitial,
   kiosques,
   demandes,
+  partners,
+  exhibitors,
   fiches,
   peutModifier,
 }: {
+  ongletInitial: Onglet
   kiosques: Kiosque[]
   demandes: DemandeKiosque[]
+  partners: Partner[]
+  exhibitors: Exhibitor[]
   fiches: FicheLiee[]
   peutModifier: boolean
 }) {
   const router = useRouter()
-  const [onglet, setOnglet] = useState<Onglet>('demandes')
+  const [onglet, setOnglet] = useState<Onglet>(ongletInitial)
   const [choisi, setChoisi] = useState<number | null>(null)
   const [message, setMessage] = useState<{ type: 'erreur' | 'info'; texte: string } | null>(null)
 
@@ -42,7 +54,7 @@ export function AdminKiosquesPage({
     setTimeout(() => setMessage(null), 6000)
   }
 
-  async function executer(fn: () => Promise<{ error?: string; avertissement?: string }>, succes?: string) {
+  const executer: Executer = async (fn, succes) => {
     const res = await fn()
     if (res.error) {
       afficher('erreur', res.error)
@@ -54,21 +66,30 @@ export function AdminKiosquesPage({
     return true
   }
 
+  // L'onglet reste dans l'adresse (retour depuis une fiche, lien partagé) sans recharger la page
+  function changerOnglet(cle: Onglet) {
+    setOnglet(cle)
+    window.history.replaceState(null, '', `?onglet=${cle}`)
+  }
+
   // Depuis une demande acceptée : aller au plan, kiosque sélectionné s'il y en a un
   function ouvrirKiosque(numero: number | null) {
-    setOnglet('plan')
+    changerOnglet('plan')
     setChoisi(numero)
   }
+
+  const noteDemandes = (
+    <p className="mb-4 max-w-3xl text-xs text-gray-500">
+      Une demande ne change jamais ce que voit le public : un kiosque passe à « Indisponible » sur le site seulement quand le comité confirme sa réservation dans l&apos;onglet Plan des kiosques.
+    </p>
+  )
 
   return (
     <div className="p-6 lg:p-8">
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white">Kiosques</h1>
+        <h1 className="text-2xl font-bold text-white">Partenaires et exposants</h1>
         <p className="text-gray-500 text-sm mt-0.5">
-          GÉOMTL 2027 · {disponibles} disponibles sur {kiosques.length} · {nouvelles} nouvelle{nouvelles > 1 ? 's' : ''} demande{nouvelles > 1 ? 's' : ''}
-        </p>
-        <p className="text-gray-500 text-xs mt-2 max-w-3xl">
-          Une demande ne change jamais ce que voit le public : un kiosque passe à « Indisponible » sur le site seulement quand le comité confirme sa réservation dans l&apos;onglet Plan.
+          GÉOMTL 2027 · {partners.length} partenaire{partners.length > 1 ? 's' : ''} · {exhibitors.length} exposant{exhibitors.length > 1 ? 's' : ''} · {disponibles} kiosques disponibles sur {kiosques.length}
         </p>
       </div>
 
@@ -86,13 +107,14 @@ export function AdminKiosquesPage({
       <div role="tablist" className="mb-6 flex gap-1 border-b border-gray-800">
         {([
           ['demandes', `Demandes${nouvelles ? ` (${nouvelles})` : ''}`],
-          ['plan', 'Plan et réservations'],
+          ['organisations', `Organisations (${partners.length + exhibitors.length})`],
+          ['plan', 'Plan des kiosques'],
         ] as [Onglet, string][]).map(([cle, libelle]) => (
           <button
             key={cle}
             role="tab"
             aria-selected={onglet === cle}
-            onClick={() => setOnglet(cle)}
+            onClick={() => changerOnglet(cle)}
             className={`-mb-px border-b-2 px-4 py-2 text-sm font-medium transition-colors ${
               onglet === cle ? 'border-rose-500 text-white' : 'border-transparent text-gray-400 hover:text-white'
             }`}
@@ -102,28 +124,45 @@ export function AdminKiosquesPage({
         ))}
       </div>
 
-      {onglet === 'demandes' ? (
-        <DemandesKiosques
-          demandes={demandes}
-          kiosques={kiosques}
+      {onglet === 'organisations' && (
+        <ListeOrganisations
+          partners={partners}
+          exhibitors={exhibitors}
           peutModifier={peutModifier}
           executer={executer}
-          ouvrirKiosque={ouvrirKiosque}
         />
-      ) : (
-        <div className="grid gap-6 xl:grid-cols-[1fr_22rem]">
-          <div className="rounded-xl bg-[#F4F3EE] p-4">
-            <PlanKiosques fr kiosques={kiosques} mode="admin" choisi={choisi} onChoisir={setChoisi} />
-          </div>
-          <FicheKiosque
-            key={choisi ?? 'aucun'}
-            kiosque={kiosques.find((k) => k.numero === choisi) ?? null}
-            demandes={demandes.filter((d) => d.kiosque_numero === choisi && ['nouvelle', 'en_traitement', 'acceptee'].includes(d.statut))}
-            fiches={fiches}
+      )}
+
+      {onglet === 'demandes' && (
+        <>
+          {noteDemandes}
+          <DemandesKiosques
+            demandes={demandes}
+            kiosques={kiosques}
             peutModifier={peutModifier}
             executer={executer}
+            ouvrirKiosque={ouvrirKiosque}
           />
-        </div>
+        </>
+      )}
+
+      {onglet === 'plan' && (
+        <>
+          {noteDemandes}
+          <div className="grid gap-6 xl:grid-cols-[1fr_22rem]">
+            <div className="rounded-xl bg-[#F4F3EE] p-4">
+              <PlanKiosques fr kiosques={kiosques} mode="admin" choisi={choisi} onChoisir={setChoisi} />
+            </div>
+            <FicheKiosque
+              key={choisi ?? 'aucun'}
+              kiosque={kiosques.find((k) => k.numero === choisi) ?? null}
+              demandes={demandes.filter((d) => d.kiosque_numero === choisi && ['nouvelle', 'en_traitement', 'acceptee'].includes(d.statut))}
+              fiches={fiches}
+              peutModifier={peutModifier}
+              executer={executer}
+            />
+          </div>
+        </>
       )}
     </div>
   )
@@ -145,7 +184,7 @@ function FicheKiosque({
   demandes: DemandeKiosque[]
   fiches: FicheLiee[]
   peutModifier: boolean
-  executer: (fn: () => Promise<{ error?: string; avertissement?: string }>, succes?: string) => Promise<boolean>
+  executer: Executer
 }) {
   const ficheInitiale = kiosque?.exhibitor_id ?? kiosque?.partner_id ?? ''
   const [ficheId, setFicheId] = useState(ficheInitiale)

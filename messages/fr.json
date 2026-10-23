@@ -140,12 +140,6 @@
     "eyebrow": "Partenariat GÉOMTL 2027",
     "subtitle": "Positionnez votre organisation au cœur de la communauté géospatiale québécoise.",
     "downloadGuide": "Télécharger le guide de l'exposant",
-    "contactTitle": "Nous contacter",
-    "nameLabel": "Nom et prénom",
-    "orgLabel": "Organisation",
-    "emailLabel": "Courriel",
-    "messageLabel": "Message",
-    "sendButton": "Envoyer",
     "benefits": "Avantages",
     "pricing": "Investissement"
   },
@@ -183,7 +177,7 @@
   "tickets": {
     "title": "Billetterie",
     "eyebrow": "GÉOMTL 2027",
-    "subtitle": "Choisissez la formule qui vous convient.",
+    "subtitle": "Un forfait pour vivre les deux jours de GÉOMTL 2027.",
     "buyNow": "Acheter maintenant",
     "includes": "Inclus"
   },

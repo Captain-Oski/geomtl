@@ -266,12 +266,12 @@ export default function ModaleReservation({
           </div>
 
           <fieldset className={groupe}>
-            <legend className={legende}>{fr ? 'Contact principal' : 'Main contact'}</legend>
+            <legend className={legende}>{fr ? 'Responsable de la facturation' : 'Billing contact'}</legend>
             {contact('principal')}
           </fieldset>
 
           <fieldset className={groupe}>
-            <legend className={legende}>{fr ? 'Responsable du kiosque' : 'Booth contact'}</legend>
+            <legend className={legende}>{fr ? 'Responsable du kiosque sur place lors de l\'événement' : 'On-site booth contact during the event'}</legend>
             <label className="flex items-center gap-2 text-sm text-geo-ink-soft">
               <input
                 type="checkbox"
@@ -280,7 +280,7 @@ export default function ModaleReservation({
                 onChange={(e) => changer('kiosque_meme_contact', e.target.checked)}
                 className="h-4 w-4 accent-geo-teal-dark"
               />
-              {fr ? 'Même personne que le contact principal' : 'Same person as the main contact'}
+              {fr ? 'Même personne que le responsable de la facturation' : 'Same person as the billing contact'}
             </label>
             {!champs.kiosque_meme_contact && contact('kiosque')}
           </fieldset>

@@ -351,7 +351,7 @@ export function AdminUsersPage({ profiles, currentUserId }: Props) {
             </div>
             <div className="flex items-start gap-2">
               <RoleBadge role="editor" />
-              <p className="text-gray-400 text-xs">Peut créer et modifier les partenaires, exposants, activations.</p>
+              <p className="text-gray-400 text-xs">Peut créer et modifier les partenaires, les exposants et les kiosques.</p>
             </div>
             <div className="flex items-start gap-2">
               <RoleBadge role="viewer" />

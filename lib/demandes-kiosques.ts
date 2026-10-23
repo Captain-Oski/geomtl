@@ -10,13 +10,14 @@ export const NOMBRE_KIOSQUES = 26;
 // Valeur du choix « Sans préférence » dans la liste des kiosques
 export const SANS_PREFERENCE = 0;
 
-export const NIVEAUX: NiveauDemande[] = ['exposant', 'bronze', 'argent', 'or', 'a_determiner'];
+export const NIVEAUX: NiveauDemande[] = ['exposant', 'bronze', 'argent', 'or', 'soiree', 'a_determiner'];
 
 export const LIBELLES_NIVEAUX: Record<NiveauDemande, { fr: string; en: string }> = {
   exposant: { fr: 'Exposant', en: 'Exhibitor' },
   bronze: { fr: 'Partenaire Bronze', en: 'Bronze partner' },
   argent: { fr: 'Partenaire Argent', en: 'Silver partner' },
   or: { fr: 'Partenaire Or', en: 'Gold partner' },
+  soiree: { fr: 'Commandite de la soirée réseautage', en: 'Networking evening sponsorship' },
   a_determiner: { fr: 'À déterminer', en: 'Not sure yet' },
 };
 
@@ -39,7 +40,7 @@ export interface DonneesDemande {
   principal_nom: string;
   principal_courriel: string;
   principal_telephone: string;
-  kiosque_meme_contact: boolean; // le responsable du kiosque est le contact principal
+  kiosque_meme_contact: boolean; // le responsable du kiosque est le responsable de la facturation
   kiosque_nom: string;
   kiosque_courriel: string;
   kiosque_telephone: string;
@@ -84,7 +85,7 @@ export function validerDemande(brut: Record<string, unknown>): { donnees: Donnee
     consentement: brut.consentement === true,
     langue: brut.langue === 'en' ? 'en' : 'fr',
   };
-  // Même personne : le contact du kiosque reprend le contact principal
+  // Même personne : le contact du kiosque reprend le responsable de la facturation
   if (meme) {
     donnees.kiosque_nom = donnees.principal_nom;
     donnees.kiosque_courriel = donnees.principal_courriel;

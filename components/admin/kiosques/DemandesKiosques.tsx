@@ -185,11 +185,11 @@ function DetailDemande({
       )}
 
       <div className="space-y-3 text-sm">
-        <Contact titre="Contact principal" nom={d.principal_nom} courriel={d.principal_courriel} telephone={d.principal_telephone} sujet={sujetReponse} />
+        <Contact titre="Responsable de la facturation" nom={d.principal_nom} courriel={d.principal_courriel} telephone={d.principal_telephone} sujet={sujetReponse} />
         {memePersonne ? (
-          <p className="text-xs text-gray-500">Responsable du kiosque : le contact principal.</p>
+          <p className="text-xs text-gray-500">Responsable du kiosque sur place : le responsable de la facturation.</p>
         ) : (
-          <Contact titre="Responsable du kiosque" nom={d.kiosque_nom} courriel={d.kiosque_courriel} telephone={d.kiosque_telephone} sujet={sujetReponse} />
+          <Contact titre="Responsable du kiosque sur place" nom={d.kiosque_nom} courriel={d.kiosque_courriel} telephone={d.kiosque_telephone} sujet={sujetReponse} />
         )}
         <p className="text-xs text-gray-500">Langue : {d.langue === 'fr' ? 'français' : 'anglais'}</p>
       </div>
@@ -233,7 +233,7 @@ function DetailDemande({
                   className="bg-white/10 border border-white/10 rounded-lg px-2 py-1.5 text-xs text-white focus:outline-none focus:border-blue-500"
                 >
                   <option value="" className="bg-gray-900">Niveau…</option>
-                  {(['exposant', 'bronze', 'argent', 'or'] as const).map((n) => (
+                  {(['exposant', 'bronze', 'argent', 'or', 'soiree'] as const).map((n) => (
                     <option key={n} value={n} className="bg-gray-900">{LIBELLES_NIVEAUX[n].fr}</option>
                   ))}
                 </select>

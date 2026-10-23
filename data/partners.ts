@@ -56,7 +56,7 @@ export const partnerLevelBenefits = {
         "1 kiosque de 10 pieds",
         "5 minutes de scène principale",
         "Salle de conférence commanditée à votre nom, sur 2 jours",
-        "25 minutes de vitrine technologique",
+        "35 minutes de vitrine technologique",
         "Visibilité dans nos communications et sur nos réseaux sociaux"
       ]
     },
@@ -69,7 +69,7 @@ export const partnerLevelBenefits = {
         "One 10-ft booth",
         "5 minutes main stage time",
         "Conference room sponsored in your name, for both days",
-        "25 minutes of technology showcase",
+        "35 minutes of technology showcase",
         "Visibility in our communications and on our social media"
       ]
     }
@@ -83,7 +83,7 @@ export const partnerLevelBenefits = {
         "2 passes d'accès incluses",
         "1 kiosque de 10 pieds",
         "L'Espace café à vos couleurs pendant une demi-journée : votre logo et vos vidéos sur les écrans, gobelets à votre logo",
-        "25 minutes de vitrine technologique",
+        "35 minutes de vitrine technologique",
         "Mention sur nos réseaux sociaux"
       ]
     },
@@ -95,7 +95,7 @@ export const partnerLevelBenefits = {
         "2 included passes",
         "One 10-ft booth",
         "The Café Space in your colours for half a day: your logo and videos on the screens, cups with your logo",
-        "25 minutes of technology showcase",
+        "35 minutes of technology showcase",
         "Mention on our social media"
       ]
     }

@@ -1,4 +1,4 @@
-import type { PublicPartner, Exhibitor, Activation } from '@/lib/supabase/types'
+import type { PublicPartner, Exhibitor } from '@/lib/supabase/types'
 
 // Données publiques filtrées - sans infos sensibles
 export const MOCK_PUBLIC_PARTNERS: PublicPartner[] = [
@@ -6,7 +6,7 @@ export const MOCK_PUBLIC_PARTNERS: PublicPartner[] = [
     id: 'p1',
     company_name: 'Esri Canada',
     public_name: 'Esri Canada',
-    partner_type: 'Platinum',
+    partner_type: 'Gold',
     website_url: 'https://www.esri.ca',
     description_fr: 'Leader mondial des SIG et solutions géospatiales.',
     description_en: 'Global leader in GIS and geospatial solutions.',
@@ -130,19 +130,5 @@ export const MOCK_EXHIBITORS: Exhibitor[] = [
     created_at: '2025-02-05T00:00:00Z',
     updated_at: '2025-02-05T00:00:00Z',
     archived_at: null,
-  },
-]
-
-export const MOCK_ACTIVATIONS: Activation[] = [
-  {
-    id: 'a1',
-    partner_id: 'p1',
-    title_fr: 'Démo live SIG 3D',
-    title_en: 'Live 3D GIS Demo',
-    description_fr: "Démonstration en temps réel des capacités 3D d'Esri.",
-    description_en: "Real-time demonstration of Esri's 3D capabilities.",
-    public_visibility: true,
-    status: 'active',
-    created_at: '2025-03-01T00:00:00Z',
   },
 ]

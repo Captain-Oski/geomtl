@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import { ArrowUpRight } from '@phosphor-icons/react/dist/ssr/ArrowUpRight';
 import { KIOSQUES_APERCU } from '@/data/kiosques';
-import ModaleReservation from '@/components/partners/ModaleReservation';
 import type { KiosquePublic } from '@/lib/supabase/types';
 import { cn } from '@/lib/utils';
 
@@ -14,8 +13,8 @@ import { cn } from '@/lib/utils';
 // « Indisponible » avec le logo de l'organisation qui l'a réservé. L'état vient
 // de la base (table kiosques), et seul le comité le change dans l'admin. Un
 // clic sur un kiosque en affiche le détail. Le bouton « Devenir partenaire ou
-// exposant », en haut et en bas du plan, ouvre la demande (ModaleReservation),
-// où l'on choisit son kiosque dans la liste. En mode admin, ni boutons ni
+// exposant », en haut et en bas du plan, ouvre la demande (ModaleReservation,
+// rendue une seule fois par la page), où l'on choisit son kiosque dans la liste. En mode admin, ni boutons ni
 // détail : la page de l'admin les gère.
 // Coordonnées : celles du plan du comité, multipliées par 10.
 
@@ -126,18 +125,20 @@ export default function PlanKiosques({
   mode = 'public',
   choisi: choisiExterne,
   onChoisir,
+  onDemande,
 }: {
   fr: boolean;
   kiosques: KiosquePublic[];
   mode?: 'public' | 'admin';
   choisi?: number | null; // fourni par l'admin, qui affiche lui-même le détail
   onChoisir?: (numero: number | null) => void;
+  // Mode public : ouvre le formulaire de la page avec le kiosque choisi sur le plan
+  onDemande?: (kiosque: number | null, kiosquesDisponibles: number[]) => void;
 }) {
   const [etats, setEtats] = useState(kiosques);
   const [apercu, setApercu] = useState(false);
   const [choisiInterne, setChoisiInterne] = useState<number | null>(null);
   const [survol, setSurvol] = useState<number | null>(null);
-  const [formulaire, setFormulaire] = useState(false);
   const choisi = choisiExterne !== undefined ? choisiExterne : choisiInterne;
   const setChoisi = (n: number | null) => {
     setChoisiInterne(n);
@@ -173,7 +174,7 @@ export default function PlanKiosques({
         </p>
         <button
           type="button"
-          onClick={() => setFormulaire(true)}
+          onClick={() => onDemande?.(choisi, kiosquesDisponibles)}
           className="group inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-geo-2027 px-5 py-2.5 text-sm font-bold text-geo-noir shadow-geo-2027 transition-opacity hover:opacity-90"
         >
           {fr ? 'Devenir partenaire ou exposant' : 'Become a partner or exhibitor'}
@@ -369,16 +370,6 @@ export default function PlanKiosques({
       )}
 
       {bouton('bas')}
-
-      {mode === 'public' && (
-        <ModaleReservation
-          fr={fr}
-          ouvert={formulaire}
-          kiosqueInitial={choisi}
-          kiosquesDisponibles={kiosquesDisponibles}
-          onFermer={() => setFormulaire(false)}
-        />
-      )}
     </div>
   );
 }

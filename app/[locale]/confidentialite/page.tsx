@@ -42,7 +42,7 @@ export default async function ConfidentialitePage({
           <p>Nous collectons uniquement les renseignements que vous nous fournissez volontairement :</p>
           <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
             <li>Formulaire de contact : nom, courriel, message</li>
-            <li>Demande pour devenir partenaire ou exposant : organisation, contact principal et responsable du kiosque (nom, courriel, téléphone), niveau et kiosque souhaités, message</li>
+            <li>Demande pour devenir partenaire ou exposant : organisation, responsable de la facturation et responsable du kiosque sur place (nom, courriel, téléphone), niveau et kiosque souhaités, message</li>
             <li>Infolettre : adresse courriel</li>
             <li>Inscription à un atelier : nom, courriel, organisation</li>
           </ul>
@@ -174,7 +174,7 @@ export default async function ConfidentialitePage({
           <p>We only collect information you voluntarily provide:</p>
           <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
             <li>Contact form: name, email, message</li>
-            <li>Partner or exhibitor request: organization, main contact and booth contact (name, email, phone), desired level and booth, message</li>
+            <li>Partner or exhibitor request: organization, billing contact and on-site booth contact (name, email, phone), desired level and booth, message</li>
             <li>Newsletter: email address</li>
             <li>Workshop registration: name, email, organization</li>
           </ul>

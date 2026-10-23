@@ -32,7 +32,7 @@ function rafraichir() {
   revalidateTag(ETIQUETTE_KIOSQUES)
   revalidatePath('/fr/devenir-partenaire')
   revalidatePath('/en/devenir-partenaire')
-  revalidatePath('/admin/kiosques')
+  revalidatePath('/admin/organisations')
   revalidatePath('/admin', 'layout')
 }
 
@@ -78,7 +78,7 @@ export async function enregistrerNotesDemande(id: string, notes: string): Promis
     .update({ notes_internes: notes.slice(0, 5000) || null })
     .eq('id', id)
   if (error) return { error: error.message }
-  revalidatePath('/admin/kiosques')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -86,10 +86,12 @@ const TYPE_PARTENAIRE: Partial<Record<NiveauDemande, PartnerType>> = {
   or: 'Gold',
   argent: 'Silver',
   bronze: 'Bronze',
+  soiree: 'Networking',
 }
 
 // Accepter : crée la fiche exposant ou partenaire préremplie et la relie à la
 // demande. Le kiosque reste disponible en public jusqu'à confirmerReservation.
+// La commandite de la soirée n'est liée à aucun kiosque, sauf si un numéro a été demandé.
 export async function accepterDemande(id: string, niveau: Exclude<NiveauDemande, 'a_determiner'>): Promise<Resultat> {
   const check = await assertEditeur()
   if (check.error) return check
@@ -111,11 +113,12 @@ export async function accepterDemande(id: string, niveau: Exclude<NiveauDemande,
     primary_contact_name: demande.principal_nom,
     primary_contact_email: demande.principal_courriel,
     primary_contact_phone: demande.principal_telephone,
-    // Responsable du kiosque en contact secondaire (pas de champ téléphone secondaire)
-    secondary_contact_name: memePersonne ? null : demande.kiosque_nom,
-    secondary_contact_email: memePersonne ? null : demande.kiosque_courriel,
+    // Fiche : contact principal = responsable de la facturation, contact secondaire =
+    // responsable du kiosque sur place (pas de champ téléphone secondaire : il va dans les notes)
+    secondary_contact_name: demande.kiosque_nom,
+    secondary_contact_email: demande.kiosque_courriel,
     notes_contact: [
-      memePersonne ? null : `Responsable du kiosque : ${demande.kiosque_nom}, ${demande.kiosque_courriel}, ${demande.kiosque_telephone}`,
+      memePersonne ? null : `Téléphone du responsable du kiosque sur place : ${demande.kiosque_telephone}`,
       demande.message,
     ].filter(Boolean).join('\n\n') || null,
     status: 'contacted',
@@ -124,13 +127,14 @@ export async function accepterDemande(id: string, niveau: Exclude<NiveauDemande,
   }
   const table = niveau === 'exposant' ? 'exhibitors' : 'partners'
   const extra = niveau === 'exposant' ? {} : { partner_type: TYPE_PARTENAIRE[niveau] }
+  const sansKiosque = niveau === 'soiree' ? 'not_required' : 'to_assign'
 
   // Le numéro de kiosque est unique par année : s'il est déjà attribué à une
   // autre fiche, on crée la fiche sans numéro, à attribuer ensuite.
   let avertissement: string | undefined
   let creation = await supabase
     .from(table)
-    .insert({ ...commun, ...extra, booth_number: kiosque ? String(kiosque) : null, booth_status: kiosque ? 'assigned' : 'to_assign' })
+    .insert({ ...commun, ...extra, booth_number: kiosque ? String(kiosque) : null, booth_status: kiosque ? 'assigned' : sansKiosque })
     .select('id')
     .single()
   if (creation.error?.code === '23505') {
@@ -155,7 +159,6 @@ export async function accepterDemande(id: string, niveau: Exclude<NiveauDemande,
     .eq('id', id)
   if (error) return { error: error.message }
 
-  revalidatePath(niveau === 'exposant' ? '/admin/exhibitors' : '/admin/partners')
   rafraichir()
   return { avertissement }
 }

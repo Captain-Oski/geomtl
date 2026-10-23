@@ -12,7 +12,7 @@ export type Profile = {
 
 // ─── Partner (module complet) ─────────────────────────────
 
-export type PartnerType = 'Platinum' | 'Gold' | 'Silver' | 'Bronze' | 'Exhibitor' | 'Other'
+export type PartnerType = 'Gold' | 'Silver' | 'Bronze' | 'Networking'
 
 export type PartnerStatus =
   | 'prospect'
@@ -68,12 +68,10 @@ export type Partner = {
   payment_status: PaymentStatus
   internal_notes: string | null
 
-  // Activation / Kiosque
+  // Kiosque et livrables
   promo_code: string | null
   booth_number: string | null
   booth_status: BoothStatus
-  activation_type: string | null
-  activation_description: string | null
   deliverables: string | null
   deadlines: string | null
   logo_received: boolean
@@ -236,22 +234,6 @@ export type Contact = {
   created_at: string
 }
 
-// ─── Activation ───────────────────────────────────────────
-
-export type ActivationStatus = 'planned' | 'active' | 'completed' | 'cancelled'
-
-export type Activation = {
-  id: string
-  partner_id: string | null
-  title_fr: string
-  title_en: string | null
-  description_fr: string | null
-  description_en: string | null
-  public_visibility: boolean
-  status: ActivationStatus
-  created_at: string
-}
-
 // ─── Deliverable ──────────────────────────────────────────
 
 export type DeliverableStatus = 'pending' | 'in_progress' | 'completed' | 'overdue'
@@ -334,7 +316,7 @@ export type Kiosque = {
 // Ce que le site public reçoit : rien d'interne
 export type KiosquePublic = Pick<Kiosque, 'numero' | 'statut' | 'organisation_affichee' | 'logo_url' | 'site_url'>
 
-export type NiveauDemande = 'exposant' | 'bronze' | 'argent' | 'or' | 'a_determiner'
+export type NiveauDemande = 'exposant' | 'bronze' | 'argent' | 'or' | 'soiree' | 'a_determiner'
 
 export type StatutDemande = 'nouvelle' | 'en_traitement' | 'acceptee' | 'refusee' | 'archivee' | 'spam'
 

@@ -1,6 +1,7 @@
 'use client'
 
-import type { PartnerType, PartnerStatus, PaymentStatus, BoothStatus } from '@/lib/supabase/types'
+import type { PartnerType, PartnerStatus, PaymentStatus } from '@/lib/supabase/types'
+import { LIBELLES_TYPES_PARTENAIRE } from '@/lib/partenaires'
 
 type BadgeProps = { label: string; className: string }
 
@@ -32,17 +33,19 @@ export function PartnerStatusBadge({ status }: { status: PartnerStatus }) {
 
 // ─── Partner Type ─────────────────────────────────────────
 
-const TYPE_MAP: Record<PartnerType, BadgeProps> = {
-  Platinum: { label: 'Platine',   className: 'bg-violet-900/60 text-violet-200 ring-1 ring-violet-700/50' },
-  Gold:     { label: 'Or',        className: 'bg-yellow-900/60 text-yellow-300 ring-1 ring-yellow-700/50' },
-  Silver:   { label: 'Argent',    className: 'bg-slate-700/80 text-slate-200 ring-1 ring-slate-600/50' },
-  Bronze:   { label: 'Bronze',    className: 'bg-orange-900/60 text-orange-300 ring-1 ring-orange-700/50' },
-  Exhibitor:{ label: 'Exposant',  className: 'bg-blue-900/60 text-blue-300 ring-1 ring-blue-700/50' },
-  Other:    { label: 'Autre',     className: 'bg-gray-800 text-gray-400 ring-1 ring-gray-700' },
+const TYPE_STYLES: Record<PartnerType, string> = {
+  Gold:       'bg-yellow-900/60 text-yellow-300 ring-1 ring-yellow-700/50',
+  Silver:     'bg-slate-700/80 text-slate-200 ring-1 ring-slate-600/50',
+  Bronze:     'bg-orange-900/60 text-orange-300 ring-1 ring-orange-700/50',
+  Networking: 'bg-fuchsia-900/60 text-fuchsia-300 ring-1 ring-fuchsia-700/50',
 }
 
 export function PartnerTypeBadge({ type }: { type: PartnerType }) {
-  return <Badge {...TYPE_MAP[type]} />
+  return <Badge label={LIBELLES_TYPES_PARTENAIRE[type]} className={TYPE_STYLES[type]} />
+}
+
+export function ExposantBadge() {
+  return <Badge label="Exposant" className="bg-blue-900/60 text-blue-300 ring-1 ring-blue-700/50" />
 }
 
 // ─── Payment Status ───────────────────────────────────────
@@ -56,17 +59,4 @@ const PAYMENT_MAP: Record<PaymentStatus, BadgeProps> = {
 
 export function PaymentStatusBadge({ status }: { status: PaymentStatus }) {
   return <Badge {...PAYMENT_MAP[status]} />
-}
-
-// ─── Booth Status ─────────────────────────────────────────
-
-const BOOTH_MAP: Record<BoothStatus, BadgeProps> = {
-  not_required: { label: '-',            className: 'bg-gray-800 text-gray-600' },
-  to_assign:    { label: 'À attribuer',  className: 'bg-orange-900/60 text-orange-300' },
-  assigned:     { label: 'Attribué',     className: 'bg-blue-900/60 text-blue-300' },
-  confirmed:    { label: 'Confirmé',     className: 'bg-emerald-900/60 text-emerald-400' },
-}
-
-export function BoothStatusBadge({ status }: { status: BoothStatus }) {
-  return <Badge {...BOOTH_MAP[status]} />
 }

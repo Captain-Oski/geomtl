@@ -25,7 +25,7 @@ export async function saveExhibitor(
     if (error) return { error: error.message }
   }
 
-  revalidatePath('/admin/exhibitors')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -36,7 +36,7 @@ export async function deleteExhibitor(id: string): Promise<{ error?: string }> {
   const { error } = await supabase.from('exhibitors').delete().eq('id', id)
   if (error) return { error: error.message }
 
-  revalidatePath('/admin/exhibitors')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -50,7 +50,7 @@ export async function archiveExhibitor(id: string): Promise<{ error?: string }> 
     .eq('id', id)
   if (error) return { error: error.message }
 
-  revalidatePath('/admin/exhibitors')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -67,7 +67,7 @@ export async function toggleExhibitorVisibility(
     .eq('id', id)
   if (error) return { error: error.message }
 
-  revalidatePath('/admin/exhibitors')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -81,7 +81,7 @@ export async function updateExhibitorStatus(
   const { error } = await supabase.from('exhibitors').update({ status }).eq('id', id)
   if (error) return { error: error.message }
 
-  revalidatePath('/admin/exhibitors')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -95,7 +95,7 @@ export async function updateExhibitorPaymentStatus(
   const { error } = await supabase.from('exhibitors').update({ payment_status }).eq('id', id)
   if (error) return { error: error.message }
 
-  revalidatePath('/admin/exhibitors')
+  revalidatePath('/admin/organisations')
   return {}
 }
 
@@ -112,6 +112,6 @@ export async function markExhibitorLogoReceived(
     .eq('id', id)
   if (error) return { error: error.message }
 
-  revalidatePath('/admin/exhibitors')
+  revalidatePath('/admin/organisations')
   return {}
 }

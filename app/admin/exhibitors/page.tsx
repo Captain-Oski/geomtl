@@ -1,11 +1,5 @@
-import { getExhibitors } from '@/lib/data/exhibitors'
-import { AdminExhibitorsPage } from '@/components/admin/exhibitors/AdminExhibitorsPage'
+import { redirect } from 'next/navigation'
 
-export const metadata = {
-  title: 'Exposants - Admin GÉOMTL',
-}
-
-export default async function ExhibitorsPage() {
-  const exhibitors = await getExhibitors()
-  return <AdminExhibitorsPage exhibitors={exhibitors} />
+export default function ExhibitorsPage() {
+  redirect('/admin/organisations?onglet=organisations')
 }

@@ -1,4 +1,5 @@
 import { createHash } from 'crypto';
+import nodemailer from 'nodemailer';
 import { NextResponse, type NextRequest } from 'next/server';
 import { createAdminClient } from '@/lib/supabase/admin';
 import { COOKIE_COMITE, accesComiteValide, siteEnConstruction } from '@/lib/acces-comite';
@@ -9,7 +10,7 @@ import { EVENT_CONFIG } from '@/data/config';
 // kiosques de la page Devenir partenaire. Le public n'écrit jamais directement dans la base :
 // cette route valide la demande, applique les protections ci-dessous, puis
 // l'enregistre avec la clé service role. Une demande ne change jamais l'état
-// public d'un kiosque ; seul le comité le fait, dans /admin/kiosques.
+// public d'un kiosque ; seul le comité le fait, dans /admin/organisations.
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -124,41 +125,52 @@ export async function POST(request: NextRequest) {
   return reponse(201, { ok: true });
 }
 
-// ─── Courriels (Resend) ───────────────────────────────────
-// Texte brut seulement : rien de ce que tape le visiteur n'est interprété.
+// ─── Courriels (Gmail du compte Google Workspace) ─────────
+// Le site se connecte au compte info@ avec un mot de passe d'application et
+// envoie en tant que partenariat@, un alias déclaré dans Gmail (« Envoyer des
+// e-mails en tant que »). Texte brut seulement : rien de ce que tape le
+// visiteur n'est interprété.
 
-async function envoyerCourriel(message: { to: string; cc?: string[]; reply_to: string; subject: string; text: string }) {
-  const cle = process.env.RESEND_API_KEY;
-  if (!cle) return;
-  const expediteur = process.env.COURRIEL_EXPEDITEUR ?? 'GÉOMTL 2027 <kiosques@geomtl.com>';
-  const retour = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { Authorization: `Bearer ${cle}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({ from: expediteur, ...message }),
-    signal: AbortSignal.timeout(8000),
+function transporteurGmail() {
+  const user = process.env.GMAIL_UTILISATEUR;
+  const pass = process.env.GMAIL_MOT_DE_PASSE;
+  if (!user || !pass) return null;
+  return nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: { user, pass },
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 15_000,
   });
-  if (!retour.ok) throw new Error(`Resend ${retour.status} : ${await retour.text()}`);
 }
 
+// Le nom d'organisation va dans le sujet : aucun saut de ligne dans un en-tête
+const enLigne = (texte: string) => texte.replace(/[\r\n]+/g, ' ').trim();
+
 async function envoyerCourriels(d: DonneesDemande, origine: string) {
-  if (!process.env.RESEND_API_KEY) {
-    console.warn('[demandes-kiosques] RESEND_API_KEY absent : aucun courriel envoyé.');
+  const smtp = transporteurGmail();
+  if (!smtp) {
+    console.warn('[demandes-kiosques] GMAIL_UTILISATEUR ou GMAIL_MOT_DE_PASSE absent : aucun courriel envoyé.');
     return;
   }
+  const expediteur = process.env.COURRIEL_EXPEDITEUR || 'GÉOMTL 2027 <partenariat@geomtl.com>';
   const comite = EVENT_CONFIG.courriels.partenariat;
   const niveau = LIBELLES_NIVEAUX[d.niveau].fr;
   const fr = d.langue === 'fr';
   const sansPreference = d.kiosque === SANS_PREFERENCE;
   const kiosqueFr = sansPreference ? 'sans préférence' : `kiosque ${d.kiosque}`;
   const kiosqueEn = sansPreference ? 'no booth preference' : `booth ${d.kiosque}`;
-  // Le responsable du kiosque reçoit aussi l'accusé de réception s'il est différent
+  // Le responsable du kiosque sur place reçoit aussi l'accusé de réception s'il est différent
   const copie = !d.kiosque_meme_contact && d.kiosque_courriel !== d.principal_courriel ? [d.kiosque_courriel] : undefined;
 
   const resultats = await Promise.allSettled([
-    envoyerCourriel({
+    smtp.sendMail({
+      from: expediteur,
       to: process.env.COURRIEL_COMITE || comite,
-      reply_to: d.principal_courriel,
-      subject: `Demande ${niveau} (${kiosqueFr}) : ${d.organisation}`,
+      replyTo: d.principal_courriel,
+      subject: enLigne(`Demande ${niveau} (${kiosqueFr}) : ${d.organisation}`),
       text: [
         'Nouvelle demande « Devenir partenaire ou exposant » reçue sur le site.',
         '',
@@ -167,22 +179,23 @@ async function envoyerCourriels(d: DonneesDemande, origine: string) {
         `Kiosque souhaité : ${sansPreference ? 'sans préférence' : d.kiosque}`,
         `Langue : ${fr ? 'français' : 'anglais'}`,
         '',
-        'Contact principal :',
+        'Responsable de la facturation :',
         `  ${d.principal_nom}, ${d.principal_courriel}, ${d.principal_telephone}`,
-        'Responsable du kiosque :',
-        d.kiosque_meme_contact ? '  (le contact principal)' : `  ${d.kiosque_nom}, ${d.kiosque_courriel}, ${d.kiosque_telephone}`,
+        'Responsable du kiosque sur place :',
+        d.kiosque_meme_contact ? '  (le responsable de la facturation)' : `  ${d.kiosque_nom}, ${d.kiosque_courriel}, ${d.kiosque_telephone}`,
         '',
         'Message :',
         d.message || '(aucun)',
         '',
-        `Traiter la demande : ${origine}/admin/kiosques`,
+        `Traiter la demande : ${origine}/admin/organisations?onglet=demandes`,
         'Le kiosque reste affiché disponible jusqu\'à ce que le comité confirme la réservation dans l\'admin.',
       ].join('\n'),
     }),
-    envoyerCourriel({
+    smtp.sendMail({
+      from: expediteur,
       to: d.principal_courriel,
       cc: copie,
-      reply_to: comite,
+      replyTo: comite,
       subject: fr ? `GÉOMTL 2027 : demande reçue (${kiosqueFr})` : `GÉOMTL 2027: request received (${kiosqueEn})`,
       text: fr
         ? [

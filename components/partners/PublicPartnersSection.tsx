@@ -2,15 +2,13 @@ import Link from 'next/link'
 import { getPublicPartners } from '@/lib/data/public'
 import type { PublicPartner, PartnerType } from '@/lib/supabase/types'
 
-const TYPE_ORDER: PartnerType[] = ['Platinum', 'Gold', 'Silver', 'Bronze', 'Exhibitor', 'Other']
+const TYPE_ORDER: PartnerType[] = ['Gold', 'Networking', 'Silver', 'Bronze']
 
 const TYPE_LABELS: Record<PartnerType, string> = {
-  Platinum: 'Partenaires Platine',
-  Gold:     'Partenaires Or',
-  Silver:   'Partenaires Argent',
-  Bronze:   'Partenaires Bronze',
-  Exhibitor:'Exposants',
-  Other:    'Partenaires associés',
+  Gold:       'Partenaires Or',
+  Networking: 'Commanditaire de la soirée réseautage',
+  Silver:     'Partenaires Argent',
+  Bronze:     'Partenaires Bronze',
 }
 
 function PartnerCard({ partner }: { partner: PublicPartner }) {
@@ -70,9 +68,8 @@ export async function PublicPartnersSection() {
             </h3>
             <div
               className={`grid gap-4 ${
-                type === 'Platinum' ? 'grid-cols-1 sm:grid-cols-2 max-w-xl mx-auto' :
-                type === 'Gold'     ? 'grid-cols-2 sm:grid-cols-3 max-w-2xl mx-auto' :
-                                      'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
+                type === 'Gold' || type === 'Networking' ? 'grid-cols-2 sm:grid-cols-3 max-w-2xl mx-auto' :
+                                                           'grid-cols-2 sm:grid-cols-3 lg:grid-cols-4'
               }`}
             >
               {group.map((p) => (
