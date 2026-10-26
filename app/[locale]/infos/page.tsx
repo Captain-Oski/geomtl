@@ -21,12 +21,9 @@ import { Question } from '@phosphor-icons/react/dist/ssr/Question';
 import { CaretDown } from '@phosphor-icons/react/dist/ssr/CaretDown';
 import { ArrowSquareOut } from '@phosphor-icons/react/dist/ssr/ArrowSquareOut';
 import CarteInfolettre from '@/components/ui/CarteInfolettre';
+import { lienInfolettre } from '@/lib/infolettre';
 import NotesBillets from '@/components/billetterie/NotesBillets';
 
-// Sans formulaire d'infolettre en ligne, l'inscription passe par courriel.
-const lienInfolettre = (fr: boolean) =>
-  EVENT_CONFIG.newsletterUrl ??
-  `mailto:${EVENT_CONFIG.courriels.info}?subject=${encodeURIComponent(fr ? 'Inscription à l\'infolettre GÉOMTL' : 'GÉOMTL newsletter subscription')}`;
 const LIEN = 'font-semibold text-geo-teal-dark hover:underline';
 const COURRIEL_CONFERENCIERS = EVENT_CONFIG.courriels.conferencier;
 
@@ -88,7 +85,7 @@ const faqs = {
       q: 'Comment soumettre une proposition de conférence?',
       a: (
         <>
-          <a href={lienInfolettre(true)} className={LIEN}>Inscrivez-vous à l&apos;infolettre</a>
+          <a href={lienInfolettre('fr')} className={LIEN}>Inscrivez-vous à l&apos;infolettre</a>
           {' pour recevoir tous les détails de l\'appel de propositions dès leur publication. Pour toute question d\'ici là, écrivez à '}
           <a href={`mailto:${COURRIEL_CONFERENCIERS}`} className={LIEN}>{COURRIEL_CONFERENCIERS}</a>.
         </>
@@ -141,7 +138,7 @@ const faqs = {
       q: 'How do I submit a conference proposal?',
       a: (
         <>
-          <a href={lienInfolettre(false)} className={LIEN}>Subscribe to the newsletter</a>
+          <a href={lienInfolettre('en')} className={LIEN}>Subscribe to the newsletter</a>
           {' to receive all the details of the call for proposals as soon as they are published. For any questions in the meantime, write to '}
           <a href={`mailto:${COURRIEL_CONFERENCIERS}`} className={LIEN}>{COURRIEL_CONFERENCIERS}</a>.
         </>

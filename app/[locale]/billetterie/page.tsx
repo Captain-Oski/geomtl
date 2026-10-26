@@ -4,6 +4,7 @@ import SectionTitle from '@/components/ui/SectionTitle';
 import type { Metadata } from 'next';
 import { Check } from '@phosphor-icons/react/dist/ssr/Check';
 import NotesBillets from '@/components/billetterie/NotesBillets';
+import { EVENT_CONFIG } from '@/data/config';
 
 export async function generateMetadata(props: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const params = await props.params;
@@ -154,11 +155,14 @@ export default async function BilletteriePage(
                 ))}
               </ul>
 
-              <button
-                className="w-full py-3 rounded-xl font-bold text-geo-cream bg-geo-ink hover:bg-geo-ink/85 transition-colors"
+              <a
+                href={EVENT_CONFIG.ticketUrl[fr ? 'fr' : 'en']}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block w-full py-3 rounded-xl font-bold text-center text-geo-cream bg-geo-ink hover:bg-geo-ink/85 transition-colors"
               >
                 {t('buyNow')}
-              </button>
+              </a>
             </div>
           ))}
         </div>

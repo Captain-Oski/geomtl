@@ -1,5 +1,5 @@
 import { EnvelopeSimple } from '@phosphor-icons/react/dist/ssr/EnvelopeSimple';
-import { EVENT_CONFIG } from '@/data/config';
+import { lienInfolettre } from '@/lib/infolettre';
 import { cn } from '@/lib/utils';
 
 const STYLES = {
@@ -20,21 +20,11 @@ export default function BoutonInfolettre({
   className?: string;
 }) {
   const fr = locale === 'fr';
-  // Sans formulaire d'inscription en ligne, le bouton ouvre un courriel prérempli.
-  const href =
-    EVENT_CONFIG.newsletterUrl ??
-    `mailto:${EVENT_CONFIG.email}?subject=${encodeURIComponent(
-      fr ? 'Inscription à l\'infolettre GÉOMTL' : 'GÉOMTL newsletter subscription'
-    )}&body=${encodeURIComponent(
-      fr
-        ? 'Bonjour,\n\nJe souhaite recevoir l\'infolettre de GÉOMTL à cette adresse.\n\nMerci!'
-        : 'Hello,\n\nI would like to receive the GÉOMTL newsletter at this address.\n\nThank you!'
-    )}`;
 
   return (
+    // Page /infolettre, ou courriel prérempli tant que Mailchimp n'est pas configuré
     <a
-      href={href}
-      {...(EVENT_CONFIG.newsletterUrl && { target: '_blank', rel: 'noopener noreferrer' })}
+      href={lienInfolettre(locale)}
       className={cn(
         'inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors',
         STYLES[variante],

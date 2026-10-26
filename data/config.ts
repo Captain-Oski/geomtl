@@ -20,7 +20,12 @@ export const EVENT_CONFIG = {
       "Where geospatial becomes a collective experience."
     ]
   },
-  ticketUrl: "#billetterie",
+  // Événement Le Point de Vente. L'ancien site utilisait l'identifiant « geomtl2025 » :
+  // vérifier dans le compte organisateur que l'événement 2027 porte bien « geomtl2027 ».
+  ticketUrl: {
+    fr: "https://lepointdevente.com/billets/geomtl2027",
+    en: "https://lepointdevente.com/tickets/geomtl2027"
+  },
   partnerUrl: "#devenir-partenaire",
   email: "info@geomtl.com",
   // Une adresse par sujet ; info@ reste l'adresse générale.
@@ -30,9 +35,10 @@ export const EVENT_CONFIG = {
     partenariat: "partenariat@geomtl.com",
     conferencier: "conferencier@geomtl.com"
   },
-  // Lien du formulaire d'inscription à l'infolettre (Cyberimpact, Mailchimp…) ;
-  // tant qu'il est vide, les boutons ouvrent un courriel prérempli vers `email`.
-  newsletterUrl: null as string | null,
+  // Adresse « action » du formulaire intégré Mailchimp (Forms > Embedded form,
+  // balise <form>). Une fois remplie, les boutons « S'abonner » mènent à la page
+  // /infolettre ; tant qu'elle est vide, ils ouvrent un courriel prérempli.
+  mailchimpAction: "https://geomtl.us12.list-manage.com/subscribe/post?u=e8567f65db880b7495086d39a&amp;id=a5d830038f&amp;f_id=0002b7e0f0" as string | null,
   address: {
     fr: "1325, rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4",
     en: "1325 rue Daniel-Johnson Ouest, Saint-Hyacinthe, QC J2S 8S4"
