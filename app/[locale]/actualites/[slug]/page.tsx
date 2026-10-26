@@ -172,7 +172,7 @@ export default async function NewsArticlePage(
               </p>
               <Link
                 href={`/${locale}/billetterie`}
-                className="block w-full py-2.5 text-center text-sm font-bold text-geo-noir rounded-xl bg-gradient-geo-2027 hover:opacity-90 transition-all"
+                className="block w-full py-2.5 text-center text-sm font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all"
               >
                 {locale === 'fr' ? 'Participer' : 'Participate'}
               </Link>

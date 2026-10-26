@@ -31,13 +31,13 @@ export default function Erreur({ error, reset }: { error: Error & { digest?: str
             <button
               type="button"
               onClick={reset}
-              className="rounded-xl bg-geo-ink px-6 py-3 text-sm font-bold text-geo-cream transition-opacity hover:opacity-90"
+              className="bg-geo-ink px-6 py-3 text-sm font-bold text-geo-cream transition-opacity hover:opacity-90"
             >
               {fr ? 'Réessayer' : 'Try again'}
             </button>
             <Link
               href={fr ? '/fr' : '/en'}
-              className="rounded-xl border border-geo-ink/30 px-6 py-3 text-sm font-bold text-geo-ink transition-colors hover:bg-geo-ink/5"
+              className="border border-geo-ink/30 px-6 py-3 text-sm font-bold text-geo-ink transition-colors hover:bg-geo-ink/5"
             >
               {fr ? 'Retour à l\'accueil' : 'Back to home'}
             </Link>

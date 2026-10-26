@@ -44,13 +44,13 @@ export default function ComingSoon({ locale, eyebrow, title, message }: ComingSo
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href={`/${locale}/billetterie`}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
             >
               {locale === 'fr' ? 'Réserver ma place' : 'Reserve my spot'}
             </Link>
             <Link
               href={`/${locale}`}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-geo-ink border border-geo-ink/20 hover:border-geo-ink/40 hover:bg-geo-ink/5 transition-all"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-geo-ink border border-geo-ink/20 hover:border-geo-ink/40 hover:bg-geo-ink/5 transition-all"
             >
               {locale === 'fr' ? "Retour à l'accueil" : 'Back to home'}
             </Link>

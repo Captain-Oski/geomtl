@@ -42,14 +42,14 @@ export default function HomeCTA() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <Link
               href={`/${locale}/billetterie`}
-              className="group inline-flex items-center gap-2 rounded-lg bg-geo-ink px-6 py-3 font-semibold text-geo-cream hover:bg-geo-ink/85 transition-colors"
+              className="group inline-flex items-center gap-2 bg-geo-ink px-6 py-3 font-semibold text-geo-cream hover:bg-geo-ink/85 transition-colors"
             >
               {t('ctaButton')}
               <ArrowRight size={18} weight="light" className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
             </Link>
             <Link
               href={`/${locale}/devenir-partenaire`}
-              className="inline-flex items-center rounded-lg bg-geo-ink px-6 py-3 font-semibold text-geo-cream hover:bg-geo-ink/85 transition-colors"
+              className="inline-flex items-center bg-geo-ink px-6 py-3 font-semibold text-geo-cream hover:bg-geo-ink/85 transition-colors"
             >
               {t('heroCta2')}
             </Link>

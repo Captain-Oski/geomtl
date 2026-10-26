@@ -175,7 +175,7 @@ export default function PlanKiosques({
         <button
           type="button"
           onClick={() => onDemande?.(choisi, kiosquesDisponibles)}
-          className="group inline-flex flex-shrink-0 items-center justify-center gap-2 rounded-xl bg-gradient-geo-2027 px-5 py-2.5 text-sm font-bold text-geo-noir shadow-geo-2027 transition-opacity hover:opacity-90"
+          className="group inline-flex flex-shrink-0 items-center justify-center gap-2 bg-gradient-geo-2027 px-5 py-2.5 text-sm font-bold text-geo-noir shadow-geo-2027 transition-opacity hover:opacity-90"
         >
           {fr ? 'Devenir partenaire ou exposant' : 'Become a partner or exhibitor'}
           <ArrowRight size={16} weight="light" className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />

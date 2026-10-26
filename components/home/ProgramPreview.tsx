@@ -84,7 +84,7 @@ export default function ProgramPreview() {
         <div className="text-center">
           <Link
             href={`/${locale}/programmation`}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-geo-teal-dark font-semibold border border-geo-teal-dark/30 hover:bg-geo-teal/10 hover:border-geo-teal-dark/60 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 text-geo-teal-dark font-semibold border border-geo-teal-dark/30 hover:bg-geo-teal/10 hover:border-geo-teal-dark/60 transition-all"
           >
             {t('programCta')}
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

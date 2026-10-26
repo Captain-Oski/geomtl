@@ -221,7 +221,7 @@ export default function ModaleReservation({
           <button
             type="button"
             onClick={() => dialogue.current?.close()}
-            className="mt-6 rounded-lg bg-geo-ink px-5 py-2.5 text-sm font-semibold text-geo-cream hover:bg-geo-ink/85"
+            className="mt-6 bg-geo-ink px-5 py-2.5 text-sm font-semibold text-geo-cream hover:bg-geo-ink/85"
           >
             {fr ? 'Fermer' : 'Close'}
           </button>
@@ -337,13 +337,13 @@ export default function ModaleReservation({
           </div>
 
           <div className="flex flex-col-reverse gap-3 border-t border-geo-ink/10 pt-4 sm:flex-row sm:items-center sm:justify-end">
-            <button type="button" onClick={() => dialogue.current?.close()} className="rounded-lg px-4 py-2.5 text-sm font-semibold text-geo-ink-soft hover:text-geo-ink">
+            <button type="button" onClick={() => dialogue.current?.close()} className="px-4 py-2.5 text-sm font-semibold text-geo-ink-soft hover:text-geo-ink">
               {fr ? 'Annuler' : 'Cancel'}
             </button>
             <button
               type="submit"
               disabled={etat === 'envoi'}
-              className="rounded-lg bg-gradient-geo-2027 px-5 py-2.5 text-sm font-bold text-geo-noir transition-opacity hover:opacity-90 disabled:opacity-60"
+              className="bg-gradient-geo-2027 px-5 py-2.5 text-sm font-bold text-geo-noir transition-opacity hover:opacity-90 disabled:opacity-60"
             >
               {etat === 'envoi' ? (fr ? 'Envoi…' : 'Sending…') : (fr ? 'Envoyer la demande' : 'Send request')}
             </button>

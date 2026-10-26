@@ -23,7 +23,7 @@ export default async function ConstructionPage(props: { searchParams: Promise<{ 
             <br />
             {EVENT_CONFIG.venue.fr}
           </p>
-          <span className="flex-shrink-0 rounded-md px-3 py-1 font-display text-xl sm:text-2xl lg:text-3xl font-bold bg-geo-ink text-geo-cream">
+          <span className="flex-shrink-0 px-3 py-1 font-display text-xl sm:text-2xl lg:text-3xl font-bold bg-geo-ink text-geo-cream">
             2027
           </span>
         </div>
@@ -54,7 +54,7 @@ export default async function ConstructionPage(props: { searchParams: Promise<{ 
                 placeholder="Code d'accès"
                 className="min-w-0 flex-1 rounded-lg border border-geo-ink/20 bg-geo-cream px-3 py-2 text-geo-ink placeholder:text-geo-ink-soft focus:border-geo-ink/50 focus:outline-none"
               />
-              <button type="submit" className="rounded-lg bg-geo-ink px-4 py-2 font-semibold text-geo-cream hover:bg-geo-ink/85">
+              <button type="submit" className="bg-geo-ink px-4 py-2 font-semibold text-geo-cream hover:bg-geo-ink/85">
                 Entrer
               </button>
             </form>

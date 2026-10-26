@@ -88,7 +88,7 @@ export default function Header() {
               {/* Language switcher */}
               <Link
                 href={localizedPath}
-                className="hidden sm:flex items-center gap-1 px-3 py-1.5 text-xs font-semibold tracking-wider text-geo-ink-soft hover:text-geo-ink border border-geo-ink/15 hover:border-geo-ink/30 rounded-lg transition-colors"
+                className="hidden sm:flex items-center gap-1 px-3 py-1.5 text-xs font-semibold tracking-wider text-geo-ink-soft hover:text-geo-ink border border-geo-ink/15 hover:border-geo-ink/30 transition-colors"
               >
                 <span>{otherLocale.toUpperCase()}</span>
               </Link>
@@ -96,7 +96,7 @@ export default function Header() {
               {/* CTA */}
               <Link
                 href={`/${locale}/billetterie`}
-                className="hidden sm:flex items-center px-4 py-2 text-sm font-semibold text-geo-noir rounded-lg bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
+                className="hidden sm:flex items-center px-4 py-2 text-sm font-semibold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all shadow-geo-2027"
               >
                 {t('buyTicket')}
               </Link>
@@ -168,7 +168,7 @@ export default function Header() {
                 <Link
                   href={`/${locale}/billetterie`}
                   onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-center text-sm font-semibold text-geo-noir rounded-lg bg-gradient-geo-2027"
+                  className="block px-4 py-3 text-center text-sm font-semibold text-geo-noir bg-gradient-geo-2027"
                 >
                   {t('buyTicket')}
                 </Link>

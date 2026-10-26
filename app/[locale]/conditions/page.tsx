@@ -333,7 +333,7 @@ export default async function ConditionsPage(
       {/* Header */}
       <div className="page-header-2027 py-16 sm:py-20">
         <Container>
-          <p className="text-xs font-semibold tracking-widest uppercase text-geo-teal-dark mb-3">
+          <p className="text-xs font-semibold tracking-widest uppercase text-geo-ink mb-3">
             {fr ? 'Documents légaux' : 'Legal Documents'}
           </p>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-geo-ink mb-3">

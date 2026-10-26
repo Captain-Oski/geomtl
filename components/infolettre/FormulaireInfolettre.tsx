@@ -70,7 +70,7 @@ export default function FormulaireInfolettre({
 
         <button
           type="submit"
-          className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-geo-ink px-6 py-3 font-semibold text-geo-cream transition-colors hover:bg-geo-ink/85"
+          className="inline-flex w-full items-center justify-center gap-2 bg-geo-ink px-6 py-3 font-semibold text-geo-cream transition-colors hover:bg-geo-ink/85"
         >
           <PaperPlaneTilt size={18} weight="light" aria-hidden="true" />
           {fr ? 'Je m\'abonne' : 'Subscribe'}

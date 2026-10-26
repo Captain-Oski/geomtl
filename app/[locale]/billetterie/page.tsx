@@ -159,7 +159,7 @@ export default async function BilletteriePage(
                 href={EVENT_CONFIG.ticketUrl[fr ? 'fr' : 'en']}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full py-3 rounded-xl font-bold text-center text-geo-cream bg-geo-ink hover:bg-geo-ink/85 transition-colors"
+                className="block w-full py-3 font-bold text-center text-geo-cream bg-geo-ink hover:bg-geo-ink/85 transition-colors"
               >
                 {t('buyNow')}
               </a>

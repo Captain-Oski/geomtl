@@ -30,7 +30,7 @@ export default function Hero({ reglages, onIdee, masquerTexte = false }: HeroPro
   const dates = locale === 'fr' ? EVENT_CONFIG.dates.fr : EVENT_CONFIG.dates.en;
   const venue = locale === 'fr' ? EVENT_CONFIG.venue.fr : EVENT_CONFIG.venue.en;
   const button =
-    'inline-flex items-center rounded-lg px-6 py-3 text-sm sm:text-base font-semibold transition-colors bg-geo-ink text-geo-cream hover:bg-geo-ink/85';
+    'inline-flex items-center px-6 py-3 text-sm sm:text-base font-semibold transition-colors bg-geo-ink text-geo-cream hover:bg-geo-ink/85';
 
   return (
     <section className="relative overflow-hidden bg-geo-cream">
@@ -51,19 +51,22 @@ export default function Hero({ reglages, onIdee, masquerTexte = false }: HeroPro
         transition={{ staggerChildren: 0.15 }}
       >
         <motion.div variants={itemVariants} className="flex items-start justify-between gap-6">
-          <div className="flex flex-col md:flex-row gap-3 md:gap-16 font-semibold text-base sm:text-lg leading-snug text-geo-ink">
+          {/* Dates et slogan à la même taille (retour du Studio Le Séisme, octobre 2026).
+              Specs de la maquette : Programme Bold, 33,93 px sur une maquette de
+              1920 px de large (d'où 1,767vw), interligne 1,1, approche 0, #282828 */}
+          <div className="flex flex-col md:flex-row gap-3 md:gap-16 font-slogan font-bold text-[clamp(1.125rem,1.767vw,2.125rem)] leading-[1.1] tracking-normal text-[#282828] dark:text-geo-ink">
             <p>
               {dates}
               <br />
-              {venue}
+              {/* « Saint-Hyacinthe » ne se coupe pas au trait d'union sur mobile */}
+              {venue.replace(/ \S+$/, ' ')}
+              <span className="whitespace-nowrap">{venue.match(/\S+$/)?.[0]}</span>
             </p>
-            {/* Specs de la maquette : Programme Bold, 33,93 px sur une maquette de
-                1920 px de large (d'où 1,767vw), interligne 1,1, approche 0, #282828 */}
-            <p className="font-slogan font-bold text-[clamp(1.125rem,1.767vw,2.125rem)] leading-[1.1] tracking-normal text-[#282828] dark:text-geo-ink lg:whitespace-nowrap">
+            <p className="lg:whitespace-nowrap">
               <Slogan texte={tagline} />
             </p>
           </div>
-          <span className="flex-shrink-0 rounded-md px-3 py-1 font-display text-xl sm:text-2xl lg:text-3xl font-bold bg-geo-ink text-geo-cream">
+          <span className="flex-shrink-0 px-3 py-1 font-display text-xl sm:text-2xl lg:text-3xl font-bold bg-geo-ink text-geo-cream">
             2027
           </span>
         </motion.div>

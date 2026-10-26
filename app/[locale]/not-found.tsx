@@ -33,7 +33,7 @@ export default function PageIntrouvable() {
           <div className="mt-8 flex justify-center">
             <Link
               href={base}
-              className="rounded-xl bg-geo-ink px-6 py-3 text-sm font-bold text-geo-cream transition-opacity hover:opacity-90"
+              className="bg-geo-ink px-6 py-3 text-sm font-bold text-geo-cream transition-opacity hover:opacity-90"
             >
               {fr ? 'Retour à l\'accueil' : 'Back to home'}
             </Link>
@@ -48,7 +48,7 @@ export default function PageIntrouvable() {
             <li key={lien.href}>
               <Link
                 href={lien.href}
-                className="inline-block rounded-xl border border-geo-ink/15 px-5 py-2.5 text-sm font-semibold text-geo-ink transition-colors hover:bg-geo-ink/5"
+                className="inline-block border border-geo-ink/15 px-5 py-2.5 text-sm font-semibold text-geo-ink transition-colors hover:bg-geo-ink/5"
               >
                 {lien.libelle}
               </Link>

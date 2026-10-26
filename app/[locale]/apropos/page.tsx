@@ -112,7 +112,7 @@ export default async function AProposPage(
               </div>
               <Link
                 href={`/${locale}/prix`}
-                className="group inline-flex flex-shrink-0 items-center justify-center gap-2 self-start lg:self-center rounded-xl bg-geo-ink px-6 py-3 font-semibold text-geo-cream hover:bg-geo-ink/85 transition-colors"
+                className="group inline-flex flex-shrink-0 items-center justify-center gap-2 self-start lg:self-center bg-geo-ink px-6 py-3 font-semibold text-geo-cream hover:bg-geo-ink/85 transition-colors"
               >
                 {locale === 'fr' ? 'Découvrir le prix et ses lauréats' : 'Discover the prize and its laureates'}
                 <ArrowRight size={18} weight="light" className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />

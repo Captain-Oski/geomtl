@@ -59,8 +59,15 @@ Le bouton lune / soleil du Header (`components/layout/ThemeToggle.tsx`) bascule 
 | Dégradé en trame | `public/images/brand/degrade-trame.jpg` / `.webp` | Bandeau d'appel à l'action de l'accueil et en-têtes des pages intérieures. |
 | Globes des niveaux de partenariat | `public/images/brand/cartes/or.webp`, `argent.webp`, `bronze.webp`, `exposant.webp` | Cartes Or, Argent, Bronze et Exposant de la page Devenir partenaire. Le globe de la charte, recoloré en or, argent, bronze et graphite sur fond transparent. Se régénèrent avec `scripts/cartes/` (capture depuis `/demo`, puis teinte). |
 
-Les en-têtes des pages intérieures utilisent la classe `page-header-2027` (`styles/globals.css`). Elle pose le dégradé en trame et repasse en encre les éléments qui disparaîtraient dessus : sur-titre en dégradé, texte secondaire et boutons en dégradé. En mode sombre, le dégradé est éteint sous un voile d'encre et ces éléments gardent leurs couleurs vives.
+Les en-têtes des pages intérieures utilisent la classe `page-header-2027` (`styles/globals.css`). Elle pose le dégradé en trame et repasse en encre les éléments qui disparaîtraient dessus : mot d'accent du titre en dégradé, texte secondaire et boutons en dégradé. En mode sombre, le dégradé est éteint sous un voile d'encre et ces éléments gardent leurs couleurs vives.
 
 ## Boutons sur les visuels
 
 Sur le globe et sur le dégradé en trame, les boutons sont en encre avec le texte en clair, comme dans le Figma. Ailleurs, le bouton principal garde le dégradé signature.
+
+## Retours du Studio Le Séisme (octobre 2026)
+
+- Les boutons d'appel à l'action ont des angles droits : pas de classe `rounded-*` sur un bouton ou un lien en forme de bouton. Les cartes et les champs de formulaire gardent leurs coins arrondis.
+- La boîte « 2027 » de l'accueil a des angles droits.
+- Les sur-titres (petit texte en capitales au-dessus d'un titre) sont en encre (`text-geo-ink`), jamais en couleur ni en dégradé.
+- Dans le hero de l'accueil, les dates et le slogan ont la même taille.

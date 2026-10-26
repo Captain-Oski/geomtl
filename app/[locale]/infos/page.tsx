@@ -308,7 +308,7 @@ export default function InfosPage() {
               href={HOTEL.reservation}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-gradient-geo-2027 px-5 py-2.5 text-sm font-bold text-geo-noir transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 bg-gradient-geo-2027 px-5 py-2.5 text-sm font-bold text-geo-noir transition-opacity hover:opacity-90"
             >
               {fr ? 'Réserver en ligne' : 'Book online'}
               <ArrowSquareOut size={16} weight="light" aria-hidden="true" />

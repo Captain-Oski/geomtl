@@ -98,7 +98,7 @@ export default async function GaleriePage(props: { params: Promise<{ locale: str
             href={FLICKR_ALBUMS_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all"
+            className="inline-flex items-center gap-2 px-6 py-3 font-bold text-geo-noir bg-gradient-geo-2027 hover:opacity-90 transition-all"
           >
             {fr ? 'Voir les albums' : 'See the albums'}
             <ArrowSquareOut size={18} weight="bold" aria-hidden="true" />

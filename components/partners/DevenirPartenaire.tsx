@@ -132,7 +132,7 @@ export default function DevenirPartenaire({ kiosques }: { kiosques: KiosquePubli
             <button
               type="button"
               onClick={() => ouvrirDemande(null, disponibles)}
-              className="group inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-geo-2027 px-6 py-3 text-sm font-bold text-geo-noir shadow-geo-2027 transition-opacity hover:opacity-90"
+              className="group inline-flex items-center justify-center gap-2 bg-gradient-geo-2027 px-6 py-3 text-sm font-bold text-geo-noir shadow-geo-2027 transition-opacity hover:opacity-90"
             >
               {fr ? 'Devenir partenaire' : 'Become a partner'}
               <ArrowRight size={16} weight="light" className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />

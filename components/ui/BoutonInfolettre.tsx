@@ -26,7 +26,7 @@ export default function BoutonInfolettre({
     <a
       href={lienInfolettre(locale)}
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors',
+        'inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold transition-colors',
         STYLES[variante],
         className
       )}

@@ -24,7 +24,7 @@ export default function ThemeToggle({ className }: { className?: string }) {
       aria-label={t('darkMode')}
       title={sombre ? t('toLightMode') : t('toDarkMode')}
       className={cn(
-        'flex items-center justify-center p-1.5 rounded-lg border border-geo-ink/15 text-geo-ink-soft hover:text-geo-ink hover:border-geo-ink/30 transition-colors',
+        'flex items-center justify-center p-1.5 border border-geo-ink/15 text-geo-ink-soft hover:text-geo-ink hover:border-geo-ink/30 transition-colors',
         className
       )}
     >
