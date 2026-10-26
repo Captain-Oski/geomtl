@@ -176,7 +176,7 @@ export default async function ConfidentialitePage(
         <div className="glass-2027 rounded-xl p-5 space-y-1 text-sm">
           <p className="text-geo-ink font-semibold">Martin Carpentier, président de GÉOMTL</p>
           <p>Responsable de la protection des renseignements personnels</p>
-          <p>2260, avenue Aird, bureau 210, Montréal (Québec) H1V 2W6</p>
+          <p>4590, rue Bosco, Brossard (Québec) J4Z 0L9</p>
           <p>
             <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>
           </p>
@@ -323,7 +323,7 @@ export default async function ConfidentialitePage(
         <div className="glass-2027 rounded-xl p-5 space-y-1 text-sm">
           <p className="text-geo-ink font-semibold">Martin Carpentier, President of GÉOMTL</p>
           <p>Privacy Officer</p>
-          <p>2260 Avenue Aird, Suite 210, Montréal, QC H1V 2W6, Canada</p>
+          <p>4590 Rue Bosco, Brossard, QC J4Z 0L9, Canada</p>
           <p>
             <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>
           </p>
