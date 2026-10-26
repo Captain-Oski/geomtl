@@ -214,6 +214,21 @@ export function ExhibitorForm({ exhibitor }: Props) {
 
       {/* ── Contact ── */}
       <Section title="Contact">
+        <Field label="Adresse civique de l'organisation">
+          <input
+            className={input}
+            value={form.company_address ?? ''}
+            onChange={(e) => set('company_address', e.target.value || null)}
+          />
+        </Field>
+        <Field label="Téléphone de l'organisation">
+          <input
+            type="tel"
+            className={input}
+            value={form.company_phone ?? ''}
+            onChange={(e) => set('company_phone', e.target.value || null)}
+          />
+        </Field>
         <Field label="Nom du responsable de la facturation">
           <input
             className={input}

@@ -50,6 +50,8 @@ export type Partner = {
   featured: boolean
 
   // Contact
+  company_address: string | null // adresse civique de l'organisation
+  company_phone: string | null // téléphone de l'organisation
   primary_contact_name: string | null
   primary_contact_email: string | null
   primary_contact_phone: string | null
@@ -142,6 +144,8 @@ export type Exhibitor = {
   featured: boolean
 
   // Contact
+  company_address: string | null // adresse civique de l'organisation
+  company_phone: string | null // téléphone de l'organisation
   primary_contact_name: string | null
   primary_contact_email: string | null
   primary_contact_phone: string | null
@@ -326,6 +330,8 @@ export type DemandeKiosque = {
   kiosque_numero: number | null // null : sans préférence
   niveau: NiveauDemande
   organisation: string
+  organisation_adresse: string | null // null : demandes reçues avant V010
+  organisation_telephone: string | null
   principal_nom: string
   principal_courriel: string
   principal_telephone: string

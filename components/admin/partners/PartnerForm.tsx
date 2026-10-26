@@ -307,6 +307,16 @@ export function PartnerForm({ partner }: { partner?: Partner }) {
       <Section title="③ Contact">
         <Grid>
           <div>
+            <label className={labelClass}>Adresse civique de l&apos;organisation</label>
+            {txt('company_address')}
+          </div>
+          <div>
+            <label className={labelClass}>Téléphone de l&apos;organisation</label>
+            {txt('company_phone')}
+          </div>
+        </Grid>
+        <Grid>
+          <div>
             <label className={labelClass}>Nom du responsable de la facturation</label>
             {txt('primary_contact_name')}
           </div>

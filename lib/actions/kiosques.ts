@@ -110,6 +110,8 @@ export async function accepterDemande(id: string, niveau: Exclude<NiveauDemande,
   const memePersonne = demande.kiosque_courriel === demande.principal_courriel
   const commun = {
     company_name: demande.organisation,
+    company_address: demande.organisation_adresse ?? null,
+    company_phone: demande.organisation_telephone ?? null,
     primary_contact_name: demande.principal_nom,
     primary_contact_email: demande.principal_courriel,
     primary_contact_phone: demande.principal_telephone,

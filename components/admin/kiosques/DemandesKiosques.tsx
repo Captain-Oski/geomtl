@@ -185,6 +185,17 @@ function DetailDemande({
       )}
 
       <div className="space-y-3 text-sm">
+        <div>
+          <p className="text-xs text-gray-500">Organisation</p>
+          <p className="text-gray-200">{d.organisation_adresse || <span className="text-gray-500">Adresse non fournie</span>}</p>
+          {d.organisation_telephone ? (
+            <a href={`tel:${d.organisation_telephone.replace(/[^\d+]/g, '')}`} className="block text-blue-300 hover:underline">
+              {d.organisation_telephone}
+            </a>
+          ) : (
+            <p className="text-gray-500">Téléphone non fourni</p>
+          )}
+        </div>
         <Contact titre="Responsable de la facturation" nom={d.principal_nom} courriel={d.principal_courriel} telephone={d.principal_telephone} sujet={sujetReponse} />
         {memePersonne ? (
           <p className="text-xs text-gray-500">Responsable du kiosque sur place : le responsable de la facturation.</p>

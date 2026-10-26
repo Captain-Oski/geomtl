@@ -29,6 +29,8 @@ const VIDE = {
   kiosque: '' as string, // '' : pas encore choisi ; '0' : sans préférence
   niveau: '' as NiveauDemande | '',
   organisation: '',
+  organisation_adresse: '',
+  organisation_telephone: '',
   principal_nom: '',
   principal_courriel: '',
   principal_telephone: '',
@@ -259,11 +261,24 @@ export default function ModaleReservation({
             </div>
           </div>
 
-          <div>
-            <label htmlFor="reservation-organisation" className={etiquette}>{fr ? 'Organisation' : 'Organization'}</label>
-            <input {...proprietes('organisation')} type="text" autoComplete="organization" maxLength={LIMITES.organisation} value={champs.organisation} onChange={(e) => changer('organisation', e.target.value)} className={champ} />
-            {erreur('organisation')}
-          </div>
+          <fieldset className={groupe}>
+            <legend className={legende}>{fr ? 'Organisation' : 'Organization'}</legend>
+            <div>
+              <label htmlFor="reservation-organisation" className={etiquette}>{fr ? 'Nom de l\'organisation' : 'Organization name'}</label>
+              <input {...proprietes('organisation')} type="text" autoComplete="organization" maxLength={LIMITES.organisation} value={champs.organisation} onChange={(e) => changer('organisation', e.target.value)} className={champ} />
+              {erreur('organisation')}
+            </div>
+            <div>
+              <label htmlFor="reservation-organisation_adresse" className={etiquette}>{fr ? 'Adresse civique' : 'Street address'}</label>
+              <input {...proprietes('organisation_adresse')} type="text" autoComplete="street-address" maxLength={LIMITES.adresse} placeholder={fr ? 'Numéro, rue, ville, province, code postal' : 'Number, street, city, province, postal code'} value={champs.organisation_adresse} onChange={(e) => changer('organisation_adresse', e.target.value)} className={champ} />
+              {erreur('organisation_adresse')}
+            </div>
+            <div className="sm:w-1/2 sm:pr-1.5">
+              <label htmlFor="reservation-organisation_telephone" className={etiquette}>{fr ? 'Téléphone de l\'organisation' : 'Organization phone'}</label>
+              <input {...proprietes('organisation_telephone')} type="tel" autoComplete="tel" maxLength={LIMITES.telephone} value={champs.organisation_telephone} onChange={(e) => changer('organisation_telephone', e.target.value)} className={champ} />
+              {erreur('organisation_telephone')}
+            </div>
+          </fieldset>
 
           <fieldset className={groupe}>
             <legend className={legende}>{fr ? 'Responsable de la facturation' : 'Billing contact'}</legend>

@@ -23,6 +23,7 @@ export const LIBELLES_NIVEAUX: Record<NiveauDemande, { fr: string; en: string }>
 
 export const LIMITES = {
   organisation: 150,
+  adresse: 300,
   nom: 120,
   courriel: 254,
   telephone: 40,
@@ -37,6 +38,8 @@ export interface DonneesDemande {
   kiosque: number; // 1 à 26, ou SANS_PREFERENCE
   niveau: NiveauDemande;
   organisation: string;
+  organisation_adresse: string;
+  organisation_telephone: string;
   principal_nom: string;
   principal_courriel: string;
   principal_telephone: string;
@@ -74,6 +77,8 @@ export function validerDemande(brut: Record<string, unknown>): { donnees: Donnee
     kiosque,
     niveau,
     organisation: texte(brut.organisation),
+    organisation_adresse: texte(brut.organisation_adresse),
+    organisation_telephone: texte(brut.organisation_telephone),
     principal_nom: texte(brut.principal_nom),
     principal_courriel: texte(brut.principal_courriel).toLowerCase(),
     principal_telephone: texte(brut.principal_telephone),
@@ -111,6 +116,10 @@ export function validerDemande(brut: Record<string, unknown>): { donnees: Donnee
   };
 
   longueur('organisation', donnees.organisation, LIMITES.organisation);
+  if (!donnees.organisation_adresse) erreurs.organisation_adresse = 'requis';
+  else if (donnees.organisation_adresse.length < 5) erreurs.organisation_adresse = 'trop_court';
+  else if (donnees.organisation_adresse.length > LIMITES.adresse) erreurs.organisation_adresse = 'trop_long';
+  telephone('organisation_telephone', donnees.organisation_telephone);
   longueur('principal_nom', donnees.principal_nom, LIMITES.nom);
   courriel('principal_courriel', donnees.principal_courriel);
   telephone('principal_telephone', donnees.principal_telephone);
@@ -140,6 +149,8 @@ const MESSAGES_PARTICULIERS: Partial<Record<keyof DonneesDemande, Partial<Record
   kiosque_courriel: { invalide: COURRIEL_INVALIDE },
   principal_telephone: { invalide: TELEPHONE_INVALIDE },
   kiosque_telephone: { invalide: TELEPHONE_INVALIDE },
+  organisation_telephone: { invalide: TELEPHONE_INVALIDE },
+  organisation_adresse: { trop_court: { fr: 'Adresse incomplète.', en: 'Incomplete address.' } },
   consentement: { requis: { fr: 'Votre consentement est nécessaire pour traiter la demande.', en: 'Your consent is required to process the request.' } },
   niveau: { requis: { fr: 'Choisissez un niveau.', en: 'Choose a level.' } },
   kiosque: {
