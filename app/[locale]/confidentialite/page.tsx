@@ -16,8 +16,8 @@ export function generateStaticParams() {
   return [{ locale: 'fr' }, { locale: 'en' }];
 }
 
-const UPDATED = '23 octobre 2026';
-const UPDATED_EN = 'October 23, 2026';
+const UPDATED = '26 octobre 2026';
+const UPDATED_EN = 'October 26, 2026';
 const EMAIL = 'info@geomtl.com';
 
 export default async function ConfidentialitePage(
@@ -54,7 +54,7 @@ export default async function ConfidentialitePage(
           <p>Nous collectons uniquement les renseignements que vous nous fournissez volontairement :</p>
           <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
             <li>Formulaire de contact : nom, courriel, message</li>
-            <li>Demande pour devenir partenaire ou exposant : organisation, responsable de la facturation et responsable du kiosque sur place (nom, courriel, téléphone), niveau et kiosque souhaités, message</li>
+            <li>Demande pour devenir partenaire ou exposant : organisation (nom, adresse civique, téléphone), responsable de la facturation et responsable du kiosque sur place (nom, courriel, téléphone), niveau et kiosque souhaités, message</li>
             <li>Infolettre : adresse courriel</li>
             <li>Inscription à un atelier : nom, courriel, organisation</li>
           </ul>
@@ -123,14 +123,30 @@ export default async function ConfidentialitePage(
     },
     {
       id: 'transferts',
-      title: '6. Transferts hors Québec',
+      title: '6. Fournisseurs de services et transferts hors Québec',
       content: (
-        <p>
-          Vos renseignements sont traités au Canada. Aucun transfert à des tiers situés hors du
-          Québec n&apos;est effectué à ce jour. Si cela devait changer, nous vous en informerons
-          conformément aux articles 17 et suivants de la <em>Loi sur la protection des
-          renseignements personnels dans le secteur privé</em> (Loi 25).
-        </p>
+        <div className="space-y-3">
+          <p>
+            Pour faire fonctionner le site et l&apos;événement, nous confions certains renseignements
+            aux fournisseurs de services suivants, qui les traitent pour notre compte et seulement
+            pour ces fins :
+          </p>
+          <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
+            <li><strong>Google Workspace</strong> : courriels envoyés par les formulaires du site et échanges avec le comité</li>
+            <li><strong>Mailchimp</strong> : envoi de l&apos;infolettre</li>
+            <li><strong>Le Point de Vente</strong> : plateforme de billetterie et d&apos;inscription à l&apos;événement</li>
+            <li><strong>Vercel</strong> : hébergement du site</li>
+            <li><strong>Supabase</strong> : base de données des demandes de partenariat et d&apos;exposition</li>
+            <li><strong>Le Studio</strong> : prestataire mandaté par le comité organisateur</li>
+          </ul>
+          <p>
+            Certains de ces fournisseurs, notamment Google, Mailchimp, Vercel et Supabase, conservent
+            ou traitent des renseignements à l&apos;extérieur du Québec, entre autres aux États-Unis.
+            Ces communications se font conformément à la <em>Loi sur la protection des
+            renseignements personnels dans le secteur privé</em> (Loi 25), qui exige que les
+            renseignements y bénéficient d&apos;une protection adéquate.
+          </p>
+        </div>
       ),
     },
     {
@@ -158,8 +174,9 @@ export default async function ConfidentialitePage(
       title: '8. Contact : responsable de la protection des renseignements personnels',
       content: (
         <div className="glass-2027 rounded-xl p-5 space-y-1 text-sm">
-          <p className="text-geo-ink font-semibold">GÉOMTL 2027</p>
-          <p>1001, place Jean-Paul-Riopelle, Montréal (Québec) H2Z 1H5</p>
+          <p className="text-geo-ink font-semibold">Martin Carpentier, président de GÉOMTL</p>
+          <p>Responsable de la protection des renseignements personnels</p>
+          <p>2260, avenue Aird, bureau 210, Montréal (Québec) H1V 2W6</p>
           <p>
             <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>
           </p>
@@ -186,7 +203,7 @@ export default async function ConfidentialitePage(
           <p>We only collect information you voluntarily provide:</p>
           <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
             <li>Contact form: name, email, message</li>
-            <li>Partner or exhibitor request: organization, billing contact and on-site booth contact (name, email, phone), desired level and booth, message</li>
+            <li>Partner or exhibitor request: organization (name, street address, phone), billing contact and on-site booth contact (name, email, phone), desired level and booth, message</li>
             <li>Newsletter: email address</li>
             <li>Workshop registration: name, email, organization</li>
           </ul>
@@ -254,13 +271,29 @@ export default async function ConfidentialitePage(
     },
     {
       id: 'transfers',
-      title: '6. Cross-border Transfers',
+      title: '6. Service Providers and Transfers Outside Quebec',
       content: (
-        <p>
-          Your information is processed in Canada. No transfers to third parties outside Quebec
-          are made at this time. If this changes, you will be informed in accordance with
-          Quebec Law 25 (Act respecting the protection of personal information in the private sector).
-        </p>
+        <div className="space-y-3">
+          <p>
+            To operate the website and the event, we entrust some information to the following
+            service providers, who process it on our behalf and only for these purposes:
+          </p>
+          <ul className="list-disc list-inside space-y-1 text-geo-ink-soft">
+            <li><strong>Google Workspace</strong>: emails sent by the website forms and exchanges with the committee</li>
+            <li><strong>Mailchimp</strong>: newsletter delivery</li>
+            <li><strong>Le Point de Vente</strong>: ticketing and event registration platform</li>
+            <li><strong>Vercel</strong>: website hosting</li>
+            <li><strong>Supabase</strong>: database of partner and exhibitor requests</li>
+            <li><strong>Le Studio</strong>: service provider engaged by the organizing committee</li>
+          </ul>
+          <p>
+            Some of these providers, including Google, Mailchimp, Vercel and Supabase, store or
+            process information outside Quebec, notably in the United States. These transfers are
+            made in accordance with Quebec Law 25 (Act respecting the protection of personal
+            information in the private sector), which requires the information to receive adequate
+            protection.
+          </p>
+        </div>
       ),
     },
     {
@@ -288,8 +321,9 @@ export default async function ConfidentialitePage(
       title: '8. Contact: Privacy Officer',
       content: (
         <div className="glass-2027 rounded-xl p-5 space-y-1 text-sm">
-          <p className="text-geo-ink font-semibold">GÉOMTL 2027</p>
-          <p>1001 Place Jean-Paul-Riopelle, Montréal, QC H2Z 1H5</p>
+          <p className="text-geo-ink font-semibold">Martin Carpentier, President of GÉOMTL</p>
+          <p>Privacy Officer</p>
+          <p>2260 Avenue Aird, Suite 210, Montréal, QC H1V 2W6, Canada</p>
           <p>
             <a href={`mailto:${EMAIL}`} className="text-geo-teal-dark hover:underline">{EMAIL}</a>
           </p>
