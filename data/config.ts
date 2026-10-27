@@ -20,11 +20,10 @@ export const EVENT_CONFIG = {
       "Where geospatial becomes a collective experience."
     ]
   },
-  // Événement Le Point de Vente. L'ancien site utilisait l'identifiant « geomtl2025 » :
-  // vérifier dans le compte organisateur que l'événement 2027 porte bien « geomtl2027 ».
+  // Événement GÉOMTL 2027 sur Le Point de Vente (page en français et en anglais)
   ticketUrl: {
-    fr: "https://lepointdevente.com/billets/geomtl2027",
-    en: "https://lepointdevente.com/tickets/geomtl2027"
+    fr: "https://lepointdevente.com/billets/l0z261010001?lang=fr",
+    en: "https://lepointdevente.com/tickets/l0z261010001?lang=en"
   },
   partnerUrl: "#devenir-partenaire",
   email: "info@geomtl.com",
